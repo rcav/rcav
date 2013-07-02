@@ -1,0 +1,34 @@
+.metaslider .vimeo .spinner {
+	position: absolute;
+	top: 13px;
+	right: 26px;
+}
+
+.metaslider .vimeo input[type=text] {
+	font-family: sans-serif;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #dfdfdf;
+	line-height: 1.2em;
+	font-size: 18px;
+	padding: 12px 14px;
+	width: 100%;
+	min-width: 200px;
+	box-shadow: inset 2px 2px 4px -2px rgba( 0, 0, 0, 0.1 );
+}
+.metaslider tr.slide td.col-1 .thumb.vimeo {
+	background-repeat: no-repeat;
+	background-size: auto auto;
+	background-image: url('vimeo/vimeo.png'), -moz-linear-gradient(top,  #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%); /* FF3.6+ */
+	background-image: url('vimeo/vimeo.png'), -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e2e2e2), color-stop(50%,#dbdbdb), color-stop(51%,#d1d1d1), color-stop(100%,#fefefe)); /* Chrome,Safari4+ */
+	background-image: url('vimeo/vimeo.png'), -webkit-linear-gradient(top,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* Chrome10+,Safari5.1+ */
+	background-image: url('vimeo/vimeo.png'), -o-linear-gradient(top,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* Opera 11.10+ */
+	background-image: url('vimeo/vimeo.png'), -ms-linear-gradient(top,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* IE10+ */
+	background-image: url('vimeo/vimeo.png'), linear-gradient(to bottom,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* W3C */
+}

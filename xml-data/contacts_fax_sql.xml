@@ -1,0 +1,495 @@
+<?xml version="1.0" standalone="yes"?>
+<RECORDS>
+<RECORD>
+<cid>28</cid>
+<pid>23</pid>
+<contact_type>Fax</contact_type>
+<contact_value> 604 521 9518</contact_value>
+</RECORD>
+<RECORD>
+<cid>49</cid>
+<pid>52</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 988 3261 </contact_value>
+</RECORD>
+<RECORD>
+<cid>70</cid>
+<pid>16</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604-538-4928</contact_value>
+</RECORD>
+<RECORD>
+<cid>79</cid>
+<pid>24</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 988 2600</contact_value>
+</RECORD>
+<RECORD>
+<cid>252</cid>
+<pid>10</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 939 1749</contact_value>
+</RECORD>
+<RECORD>
+<cid>253</cid>
+<pid>11</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 873 9744</contact_value>
+</RECORD>
+<RECORD>
+<cid>255</cid>
+<pid>13</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 922 5942</contact_value>
+</RECORD>
+<RECORD>
+<cid>256</cid>
+<pid>14</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 485 5460</contact_value>
+</RECORD>
+<RECORD>
+<cid>257</cid>
+<pid>15</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 327 9699</contact_value>
+</RECORD>
+<RECORD>
+<cid>259</cid>
+<pid>17</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 684 5757</contact_value>
+</RECORD>
+<RECORD>
+<cid>260</cid>
+<pid>18</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 299 3824</contact_value>
+</RECORD>
+<RECORD>
+<cid>262</cid>
+<pid>20</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 255 5027</contact_value>
+</RECORD>
+<RECORD>
+<cid>263</cid>
+<pid>21</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 261 9307</contact_value>
+</RECORD>
+<RECORD>
+<cid>264</cid>
+<pid>22</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 331 8406</contact_value>
+</RECORD>
+<RECORD>
+<cid>266</cid>
+<pid>24</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 988 2600</contact_value>
+</RECORD>
+<RECORD>
+<cid>267</cid>
+<pid>25</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 224 8808</contact_value>
+</RECORD>
+<RECORD>
+<cid>268</cid>
+<pid>26</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 591 2335</contact_value>
+</RECORD>
+<RECORD>
+<cid>269</cid>
+<pid>27</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 254 5198</contact_value>
+</RECORD>
+<RECORD>
+<cid>270</cid>
+<pid>28</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604-740-5742</contact_value>
+</RECORD>
+<RECORD>
+<cid>271</cid>
+<pid>29</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 936 2524</contact_value>
+</RECORD>
+<RECORD>
+<cid>272</cid>
+<pid>30</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 879 9621</contact_value>
+</RECORD>
+<RECORD>
+<cid>273</cid>
+<pid>31</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 581 8146</contact_value>
+</RECORD>
+<RECORD>
+<cid>274</cid>
+<pid>32</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 869 5399</contact_value>
+</RECORD>
+<RECORD>
+<cid>275</cid>
+<pid>33</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 253 2244</contact_value>
+</RECORD>
+<RECORD>
+<cid>276</cid>
+<pid>34</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 936 3911</contact_value>
+</RECORD>
+<RECORD>
+<cid>277</cid>
+<pid>35</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 517 1618</contact_value>
+</RECORD>
+<RECORD>
+<cid>278</cid>
+<pid>36</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 224 4323</contact_value>
+</RECORD>
+<RECORD>
+<cid>279</cid>
+<pid>37</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 254 0228</contact_value>
+</RECORD>
+<RECORD>
+<cid>280</cid>
+<pid>38</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 942 7400</contact_value>
+</RECORD>
+<RECORD>
+<cid>281</cid>
+<pid>39</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 574 9623</contact_value>
+</RECORD>
+<RECORD>
+<cid>283</cid>
+<pid>41</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 946 4533</contact_value>
+</RECORD>
+<RECORD>
+<cid>284</cid>
+<pid>42</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 588 5834</contact_value>
+</RECORD>
+<RECORD>
+<cid>285</cid>
+<pid>43</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 327 8067</contact_value>
+</RECORD>
+<RECORD>
+<cid>286</cid>
+<pid>44</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 852 3007</contact_value>
+</RECORD>
+<RECORD>
+<cid>287</cid>
+<pid>45</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 796 9181</contact_value>
+</RECORD>
+<RECORD>
+<cid>289</cid>
+<pid>47</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 926 3852</contact_value>
+</RECORD>
+<RECORD>
+<cid>290</cid>
+<pid>48</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 736 8034</contact_value>
+</RECORD>
+<RECORD>
+<cid>291</cid>
+<pid>49</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 597 9534</contact_value>
+</RECORD>
+<RECORD>
+<cid>292</cid>
+<pid>50</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 872 8171</contact_value>
+</RECORD>
+<RECORD>
+<cid>293</cid>
+<pid>51</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 941 8911</contact_value>
+</RECORD>
+<RECORD>
+<cid>295</cid>
+<pid>53</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 434 3038</contact_value>
+</RECORD>
+<RECORD>
+<cid>296</cid>
+<pid>54</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 255 8850</contact_value>
+</RECORD>
+<RECORD>
+<cid>297</cid>
+<pid>55</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 254 7557</contact_value>
+</RECORD>
+<RECORD>
+<cid>298</cid>
+<pid>56</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 298 1734</contact_value>
+</RECORD>
+<RECORD>
+<cid>299</cid>
+<pid>57</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 822 4659</contact_value>
+</RECORD>
+<RECORD>
+<cid>300</cid>
+<pid>58</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 864 8876</contact_value>
+</RECORD>
+<RECORD>
+<cid>301</cid>
+<pid>59</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 263 9594</contact_value>
+</RECORD>
+<RECORD>
+<cid>302</cid>
+<pid>60</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 275 4034</contact_value>
+</RECORD>
+<RECORD>
+<cid>303</cid>
+<pid>61</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 898 4354</contact_value>
+</RECORD>
+<RECORD>
+<cid>304</cid>
+<pid>62</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 461 2911</contact_value>
+</RECORD>
+<RECORD>
+<cid>305</cid>
+<pid>63</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 755 4507</contact_value>
+</RECORD>
+<RECORD>
+<cid>306</cid>
+<pid>64</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 876 7480</contact_value>
+</RECORD>
+<RECORD>
+<cid>307</cid>
+<pid>65</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 534 6458</contact_value>
+</RECORD>
+<RECORD>
+<cid>308</cid>
+<pid>66</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 434 6799</contact_value>
+</RECORD>
+<RECORD>
+<cid>309</cid>
+<pid>67</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 465 5393</contact_value>
+</RECORD>
+<RECORD>
+<cid>310</cid>
+<pid>68</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 792 3013</contact_value>
+</RECORD>
+<RECORD>
+<cid>311</cid>
+<pid>69</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 439 9413</contact_value>
+</RECORD>
+<RECORD>
+<cid>312</cid>
+<pid>70</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 589 2344</contact_value>
+</RECORD>
+<RECORD>
+<cid>313</cid>
+<pid>71</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 517 1461</contact_value>
+</RECORD>
+<RECORD>
+<cid>314</cid>
+<pid>72</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 279 0334</contact_value>
+</RECORD>
+<RECORD>
+<cid>315</cid>
+<pid>73</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 513 0303</contact_value>
+</RECORD>
+<RECORD>
+<cid>316</cid>
+<pid>74</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 463 9119</contact_value>
+</RECORD>
+<RECORD>
+<cid>317</cid>
+<pid>75</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 874 7815</contact_value>
+</RECORD>
+<RECORD>
+<cid>318</cid>
+<pid>76</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 277 0716</contact_value>
+</RECORD>
+<RECORD>
+<cid>319</cid>
+<pid>77</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 254 2872</contact_value>
+</RECORD>
+<RECORD>
+<cid>320</cid>
+<pid>78</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 984 6759</contact_value>
+</RECORD>
+<RECORD>
+<cid>321</cid>
+<pid>79</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 522 9142</contact_value>
+</RECORD>
+<RECORD>
+<cid>322</cid>
+<pid>80</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 929 1463</contact_value>
+</RECORD>
+<RECORD>
+<cid>323</cid>
+<pid>81</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 980 0489</contact_value>
+</RECORD>
+<RECORD>
+<cid>324</cid>
+<pid>82</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 298 6802</contact_value>
+</RECORD>
+<RECORD>
+<cid>325</cid>
+<pid>83</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 5206965</contact_value>
+</RECORD>
+<RECORD>
+<cid>326</cid>
+<pid>84</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 857 1058</contact_value>
+</RECORD>
+<RECORD>
+<cid>327</cid>
+<pid>85</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 261 3580</contact_value>
+</RECORD>
+<RECORD>
+<cid>328</cid>
+<pid>86</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 538 4928</contact_value>
+</RECORD>
+<RECORD>
+<cid>329</cid>
+<pid>87</pid>
+<contact_type>Fax</contact_type>
+<contact_value>250 742 3772</contact_value>
+</RECORD>
+<RECORD>
+<cid>331</cid>
+<pid>89</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 867 9261</contact_value>
+</RECORD>
+<RECORD>
+<cid>332</cid>
+<pid>90</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 988 2600</contact_value>
+</RECORD>
+<RECORD>
+<cid>333</cid>
+<pid>91</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 434 3038</contact_value>
+</RECORD>
+<RECORD>
+<cid>334</cid>
+<pid>92</pid>
+<contact_type>Fax</contact_type>
+<contact_value></contact_value>
+</RECORD>
+<RECORD>
+<cid>335</cid>
+<pid>93</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 538 4928</contact_value>
+</RECORD>
+<RECORD>
+<cid>344</cid>
+<pid>12</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 272 5564</contact_value>
+</RECORD>
+<RECORD>
+<cid>357</cid>
+<pid>46</pid>
+<contact_type>Fax</contact_type>
+<contact_value>604 266 0223</contact_value>
+</RECORD>
+</RECORDS>

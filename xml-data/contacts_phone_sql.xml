@@ -1,0 +1,519 @@
+<?xml version="1.0" standalone="yes"?>
+<RECORDS>
+<RECORD>
+<cid>26</cid>
+<pid>23</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 521 0334</contact_value>
+</RECORD>
+<RECORD>
+<cid>47</cid>
+<pid>52</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 988 3211</contact_value>
+</RECORD>
+<RECORD>
+<cid>63</cid>
+<pid>57</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 822 4463</contact_value>
+</RECORD>
+<RECORD>
+<cid>65</cid>
+<pid>16</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604-531-5739</contact_value>
+</RECORD>
+<RECORD>
+<cid>78</cid>
+<pid>24</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 988 6304</contact_value>
+</RECORD>
+<RECORD>
+<cid>167</cid>
+<pid>10</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 939 1741</contact_value>
+</RECORD>
+<RECORD>
+<cid>168</cid>
+<pid>11</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 874 3636</contact_value>
+</RECORD>
+<RECORD>
+<cid>170</cid>
+<pid>13</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 922 1371</contact_value>
+</RECORD>
+<RECORD>
+<cid>171</cid>
+<pid>14</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 485 5300</contact_value>
+</RECORD>
+<RECORD>
+<cid>172</cid>
+<pid>15</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 324 2265</contact_value>
+</RECORD>
+<RECORD>
+<cid>174</cid>
+<pid>17</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 684 5775</contact_value>
+</RECORD>
+<RECORD>
+<cid>175</cid>
+<pid>18</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 299 3814</contact_value>
+</RECORD>
+<RECORD>
+<cid>176</cid>
+<pid>19</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 885 9526</contact_value>
+</RECORD>
+<RECORD>
+<cid>177</cid>
+<pid>20</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 875 8414</contact_value>
+</RECORD>
+<RECORD>
+<cid>178</cid>
+<pid>21</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 261 9393</contact_value>
+</RECORD>
+<RECORD>
+<cid>179</cid>
+<pid>22</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 682 6774</contact_value>
+</RECORD>
+<RECORD>
+<cid>181</cid>
+<pid>24</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 988 6304</contact_value>
+</RECORD>
+<RECORD>
+<cid>182</cid>
+<pid>25</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 224 5678</contact_value>
+</RECORD>
+<RECORD>
+<cid>183</cid>
+<pid>26</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 591 2271</contact_value>
+</RECORD>
+<RECORD>
+<cid>184</cid>
+<pid>27</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 253 2089</contact_value>
+</RECORD>
+<RECORD>
+<cid>185</cid>
+<pid>28</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604-740-5742</contact_value>
+</RECORD>
+<RECORD>
+<cid>186</cid>
+<pid>29</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 936 2525</contact_value>
+</RECORD>
+<RECORD>
+<cid>187</cid>
+<pid>30</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 879 0729</contact_value>
+</RECORD>
+<RECORD>
+<cid>188</cid>
+<pid>31</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 581 4141</contact_value>
+</RECORD>
+<RECORD>
+<cid>189</cid>
+<pid>32</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 869 5382</contact_value>
+</RECORD>
+<RECORD>
+<cid>190</cid>
+<pid>33</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 253 2577</contact_value>
+</RECORD>
+<RECORD>
+<cid>191</cid>
+<pid>34</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 936 1311</contact_value>
+</RECORD>
+<RECORD>
+<cid>192</cid>
+<pid>35</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 522 5733</contact_value>
+</RECORD>
+<RECORD>
+<cid>193</cid>
+<pid>36</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 224 4344</contact_value>
+</RECORD>
+<RECORD>
+<cid>194</cid>
+<pid>37</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 254 0691</contact_value>
+</RECORD>
+<RECORD>
+<cid>195</cid>
+<pid>38</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 942 7808</contact_value>
+</RECORD>
+<RECORD>
+<cid>196</cid>
+<pid>39</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 574 4363</contact_value>
+</RECORD>
+<RECORD>
+<cid>197</cid>
+<pid>40</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 254 3100</contact_value>
+</RECORD>
+<RECORD>
+<cid>198</cid>
+<pid>41</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 946 4522</contact_value>
+</RECORD>
+<RECORD>
+<cid>199</cid>
+<pid>42</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 588 5831</contact_value>
+</RECORD>
+<RECORD>
+<cid>200</cid>
+<pid>43</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 327 2824</contact_value>
+</RECORD>
+<RECORD>
+<cid>201</cid>
+<pid>44</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 852 5602</contact_value>
+</RECORD>
+<RECORD>
+<cid>202</cid>
+<pid>45</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 796 9181</contact_value>
+</RECORD>
+<RECORD>
+<cid>204</cid>
+<pid>47</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 926 6881</contact_value>
+</RECORD>
+<RECORD>
+<cid>205</cid>
+<pid>48</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 736 4455</contact_value>
+</RECORD>
+<RECORD>
+<cid>206</cid>
+<pid>49</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 596 0566</contact_value>
+</RECORD>
+<RECORD>
+<cid>207</cid>
+<pid>50</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 876 3194</contact_value>
+</RECORD>
+<RECORD>
+<cid>208</cid>
+<pid>51</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 941 4800</contact_value>
+</RECORD>
+<RECORD>
+<cid>210</cid>
+<pid>53</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 434 1328</contact_value>
+</RECORD>
+<RECORD>
+<cid>211</cid>
+<pid>54</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 255 8855</contact_value>
+</RECORD>
+<RECORD>
+<cid>212</cid>
+<pid>55</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 254 2727</contact_value>
+</RECORD>
+<RECORD>
+<cid>213</cid>
+<pid>56</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 298 4144</contact_value>
+</RECORD>
+<RECORD>
+<cid>215</cid>
+<pid>58</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 864 8800</contact_value>
+</RECORD>
+<RECORD>
+<cid>216</cid>
+<pid>59</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 266 8800</contact_value>
+</RECORD>
+<RECORD>
+<cid>217</cid>
+<pid>60</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 277 8353</contact_value>
+</RECORD>
+<RECORD>
+<cid>218</cid>
+<pid>61</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 898 4355</contact_value>
+</RECORD>
+<RECORD>
+<cid>219</cid>
+<pid>62</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 461 1369</contact_value>
+</RECORD>
+<RECORD>
+<cid>220</cid>
+<pid>63</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 826 2452</contact_value>
+</RECORD>
+<RECORD>
+<cid>221</cid>
+<pid>64</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 876 7826</contact_value>
+</RECORD>
+<RECORD>
+<cid>222</cid>
+<pid>65</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 534 3303</contact_value>
+</RECORD>
+<RECORD>
+<cid>223</cid>
+<pid>66</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 434 6700</contact_value>
+</RECORD>
+<RECORD>
+<cid>224</cid>
+<pid>67</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 465 5383</contact_value>
+</RECORD>
+<RECORD>
+<cid>225</cid>
+<pid>68</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 792 2764</contact_value>
+</RECORD>
+<RECORD>
+<cid>226</cid>
+<pid>69</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 435 9611</contact_value>
+</RECORD>
+<RECORD>
+<cid>227</cid>
+<pid>70</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 589 2448</contact_value>
+</RECORD>
+<RECORD>
+<cid>228</cid>
+<pid>71</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 521 3406</contact_value>
+</RECORD>
+<RECORD>
+<cid>229</cid>
+<pid>72</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 278 0844</contact_value>
+</RECORD>
+<RECORD>
+<cid>230</cid>
+<pid>73</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 513 0300</contact_value>
+</RECORD>
+<RECORD>
+<cid>231</cid>
+<pid>74</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 463 7148</contact_value>
+</RECORD>
+<RECORD>
+<cid>232</cid>
+<pid>75</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 874 7818</contact_value>
+</RECORD>
+<RECORD>
+<cid>233</cid>
+<pid>76</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 277 3213</contact_value>
+</RECORD>
+<RECORD>
+<cid>234</cid>
+<pid>77</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 254 3100</contact_value>
+</RECORD>
+<RECORD>
+<cid>235</cid>
+<pid>78</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 984 6709</contact_value>
+</RECORD>
+<RECORD>
+<cid>236</cid>
+<pid>79</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 522 4611</contact_value>
+</RECORD>
+<RECORD>
+<cid>237</cid>
+<pid>80</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 929 1404</contact_value>
+</RECORD>
+<RECORD>
+<cid>238</cid>
+<pid>81</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 985 1962</contact_value>
+</RECORD>
+<RECORD>
+<cid>239</cid>
+<pid>82</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 298 6800</contact_value>
+</RECORD>
+<RECORD>
+<cid>240</cid>
+<pid>83</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 526 7351</contact_value>
+</RECORD>
+<RECORD>
+<cid>241</cid>
+<pid>84</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 857 1944</contact_value>
+</RECORD>
+<RECORD>
+<cid>242</cid>
+<pid>85</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 261 3535</contact_value>
+</RECORD>
+<RECORD>
+<cid>243</cid>
+<pid>86</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 531 5739</contact_value>
+</RECORD>
+<RECORD>
+<cid>244</cid>
+<pid>87</pid>
+<contact_type>Phone</contact_type>
+<contact_value>250 742 3772</contact_value>
+</RECORD>
+<RECORD>
+<cid>245</cid>
+<pid>88</pid>
+<contact_type>Phone</contact_type>
+<contact_value>c/o Chancery Office: 604 683 0281</contact_value>
+</RECORD>
+<RECORD>
+<cid>246</cid>
+<pid>89</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 867 9267</contact_value>
+</RECORD>
+<RECORD>
+<cid>247</cid>
+<pid>90</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 988 6304</contact_value>
+</RECORD>
+<RECORD>
+<cid>248</cid>
+<pid>91</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 431 0047</contact_value>
+</RECORD>
+<RECORD>
+<cid>249</cid>
+<pid>92</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 792 2764</contact_value>
+</RECORD>
+<RECORD>
+<cid>250</cid>
+<pid>93</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 531 5739</contact_value>
+</RECORD>
+<RECORD>
+<cid>251</cid>
+<pid>94</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 885 9526</contact_value>
+</RECORD>
+<RECORD>
+<cid>342</cid>
+<pid>12</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 272 5563</contact_value>
+</RECORD>
+<RECORD>
+<cid>356</cid>
+<pid>46</pid>
+<contact_type>Phone</contact_type>
+<contact_value>604 266 6131</contact_value>
+</RECORD>
+</RECORDS>
