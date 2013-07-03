@@ -613,7 +613,7 @@ if( !function_exists( "theme_js" ) ) {
   // modification of Bootstrap menu dropdown hover
       // modification of Bootstrap menu dropdown hover
     wp_register_script( 'bootstrap-dropdown', 
-      get_template_directory_uri() . '/library/js/twitter-bootstrap-dropdown.js', 
+      get_template_directory_uri() . '/library/js/bootstrap-dropdown.js', 
       array('jquery'), 
       '1.2' );
 
