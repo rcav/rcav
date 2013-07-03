@@ -522,7 +522,7 @@ function first_paragraph( $content ){
  
             /* If this item has a dropdown menu, make clicking on this link toggle it */ 
             if ($item->hasChildren && $depth == 0) { 
-                $item_output .= '<a'. $attributes .' class="dropdown-toggle" data-toggle="dropdown">'; 
+                $item_output .= '<a'. $attributes .' class="dropdown-toggle" data-hover="dropdown">'; 
             } else { 
                 $item_output .= '<a'. $attributes .'>'; 
             } 
@@ -599,7 +599,7 @@ if( !function_exists( "theme_js" ) ) {
       get_template_directory_uri() . '/library/js/bootstrap.min.js', 
       array('jquery'), 
       '1.2' );
-  
+
     wp_register_script( 'wpbs-scripts', 
       get_template_directory_uri() . '/library/js/scripts.js', 
       array('jquery'), 
@@ -610,9 +610,24 @@ if( !function_exists( "theme_js" ) ) {
       array('jquery'), 
       '1.2' );
   
+  // modification of Bootstrap menu dropdown hover
+      // modification of Bootstrap menu dropdown hover
+    wp_register_script( 'bootstrap-dropdown', 
+      get_template_directory_uri() . '/library/js/twitter-bootstrap-dropdown.js', 
+      array('jquery'), 
+      '1.2' );
+
+    wp_register_script( 'hover-dropdown', 
+      get_template_directory_uri() . '/library/js/twitter-bootstrap-hover-dropdown.min.js', 
+      array('jquery'), 
+      '1.2' );
+
     wp_enqueue_script('bootstrap');
     wp_enqueue_script('wpbs-scripts');
     wp_enqueue_script('modernizr');
+    wp_enqueue_script('hover-dropdown');
+    wp_enqueue_script('bootstrap-dropdown');
+   
     
   }
 }
