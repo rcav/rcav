@@ -16,19 +16,14 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-if ( file_exists( dirname( __FILE__ ) . '/wp-local-config.php' ) ) {
-    
-    include( dirname( __FILE__ ) . '/wp-local-config.php' );
- 
-} else {
 
-define('DB_NAME', 'rcav_org');
+define('DB_NAME', 'rcav2');
 
 /** MySQL database username */
-define('DB_USER', 'rcav.org');
+define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'Jj0LUJ2eX4H4zxVX');
+define('DB_PASSWORD', 'root');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
@@ -38,7 +33,6 @@ define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
-}
 
 /**#@+
  * Authentication Unique Keys and Salts.
