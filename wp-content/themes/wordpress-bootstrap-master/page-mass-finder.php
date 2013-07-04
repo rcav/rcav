@@ -19,7 +19,7 @@ Template Name: Mass Finder
 							<div class="page-header"><h1 class="single-title" itemprop="headline"><?php the_title(); ?></h1></div>
 
 								<div class="alert alert-info">
-								 <small><i class="icon-info-sign"></i> Select a city from the list below to find Parishes near year.</small>
+								 <small><i class="icon-info-sign"></i> Select a city from the list below to find Parishes near you.</small>
 								</div>
 																
 
