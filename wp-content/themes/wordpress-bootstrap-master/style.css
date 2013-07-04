@@ -1247,11 +1247,15 @@ body {
 		background: none;
 		box-shadow: none !important;
 		border: none;
-
 	}
 
 	.tabbable { 
 		margin-top:35px;
+	}
+
+	.tabbable ul.nav-pills li {
+		background-image: none !important;
+		padding-left:0;
 	}
 
 	.tabbable .nav-pills a {
