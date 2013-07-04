@@ -4,7 +4,9 @@ Template Name: Parishes Map
 */
 ?>
 
-<?php get_header(); ?>
+<?php get_header(); 
+$root_path = $_SERVER['DOCUMENT_ROOT'];
+?>
 			
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyCUri8tB1QrGgyv5fVTJHAtpXYeBhr4AlY" type="text/javascript"></script>
 
@@ -167,7 +169,7 @@ Template Name: Parishes Map
 
 
       // Read the data
-      GDownloadUrl("<?php echo home_url(); ?>/xml-data/category.xml", function(doc) {
+      GDownloadUrl("<?php echo $root_path ?>/xml-data/category.xml", function(doc) {
         var xmlDoc = GXml.parse(doc);
         var markers = xmlDoc.documentElement.getElementsByTagName("marker");
           
