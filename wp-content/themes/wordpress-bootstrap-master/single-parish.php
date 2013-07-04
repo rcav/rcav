@@ -7,6 +7,7 @@
 <?php get_header(); 
 // get the parish ID from custom field parish_id
 $current_pid  = get_field('parish_id');
+$root_path = $_SERVER['DOCUMENT_ROOT'];
 ?>
 
 <style type="text/css">
@@ -56,7 +57,7 @@ $current_pid  = get_field('parish_id');
 
 
 											<?php 
-												$path = home_url() . '/xml-data/contacts_phone_sql.xml';
+												$path = $root_path . '/xml-data/contacts_phone_sql.xml';
 												$s = simplexml_load_file($path);
 												foreach($s->children() as $child):
 													if($child->pid == $current_pid ) {  
@@ -66,7 +67,7 @@ $current_pid  = get_field('parish_id');
 												endforeach; ?>
 
 											<?php 
-												$path = home_url() . '/xml-data/contacts_fax_sql.xml';
+												$path = $root_path . '/xml-data/contacts_fax_sql.xml';
 												$s = simplexml_load_file($path);
 												foreach($s->children() as $child):
 													if($child->pid == $current_pid ) {  
@@ -76,7 +77,7 @@ $current_pid  = get_field('parish_id');
 												endforeach; ?>
 
 											<?php 
-												$path = home_url() . '/xml-data/contacts_email_sql.xml';
+												$path = $root_path . '/xml-data/contacts_email_sql.xml';
 												$s = simplexml_load_file($path);
 												foreach($s->children() as $child):
 													if($child->pid == $current_pid ) {  
