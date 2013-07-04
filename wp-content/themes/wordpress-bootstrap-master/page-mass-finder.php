@@ -73,8 +73,12 @@ Template Name: Mass Finder
 								?>
 
 								<?php 
+										$city_selection = $_POST['city'];
 
-										$pageposts = mass_finder_search();
+										if(isset($city_selection)){ 
+											$pageposts = mass_finder_search();
+										}
+										
 										if ($pageposts): 
 										echo '<h4>All Parishes in <strong>' . $_POST['city'] .'</strong></h4>';
 
@@ -112,15 +116,18 @@ Template Name: Mass Finder
 								   	?>
 
 									<?php 
-										$path = home_url() . '/xml-data/contacts_phone_sql.xml';
+										$root_path = $_SERVER['DOCUMENT_ROOT'];
+										$path = $root_path . '/xml-data/contacts_phone_sql.xml';
 										$s = simplexml_load_file($path);
+
 											foreach($s->children() as $child):
 												if($child->pid == $current_pid ) {  
 													echo '<br />';
 													echo $child->contact_type . ': ';
 													echo $child->contact_value . '<br />';
 												}
-											endforeach; ?>								   	
+											endforeach; 
+										?>								   	
 
 								 	<?php if(get_field('primarylanguage')) 
 								 		{ 
