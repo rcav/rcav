@@ -117,13 +117,8 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 
 
 										<div class="span4" id="gmap-embed">
-
-									 	<?php if(get_field('gmapcode')) 
-									 		{ 
-									 			$a = html_entity_decode(get_field('gmapcode'));
-									 			echo $a;
-									 		}
-									 	?></div>
+											<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="<?php echo get_field('gmap_link') . '&output=embed'; ?>"></iframe>
+										</div>
 
 
 									<div class="clearfix row-fluid">
