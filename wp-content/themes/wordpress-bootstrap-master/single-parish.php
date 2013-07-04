@@ -136,7 +136,7 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 
 									    <div class="tab-pane active" id="tab1">
 											<?php 
-												$path = home_url() . '/xml-data/mass_times_sql.xml';
+												$path = $root_path . '/xml-data/mass_times_sql.xml';
 												$s = simplexml_load_file($path);
 												foreach($s->children() as $child):
 													if($child->pid == $current_pid ) { // replace this meta_value 
@@ -148,7 +148,7 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 									    </div>
 									    <div class="tab-pane" id="tab2">
 											<?php 
-												$path = home_url() . '/xml-data/special_mass_times_sql.xml';
+												$path = $root_path . '/xml-data/special_mass_times_sql.xml';
 												$s = simplexml_load_file($path);
 												foreach($s->children() as $child):
 													if($child->pid == $current_pid ) { // replace this meta_value 
@@ -160,7 +160,7 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 									    </div>    
 									    <div class="tab-pane" id="tab3">
 											<?php 
-												$path = home_url() . '/xml-data/confession_times_sql.xml';
+												$path = $root_path . '/xml-data/confession_times_sql.xml';
 												$c = simplexml_load_file($path);
 												foreach($c->children() as $child):
 													if($child->pid == $current_pid ) { // replace this meta_value 
@@ -173,7 +173,7 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 
 									    <div class="tab-pane" id="tab4">
 											<?php 
-												$path = home_url() . '/xml-data/devotion_times_sql.xml';
+												$path = $root_path . '/xml-data/devotion_times_sql.xml';
 												$c = simplexml_load_file($path);
 												foreach($c->children() as $child):
 													if($child->pid == $current_pid ) { // replace this meta_value 
