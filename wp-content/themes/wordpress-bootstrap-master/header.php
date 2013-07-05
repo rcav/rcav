@@ -42,8 +42,6 @@
 
 	<div class="container-fluid nostyles">
 				
-	<!--<a href="<?php echo home_url();?>/mass-finder"><button class="pull-right visible-phone btn-primary">Mass Finder</button></a>-->
-
 	<?php if (is_front_page()) { ?>
 		<div class="container-fluid nostyles pull-left" >	
 

@@ -1230,7 +1230,7 @@ body {
 		/*font-family: 'frutiger-lightlight';
 	font-size:1.1em;
 		*/
-		padding: 13px 15px 10px;
+		padding: 13px 14px 10px;
 		
 	}
 /*  ===== NAVIGATION =====  */
@@ -1301,6 +1301,11 @@ body {
 
 	.term-outreach-services #main-header { 
 		background:url('images/assets/backgrounds/outreach-services.png') no-repeat;
+		background-position: top right;
+	}
+
+	.term-news-events #main-header { 
+		background:url('images/assets/backgrounds/news-events.png') no-repeat;
 		background-position: top right;
 	}
 
