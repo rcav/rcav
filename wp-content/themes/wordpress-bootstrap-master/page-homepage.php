@@ -91,12 +91,12 @@ Template Name: Homepage
 
 		<script type="text/javascript"> 
 			//4th widget in a new row has no left margin
-			jQuery('.widget').eq(3).addClass('secondrow-first-child');
-			jQuery('.widget').eq(5).addClass('secondrow-last-child');
-			//jQuery('.widget').eq(3).wrap('<div class="widget-3" />');
-			//jQuery('.widget').eq(4).wrap('<div class="widget-4" />');
-			//jQuery('.widget').eq(5).wrap('<div class="widget-5" />');
-			
+			jQuery('.widget').eq(0).addClass('well');
+			jQuery('.widget').eq(1).addClass('well');
+			jQuery('.widget').eq(2).addClass('well');			
+			jQuery('.widget').eq(3).addClass('secondrow-first-child well');
+			jQuery('.widget').eq(4).addClass('well');	
+			jQuery('.widget').eq(5).addClass('secondrow-last-child well');
 		</script>
 
 <?php get_footer(); ?>

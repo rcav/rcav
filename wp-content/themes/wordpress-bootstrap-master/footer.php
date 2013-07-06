@@ -1,6 +1,6 @@
 			<footer role="contentinfo" class="hidden-phone">
 			
-				<div id="inner-footer" class="clearfix">
+				<div id="inner-footer" class="well clearfix">
 
 		          <div  class="clearfix row-fluid">
 		            	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer1') ) : ?>
