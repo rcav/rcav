@@ -1514,7 +1514,7 @@ body {
       #map-canvas {
         margin: 0;
         padding: 0;
-        height: 600px;
+        height: 680px;
       }
 
     /* overrides bootstrap definition, prevents google map from breaking */
