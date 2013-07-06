@@ -1491,20 +1491,60 @@ body {
 	}
 
 	.parishes-map-toggles ul li {
-		width: 120px;
+		width: 160px;
+		height:45px;
 
 	}
 
-	ul.parishes-map-legend li, .parishes-map-toggles li {
+	.parishes-map-legend .well { 
+		padding: 19px 19px 10px 19px;
+	}
 
-		display:block;
-		float:left;
+	.parishes-map-toggles li {
+		display:inline-block; /* inline blocks work better than floats for fluid */
 		margin-right:15px;
 	}
 
 	.parishes-map-sidebar {
 		font-size:0.9em;
 	}
+
+      #map-canvas {
+        margin: 0;
+        padding: 0;
+        height: 600px;
+      }
+
+    /* overrides bootstrap definition, prevents google map from breaking */
+    	#map-canvas img {
+    	max-width: none !important
+    	}
+
+      #side_bar {
+        overflow:scroll;
+        height:600px;
+      }
+
+    /* Maintain fluid aspect ratio, resizing the gmap responsively 
+	Credit: http://ansciath.tumblr.com/post/7347495869/css-aspect-ratio
+	*/
+
+	#gmap-wrapper #container {
+	    display: inline-block;
+	    position: relative;
+	    width: 100%;
+	}
+	#gmap-wrapper #dummy {
+	    padding-top: 75%; /* 4:3 aspect ratio */
+	}
+	#gmap-wrapper #element {
+	    position: absolute;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	}      
+
 
 	header.parishes-map-toggles input {
 		margin-top:0px;
