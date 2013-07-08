@@ -8,20 +8,11 @@ Template Name: Parishes Map
 $root_path = $_SERVER['DOCUMENT_ROOT'];
 ?>
 
-  <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbxtYRe2frX3hQVIc1W3Mt1xEuAKFPWBs&sensor=false">
-    </script>
 
 <script type="text/javascript"> 
 //<![CDATA[
-      // this variable will collect the html which will eventually be placed in the side_bar 
       var side_bar_html = ""; 
-    
-      // arrays to hold copies of the markers and html used by the side_bar 
-      // because the function closure trick doesnt work there 
       var gmarkers = []; 
-
-     // global "map" variable
       var map = null;
 
       // info window variable
@@ -30,7 +21,6 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
           size: new google.maps.Size(150,50),
 
         });
-
 
         // A function to create the marker and set up the event window function 
         function createMarker(point, name, html, category, image) {
@@ -51,10 +41,8 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
                 infowindow.setContent(contentString); 
                 infowindow.open(map,marker);
                 });
-            // save the info we need to use later for the side_bar
             gmarkers.push(marker);
-            // add a line to the side_bar html
-            side_bar_html += '<a href="javascript:myclick(' + (gmarkers.length-1) + ')">' + name + '<\/a><br>';
+            //side_bar_html += '<a href="javascript:myclick(' + (gmarkers.length-1) + ')">' + name + '<\/a><br />';
         }
          
         // This function picks up the click and opens the corresponding info window
@@ -69,7 +57,6 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
             gmarkers[i].setVisible(true);
           }
         }
-        // == check the checkbox ==
          document.getElementById(category+"box").checked = true;
       }
 

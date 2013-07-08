@@ -13,15 +13,13 @@
 		<title><?php wp_title( '|', true, 'right' ); ?></title>
 				
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				
-		<!-- media-queries.js (fallback) -->
-		<!--[if lt IE 9]>
-			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>			
-		<![endif]-->
+			
 
 		<!-- html5.js -->
 		<!--[if lt IE 9]>
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+			<script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
+			<script src="http://cdnjs.cloudflare.com/ajax/libs/css3pie/1.0.0/PIE.js"></script>
 		<![endif]-->
 		
   		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
@@ -67,12 +65,6 @@
 					    </fieldset>
 					</form>
 
-					<!--
-						<form class="navbar-search pull-right hidden-phone" role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
-							<input name="s" id="s" type="text" class="search-query" autocomplete="off" placeholder="<?php _e('Search','bonestheme'); ?>" data-provide="typeahead" data-items="4" data-source='<?php echo $typeahead_data; ?>'>
-							<input type="submit" id="searchsubmit" class="btn btn-warning btn-small" value="Submit" />
-						</form>
-					-->						
 						<section class="social-media pull-left">
 						<a href="https://www.facebook.com/archdioceseofvancouver" class="icon-fb"></a>
 						<a href="https://twitter.com/rcav" class="icon-twitter"></a>
@@ -85,10 +77,10 @@
 						<a href="<?php echo home_url();?>/contact-us">Contact</a>
 						<?php if(of_get_option('search_bar', '1')) {?>
 						<?php } ?>
-				</div>
-	</div>	
+				</div> <!-- end utilitybar -->
+		</div>	<!-- end container-fluid -->
 
-		<div class="container-fluid">				
+		<div class="container-fluid" id="master-container">				
 
 		<header id="main-header" role="banner">
 
@@ -100,7 +92,7 @@
 							<?php } ?>	
 
 				<div class="navbar navbar-fixed-top">
-					<div class="navbar-inner">
+					<!-- <div class="navbar-inner"> -->
 						<div class="nav-container"> <!-- log: removed container-fluid class -->
 							<nav role="navigation">
 
@@ -119,7 +111,7 @@
 
 							
 						</div> <!-- end .nav-container -->
-					</div> <!-- end .navbar-inner -->
+					<!--</div>  end .navbar-inner -->
 				</div> <!-- end .navbar -->
 			
 			</div> <!-- end #inner-header -->

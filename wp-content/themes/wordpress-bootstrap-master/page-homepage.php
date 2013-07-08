@@ -30,15 +30,13 @@ Template Name: Homepage
 						
 							</div>
 
-							<div class="homepage-main-cta">
+							<div class="homepage-main-cta span4" style="margin-left: 0 !important">
 								<div class="block-cta">
-									<div class="block-cta-inner">
 									<h4 class="primary-cta-title"><?php echo the_field('primary_cta_title'); ?></h4>
 									<span class="primary-cta-body"><?php echo the_field('homepage_main_cta'); ?></span>
-									</div>
 								</div>
-								<div class="block-cta-mass-finder hidden-phone">
-									<a href="<?php echo home_url(); ?>/mass-finder"></a>
+								<div class="block-cta-mass-finder ">
+									<a href="<?php echo home_url() .'/mass-finder'?>" class="hidden-phone"></a>
 								</div>
 							</div>
 													
