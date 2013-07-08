@@ -1,4 +1,7 @@
 <?php
+/** Enable W3 Total Cache */
+define('WP_CACHE', true); // Added by W3 Total Cache
+
 /**
  * The base configurations of the WordPress.
  *
@@ -33,6 +36,12 @@ define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
+
+//define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST']);
+//define('WP_HOME', 'http://10.0.1.11/');
+// add the next line if you have a subdirectory install
+//define('WP_SITEURL', WP_HOME . 'http://10.0.1.11/');
+
 
 /**#@+
  * Authentication Unique Keys and Salts.

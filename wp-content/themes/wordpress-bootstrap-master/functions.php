@@ -628,7 +628,7 @@ if( !function_exists( "theme_js" ) ) {
       '1.2' );    
 */
     wp_register_script( 'gmap', 
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBbxtYRe2frX3hQVIc1W3Mt1xEuAKFPWBs&sensor=false', 
+      'https://maps.googleapis.com/maps/api/js?v=3&sensor=false', 
       array('jquery'), 
       '1.2' );
 
@@ -640,7 +640,7 @@ if( !function_exists( "theme_js" ) ) {
     wp_enqueue_script('modernizr');
     wp_enqueue_script('xmldownload');
     wp_enqueue_script('bootstrap-dropdown');
-    wp_enqueue_script('gmap');
+   // wp_enqueue_script('gmap');
     
   }
 }
@@ -910,6 +910,24 @@ function change_wp_login_url()
 }
 add_filter('login_headerurl', 'change_wp_login_url');
 
+
+// Function that outputs the contents of the dashboard widget
+function dashboard_widget_function() {
+  $current_user = wp_get_current_user();
+  echo "<strong>Greetings " . $current_user->user_firstname . "!</strong>";
+  echo "<p><a href='https://docs.google.com/document/d/1arz0r23BKrZo4sgmYLckg_J6sK2-T-yzYWSlsgjULhg/edit?usp=sharing' target='_blank'>Access Online documentation</a></p>";
+
+  
+  echo "<p>Reach technical support: lu@digital-atlas.com</a></p>";
+}
+
+// Function used in the action hook
+function add_dashboard_widgets() {
+  wp_add_dashboard_widget('dashboard_widget', 'Welcome RCAV.ORG', 'dashboard_widget_function');
+}
+
+// Register the new dashboard widget with the 'wp_dashboard_setup' action
+add_action('wp_dashboard_setup', 'add_dashboard_widgets' );
 
 
 ?>

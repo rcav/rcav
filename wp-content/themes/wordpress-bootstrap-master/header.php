@@ -14,6 +14,8 @@
 				
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			
+		<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false"></script>
+			
 
 		<!-- html5.js -->
 		<!--[if lt IE 9]>

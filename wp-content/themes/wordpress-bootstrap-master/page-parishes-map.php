@@ -4,9 +4,7 @@ Template Name: Parishes Map
 */
 ?>
 
-<?php get_header(); 
-$root_path = $_SERVER['DOCUMENT_ROOT'];
-?>
+<?php get_header(); ?>
 
 
 <script type="text/javascript"> 
@@ -31,6 +29,7 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
                 position: point,
                 map: map,
                 icon: image,
+                //animation: google.maps.Animation.DROP
                 //zIndex: Math.round(latlng.lat()*-100000)<<5
                 });
 
@@ -80,19 +79,30 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
         } else {
           hide(category);
         }
-        //updateSidebar();
+        updateSidebar();
       }
 
       // == rebuilds the sidebar to match the markers currently displayed ==
       function updateSidebar() {
         var html = "";
+        //html = '<div class="dropdown" style="position:relative;"><ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">';
+        //html += '<option>Select One</option>';
+        html = '<div class="btn-group">';
+        html += '<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Select by Name<span class="caret"></span></a>';
+        html += '<ul class="dropdown-menu">';
         for (var i=0; i<gmarkers.length; i++) {
-            if (!gmarkers[i].isVisible()) {
-           html += '<a href="javascript:myclick(' + i + ')">' + gmarkers[i].myname + '</a><br />';
+          //console.log(gmarkers[i].getVisible());
+            if (gmarkers[i].getVisible()) {
+        //  html += '<option value="' + i + ' ">' + gmarkers[i].myname + '</option>';
+           html += '<li><a href="javascript:myclick(' + i + ')">' + gmarkers[i].myname + '</a></li>';
           }
         }
-        document.getElementById("side_bar").innerHTML = html;
+        html += '</ul></div>';
+
+        document.getElementById("map-flat-listing").innerHTML = html;
       }
+
+
 
       function initialize() {
         // create the map
@@ -126,17 +136,18 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
                 var marker = createMarker(point,label,html,category);
               }
 
-                      // == show or hide the categories initially ==
+              // == show or hide the categories initially ==
               show("Parishes");
               hide("Organizations");
-              hide("Events");
+              //hide("Events");
               hide("Young");
               hide("Elementary");
               hide("Secondary");
               hide("Colleges");
 
               // put the assembled side_bar_html contents into the side_bar div
-              document.getElementById("side_bar").innerHTML = '<option>' + side_bar_html + '</option>';
+               //document.getElementById("side_bar").innerHTML = 'side_bar_html;'
+                updateSidebar();
             });
           }
      google.maps.event.addDomListener(window, 'load', initialize);
@@ -155,64 +166,50 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 
 						<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                 
-					
-
             <header class="clearfix row-fluid parishes-map-toggles">
               
               <div class="page-header"><h1 class="single-title" itemprop="headline"><?php the_title(); ?></h1></div>
 
-
-
-    <div class="row-fluid parishes-map-legend">
-
-
-    <div class="pull-left span6 well">
-      <ul>
-      <li><img class="checked" src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_parishes.png" /> Parishes
-      <input type="checkbox" id="Parishesbox" onclick="boxclick(this,'Parishes')" name="C1" value="ON" /> </li>
-      <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_events.png"/> Events
-      <input type="checkbox" id="Eventsbox" onclick="boxclick(this,'Events')" name="C3" value="ON" /> </li> 
-      <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_organizations.png"/> Organizations
-      <input type="checkbox" id="Organizationsbox" onclick="boxclick(this,'Organizations')" name="C2" value="ON" /> </li>
-      <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_young.png"/>  Young Adults
-      <input type="checkbox" id="Youngbox" onclick="boxclick(this,'Young')" name="C4" value="ON" /></li>
-      </ul>
-    </div>
-
-     <div class="pull-left span6 well">
-          <ul>
-      <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_elementary.png"/>  Elementary
-      <input type="checkbox" id="Elementarybox" onclick="boxclick(this,'Elementary')" name="C5" value="ON" /> </li>
-      <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_secondary.png"/> Secondary
-      <input type="checkbox" id="Secondarybox" onclick="boxclick(this,'Secondary')" name="C6" value="ON" />  </li>
-      <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_colleges.png"/> Colleges/Other
-      <input type="checkbox" id="Collegesbox" onclick="boxclick(this,'Colleges')" name="C7" value="ON" /> </li>
-  
-                </ul>
-              </div>
-  </div>
+                <div class="alert alert-info">
+                 <small><i class="icon-info-sign"></i> Find Parishes, Organizations, Young Adult groups and Schools across B.C.</small>
+                </div>
 
             </header> <!-- end article header -->
 
 
             <div class="row-fluid">
-
-                <div class="span12" id="gmap-wrapper">
+                <div class="span9" id="gmap-wrapper">
                   <div id="container"> 
-
                       <div id="dummy"></div>
                       <div id="element">
-                        <div id="map-canvas">
+                        <div id="map-canvas"></div>
+                      </div> <!-- element -->
+                  </div> <!-- container -->
+                </div> <!-- gmap-wrapper -->
 
 
-                        </div>
-                        </div>
+                <div class="span3 well parishes-map-legend">
+                  
+                   <div id="map-flat-listing"></div>
 
-                </div> <!-- container -->
+                  <ul>
+                    <li><img class="checked" src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_parishes.png" /> Parishes
+                    <input type="checkbox" id="Parishesbox" onclick="boxclick(this,'Parishes')" name="C1" value="ON" /> </li>
+                    <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_organizations.png"/> Organizations
+                    <input type="checkbox" id="Organizationsbox" onclick="boxclick(this,'Organizations')" name="C2" value="ON" /> </li>
+                    <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_young.png"/>  Young Adults
+                    <input type="checkbox" id="Youngbox" onclick="boxclick(this,'Young')" name="C4" value="ON" /></li>
+                    <li><strong>Schools:</strong></li>
+                    <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_elementary.png"/>  Elementary
+                    <input type="checkbox" id="Elementarybox" onclick="boxclick(this,'Elementary')" name="C5" value="ON" /> </li>
+                    <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_secondary.png"/> Secondary
+                    <input type="checkbox" id="Secondarybox" onclick="boxclick(this,'Secondary')" name="C6" value="ON" />  </li>
+                    <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_colleges.png"/> Colleges/Other
+                    <input type="checkbox" id="Collegesbox" onclick="boxclick(this,'Colleges')" name="C7" value="ON" /> </li>
+                  </ul>
 
-               <!--<div class="span3" id="side_bar"></div>-->
-            </div>
-
+              </div>
+          </div>
 
             </article>
 
