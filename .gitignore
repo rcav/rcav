@@ -1,6 +1,6 @@
 .DS_store
-.htaccess
 .gitignore
+.htaccess
 wp-local-config.php
 wp-config.php
 wp-content/uploads/
