@@ -746,7 +746,7 @@ body {
 		line-height: 1.2em;
 		text-transform: uppercase;
 		background: #daf2fa;
-		padding: 8px 0 5px 20px;
+		padding: 8px 0 5px 10px;
 		margin: 0;
 	}
 
@@ -848,7 +848,7 @@ body {
 	}
 	
 	.navbar-form, .navbar-search {
-		margin-top: 6px;
+		margin-top: 8px;
 		margin-bottom: 0;
 	}
 	
@@ -894,6 +894,11 @@ body {
 @media (max-width: 480px) {
 	#editorial-blocks .span4 { width:100% !important;}
 	
+	.not-homepage #logo, .single #logo { 
+		background:url('images/assets/logo-inside.png') 0 0px;
+	}
+
+
 	.home .homepage-main-cta div {
 		float:left;
 		width:234px;
@@ -901,6 +906,10 @@ body {
 
 	.home .homepage-main-cta .block-cta {
 		background:none;
+	}
+
+	.home h4.primary-cta-title {
+		padding-left:0px;
 	}
 
 	#editorial-blocks .secondrow-last-child {
@@ -942,7 +951,9 @@ body {
 
 /* Landscape phone --> portrait tablet */
 @media (max-width: 767px) { 
-	
+
+
+
 	.navbar-fixed-top {
 		margin-bottom: 0px;
 	}
@@ -997,8 +1008,16 @@ body {
 /* Portrait tablet --> landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) { 
 
+	.not-homepage #logo, .single #logo { 
+		background-position: 0 100px;
+	}
+
 	.navbar-fixed-top {
 		margin-bottom: 0px;
+	}
+
+	#utilitybar {
+		padding-right: 20px;
 	}
 
 	.home #content { top: 0;}
@@ -1020,8 +1039,6 @@ body {
 	}
 
 	.home .homepage-main-cta {
-		position:absolute;
-		right:0;
 		z-index:-1;
 	}
 
@@ -1032,17 +1049,23 @@ body {
 	#editorial-blocks .widget {
 		height:300px;
 	}
-
-
-
-
-
 }
 
 
 @media (min-width: 768px) and (max-width: 2500px) {
 
 	#logo { float:left;}
+
+	.home .homepage-main-cta {
+		position:absolute;
+		right:0;
+		height:146px;
+		top:0;
+		background: url('images/assets/homepage-primary-cta-underlay.png') no-repeat;	
+		background-position: -10px 0;
+		padding-left: 6px;
+		padding-top: 5px;
+	}
 
 
 	.home h4.primary-cta-title {
@@ -1071,7 +1094,7 @@ body {
 
 	.home .homepage-main-cta .block-cta{
 		background-position:top right;
-		width: 316px;
+		width: 245px;
 		height: 146px;	
 		position:relative;
 		left:40px;
@@ -1086,13 +1109,19 @@ body {
 		padding:15px 15px 0 15px;
 	}
 
+	.not-homepage #logo, .single #logo { 
+		background:url('images/assets/logo-inside.png') 0 100px;
+	}
+
 }
 
 @media only screen and (min-width: 980px) {
 
+	#utilitybar {
+		padding-right: 0;
+	}
 
-
-	#main-header { height:225px;}
+	#main-header { height:75px;}
 /*
 	.single .navbar-inner, .not-homepage .navbar-inner {
 		height:225px; 
@@ -1116,19 +1145,8 @@ body {
 
 	.home h4.primary-cta-title { 
 		color:#fff;
+		padding-left:25px;
 	}
-
-	.home .homepage-main-cta {
-		position:absolute;
-		right:0;
-		height:146px;
-		top:0;
-		background: url('images/assets/homepage-primary-cta-underlay.png') no-repeat;	
-		background-position: -10px 0;
-		padding-left: 6px;
-		padding-top: 5px;
-	}
-
 
 
 	.home .homepage-main-cta .block-cta-mass-finder a {
@@ -1136,11 +1154,20 @@ body {
 		margin-left:-30px;
 	}
 
-	.not-homepage #logo, .single #logo { padding-top:20px;}
+	.not-homepage #logo, .single #logo { 
+		background:url('images/assets/logo-inside.png') 0 0;
+	}
 
 }
 
 /* ===== GLOBAL OVERRIDES =====  */
+
+	.not-homepage #logo, .single #logo { 
+		margin-top:20px;
+		width:245px; 
+		height:100px;
+		display:block;
+	}
 
 	.home .homepage-main-cta .block-cta-mass-finder a {
 		background: url('images/assets/button-mass-finder.png') no-repeat;
@@ -1187,6 +1214,7 @@ body {
 
 	a, a:link, a:visited {
 		text-decoration:underline;
+		color: #00a5db;
 	}
 	a:hover { text-decoration: none;}
 
@@ -1202,14 +1230,13 @@ body {
 
 	#utilitybar {
 		height: 35px;
-		padding-right: 0;
 		position: relative;
 		right: -20px;
 		color:#C2E9F7;
 	}
 
 	#utilitybar a {
-		margin-right:7px;
+		margin-right:9px;
 		display:block;
 		float:left;
 	}
@@ -1228,15 +1255,19 @@ body {
 		width:120px;
 	}
 
+	#utilitybar span a {
+		margin-top:2px;
+	}
 
 	.navbar .nav > li > a {
 		color:#545454;
 		/*font-family: 'frutiger-lightlight';
 	font-size:1.1em;
 		*/
-		padding: 13px 14px 10px;
-		
+		padding: 13px 14px 10px;		
 	}
+
+
 /*  ===== NAVIGATION =====  */
 
 	body.home .navbar {
@@ -1372,7 +1403,6 @@ body {
 		font-size: 1.3em;
 		line-height: 1.2em;
 		margin: 0;
-		padding-left:25px;
 	}
 
 	.home span.primary-cta-body {
