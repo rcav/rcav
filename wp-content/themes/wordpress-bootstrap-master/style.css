@@ -893,11 +893,6 @@ body {
 /* Landscape phones and down */
 @media (max-width: 480px) {
 	#editorial-blocks .span4 { width:100% !important;}
-	
-	.not-homepage #logo, .single #logo { 
-		background:url('images/assets/logo-inside.png') 0 0px;
-	}
-
 
 	.home .homepage-main-cta div {
 		float:left;
@@ -951,8 +946,6 @@ body {
 
 /* Landscape phone --> portrait tablet */
 @media (max-width: 767px) { 
-
-
 
 	.navbar-fixed-top {
 		margin-bottom: 0px;
@@ -1008,10 +1001,6 @@ body {
 /* Portrait tablet --> landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) { 
 
-	.not-homepage #logo, .single #logo { 
-		background-position: 0 100px;
-	}
-
 	.navbar-fixed-top {
 		margin-bottom: 0px;
 	}
@@ -1053,8 +1042,6 @@ body {
 
 
 @media (min-width: 768px) and (max-width: 2500px) {
-
-	#logo { float:left;}
 
 	.home .homepage-main-cta {
 		position:absolute;
@@ -1109,9 +1096,6 @@ body {
 		padding:15px 15px 0 15px;
 	}
 
-	.not-homepage #logo, .single #logo { 
-		background:url('images/assets/logo-inside.png') 0 100px;
-	}
 
 }
 
@@ -1121,7 +1105,7 @@ body {
 		padding-right: 0;
 	}
 
-	#main-header { height:75px;}
+	#main-header { }
 /*
 	.single .navbar-inner, .not-homepage .navbar-inner {
 		height:225px; 
@@ -1132,7 +1116,7 @@ body {
 		z-index:1;
 	}
 
-	.single #content, .page #content { 
+	.single #content, .page #content, .category #content { 
 		position:relative;
 		top: -15px;
 		z-index:0
@@ -1154,15 +1138,13 @@ body {
 		margin-left:-30px;
 	}
 
-	.not-homepage #logo, .single #logo { 
-		background:url('images/assets/logo-inside.png') 0 0;
-	}
 
 }
 
 /* ===== GLOBAL OVERRIDES =====  */
 
-	.not-homepage #logo, .single #logo { 
+	.not-homepage #logo, .single #logo, .category #logo { /* should be a better catch all here */
+		background:url('images/assets/logo-inside.png') 0 0;
 		margin-top:20px;
 		width:245px; 
 		height:100px;
@@ -1308,40 +1290,56 @@ body {
 /*  ===== HEADER BACKGROUNDS ====== */
 /*  ===== Please optimize PNGs with AlphaImage or TinyPNG.org ========*/
 
+	
+
+	.parent-category-ediocesan-offices #main-header,
+	.parent-ediocesan-offices #main-header,
 	.term-diocesan-offices #main-header { 
 		background:url('images/assets/backgrounds/diocesan-offices.png') no-repeat;
 		background-position: top right;
 	}
 
 	.term-parishes #main-header,
+	.parent-parishes #main-header,
 	.pagename-parishes-list #main-header,
 	.pagename-parishes-map #main-header,
 	.pagename-mass-finder #main-header,
+	.parent-category-parishes #main-header,
 	.no-term #main-header { 
 		background:url('images/assets/backgrounds/parishes.png') no-repeat;
 		background-position: top right;
 	}
 
-	.term-education-training #main-header { 
+	.parent-category-education-training #main-header,
+	.term-education-training #main-header,
+	.parent-education-training #main-header { 
 		background:url('images/assets/backgrounds/education-training.png') no-repeat;
 		background-position: top right;
 	}
 
-	.term-the-catholic-faith #main-header { 
+	.parent-category-the-catholic-faith #main-header,
+	.parent-the-catholic-faith #main-header,
+	.term-the-catholic-faith #main-header{ 
 		background:url('images/assets/backgrounds/catholic-faith.png') no-repeat;
 		background-position: top right;
 	}
 
+	.parent-category-about-us #main-header,
+	.parent-about-us #main-header,
 	.term-about-us #main-header { 
 		background:url('images/assets/backgrounds/about-us.png') no-repeat;
 		background-position: top right;
 	}
 
+	.parent-category-outreach-services #main-header,
+	.parent-outreach-services #main-header,
 	.term-outreach-services #main-header { 
 		background:url('images/assets/backgrounds/outreach-services.png') no-repeat;
 		background-position: top right;
 	}
 
+	.parent-catgory-about-us #main-header,
+	.parent-about-us #main-header,
 	.term-news-events #main-header { 
 		background:url('images/assets/backgrounds/news-events.png') no-repeat;
 		background-position: top right;
@@ -1455,8 +1453,12 @@ body {
 		position:relative;
 	}
 
+/* ====== CATEGORY TEMPLATES  ======= */
 
-/* ====== ARTICLE POST TYPE ======= */
+.category .post-excerpt img { width: 90px; height:65px;} /* specify dimensions here to speed up rendering */
+
+
+/* ====== POSTS POST TYPE ======= */
 
 	.post_content h1 {
 		display: none; 	/* NOTE: Need to parse the extra h1 tag from content posts */
@@ -1489,11 +1491,22 @@ body {
 	}
 
 	/* article legacy markup */
-	.divbox {
+	
+	{
+	border-bottom: 1px solid #7FD2ED;
+	padding: 10px 0 10px 0;
+
+	}
+
+
+	.divbox,.post-excerpt  {
 	float:left;
 	border-bottom: 1px solid #7FD2ED;
 	padding: 10px 0 10px 0;
 	}
+
+	.post-excerpt .span2 { margin-left:0;}
+
 
 	.thumbox {
 	padding-right: 13px;

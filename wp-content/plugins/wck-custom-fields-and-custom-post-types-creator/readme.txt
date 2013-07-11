@@ -5,8 +5,8 @@ Donate link: http://www.cozmoslabs.com/wordpress-creation-kit-sale-page/
 Tags: custom fields, custom field, wordpress custom fields, advanced custom fields, custom post type, custom post types, post types, repeater fields, repeater, repeatable, meta box, meta boxes, metabox, taxonomy, taxonomies, custom taxonomy, custom taxonomies, custom, custom fields creator, post meta, meta, get_post_meta, post creator, cck, content types, types
 
 Requires at least: 3.1
-Tested up to: 3.5.1
-Stable tag: 1.0.1
+Tested up to: 3.5.2
+Stable tag: 1.0.2
 
 A must have tool for creating custom fields, custom post types and taxonomies, fast and without any programming knowledge.
 
@@ -138,6 +138,10 @@ Creating a taxonomy generally automatically creates a special query variable usi
 10. Taxonomy listing
 
 == Changelog ==
+= 1.0.2 =
+* Fixed bug when arguments contained UTF8 characters ( like hebrew, chirilic... )
+* Fixed Sortable field in Custom Fields Creator that wasn't clickable
+
 = 1.0.1 =
 * Fixed Menu Position argument for Custom Post Type Creator.
 * Added filter for default_value.

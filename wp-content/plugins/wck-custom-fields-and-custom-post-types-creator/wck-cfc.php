@@ -217,7 +217,7 @@ function wck_cfc_display_label_wrapper_attach_end( $form, $i, $value ){
 /* Show the slug for field title */
 add_filter( "wck_after_listed_wck_cfc_fields_element_0", 'wck_cfc_display_field_title_slug', 10, 3 );
 function wck_cfc_display_field_title_slug( $form, $i, $value ){	
-		$form .= '<li class="slug-title"><em>'. __( 'Slug:', 'wck' ) .'</em><span>'. sanitize_title_with_dashes( remove_accents( $value ) ) .'</span> '. __( '(Note:changing the slug when you already have a lot of existing entries may result in unexpected behavior.)', 'wck' ) .' </li>';
+		$form .= '<li class="slug-title"><em>'. __( 'Slug:', 'wck' ) .'</em><span>'. Wordpress_Creation_Kit::wck_generate_slug( $value ) .'</span> '. __( '(Note:changing the slug when you already have a lot of existing entries may result in unexpected behavior.)', 'wck' ) .' </li>';
 	return $form;
 }
 
@@ -280,7 +280,7 @@ function wck_cfc_create_boxes_args(){
 			foreach( $wck_cfc_args as $wck_cfc_arg ){
 			
 				/* metabox_id must be different from meta_name */
-				$metabox_id = sanitize_title_with_dashes( remove_accents ( $box_title ) );				
+				$metabox_id = Wordpress_Creation_Kit::wck_generate_slug( $box_title );				
 				if( $wck_cfc_arg['meta-name'] == $metabox_id )
 					$metabox_id = 'wck-'. $metabox_id;
 				
@@ -302,8 +302,11 @@ function wck_cfc_create_boxes_args(){
 					
 				if( !empty( $wck_cfc_arg['page-template'] ) )
 					$box_args['page_template'] = $wck_cfc_arg['page-template'];	
-								
-				$all_box_args[] = apply_filters( "wck_cfc_box_args_".$wck_cfc_arg['meta-name'], $box_args );
+
+				/* create the box */
+				//new Wordpress_Creation_Kit( $box_args );
+				
+				$all_box_args[] = $box_args;
 			}
 		}
 	}
@@ -426,8 +429,8 @@ function wck_cfc_change_field_title( $meta, $id, $values, $element_id ){
 			foreach( $post_id_with_this_meta as $post ){
 				$results = get_post_meta( $post->post_id, $meta_name, true );
 				foreach( $results as $key => $result ){			
-					$results[$key][ sanitize_title_with_dashes( remove_accents( $values['field-title'] ) ) ] = $results[$key][ sanitize_title_with_dashes( remove_accents( $wck_cfc_fields[$element_id]['field-title'] ) ) ];
-					unset( $results[$key][ sanitize_title_with_dashes( remove_accents( $wck_cfc_fields[$element_id]['field-title'] ) ) ] );
+					$results[$key][ Wordpress_Creation_Kit::wck_generate_slug( $values['field-title'] ) ] = $results[$key][ Wordpress_Creation_Kit::wck_generate_slug( $wck_cfc_fields[$element_id]['field-title'] ) ];
+					unset( $results[$key][ Wordpress_Creation_Kit::wck_generate_slug( $wck_cfc_fields[$element_id]['field-title'] ) ] );
 				}
 				update_post_meta( $post->post_id, $meta_name, $results );
 			}

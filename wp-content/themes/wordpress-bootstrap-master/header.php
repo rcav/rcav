@@ -75,8 +75,8 @@
 						<a href="http://pinterest.com/rcavorg/pins/" class="icon-pinterest"></a>
 						</section>
 						<?php if (!is_front_page()) { ?><a href="<?php echo home_url(); ?>">Home</a><?php } ?> 
-						<a href="<?php echo home_url();?>/donate">Donate</a>
-						<a href="<?php echo home_url();?>/contact-us">Contact</a>
+						<span><a href="<?php echo home_url();?>/donate">Donate</a></span>
+						<span><a href="<?php echo home_url();?>/contact-us">Contact</a></span>
 						<?php if(of_get_option('search_bar', '1')) {?>
 						<?php } ?>
 				</div> <!-- end utilitybar -->
@@ -89,8 +89,8 @@
 			<div id="inner-header" class="clearfix">
 
 							<?php if (!is_front_page()) { ?>	
-								<a class="brand" id="logo" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>">
-										<img src="<?php bloginfo('template_directory'); ?>/images/assets/logo-inside.png" alt="<?php echo get_bloginfo('description'); ?>">
+								<a class="brand" id="logo" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>"></a>
+										
 							<?php } ?>	
 
 				<div class="navbar navbar-fixed-top">

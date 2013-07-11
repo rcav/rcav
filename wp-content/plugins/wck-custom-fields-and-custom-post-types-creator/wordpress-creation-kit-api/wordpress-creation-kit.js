@@ -199,7 +199,8 @@ function mb_sortable_elements() {
 				});
 			}
 		});
-		jQuery( "#sortable" ).disableSelection();
+		/*I don't know if this is necessary. Remove when I have more time for tests */
+		jQuery( "#sortable:not(select)" ).disableSelection();
 
 
 		jQuery('.mb-table-container ul').mousedown( function(e){		

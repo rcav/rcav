@@ -33,7 +33,7 @@ foreach( $details['options'] as $option ){
 		}
 	}
 		
-	$element .= '<div><label><input type="checkbox" name="'. esc_attr( sanitize_title_with_dashes( remove_accents( $details['title'] ) ) ) .'" id="'. $frontend_prefix . esc_attr( sanitize_title_with_dashes( remove_accents( $details['title'] . '_' . $value_attr ) ) ) .'" value="'. esc_attr( $value_attr ) .'"  '. checked( $found, true, false ) .'class="mb-checkbox mb-field" />'. esc_html( $label ) .'</label></div>' ;
+	$element .= '<div><label><input type="checkbox" name="'. esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'" id="'. $frontend_prefix . esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] . '_' . $value_attr ) ) .'" value="'. esc_attr( $value_attr ) .'"  '. checked( $found, true, false ) .'class="mb-checkbox mb-field" />'. esc_html( $label ) .'</label></div>' ;
 }
 $element .= '</div>';
 }

@@ -612,7 +612,7 @@ if( !function_exists( "theme_js" ) ) {
   
 
     wp_register_script( 'bootstrap-dropdown', 
-      get_template_directory_uri() . '/library/js/bootstrap-dropdown.js', 
+      get_template_directory_uri() . '/library/js/bootstrap-dropdown.min.js', 
       array('jquery'), 
       '1.2' );
 
@@ -626,12 +626,12 @@ if( !function_exists( "theme_js" ) ) {
       get_template_directory_uri() . '/library/js/respond.min.js', 
       array('jquery'), 
       '1.2' );    
-*/
+
     wp_register_script( 'gmap', 
       'https://maps.googleapis.com/maps/api/js?v=3&sensor=false', 
       array('jquery'), 
       '1.2' );
-
+*/
 
 
 
@@ -929,5 +929,21 @@ function add_dashboard_widgets() {
 // Register the new dashboard widget with the 'wp_dashboard_setup' action
 add_action('wp_dashboard_setup', 'add_dashboard_widgets' );
 
+function post_type_page_category() {  
+// Add tag metabox to page
+register_taxonomy_for_object_type('post_tag', 'page'); 
+// Add category metabox to page
+register_taxonomy_for_object_type('category', 'page');  
+}
+ // Add to the admin_init hook of your theme functions.php file 
+add_action( 'admin_init', 'post_type_page_category' );
+
+/*
+function excerpt_read_more_link($output) {
+ global $post;
+ return $output . '<a href="'. get_permalink($post->ID) . '"> Read More...</a>';
+}
+add_filter('the_excerpt', 'excerpt_read_more_link');
+*/
 
 ?>

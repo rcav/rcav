@@ -6,11 +6,11 @@
  * @return string $element input element html string. */
  
 /* define id's for input and info div */
-$upload_input_id = str_replace( '-', '_', sanitize_title_with_dashes( remove_accents( $meta . $details['title'] ) ) );
-$upload_info_div_id = str_replace( '-', '_', sanitize_title_with_dashes( remove_accents( $meta .'_info_container_'. $details['title'] ) ) );
+$upload_input_id = str_replace( '-', '_', Wordpress_Creation_Kit::wck_generate_slug( $meta . $details['title'] ) );
+$upload_info_div_id = str_replace( '-', '_', Wordpress_Creation_Kit::wck_generate_slug( $meta .'_info_container_'. $details['title'] ) );
 
 /* hidden input that will hold the attachment id */
-$element .= '<input id="'. esc_attr( $upload_input_id ) .'" type="hidden" size="36" name="'. esc_attr( sanitize_title_with_dashes( remove_accents ( $details['title'] ) ) ) .'" value="'. $value .'" class="mb-text-input mb-field"/>';
+$element .= '<input id="'. esc_attr( $upload_input_id ) .'" type="hidden" size="36" name="'. esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'" value="'. $value .'" class="mb-text-input mb-field"/>';
 
 /* container for the image preview (or file ico) and name and file type */
 if( !empty ( $value ) ){
@@ -37,7 +37,7 @@ $media_upload_url = 'media-upload.php?'.$attach_to_post.'type=file&amp;mb_type='
 
 $media_upload_url = admin_url( $media_upload_url );
 	
-$element .= '<a id="upload_'. esc_attr(sanitize_title_with_dashes( remove_accents( $details['title'] ) )) .'_button" class="button" onclick="tb_show(\'\', \''.$media_upload_url.'\');">'. __( 'Upload ', 'wck' ) . $details['title'] .' </a>';
+$element .= '<a id="upload_'. esc_attr(Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'_button" class="button" onclick="tb_show(\'\', \''.$media_upload_url.'\');">'. __( 'Upload ', 'wck' ) . $details['title'] .' </a>';
 
 /* add js global var for the hidden input, and info container div */
 $element .= '<script type="text/javascript">';				

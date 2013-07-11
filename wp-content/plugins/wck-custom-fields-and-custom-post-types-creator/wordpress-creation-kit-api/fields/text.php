@@ -6,5 +6,5 @@
  * @return string $element input element html string. */
 
 
-$element .= '<input type="text" name="'. esc_attr( sanitize_title_with_dashes( remove_accents( $details['title'] ) ) ) .'" id="'. $frontend_prefix . esc_attr( sanitize_title_with_dashes( remove_accents( $details['title'] ) ) ) .'" value="'. esc_attr( $value ) .'" class="mb-text-input mb-field"/>';
+$element .= '<input type="text" name="'. esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'" id="'. $frontend_prefix . esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'" value="'. esc_attr( $value ) .'" class="mb-text-input mb-field"/>';
 ?>

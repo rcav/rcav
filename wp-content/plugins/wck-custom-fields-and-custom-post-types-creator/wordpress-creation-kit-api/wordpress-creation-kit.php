@@ -58,7 +58,7 @@ class Wordpress_Creation_Kit{
 							'page_template' => '',
 							'post_id' => '',
 							'single' => false,
-							'unserialize_fields' => false,
+							'wpml_compatibility' => false,
 							'sortable' => true,
 							'context' => 'post_meta'
 						);
@@ -213,11 +213,11 @@ class Wordpress_Creation_Kit{
 		}
 		else{
 			if( !empty( $details['default'] ) )
-				$value = apply_filters( "wck_default_value_{$meta}_".sanitize_title_with_dashes( remove_accents ( $details['title'] ) ) , $details['default'] );
+				$value = apply_filters( "wck_default_value_{$meta}_". Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) , $details['default'] );
 		}
 		
 		
-		$element .= '<label for="'. esc_attr( sanitize_title_with_dashes( remove_accents ( $details['title'] ) ) ) .'" class="field-label">'. ucfirst($details['title']) .':';
+		$element .= '<label for="'. esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'" class="field-label">'. ucfirst($details['title']) .':';
 		if( $details['required'] )
 			$element .= '<span class="required">*</span>';
 		$element .= '</label>';
@@ -268,7 +268,7 @@ class Wordpress_Creation_Kit{
 					do_action( "wck_before_add_form_{$meta}_element_{$element_id}" );
 					
 					?>
-						<li class="row-<?php echo esc_attr( sanitize_title_with_dashes( remove_accents( $details['title'] ) ) ) ?>">
+						<li class="row-<?php echo esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) ?>">
 							<?php echo self::wck_output_form_field( $meta, $details ); ?>
 						</li>
 					<?php
@@ -314,11 +314,11 @@ class Wordpress_Creation_Kit{
 			
 			foreach( $fields as $field ){				
 				$details = $field;
-				$value = $results[$element_id][sanitize_title_with_dashes( remove_accents( $details['title'] ) )];
+				$value = $results[$element_id][Wordpress_Creation_Kit::wck_generate_slug( $details['title'] )];
 				
 				$form = apply_filters( "wck_before_update_form_{$meta}_element_{$i}", $form, $element_id, $value );
 				
-				$form .= '<li class="row-'. esc_attr( sanitize_title_with_dashes( remove_accents( $details['title'] ) ) ) .'">';
+				$form .= '<li class="row-'. esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'">';
 				
 				$form .= self::wck_output_form_field( $meta, $details, $value, 'edit_form' ); 
 				
@@ -397,7 +397,7 @@ class Wordpress_Creation_Kit{
 		foreach( $fields as $field ){
 			$details = $field;
 			
-			$value = $results[$element_id][sanitize_title_with_dashes( remove_accents( $details['title'] ) )];
+			$value = $results[$element_id][Wordpress_Creation_Kit::wck_generate_slug( $details['title'] )];
 			
 			/* filter display value */			
 			$value = apply_filters( "wck_displayed_value_{$meta}_element_{$j}", $value );
@@ -423,7 +423,7 @@ class Wordpress_Creation_Kit{
 			
 			$list = apply_filters( "wck_before_listed_{$meta}_element_{$j}", $list, $element_id, $value );		
 			
-			$list .= '<li class="row-'. esc_attr( sanitize_title_with_dashes( remove_accents( $details['title'] ) ) ) .'"><strong>'.$details['title'].': </strong>'.$display_value.' </li>';		
+			$list .= '<li class="row-'. esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'"><strong>'.$details['title'].': </strong>'.$display_value.' </li>';		
 			
 			$list = apply_filters( "wck_after_listed_{$meta}_element_{$j}", $list, $element_id, $value );
 			
@@ -498,7 +498,7 @@ class Wordpress_Creation_Kit{
 		
 		foreach( $fields as $field ){
 			if( $field['required'] )
-				$required_fields[sanitize_title_with_dashes( remove_accents ( $field['title'] ) )] = $field['title'];
+				$required_fields[Wordpress_Creation_Kit::wck_generate_slug( $field['title'] )] = $field['title'];
 		}
 		
 		foreach( $values as $key => $value ){
@@ -547,12 +547,14 @@ class Wordpress_Creation_Kit{
 		else if ( $this->args['context'] == 'option' )
 			update_option( $meta, $results );
 		
-		/* if unserialize_fields is true add for each entry separete post meta for every element of the form  */
-		if( $this->args['unserialize_fields'] && $this->args['context'] == 'post_meta' ){
+		/* if wpml_compatibility is true add for each entry separete post meta for every element of the form  */
+		if( $this->args['wpml_compatibility'] && $this->args['context'] == 'post_meta' ){
 			
 			$meta_suffix = count( $results );
+			$i=1;
 			foreach( $values as $name => $value ){
-				update_post_meta($id, $meta.'_'.$name.'_'.$meta_suffix, $value);
+				update_post_meta($id, 'wckwpml_'.$meta.'_'.$name.'_'.$meta_suffix.'_'.$i, $value);
+				$i++;
 			}
 		}
 		
@@ -590,12 +592,14 @@ class Wordpress_Creation_Kit{
 		else if ( $this->args['context'] == 'option' )
 			update_option( $meta, $results );
 		
-		/* if unserialize_fields is true update the coresponding post metas for every element of the form  */
-		if( $this->args['unserialize_fields'] && $this->args['context'] == 'post_meta' ){
+		/* if wpml_compatibility is true update the coresponding post metas for every element of the form  */
+		if( $this->args['wpml_compatibility'] && $this->args['context'] == 'post_meta' ){
 			
-			$meta_suffix = $element_id + 1;			
+			$meta_suffix = $element_id + 1;
+			$i = 1;
 			foreach( $values as $name => $value ){
-				update_post_meta($id, $meta.'_'.$name.'_'.$meta_suffix, $value);				
+				update_post_meta($id, 'wckwpml_'.$meta.'_'.$name.'_'.$meta_suffix.'_'.$i, $value);
+				$i++;
 			}
 		}
 		
@@ -680,14 +684,16 @@ class Wordpress_Creation_Kit{
 		
 		
 		/* TODO: optimize so that it updates from the deleted element forward */
-		/* if unserialize_fields is true delete the coresponding post metas */
-		if( $this->args['unserialize_fields'] && $this->args['context'] == 'post_meta' ){			
+		/* if wpml_compatibility is true delete the coresponding post metas */
+		if( $this->args['wpml_compatibility'] && $this->args['context'] == 'post_meta' ){			
 			
 			$meta_suffix = 1;			
 						
-			foreach( $results as $result ){				
+			foreach( $results as $result ){
+				$i = 1;
 				foreach ( $result as $name => $value){					
-					update_post_meta($id, $meta.'_'.$name.'_'.$meta_suffix, $value);					
+					update_post_meta($id, 'wckwpml_'.$meta.'_'.$name.'_'.$meta_suffix.'_'.$i, $value);
+					$i++;
 				}
 				$meta_suffix++;			
 			}
@@ -695,9 +701,11 @@ class Wordpress_Creation_Kit{
 			if( count( $results ) == 0 )
 				$results = $old_results;
 			
-			foreach( $results as $result ){				
+			foreach( $results as $result ){
+				$i = 1;
 				foreach ( $result as $name => $value){
-					delete_post_meta( $id, $meta.'_'.$name.'_'.$meta_suffix );					
+					delete_post_meta( $id, 'wckwpml_'.$meta.'_'.$name.'_'.$meta_suffix.'_'.$i );
+					$i++;
 				}
 				break;
 			}
@@ -731,13 +739,15 @@ class Wordpress_Creation_Kit{
 			update_option( $meta, $results );
 		
 		
-		/* if unserialize_fields is true reorder all the coresponding post metas  */
-		if( $this->args['unserialize_fields'] && $this->args['context'] == 'post_meta' ){			
+		/* if wpml_compatibility is true reorder all the coresponding post metas  */
+		if( $this->args['wpml_compatibility'] && $this->args['context'] == 'post_meta' ){			
 			
 			$meta_suffix = 1;
-			foreach( $new_results as $result ){				
+			foreach( $new_results as $result ){
+				$i = 1;
 				foreach ( $result as $name => $value){					
-					update_post_meta($id, $meta.'_'.$name.'_'.$meta_suffix, $value);					
+					update_post_meta($id, 'wckwpml_'.$meta.'_'.$name.'_'.$meta_suffix.'_'.$i, $value);
+					$i++;
 				}
 				$meta_suffix++;
 			}		
@@ -852,17 +862,17 @@ class Wordpress_Creation_Kit{
 			
 		if( isset( $_GET['lang'] ) ){
 			
-			$has_wck_with_unserialize_fields = false;
+			$has_wck_with_wpml_compatibility = false;
 			$custom_field_keys = get_post_custom_keys( $post->ID );
 			foreach( $custom_field_keys as $custom_field_key ){
 				$custom_field_key = explode( '_', $custom_field_key );
 				if( $custom_field_key[0] == 'wckwpml' ){
-					$has_wck_with_unserialize_fields = true;
+					$has_wck_with_wpml_compatibility = true;
 					break;
 				}
 			}
 			
-			if($has_wck_with_unserialize_fields){
+			if($has_wck_with_wpml_compatibility){
 				add_meta_box( 'wck_sync_translation', __( 'Syncronize WCK', 'wck' ), array( &$this, 'wck_add_sync_box' ), $post->post_type, 'side', 'low' );
 			}
 			
@@ -987,7 +997,21 @@ class Wordpress_Creation_Kit{
 		}
 		
 		return $wck_meta_boxes;
-	}	
+	}
+	
+	
+	/**
+	 * The function used to generate slugs in WCK
+	 *
+	 * @since 1.1.1
+	 *	 
+	 * @param string $string The input string from which we generate the slug	 
+	 * @return string $slug The henerated slug
+	 */
+	function wck_generate_slug( $string ){
+		$slug = rawurldecode( sanitize_title_with_dashes( remove_accents( $string ) ) );
+		return $slug;
+	}
 }
 
 
