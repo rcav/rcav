@@ -796,7 +796,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 						if (empty($xml)) $xml = @file_get_contents($wp_uploads['path']  .'/'. basename($filePath));
 					}
 				}								   
-			}					
+			}						
 			
 			if ((!$is_validate or PMXI_Import_Record::validateXml($xml, $this->errors)) and (empty($post['large_file']) or (!empty($post['large_file']) and !empty($chunks)))) {
 				// xml is valid
@@ -840,12 +840,10 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 				unset($xml);				
 				$update_previous = new PMXI_Import_Record();
 				if ($post['is_update_previous'] and ! $update_previous->getById($post['update_previous'])->isEmpty()) {
-					PMXI_Plugin::$session['pmxi_import'] += array(
-						'update_previous' => $update_previous->id,
-						'xpath' => $update_previous->xpath,
-						'template' => $update_previous->template,
-						'options' => $update_previous->options,
-					);
+					PMXI_Plugin::$session['pmxi_import']['update_previous'] = $update_previous->id;
+					PMXI_Plugin::$session['pmxi_import']['xpath'] = $update_previous->xpath;
+					PMXI_Plugin::$session['pmxi_import']['template'] = $update_previous->template;
+					PMXI_Plugin::$session['pmxi_import']['options'] = $update_previous->options;					
 				} else {
 					PMXI_Plugin::$session['pmxi_import']['update_previous'] = '';
 				}		
@@ -1606,8 +1604,8 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 				$this->errors->add('form-validation', __('Expression for `Post Unique Key` must be set, use the same expression as specified for post title if you are not sure what to put there', 'pmxi_plugin'));
 			} else {
 				$this->_validate_template($post['unique_key'], __('Post Unique Key', 'pmxi_plugin'));
-			}
-			if ( $post['is_duplicates'] and 'custom field' == $post['duplicate_indicator']){
+			}			
+			if ( 'manual' == $post['duplicate_matching'] and 'custom field' == $post['duplicate_indicator']){
 				if ('' == $post['custom_duplicate_name'])
 					$this->errors->add('form-validation', __('Custom field name must be specified.', 'pmxi_plugin'));
 				if ('' == $post['custom_duplicate_value'])
@@ -1712,7 +1710,8 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			)
 		);		
 
-		if ( ! PMXI_Plugin::is_ajax()) {													
+		if ( ! PMXI_Plugin::is_ajax()) {				
+
 			// Save import history
 			if ( PMXI_Plugin::$session->data['pmxi_import']['chunk_number'] === 1 ){
 				// store import info in database			
@@ -1777,6 +1776,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			$loop = 0;																
 
 			if (!empty(PMXI_Plugin::$session->data['pmxi_import']['local_paths'])){
+
 				foreach (PMXI_Plugin::$session->data['pmxi_import']['local_paths'] as $key => $path) {																
 
 					$file = new PMXI_Chunk($path, array('element' => PMXI_Plugin::$session->data['pmxi_import']['source']['root_element'], 'path' => $wp_uploads['path']), PMXI_Plugin::$session->data['pmxi_import']['pointer']);							  	 					
@@ -1798,14 +1798,21 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 								PMXI_Plugin::$session['pmxi_import']['pointer'] = $file->pointer;
 								//PMXI_Plugin::$session['pmxi_import']['xml'] = $xml;								
 								
-								if ( ! $loop ) ob_start();
-								$import->process($xml, $logger, PMXI_Plugin::$session->data['pmxi_import']['chunk_number']); 															
+								if ( ! $loop ) ob_start();								
+								$import->process($xml, $logger, PMXI_Plugin::$session->data['pmxi_import']['chunk_number']);	
+								if (($import->created + $import->updated + $import->skipped + PMXI_Plugin::$session->data['pmxi_import']['errors'] == PMXI_Plugin::$session->data['pmxi_import']['count']) and !in_array($import->type, array('ftp'))){					    								    
+							    	PMXI_Plugin::$session['pmxi_import']['pointer'] = 0;
+							    	array_shift(PMXI_Plugin::$session->data['pmxi_import']['local_paths']);
+							    	PMXI_Plugin::$session['pmxi_import']['local_paths'] = PMXI_Plugin::$session->data['pmxi_import']['local_paths'];
+							    	pmxi_session_commit();
+							    	exit(ob_get_clean());
+							    } 						
 								if ( $loop == PMXI_Plugin::$session->data['pmxi_import']['options']['records_per_request'] - 1 ) exit(ob_get_clean());
 								$loop++;
 							}
 					    }					    					    						
 
-					    if (($import->created + $import->updated + $import->skipped + PMXI_Plugin::$session->data['pmxi_import']['errors'] == PMXI_Plugin::$session->data['pmxi_import']['count']) and !in_array($import->type, array('ftp'))){					    	
+					    if (($import->created + $import->updated + $import->skipped + PMXI_Plugin::$session->data['pmxi_import']['errors'] == PMXI_Plugin::$session->data['pmxi_import']['count']) and !in_array($import->type, array('ftp'))){					    						    	
 					    	PMXI_Plugin::$session['pmxi_import']['pointer'] = 0;
 					    	array_shift(PMXI_Plugin::$session->data['pmxi_import']['local_paths']);
 					    	PMXI_Plugin::$session['pmxi_import']['local_paths'] = PMXI_Plugin::$session->data['pmxi_import']['local_paths'];
@@ -1828,7 +1835,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			}								
 		}			
 				
-		if (! PMXI_Plugin::$session->data['pmxi_import']['large_file'] or PMXI_Plugin::is_ajax()){
+		if ( ! PMXI_Plugin::$session->data['pmxi_import']['large_file'] or PMXI_Plugin::is_ajax()){
 			
 			// Save import process log
 			$log_file = $wp_uploads['basedir'] . '/wpallimport_logs/' . $import->id . '.html';
@@ -1838,9 +1845,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			if (!empty(PMXI_Plugin::$session->data['pmxi_import'])) do_action( 'pmxi_after_xml_import', $import->id );
 
 			// clear import session
-			//unset(PMXI_Plugin::$session['pmxi_import']); // clear session data (prevent from reimporting the same data on page refresh)		
-
-			pmxi_session_unset();
+			pmxi_session_unset(); // clear session data (prevent from reimporting the same data on page refresh)	
 
 			// [indicate in header process is complete]
 			$msg = addcslashes(__('Complete', 'pmxi_plugin'), "'\n\r");					

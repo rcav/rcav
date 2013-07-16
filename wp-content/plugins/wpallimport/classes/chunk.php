@@ -182,7 +182,7 @@ class PMXI_Chunk {
           }
         }                
 
-        if ( preg_match_all("/<\\w+\\s*[^<|^\n]*\\s*\/?>/i", $c, $matches, PREG_PATTERN_ORDER) ){          
+        if ( @preg_match_all("/<\\w+\\s*[^<|^\n]*\\s*\/?>/i", $c, $matches, PREG_PATTERN_ORDER) ){          
           foreach ($matches[0] as $tag) {
             if (strpos($tag, "<br") === false) {
               $tag = explode(" ", trim(str_replace(array('<','>','/'), '', $tag)));
@@ -202,7 +202,7 @@ class PMXI_Chunk {
       // read in the whole doc, cos we don't know what's wanted      
       while ($this->reading) {
         $c = @fread($this->handle, $this->options['chunkSize']);          
-        $enc = preg_match("/<\?xml.*\?>/i", $c, $enc_matches);
+        $enc = @preg_match("/<\?xml.*\?>/i", $c, $enc_matches);
         if ($enc)
           $this->encoding = $enc_matches[0];                  
         $this->reading = false;
@@ -277,7 +277,7 @@ class PMXI_Chunk {
       
       if ($checkOpen === false){
 
-        $checkOpen = preg_match_all("/".$open."[ |>]{1}/i", $tmp, $checkOpenmatches, PREG_OFFSET_CAPTURE);
+        $checkOpen = @preg_match_all("/".$open."[ |>]{1}/i", $tmp, $checkOpenmatches, PREG_OFFSET_CAPTURE);
 
         if (!empty($checkOpenmatches[0])){          
 
@@ -294,7 +294,7 @@ class PMXI_Chunk {
         if ($checkOpen === false && !($store)) {
           // check the full buffer (in case it was only half in this buffer)
 
-          $checkOpen = preg_match_all("/".$open."[ |>]{1}/i", $this->readBuffer, $checkOpenmatches, PREG_OFFSET_CAPTURE);
+          $checkOpen = @preg_match_all("/".$open."[ |>]{1}/i", $this->readBuffer, $checkOpenmatches, PREG_OFFSET_CAPTURE);
 
           if (!empty($checkOpenmatches[0])){          
 
@@ -315,18 +315,18 @@ class PMXI_Chunk {
       }      
 
       // check for the close string
-      $checkClose = preg_match_all("/<\/".$element.">/i", $tmp, $closematches, PREG_OFFSET_CAPTURE);
-      $withoutcloseelement = (preg_match("%<".$element."(^<)*\/>%", $tmp, $matches)) ? strpos($tmp, $matches[0]) : false;
+      $checkClose = @preg_match_all("/<\/".$element.">/i", $tmp, $closematches, PREG_OFFSET_CAPTURE);
+      $withoutcloseelement = (@preg_match("%<".$element."[^<]*\/>%", $tmp, $matches)) ? strpos($tmp, $matches[0]) : false;
 
       if ($withoutcloseelement and $checkClose and $closematches[0][0][1] > $withoutcloseelement) $checkClose = false;       
 
       if (!$checkClose){ 
-        $checkClose = (preg_match("%<".$element."(^<)*\/>%", $tmp, $matches)) ? strpos($tmp, $matches[0]) : false;
+        $checkClose = (@preg_match("%<".$element."[^<]*\/>%", $tmp, $matches)) ? strpos($tmp, $matches[0]) : false;
         
         if ($checkClose !== false) 
           $withoutcloseelement = true;
         else{
-          $checkClose = (preg_match_all("%<".$element."(^<)*\/>%", $this->readBuffer, $matches)) ? strpos($this->readBuffer, $matches[0][count($matches[0]) - 1]) : false;
+          $checkClose = (@preg_match_all("%<".$element."[^<]*\/>%", $this->readBuffer, $matches)) ? strpos($this->readBuffer, $matches[0][count($matches[0]) - 1]) : false;
           if ($checkClose !== false) {
             $withoutcloseelement = true;
             $matches[0] = $matches[0][count($matches[0]) - 1];
@@ -338,11 +338,11 @@ class PMXI_Chunk {
         $close_finded = false;
         $length = $closematches[0][0][1] - $checkOpen;
         
-        $checkDuplicateOpen = preg_match_all("/".$open."[ |>]{1}/i", substr($this->readBuffer, $checkOpen, $length), $matches, PREG_OFFSET_CAPTURE);
+        $checkDuplicateOpen = @preg_match_all("/".$open."[ |>]{1}/i", substr($this->readBuffer, $checkOpen, $length), $matches, PREG_OFFSET_CAPTURE);
         
         while (!$close_finded){                                        
           if ($checkDuplicateOpen > 1 and !empty($closematches[0][$checkDuplicateOpen - 1])){
-            $secondcheckDuplicateOpen = preg_match_all("/".$open."[ |>]{1}/i", substr($this->readBuffer, $checkOpen, $closematches[0][$checkDuplicateOpen - 1][1] - $checkOpen), $matches, PREG_OFFSET_CAPTURE);            
+            $secondcheckDuplicateOpen = @preg_match_all("/".$open."[ |>]{1}/i", substr($this->readBuffer, $checkOpen, $closematches[0][$checkDuplicateOpen - 1][1] - $checkOpen), $matches, PREG_OFFSET_CAPTURE);            
             if ($secondcheckDuplicateOpen == $checkDuplicateOpen){
               $checkClose = $closematches[0][$checkDuplicateOpen - 1][1];
               $close_finded = true;              

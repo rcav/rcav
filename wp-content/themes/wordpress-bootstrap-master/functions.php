@@ -99,7 +99,7 @@ function bones_register_sidebars() {
     
     register_sidebar(array(
       'id' => 'sidebar4',
-      'name' => 'Article Left Sidebar',
+      'name' => 'Post Left Sidebar',
       'description' => 'Used on every page BUT the homepage page template.',
       'before_widget' => '<div id="%1$s" class="widget %2$s">',
       'after_widget' => '</div>',
@@ -109,7 +109,7 @@ function bones_register_sidebars() {
 
     register_sidebar(array(
     	'id' => 'sidebar1',
-    	'name' => 'Article Right Sidebar',
+    	'name' => 'Post Right Sidebar',
     	'description' => 'Used on every page BUT the homepage page template.',
     	'before_widget' => '<div id="%1$s" class="widget %2$s">',
     	'after_widget' => '</div>',
@@ -131,7 +131,7 @@ function bones_register_sidebars() {
       'id' => 'sidebar3',
       'name' => 'Homepage Generated Blocks',
       'description' => 'Used only on the homepage page template.',
-      'before_widget' => '<div id="%1$s" class="span12 widget %2$s">',
+      'before_widget' => '<div id="%1$s" class="widget %2$s">',
       'after_widget' => '</div>',
       'before_title' => '<h4 class="widgettitle">',
       'after_title' => '</h4>',
@@ -873,28 +873,6 @@ function ambrosite_body_class($classes) {
 
 add_filter('body_class', 'ambrosite_body_class');
 
-function mass_finder_search() {
-global $wpdb;
-$city ="'". $_POST['city'] . "'"; // sanitize this?
-// might want to replace this with Wordpress native wp_query()
-
-
- $querystr = "
-    SELECT $wpdb->posts.* 
-    FROM $wpdb->posts, $wpdb->postmeta
-    WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id 
-    AND $wpdb->postmeta.meta_key = 'city' 
-    AND $wpdb->postmeta.meta_value = ".$city."
-    AND $wpdb->posts.post_status = 'publish' 
-    AND $wpdb->posts.post_type = 'parish'
-    AND $wpdb->posts.post_date < NOW()
-    ORDER BY $wpdb->posts.post_title ASC
- ";
-
- $pageposts = $wpdb->get_results($querystr, OBJECT);
- return $pageposts;
-}
-
 // CUSTOM ADMIN LOGIN HEADER LOGO
 function my_custom_login_logo()
 {
@@ -912,7 +890,7 @@ add_filter('login_headerurl', 'change_wp_login_url');
 
 
 // Function that outputs the contents of the dashboard widget
-function dashboard_widget_function() {
+/*function dashboard_widget_function() {
   $current_user = wp_get_current_user();
   echo "<strong>Greetings " . $current_user->user_firstname . "!</strong>";
   echo "<p><a href='https://docs.google.com/document/d/1arz0r23BKrZo4sgmYLckg_J6sK2-T-yzYWSlsgjULhg/edit?usp=sharing' target='_blank'>Access Online documentation</a></p>";
@@ -921,10 +899,11 @@ function dashboard_widget_function() {
   echo "<p>Reach technical support: lu@digital-atlas.com</a></p>";
 }
 
+
 // Function used in the action hook
 function add_dashboard_widgets() {
   wp_add_dashboard_widget('dashboard_widget', 'Welcome RCAV.ORG', 'dashboard_widget_function');
-}
+}*/
 
 // Register the new dashboard widget with the 'wp_dashboard_setup' action
 add_action('wp_dashboard_setup', 'add_dashboard_widgets' );

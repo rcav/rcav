@@ -458,127 +458,116 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 						))->save();
 					}
 
-					do_action( 'pmxi_before_xml_import', $this->id );					
+					do_action( 'pmxi_before_xml_import', $this->id );										
 
-					if ( !empty($xml) ){
+					// compose data to look like result of wizard steps									
+					if (empty($this->large_import) or $this->large_import == 'No'){
 
-						// compose data to look like result of wizard steps									
-						if (empty($this->large_import) or $this->large_import == 'No'){
+						PMXI_Import_Record::preprocessXml($xml);					
 
-							PMXI_Import_Record::preprocessXml($xml);					
+						$this->process($xml, false, false, $cron );
 
-							$this->process($xml, false, false, $cron );
+					}
+					elseif( $this->large_import == 'Yes' and $this->queue_chunk_number and $this->processing == 0 ){	
 
-						}
-						elseif( $this->large_import == 'Yes' and $this->queue_chunk_number and $this->processing == 0 ){	
+						$this->set(array('processing' => 1))->save(); // lock cron requests						
 
-							$this->set(array('processing' => 1))->save(); // lock cron requests						
+						set_time_limit(0);							
 
-							set_time_limit(0);							
-
-							$file = new PMXI_Chunk($filePath, array('element' => $this->root_element, 'path' => $uploads['path']));					
+						$file = new PMXI_Chunk($filePath, array('element' => $this->root_element, 'path' => $uploads['path']));					
+					    
+					    $loop = 1; $start_cron = time();
+					    while ($xml = $file->read()) {					      						    					    					    					    	
+					    	if (!empty($xml)) {				 
+					    		$xml = $file->encoding . "\n" . $xml;     	
+					      		PMXI_Import_Record::preprocessXml($xml);	      						      							      					      							      					      		
+						      	$dom = new DOMDocument('1.0', 'UTF-8');															
+								$old = libxml_use_internal_errors(true);
+								$dom->loadXML(preg_replace('%xmlns\s*=\s*([\'"]).*\1%sU', '', $xml)); // FIX: libxml xpath doesn't handle default namespace properly, so remove it upon XML load							
+								libxml_use_internal_errors($old);
+								$xpath = new DOMXPath($dom);
+								if (($elements = @$xpath->query($this->xpath)) and $elements->length){
+									if ($loop >= $this->queue_chunk_number){
+										$this->process($xml, false, $this->queue_chunk_number, $cron);
+										if ( $this->count != $this->queue_chunk_number ) $this->set(array('queue_chunk_number' => $this->queue_chunk_number + 1))->save();								  		
+									}
+									$loop++;
+								}
+								unset($dom, $xpath, $elements);							
+						    }
+						    if (time() - $start_cron > 120) // (2 mins) skipping scheduled imports if any for the next hit					    	
+						    	break; 
 						    
-						    $loop = 1; $start_cron = time();
-						    while ($xml = $file->read()) {					      						    					    					    					    	
-						    	if (!empty($xml)) {				 
-						    		$xml = $file->encoding . "\n" . $xml;     	
-						      		PMXI_Import_Record::preprocessXml($xml);	      						      							      					      							      					      		
-							      	$dom = new DOMDocument('1.0', 'UTF-8');															
-									$old = libxml_use_internal_errors(true);
-									$dom->loadXML(preg_replace('%xmlns\s*=\s*([\'"]).*\1%sU', '', $xml)); // FIX: libxml xpath doesn't handle default namespace properly, so remove it upon XML load							
-									libxml_use_internal_errors($old);
-									$xpath = new DOMXPath($dom);
-									if (($elements = @$xpath->query($this->xpath)) and $elements->length){
-										if ($loop >= $this->queue_chunk_number){
-											$this->process($xml, false, $this->queue_chunk_number, $cron);
-											if ( $this->count != $this->queue_chunk_number ) $this->set(array('queue_chunk_number' => $this->queue_chunk_number + 1))->save();								  		
-										}
-										$loop++;
-									}
-									unset($dom, $xpath, $elements);							
-							    }
-							    if (time() - $start_cron > 120) // (2 mins) skipping scheduled imports if any for the next hit					    	
-							    	break; 
-							    
-							}
-							unset($file);			
-
-							$this->set(array('processing' => 0))->save(); // unlock cron requests			
-
-							// delect, if cron process if finished
-							if ( $this->count == $this->queue_chunk_number ){
-								
-								if (! empty($this->options['is_delete_missing'])){
-									$postList = new PMXI_Post_List();				
-									$current_post_ids = (empty($this->current_post_ids)) ? array() : json_decode($this->current_post_ids, true);	
-									$missing_ids = array();
-									foreach ($postList->getBy(array('import_id' => $this->id, 'post_id NOT IN' => $current_post_ids)) as $missingPost) {
-										empty($this->options['is_keep_attachments']) and wp_delete_attachments($missingPost['post_id']);
-										$missing_ids[] = $missingPost['post_id'];
-										
-										$sql = "delete a
-										FROM ".PMXI_Plugin::getInstance()->getTablePrefix()."posts a
-										WHERE a.id=%d";
-										
-										$this->wpdb->query( 
-											$this->wpdb->prepare($sql, $missingPost['id'])
-										);
-																		
-									}
-
-									if (!empty($missing_ids) && is_array($missing_ids)){
-										$sql = "delete a,b,c
-										FROM ".$this->wpdb->posts." a
-										LEFT JOIN ".$this->wpdb->term_relationships." b ON ( a.ID = b.object_id )
-										LEFT JOIN ".$this->wpdb->postmeta." c ON ( a.ID = c.post_id )				
-										WHERE a.ID IN (".implode(',', $missing_ids).");";
-
-										$this->wpdb->query( 
-											$this->wpdb->prepare($sql, '')
-										);
-									}
-								}
-
-								// Set out of stock status for missing records [Woocommerce add-on option]
-								if (empty($this->options['is_delete_missing']) and $this->options['custom_type'] == "product" and class_exists('PMWI_Plugin') and !empty($this->options['missing_records_stock_status'])) {
-									
-									$postList = new PMXI_Post_List();											
-									$current_post_ids = (empty($this->current_post_ids)) ? array() : json_decode($this->current_post_ids, true);	
-									foreach ($postList->getBy(array('import_id' => $this->id, 'post_id NOT IN' => $current_post_ids)) as $missingPost) {
-										update_post_meta( $missingPost['post_id'], '_stock_status', 'outofstock' );
-										update_post_meta( $missingPost['post_id'], '_stock', 0 );
-									}
-
-								}
-
-								// Set custom fields for missing records
-								if ( empty($this->options['is_delete_missing']) and $this->options['is_update_missing_cf'] ) {
-									
-									$postList = new PMXI_Post_List();											
-									$current_post_ids = (empty($this->current_post_ids)) ? array() : json_decode($this->current_post_ids, true);	
-									foreach ($postList->getBy(array('import_id' => $this->id, 'post_id NOT IN' => $current_post_ids)) as $missingPost) {
-										update_post_meta( $missingPost['post_id'], $this->options['update_missing_cf_name'], $this->options['update_missing_cf_value'] );
-									}
-
-								}
-
-								$this->set(array(
-									'processing' => 0,
-									'triggered' => 0,
-									'queue_chunk_number' => 0,
-									'current_post_ids' => ''
-								))->save();
-							}					
 						}
-					}
-					else {
-						$this->set(array(
-							'processing' => 0,
-							'triggered' => 0,
-							'queue_chunk_number' => 0,
-							'current_post_ids' => ''
-						))->save();	
-					}
+						unset($file);			
+
+						$this->set(array('processing' => 0))->save(); // unlock cron requests			
+
+						// delect, if cron process if finished
+						if ( $this->count == $this->queue_chunk_number ){
+							
+							if (! empty($this->options['is_delete_missing'])){
+								$postList = new PMXI_Post_List();				
+								$current_post_ids = (empty($this->current_post_ids)) ? array() : json_decode($this->current_post_ids, true);	
+								$missing_ids = array();
+								foreach ($postList->getBy(array('import_id' => $this->id, 'post_id NOT IN' => $current_post_ids)) as $missingPost) {
+									empty($this->options['is_keep_attachments']) and wp_delete_attachments($missingPost['post_id']);
+									$missing_ids[] = $missingPost['post_id'];
+									
+									$sql = "delete a
+									FROM ".PMXI_Plugin::getInstance()->getTablePrefix()."posts a
+									WHERE a.id=%d";
+									
+									$this->wpdb->query( 
+										$this->wpdb->prepare($sql, $missingPost['id'])
+									);
+																	
+								}
+
+								if (!empty($missing_ids) && is_array($missing_ids)){
+									$sql = "delete a,b,c
+									FROM ".$this->wpdb->posts." a
+									LEFT JOIN ".$this->wpdb->term_relationships." b ON ( a.ID = b.object_id )
+									LEFT JOIN ".$this->wpdb->postmeta." c ON ( a.ID = c.post_id )				
+									WHERE a.ID IN (".implode(',', $missing_ids).");";
+
+									$this->wpdb->query( 
+										$this->wpdb->prepare($sql, '')
+									);
+								}
+							}
+
+							// Set out of stock status for missing records [Woocommerce add-on option]
+							if (empty($this->options['is_delete_missing']) and $this->options['custom_type'] == "product" and class_exists('PMWI_Plugin') and !empty($this->options['missing_records_stock_status'])) {
+								
+								$postList = new PMXI_Post_List();											
+								$current_post_ids = (empty($this->current_post_ids)) ? array() : json_decode($this->current_post_ids, true);	
+								foreach ($postList->getBy(array('import_id' => $this->id, 'post_id NOT IN' => $current_post_ids)) as $missingPost) {
+									update_post_meta( $missingPost['post_id'], '_stock_status', 'outofstock' );
+									update_post_meta( $missingPost['post_id'], '_stock', 0 );
+								}
+
+							}
+
+							// Set custom fields for missing records
+							if ( empty($this->options['is_delete_missing']) and $this->options['is_update_missing_cf'] ) {
+								
+								$postList = new PMXI_Post_List();											
+								$current_post_ids = (empty($this->current_post_ids)) ? array() : json_decode($this->current_post_ids, true);	
+								foreach ($postList->getBy(array('import_id' => $this->id, 'post_id NOT IN' => $current_post_ids)) as $missingPost) {
+									update_post_meta( $missingPost['post_id'], $this->options['update_missing_cf_name'], $this->options['update_missing_cf_value'] );
+								}
+
+							}
+
+							$this->set(array(
+								'processing' => 0,
+								'triggered' => 0,
+								'queue_chunk_number' => 0,
+								'current_post_ids' => ''
+							))->save();
+						}					
+					}					
 				}
 				else {
 					$this->set(array(
@@ -634,7 +623,7 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 
 			if ($this->large_import == 'Yes' and !empty($records)){
 
-				PMXI_Plugin::$session['pmxi_import']['count'] = count($records);								
+				PMXI_Plugin::$session['pmxi_import']['count'] = count($records); pmxi_session_commit();									
 
 				$records_count = $this->created + $this->updated + $this->skipped + PMXI_Plugin::$session->data['pmxi_import']['errors'];
 
@@ -650,7 +639,8 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 						$progress_msg = '<p class="import_process_bar"> Created ' . $this->created . ' / Updated ' . $this->updated . ' of '. PMXI_Plugin::$session->data['pmxi_import']['count'].' records.</p><span class="import_percent">' . ceil(($records_count/PMXI_Plugin::$session['pmxi_import']['count']) * 100) . '</span><span class="warnings_count">' .  PMXI_Plugin::$session['pmxi_import']['warnings'] . '</span><span class="errors_count">' . PMXI_Plugin::$session['pmxi_import']['errors'] . '</span>';
 						$logger and call_user_func($logger, $progress_msg);
 					}
-					PMXI_Plugin::$session['pmxi_import']['chunk_number'] = PMXI_Plugin::$session->data['pmxi_import']['chunk_number']++;
+					PMXI_Plugin::$session['pmxi_import']['chunk_number'] = ++PMXI_Plugin::$session->data['pmxi_import']['chunk_number'];
+					pmxi_session_commit();
 					return;
 				}
 				else $records = array();
@@ -1032,12 +1022,13 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 					}
 					else{
 						$logger and call_user_func($logger, __('<b>SKIPPED</b>: by empty title', 'pmxi_plugin'));						
-						PMXI_Plugin::$session['pmxi_import']['chunk_number'] = PMXI_Plugin::$session->data['pmxi_import']['chunk_number']++;	
+						PMXI_Plugin::$session['pmxi_import']['chunk_number'] = ++PMXI_Plugin::$session->data['pmxi_import']['chunk_number'];	
 						PMXI_Plugin::$session['pmxi_import']['warnings'] = PMXI_Plugin::$session->data['pmxi_import']['warnings']++;
 						$this->set(array(							
 							'skipped' => $this->skipped + 1
 						))->save();				
 						PMXI_Plugin::$session['pmxi_import']['skipped_records'] = $this->skipped;	
+						pmxi_session_commit();	
 						continue;										
 					}
 				}
@@ -1150,7 +1141,8 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 							$progress_msg = '<p class="import_process_bar"> ' . __('Created', 'pmxi_plugin') . ' ' . $this->created . ' / ' . __('Updated','pmxi_plugin') . ' ' . $this->updated . ' of '. PMXI_Plugin::$session->data['pmxi_import']['count'].' records.</p><span class="import_percent">' . ceil(($records_count/PMXI_Plugin::$session->data['pmxi_import']['count']) * 100) . '</span><span class="warnings_count">' .  PMXI_Plugin::$session->data['pmxi_import']['warnings'] . '</span><span class="errors_count">' . PMXI_Plugin::$session->data['pmxi_import']['errors'] . '</span>';
 							$logger and call_user_func($logger, $progress_msg);
 						}					
-						PMXI_Plugin::$session['pmxi_import']['chunk_number']++;
+						PMXI_Plugin::$session['pmxi_import']['chunk_number'] = ++PMXI_Plugin::$session->data['pmxi_import']['chunk_number'];	
+						pmxi_session_commit();	
 						continue;
 					}					
 
@@ -1246,7 +1238,8 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 						$progress_msg = '<p class="import_process_bar"> '. __('Created','pmxi_plugin') . ' ' . $this->created . ' / ' . __('Updated','pmxi_plugin') . ' ' . $this->updated . ' of '. PMXI_Plugin::$session->data['pmxi_import']['count'].' records.</p><span class="import_percent">' . ceil(($records_count/PMXI_Plugin::$session->data['pmxi_import']['count']) * 100) . '</span><span class="warnings_count">' .  PMXI_Plugin::$session->data['pmxi_import']['warnings'] . '</span><span class="errors_count">' . PMXI_Plugin::$session->data['pmxi_import']['errors'] . '</span>';
 						$logger and call_user_func($logger, $progress_msg);
 					}					
-					PMXI_Plugin::$session['pmxi_import']['chunk_number'] = PMXI_Plugin::$session->data['pmxi_import']['chunk_number']++;					
+					PMXI_Plugin::$session['pmxi_import']['chunk_number'] = ++PMXI_Plugin::$session->data['pmxi_import']['chunk_number'];					
+					pmxi_session_commit();	
 					continue;
 				}
 
@@ -1731,15 +1724,13 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 							'created'  => (empty($articleData['ID'])) ? $this->created + 1 : $this->created,
 							'updated'  => (empty($articleData['ID'])) ? $this->updated : $this->updated + 1			
 						))->save();
-						PMXI_Plugin::$session['pmxi_import']['chunk_number'] = PMXI_Plugin::$session->data['pmxi_import']['chunk_number']++;
+						PMXI_Plugin::$session['pmxi_import']['chunk_number'] = ++PMXI_Plugin::$session->data['pmxi_import']['chunk_number'];	
 					}	
 					
 					$records_count = 0;
 
 					// Time Elapsed
-					if ( ! $is_cron){												
-						
-						if ($this->large_import == 'No') PMXI_Plugin::$session['pmxi_import']['count'] = count($titles);
+					if ( ! $is_cron){																								
 						
 						$records_count = $this->created + $this->updated + $this->skipped + PMXI_Plugin::$session->data['pmxi_import']['errors'];
 
@@ -1752,6 +1743,8 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 				wp_cache_flush();
 			}			
 			
+			pmxi_session_commit();	
+
 			$is_import_complete = ($records_count == PMXI_Plugin::$session->data['pmxi_import']['count']);
 
 			if ( ! $is_cron and $is_import_complete and ! empty($this->options['is_delete_missing'])) { // delete posts which are not in current import set
@@ -1784,7 +1777,7 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 					$this->wpdb->query( 
 						$this->wpdb->prepare($sql, '')
 					);
-				}				
+				}								
 
 			}
 

@@ -1,4 +1,4 @@
-<div id="sidebar-homepage" class="fluid-sidebar sidebar span12 rss-feed" role="complementary">
+<div class="sidebar-homepage fluid-sidebar sidebar" role="complementary">
 				
 		<?php
 		if ( ! acf_Widget::dynamic_widgets( 'sidebar3' ) ) {

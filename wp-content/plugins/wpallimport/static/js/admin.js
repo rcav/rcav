@@ -564,19 +564,46 @@
 		}
 	});
 
+	$('.pmxi_plugin').find('.nav-tab').click(function(){
+		$('.nav-tab').removeClass('nav-tab-active');
+		$(this).addClass('nav-tab-active');
+		$('.pmxi_tab').hide();
+		$('div#' + $(this).attr('rel')).fadeIn();
+	});
+
 	if ($('#pmxi_tabs').length){ 		
 		if ($('form.options').length){
 			if ($('#selected_post_type').val() != ''){
 				var post_type_founded = false;
+				$('.pmxi_tab').hide();
+				$('.nav-tab').removeClass('nav-tab-active');
 				$('input[name=custom_type]').each(function(i){					
-					if ($(this).val() == $('#selected_post_type').val()) { $('#pmxi_tabs').tabs({ selected:i }).show(); post_type_founded = true; }
+					if ($(this).val() == $('#selected_post_type').val()) { 												
+						$('.nav-tab[rel='+ $(this).val() +']').addClass('nav-tab-active');
+						$(this).parents('.pmxi_tab:first').show(); 
+						post_type_founded = true; 
+					}
 				});
 				if ( ! post_type_founded){
-					$('#pmxi_tabs').tabs({ selected: ($('#selected_type').val() == 'post') ? 0 : 1 }).show();					
+					if ($('#selected_type').val() == 'post'){
+						$('.nav-tab[rel=posts]').addClass('nav-tab-active');
+						$('div#posts').show();				
+					}	
+					else{
+						$('.nav-tab[rel=pages]').addClass('nav-tab-active');
+						$('div#pages').show();
+					}					
 				}
 			}
 			else if ($('#selected_type').val() != ''){
-				$('#pmxi_tabs').tabs({ selected: ($('#selected_type').val() == 'post') ? 0 : 1 }).show();				
+				if ($('#selected_type').val() == 'post'){
+					$('.nav-tab[rel=posts]').addClass('nav-tab-active');
+					$('div#posts').show();				
+				}	
+				else{
+					$('.nav-tab[rel=pages]').addClass('nav-tab-active');
+					$('div#pages').show();
+				}				
 			}
 		}
 		else
@@ -597,10 +624,13 @@
 	});			
 
     $(document).scroll(function() {    	    	
-        if ($(document).scrollTop() > 135)
-            $('.tag').css({'top':'30px'});        
-        else
-        	$('.tag').css({'top':''});
+    	if ($('.layout').length){
+	    	var offset = $('.layout').offset();
+	        if ($(document).scrollTop() > offset.top)
+	            $('.tag').css({'top':(($(document).scrollTop() - offset.top) ? $(document).scrollTop() - offset.top : 0) + 'px'});        
+	        else
+	        	$('.tag').css({'top':''});
+	    }
     });       
 
 });})(jQuery);

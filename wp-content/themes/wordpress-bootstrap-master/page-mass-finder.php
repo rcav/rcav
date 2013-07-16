@@ -64,30 +64,29 @@ Template Name: Mass Finder
 								</form>
 
 								<?php 
-								// a better way to do it!
-								//query_posts('meta_key=review_type&meta_value=movie');  ?>
-								<?php //if (have_posts()) : ?>
-								<?php //while (have_posts()) : the_post(); 
-								//get_template_part( 'loop', 'index' );
+										// set $city variable
+										$city = NULL;	
+										$city =$_POST['city']; 
 
-								?>
+										// build our query $args array
+										$args = array
+										(
+										'post_type' =>'parish',
+										'meta_key' => 'city',
+										'meta_value' => $city,
+										'orderby' => 'title',
+										'order' => 'ASC'
+										);	
+									
 
-								<?php 
-										$city_selection = $_POST['city'];
-
-										if(isset($city_selection)){ 
-											$pageposts = mass_finder_search();
-										}
-										
-										if ($pageposts): 
+									  $parish_posts = new WP_Query($args);
+									
+									if(isset($city)) {
 										echo '<h4>All Parishes in <strong>' . $_POST['city'] .'</strong></h4>';
+									};
 
-								 		global $post;
-								 		foreach ($pageposts as $post):
-								 		setup_postdata($post); 
-								 		$current_pid  = get_field('parish_id');
-								 	?>
-
+									   if($parish_posts->have_posts()) : while($parish_posts->have_posts()) : $parish_posts->the_post();
+								?>
 
 
 								 	<div class="mass-finder-result">
@@ -142,7 +141,7 @@ Template Name: Mass Finder
 								 	?>
 
 								 	<?php if(get_field('gmap_link')) 
-										echo '<i class="icon-map-marker"></i> <a href="' . get_field('gmap_link') . '">View Map</a>';
+										echo '<i class="icon-map-marker"></i> <a href="' . get_field('gmap_link') . '" target="_blank">View Map</a>';
 									?> | <i class="icon-time"></i>  <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>">Mass and Devotion Times</a>
 
 									<br />
@@ -151,7 +150,7 @@ Template Name: Mass Finder
 									</div>
 								 	<?php 
 
-								 	endforeach; 
+								 	endwhile; 
 
 								  endif;
 

@@ -90,7 +90,9 @@
 			</td>
 			<?php if ($this->isWizard or $this->isTemplateEdit): ?>
 				<td class="right template-sidebar">
+					<div style="position:relative;">
 					<?php $this->tag() ?>
+					</div>
 				</td>
 			<?php endif ?>
 		</tr>

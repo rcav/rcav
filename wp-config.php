@@ -34,6 +34,12 @@ define('DB_CHARSET', 'utf8');
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
+/** Enable revisions and limit post revisions to 5 copies */
+define('WP_POST_REVISIONS', true );
+define('WP_POST_REVISIONS', 4 );
+
+
+
 //define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST']);
 //define('WP_HOME', 'http://10.0.1.11/');
 // add the next line if you have a subdirectory install

@@ -9,7 +9,7 @@
 <?php 
 
 $selected_template = get_field('template_select');
-if($selected_template =='') {
+if($selected_template == NULL) {
 	$selected_template = 'rsidebar';
 
 }
@@ -20,21 +20,30 @@ if($selected_template =='') {
 
     				
 					<?php 
-					// check if left sidebar
-					if(is_array($selected_template) && in_array("lsidebar", $selected_template) || $selected_template =='lsidebar') {
+					// check if left sidebar or 3 columns
+					if($selected_template =='lsidebar' || $selected_template =='threecols'  ) {
 						echo '<div class="sidebar-responsive-wrapper hidden-phone left-sidebar">';
 						get_sidebar('sidebar4'); 
 						echo '</div>';
-					} ?>
+					} 
+					?>
 					
 
 				<?php 
 					// check if full width
-					if (is_array($selected_template) && in_array("fullwidth", $selected_template)) { ?>
+					if ($selected_template =='fullwidth') { ?>
  						<div id="main" class="span12 clearfix" role="main">
-					<?php } else if (in_array("lsidebar", $selected_template) && in_array("rsidebar", $selected_template)) { ?>
+
+
+				<?php } else if ($selected_template =='threecols') { 
+						// left sidebar
+					?>
 						<div id="main" class="span6 clearfix" role="main">
-					<?php } else { ?>
+					
+					<?php } else { 
+						// right sidebar
+						?>
+						
 						<div id="main" class="span9 clearfix" role="main">
 					<?php } ?>
 
@@ -95,7 +104,7 @@ if($selected_template =='') {
 
 					<?php 
 					// check if right sidebar
-					if(is_array($selected_template) && in_array("rsidebar", $selected_template) || $selected_template =='rsidebar') {
+					if($selected_template =='rsidebar' || $selected_template =='threecols') {
 						echo '<div class="sidebar-responsive-wrapper hidden-phone right-sidebar">';
 						get_sidebar('sidebar1'); 
 						echo '</div>';

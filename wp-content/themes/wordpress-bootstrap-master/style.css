@@ -736,7 +736,7 @@ body {
 	}
 
 
-	.home #content .rss-feed .widget {
+	.home #content #generated-blocks .widget {
 		border: none;
 	}
 
@@ -780,7 +780,6 @@ body {
 	.home #homepage-slider {
 		position:absolute;
 		top:0px;
-		height: 255px;
 		z-index:10;
 	}
 
@@ -1087,7 +1086,7 @@ body {
 		left:40px;
 	}		
 
-	#sidebar-homepage .well {
+	.sidebar-homepage .well {
 		padding:0;
 		background-color: #ffffff;
 	}	
@@ -1105,7 +1104,11 @@ body {
 		padding-right: 0;
 	}
 
-	#main-header { }
+	#main-header {
+		width:968px;
+	 }
+
+	ul#menu-main li { padding-right:8px;}
 /*
 	.single .navbar-inner, .not-homepage .navbar-inner {
 		height:225px; 
@@ -1292,34 +1295,35 @@ body {
 
 	
 
-	.parent-category-ediocesan-offices #main-header,
-	.parent-ediocesan-offices #main-header,
-	.term-diocesan-offices #main-header { 
+	.parent-category-evangelization #main-header,
+	.parent-evangelization #main-header,
+	.term-evangelization #main-header,
+	.term-vocations #main-header  { 
 		background:url('images/assets/backgrounds/diocesan-offices.png') no-repeat;
 		background-position: top right;
 	}
 
-	.term-parishes #main-header,
-	.parent-parishes #main-header,
+
 	.pagename-parishes-list #main-header,
 	.pagename-parishes-map #main-header,
 	.pagename-mass-finder #main-header,
-	.parent-category-parishes #main-header,
+	.parent-term-vocations #main-header,
+	.term-vocations #main-header,
 	.no-term #main-header { 
 		background:url('images/assets/backgrounds/parishes.png') no-repeat;
 		background-position: top right;
 	}
 
-	.parent-category-education-training #main-header,
-	.term-education-training #main-header,
-	.parent-education-training #main-header { 
+	.parent-category-education #main-header,
+	.term-education #main-header,
+	.parent-education #main-header { 
 		background:url('images/assets/backgrounds/education-training.png') no-repeat;
 		background-position: top right;
 	}
 
-	.parent-category-the-catholic-faith #main-header,
-	.parent-the-catholic-faith #main-header,
-	.term-the-catholic-faith #main-header{ 
+	.parent-category-catholic-faith #main-header,
+	.parent-catholic-faith #main-header,
+	.term-catholic-faith #main-header{ 
 		background:url('images/assets/backgrounds/catholic-faith.png') no-repeat;
 		background-position: top right;
 	}
@@ -1331,15 +1335,15 @@ body {
 		background-position: top right;
 	}
 
-	.parent-category-outreach-services #main-header,
-	.parent-outreach-services #main-header,
-	.term-outreach-services #main-header { 
+	.parent-category-services #main-header,
+	.parent-services #main-header,
+	.term-services #main-header { 
 		background:url('images/assets/backgrounds/outreach-services.png') no-repeat;
 		background-position: top right;
 	}
 
-	.parent-catgory-about-us #main-header,
-	.parent-about-us #main-header,
+	.parent-catgory-news-events #main-header,
+	.parent-news-events #main-header,
 	.term-news-events #main-header { 
 		background:url('images/assets/backgrounds/news-events.png') no-repeat;
 		background-position: top right;
@@ -1440,16 +1444,16 @@ body {
 		line-height:23px;
 	}
 
-	#editorial-blocks .secondrow-first-child {
+	#editorial-blocks .fourth-block {
 		margin-left:0;
 	}
 
-	#sidebar-homepage .widget {	
+	.sidebar-homepage .widget {	
 		float:left;
 		/*border: 1px solid #7FD2ED;*/
 	}
 
-	#sidebar-homepage .widget img{	
+	.sidebar-homepage .widget img{	
 		position:relative;
 	}
 

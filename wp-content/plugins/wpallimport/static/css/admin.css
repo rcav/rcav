@@ -111,6 +111,7 @@
 		padding: 0px 0 16px 20px;
 		width: 25%;
 		min-width: 260px; 
+		position: relative;
 	}
 		.pmxi_plugin table.layout td.left > h2:first-child {
 			margin-top: -22px;
@@ -122,6 +123,18 @@
 		.pmxi_plugin.no-js table.layout td.left > h2:first-child {
 			margin-top: 0px;
 		}
+.pmxi_plugin table.layout div.left {
+	min-width: 490px;
+	width: 70%;
+	float: left;
+}
+.pmxi_plugin table.layout div.right {
+	padding: 0px 0 16px 20px;
+	width: 25%;
+	/*min-width: 260px; */
+	position: relative;
+	float: right;
+}
 /*@*/
 
 /*@+ Setting Form */
@@ -270,8 +283,9 @@
 /*@+ XML representation */
 .pmxi_plugin .tag {	
 	background-color: #fff;	
-	position: fixed;
-	width:22%;
+	position: absolute;
+	width:95%;
+	top: 0;
 	margin-top: 45px;			
 	border-top: 1px solid #DFDFDF;
 	-moz-border-radius-topleft: 4px;
@@ -596,12 +610,15 @@ table.xml table {
 	width: 580px;
 }
 .pmxi_plugin #pmxi_tabs{
-	display: none;
+	/*display: none;*/
 	padding-bottom: 20px;
 	-moz-border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
+}
+.pmxi_plugin .pmxi_tab{
+	display: none;
 }
 .pmxi_plugin .ui-widget-header{
 	-moz-border-radius: 4px;
@@ -825,8 +842,7 @@ table.xml table {
 	float: right;
 	position: relative;
 	text-align: right;
-	top: 30px;
-	right:-18px;
+	top: 10px;	
 }
 .pmxi_plugin .back{
 	font-size: 16px;
@@ -967,15 +983,15 @@ table.xml table {
 	float: left;
 	margin-left: 3px;
 }
-.existing_meta_values{
+.pmxi_plugin .existing_meta_values{
 	clear: both;
 	display: block;
 	margin: 15px;
 }
-.custom-params tr td{
+.pmxi_plugin .custom-params tr td{
 	width: 50%;
 }
-.custom-params tr td.action{
+.pmxi_plugin .custom-params tr td.action{
 	width:100% !important;
 }
 .pmxi_plugin .load_options{
@@ -989,6 +1005,17 @@ table.xml table {
 	top: -35px;
 	width: 100%;
 }
-.form-field textarea{
+.pmxi_plugin .form-field textarea{
 	width:80%;
+}
+
+/* Tabs */
+.pmxi_plugin h2.nav-tab-wrapper, h3.nav-tab-wrapper{	
+	margin-bottom: 10px;
+}
+.pmxi_plugin .nav-tab{
+	margin-right: 0px !important;
+}
+.pmxi_plugin h2 .nav-tab{
+	font-size: 18px !important;
 }

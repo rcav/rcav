@@ -52,14 +52,10 @@ Template Name: Homepage
 					
 						<section class="row-fluid post_content" id="generated-blocks">
 						
-							<div class="span9">
+							<div class="span12">
 								<?php get_sidebar('sidebar3');  ?>						
 							</div>
-
-							<div class="span3">
-							
-							</div>
-													
+												
 						</section> <!-- end article header -->
 
 					</article> <!-- end article -->
@@ -88,13 +84,18 @@ Template Name: Homepage
 			</div> <!-- end #content -->
 
 		<script type="text/javascript"> 
-			//4th widget in a new row has no left margin
-			jQuery('.widget').eq(0).addClass('well');
-			jQuery('.widget').eq(1).addClass('well');
-			jQuery('.widget').eq(2).addClass('well');			
-			jQuery('.widget').eq(3).addClass('secondrow-first-child well');
-			jQuery('.widget').eq(4).addClass('well');	
-			jQuery('.widget').eq(5).addClass('secondrow-last-child well');
+			
+			// editorial blocks
+			jQuery('#editorial-blocks .widget').eq(0).addClass('well first-block');
+			jQuery('#editorial-blocks .widget').eq(1).addClass('well second-block');
+			jQuery('#editorial-blocks .widget').eq(2).addClass('well third-block');
+			jQuery('#editorial-blocks .widget').eq(3).addClass('well fourth-block');
+			jQuery('#editorial-blocks .widget').eq(4).addClass('well fifth-block');
+			jQuery('#editorial-blocks .widget').eq(5).addClass('well sixth-block');
+
+			// generated blocks row			
+			jQuery('#generated-blocks .widget').eq(0).addClass('well span6');
+			jQuery('#generated-blocks .widget').eq(1).addClass('well span4 offset2');
 		</script>
 
 <?php get_footer(); ?>
