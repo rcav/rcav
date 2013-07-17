@@ -1,51 +1,19 @@
 <?php
-/**
- * The Template for displaying all single posts of custom post type 'article'.
- **/
+/*
+Template Name: Admin Management
+*/
 
  get_header(); ?>
-			
 
-<?php 
-
-$selected_template = get_field('template_select');
-if($selected_template == NULL) {
-	$selected_template = 'rsidebar';
-
-}
-?>	
 
 
 			<div id="content" class="clearfix row-fluid">
 
+						<div class="sidebar-responsive-wrapper hidden-phone right-sidebar">
+							<?php echo get_sidebar('sidebar1'); ?>
+						</div>
     				
-					<?php 
-					// check if left sidebar or 3 columns
-					if($selected_template =='lsidebar' || $selected_template =='threecols'  ) {
-						echo '<div class="sidebar-responsive-wrapper hidden-phone left-sidebar">';
-						get_sidebar('sidebar4'); 
-						echo '</div>';
-					} 
-					?>
-					
-
-				<?php 
-					// check if full width
-					if ($selected_template =='fullwidth') { ?>
- 						<div id="main" class="span12 clearfix" role="main">
-
-
-				<?php } else if ($selected_template =='threecols') { 
-						// left sidebar
-					?>
-						<div id="main" class="span6 clearfix" role="main">
-					
-					<?php } else { 
-						// right sidebar
-						?>
-						
-						<div id="main" class="span9 clearfix" role="main">
-					<?php } ?>
+				<div id="main" class="span8 clearfix" role="main">
 
 
 				<div class="page-visualbreak"></div>
@@ -53,12 +21,12 @@ if($selected_template == NULL) {
 									
 					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 						
+
 						<header>
+							<?php the_post_thumbnail( 'wpbs-featured' ); ?>
 							
 							<div class="page-header"><h1 class="single-title" itemprop="headline"><?php the_title(); ?></h1></div>
 							
-
-
 						</header> <!-- end article header -->
 					
 						<section class="post_content clearfix" itemprop="articleBody">
@@ -77,12 +45,10 @@ if($selected_template == NULL) {
 							<a href="<?php echo get_edit_post_link(); ?>" class="btn btn-success edit-post"><i class="icon-pencil icon-white"></i> <?php _e("Edit post","bonestheme"); ?></a>
 							<?php } ?>
 							
-				
-
-
+					
 					</article> <!-- end article -->
 					
-					<?php comments_template('',true); ?>
+					<?php //comments_template('',true); ?>
 					
 					<?php endwhile; ?>			
 					
@@ -101,20 +67,10 @@ if($selected_template == NULL) {
 					
 					<?php endif; ?>
 			
-
-
-
-
 				</div> <!-- end #main -->
     
 
-					<?php 
-					// check if right sidebar
-					if($selected_template =='rsidebar' || $selected_template =='threecols') {
-						echo '<div class="sidebar-responsive-wrapper hidden-phone right-sidebar">';
-						get_sidebar('sidebar1'); 
-						echo '</div>';
-					} ?>
+
 
 					
 				
