@@ -70,29 +70,18 @@ if($selected_template == NULL) {
 						</section> <!-- end article section -->
 						
 							<section class="clearfix post-links">
-							<?php 
+							
+							<?php while(has_sub_field('post_links')): ?>
+								<?php $post_objects = get_sub_field('links_to'); ?>
+								<ul>
+								    <li>
+										<a href="<?php echo get_permalink($post_objects->ID); ?>"><?php echo get_the_title($post_objects->ID); ?></a>
 
-							if(get_field('post_links')) { 
+									</li>
+								</ul>
+							<?php endwhile; ?>
 
-								$links = get_field('post_links');
-
-								echo '<ul class="post-child-links">';
-
-								foreach ( $links as $post_object ) {
-									$current_ID = $post_object['links_to']->ID;
-									$current_title = $post_object['links_to']->post_title;
-									//echo get_permalink($current_ID);
-
-									$link_constructor = '<li><a href="' . get_permalink($current_ID) . '">';
-									$link_constructor .= $current_title;
-									$link_constructor .= '</a></li>';
-									echo $link_constructor;
-								}
-
-								echo '</ul>';
-							}
-
-							?>
+	
 
 
 	
