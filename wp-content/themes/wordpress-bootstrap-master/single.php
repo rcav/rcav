@@ -64,11 +64,37 @@ if($selected_template == NULL) {
 						<section class="post_content clearfix" itemprop="articleBody">
 
 							<?php the_content(); ?>
-							
+					
 							<?php wp_link_pages(); ?>
 					
 						</section> <!-- end article section -->
 						
+							<section class="clearfix post-links">
+							<?php 
+
+							if(get_field('post_links')) { 
+
+								$links = get_field('post_links');
+
+								echo '<ul class="post-child-links">';
+
+								foreach ( $links as $post_object ) {
+									$current_ID = $post_object['links_to']->ID;
+									$current_title = $post_object['links_to']->post_title;
+									//echo get_permalink($current_ID);
+
+									$link_constructor = '<li><a href="' . get_permalink($current_ID) . '">';
+									$link_constructor .= $current_title;
+									$link_constructor .= '</a></li>';
+									echo $link_constructor;
+								}
+
+								echo '</ul>';
+							}
+
+							?>
+
+
 	
 							<?php 
 							// only show edit button if user has permission to edit posts

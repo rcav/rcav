@@ -74,7 +74,7 @@
 						<a href="http://www.youtube.com/RCAVonline" class="icon-youtube"></a>
 						<a href="http://pinterest.com/rcavorg/pins/" class="icon-pinterest"></a>
 						</section>
-						<?php if (!is_front_page()) { ?><a href="<?php echo home_url(); ?>">Home</a><?php } ?> 
+						<?php if (!is_front_page()) { ?><span><a href="<?php echo home_url(); ?>">Home</a></span><?php } ?> 
 						<span><a href="<?php echo home_url();?>/donate">Donate</a></span>
 						<span><a href="<?php echo home_url();?>/contact-us">Contact</a></span>
 						<?php if(of_get_option('search_bar', '1')) {?>

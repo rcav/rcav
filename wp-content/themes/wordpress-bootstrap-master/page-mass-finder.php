@@ -65,9 +65,8 @@ Template Name: Mass Finder
 
 								<?php 
 										// set $city variable
-										//$city = NULL;	
-										$city =$_POST['city']; 
-										echo $city;
+										unset($city);
+										//$city =$_POST['city']; 
 
 										// build our query $args array
 										$args = array
@@ -81,7 +80,7 @@ Template Name: Mass Finder
 									
 
 									  $parish_posts = new WP_Query($args);
-									  print_r($parish_posts);
+									  //print_r($parish_posts);
 									
 									if(isset($city)) {
 										echo '<h4>All Parishes in <strong>' . $_POST['city'] .'</strong></h4>';
@@ -153,7 +152,7 @@ Template Name: Mass Finder
 								 	<?php 
 
 								 	endwhile; 
-								 	wp_reset_postdata();
+
 								  endif;
 
 								 ?>
@@ -164,7 +163,7 @@ Template Name: Mass Finder
 						echo '<div class="sidebar-responsive-wrapper hidden-phone right-sidebar">';
 						get_sidebar('sidebar1'); 
 						echo '</div>';
-						unset($_POST['city']);
+						
 					 ?>
 
 			</div>
