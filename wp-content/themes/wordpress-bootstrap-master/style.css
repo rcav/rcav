@@ -1321,9 +1321,9 @@ body {
 		background-position: top right;
 	}
 
-	.parent-category-catholic-faith #main-header,
-	.parent-catholic-faith #main-header,
-	.term-catholic-faith #main-header{ 
+	.parent-category-the-catholic-faith #main-header,
+	.parent-the-catholic-faith #main-header,
+	.term-the-catholic-faith #main-header{ 
 		background:url('images/assets/backgrounds/catholic-faith.png') no-repeat;
 		background-position: top right;
 	}
@@ -1468,26 +1468,37 @@ body {
 		display: none; 	/* NOTE: Need to parse the extra h1 tag from content posts */
 	}
 
+	.page-header { padding-bottom: 0;}
+
 	.page-header h1 {
 		font-size:1.9em;
 		color:#00A5DB;
 		font-family: 'frutiger-lightlight';
+		margin:0;
 	}
 
 	.post_content h2 {
-		font-size:1.2em;
+		font-size:1.4em;
 		padding: 0 0 10px 0;
 		margin: 0;
 		line-height: 1em;	
 	}
 
 	.post_content h3 {
-		font-size:1.1em;
+		font-size:1.2em;
 		font-weight: bold;
 		padding: 0;
-		margin: 0;
+		margin: 0 0 10px 0;
 		line-height: 1.2em;	
 	}
+
+	.post_content h4 {
+		font-size:1em;
+		font-weight: bold;
+		padding: 0;
+		margin: 0 0 10px 0;
+		line-height: 1.2em;	
+	}	
 
 
 	.right-sidebar .widget { 

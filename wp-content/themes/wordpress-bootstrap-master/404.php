@@ -9,25 +9,14 @@
 						<header>
 
 							<div class="hero-unit">
-							
-								<h1><?php _e("Epic 404 - Article Not Found","bonestheme"); ?></h1>
-								<p><?php _e("This is embarassing. We can't find what you were looking for.","bonestheme"); ?></p>
+						
+								<p><?php _e("The page you are looking for cannot be found, please try using the search below.","bonestheme"); ?></p>
+								<?php get_search_form(); ?>
 															
 							</div>
 													
 						</header> <!-- end article header -->
 					
-						<section class="post_content">
-							
-							<p><?php _e("Whatever you were looking for was not found, but maybe try looking again or search using the form below.","bonestheme"); ?></p>
-
-							<div class="row-fluid">
-								<div class="span12">
-									<?php get_search_form(); ?>
-								</div>
-							</div>
-					
-						</section> <!-- end article section -->
 						
 						<footer>
 							
