@@ -35,9 +35,6 @@
 
 		<!-- typeahead plugin - if top nav search bar enabled -->
 		<?php require_once('library/typeahead.php'); ?>
-
-
-      	
 				
 	</head>
 	

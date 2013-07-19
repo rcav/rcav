@@ -100,7 +100,7 @@ Template Name: Mass Finder
 									}
 
 									if(isset($city)) {
-										echo '<h4>All Parishes in <strong>' . $_POST['city'] .'</strong></h4>';
+										echo '<h4>Parishes in <strong>' . $_POST['city'] .'</strong></h4>';
 									};
 									   if($parish_posts->have_posts()) : while($parish_posts->have_posts()) : $parish_posts->the_post();
 								?>
