@@ -636,11 +636,11 @@ if( !function_exists( "theme_js" ) ) {
 
 
 
-    wp_enqueue_script('bootstrap');
-    wp_enqueue_script('wpbs-scripts');
-    wp_enqueue_script('modernizr');
-    wp_enqueue_script('xmldownload');
-    wp_enqueue_script('bootstrap-dropdown');
+    wp_enqueue_script('bootstrap', array(), NULL);
+    wp_enqueue_script('wpbs-scripts', array(), NULL);
+    wp_enqueue_script('modernizr', array(), NULL);
+    wp_enqueue_script('xmldownload', array(), NULL);
+    wp_enqueue_script('bootstrap-dropdown', array(), NULL);
    // wp_enqueue_script('gmap');
     
   }
