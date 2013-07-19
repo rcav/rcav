@@ -19,13 +19,16 @@ Template Name: Mass Finder
 							<div class="page-header"><h1 class="single-title" itemprop="headline"><?php the_title(); ?></h1></div>
 
 								<div class="alert alert-info">
-								 <small><i class="icon-info-sign"></i> Select a city from the list below to find Parishes near you.</small>
+								 <small><i class="icon-info-sign"></i> Select a city from the list below to find Parishes near you or visit these links:</small><br />
+								 <small><i class="icon-list"></i> <a href="/parishes-list">View all Parishes by name</a> or <i class="icon-map-marker"></i>  <a href="/parishes-map">View All Parishes on a map</a></small> <br />
+				
 								</div>
 																
 
 								<form method="POST" id="massfinder" name="massfinder" action="">
 										<select type="select" name="city" id="city" value=""/>
 											<option value="">Select a City</option>
+											<option value="All">Show All</option>
 											<option value="Abbotsford">Abbotsford</option>
 											<option value="Agassiz">Agassiz</option>
 											<option value="Aldergrove">Aldergrove</option>
@@ -63,12 +66,16 @@ Template Name: Mass Finder
 										<input type="submit" value="Search" class="btn btn-primary"/>
 								</form>
 
+
 								<?php 
+									$submitted_check = $_SERVER['REQUEST_METHOD'] == "POST";
+									if($submitted_check)  {
 										// set $city variable
-										unset($city);
-										//$city =$_POST['city']; 
+										$city = NULL;	
+										$city =$_POST['city']; 
 
 										// build our query $args array
+									if($city !== 'All') { 
 										$args = array
 										(
 										'post_type' =>'parish',
@@ -77,18 +84,26 @@ Template Name: Mass Finder
 										'orderby' => 'title',
 										'order' => 'ASC'
 										);	
-									
+									} else {
+										$args = array
+										(
+										'post_type' =>'parish',
+										'posts_per_page' => '-1',
+										'orderby' => 'title',
+										'order' => 'ASC'
+										);
+									};
 
 									  $parish_posts = new WP_Query($args);
 									  //print_r($parish_posts);
-									
+
+									}
+
 									if(isset($city)) {
 										echo '<h4>All Parishes in <strong>' . $_POST['city'] .'</strong></h4>';
 									};
-
 									   if($parish_posts->have_posts()) : while($parish_posts->have_posts()) : $parish_posts->the_post();
 								?>
-
 
 								 	<div class="mass-finder-result">
 
@@ -119,7 +134,6 @@ Template Name: Mass Finder
 										$root_path = $_SERVER['DOCUMENT_ROOT'];
 										$path = $root_path . '/xml-data/contacts_phone_sql.xml';
 										$s = simplexml_load_file($path);
-
 											foreach($s->children() as $child):
 												if($child->pid == $current_pid ) {  
 													echo '<br />';
@@ -142,8 +156,8 @@ Template Name: Mass Finder
 								 	?>
 
 								 	<?php if(get_field('gmap_link')) 
-										echo '<i class="icon-map-marker"></i> <a href="' . get_field('gmap_link') . '" target="_blank">View Map</a>';
-									?> | <i class="icon-time"></i>  <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>">Mass and Devotion Times</a>
+										echo '<i class="icon-map-marker"></i> <a href="' . get_field('gmap_link') . '" target="_blank">View Map</a> |';
+									?> <i class="icon-time"></i>  <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>">Mass and Devotion Times</a>
 
 									<br />
 

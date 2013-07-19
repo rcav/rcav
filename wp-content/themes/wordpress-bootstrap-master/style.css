@@ -1501,16 +1501,22 @@ body {
 	}	
 
 
-	.right-sidebar .widget { 
-		margin-left:15px;
+	.post_content .post-links a {
+		font-size:1.4em;
 	}
 
-	/* article legacy markup */
-	
-	{
-	border-bottom: 1px solid #7FD2ED;
-	padding: 10px 0 10px 0;
+	.post_content .featured-post-image {
+		float:left; 
+		margin-right:10px;
+		margin-bottom:10px;
+		border: 1px solid #00A5DB;
+	}
 
+
+
+
+	.right-sidebar .widget { 
+		margin-left:15px;
 	}
 
 
@@ -1664,7 +1670,12 @@ body {
 			line-height:1.6em;
 	}
 
+
+
 /* ====== search ======= */
+
+	.alert-info a { padding-right:5px;}
+	.alert-info [class^="icon-"] { margin-top:0 !important;}
 
 	.search #main article { 
 		margin-bottom:0; 

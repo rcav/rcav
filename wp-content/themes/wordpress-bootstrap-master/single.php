@@ -63,28 +63,29 @@ if($selected_template == NULL) {
 					
 						<section class="post_content clearfix" itemprop="articleBody">
 
+
+							<?php the_post_thumbnail( 'wpbs-featured-post', array('class'=>"img-rounded featured-post-image")); ?>
+
 							<?php the_content(); ?>
 					
 							<?php wp_link_pages(); ?>
 					
 						</section> <!-- end article section -->
 						
-							<section class="clearfix post-links">
-							
+							<section class="clearfix post-links well">
+					<?php if(get_field('post_links')): ?>
+						<h4>Related Links:</h4>
+								<ul>							
 							<?php while(has_sub_field('post_links')): ?>
 								<?php $post_objects = get_sub_field('links_to'); ?>
-								<ul>
 								    <li>
 										<a href="<?php echo get_permalink($post_objects->ID); ?>"><?php echo get_the_title($post_objects->ID); ?></a>
 
 									</li>
-								</ul>
 							<?php endwhile; ?>
-
+						</ul>
 	
-
-
-	
+					<?php endif; ?>
 							<?php 
 							// only show edit button if user has permission to edit posts
 							if( $user_level > 0 ) { 

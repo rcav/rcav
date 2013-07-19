@@ -21,12 +21,13 @@ Template Name: Parishes Listing
 						</header> <!-- end article header -->								
 
 
-						<div class="span12 clearfix">
 
-							<p><a href="<?php echo home_url();?>/uploadedFiles/Parish_Listing_by_Deanery.pdf">Parishes by Deanery</a></p>
-
-							<a href="/parishes-map" class="btn btn-primary">View Parishes Map</a>
-							<br /><br />
+							<div class="alert alert-info">
+								 <small><i class="icon-info-sign"></i> Select a Parish name below, or visit these links:<br />
+								 <i class="icon-search"></i> <a href="/mass-finder"> Mass Finder</a>
+								 <i class="icon-map-marker"></i>  <a href="/parishes-map"> View All Parishes on a map</a>
+								 <i class="icon-flag"></i><a href="<?php echo home_url();?>/uploadedFiles/Parish_Listing_by_Deanery.pdf"> Parishes by Deanery</a></small>
+								</div>
 
 							<section class="parishes-listing-results">
 
@@ -66,18 +67,14 @@ Template Name: Parishes Listing
 						</ul>
 						</section>
 
-					</div>
-
-
-					</article>
-				</div>
+			</article>
+		</div> <!-- end #main -->
 					<?php 
 				
 						echo '<div class="sidebar-responsive-wrapper hidden-phone right-sidebar">';
 						get_sidebar('sidebar1'); 
 						echo '</div>';
 					 ?>
-
-			</div>
+</div>
 
 <?php get_footer(); ?>
