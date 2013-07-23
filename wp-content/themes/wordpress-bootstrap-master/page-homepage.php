@@ -84,6 +84,23 @@ Template Name: Homepage
 			</div> <!-- end #content -->
 
 		<script type="text/javascript"> 
+
+			jQuery(document).ready(function() {
+
+				// Set the first 6 editorial widget to the same height
+				var maxHeight = -1;
+
+			   jQuery('#editorial-blocks .widget:lt(7)').each(function() {
+			     maxHeight = maxHeight > jQuery(this).height() ? maxHeight : jQuery(this).height();
+			     console.log(maxHeight);
+			   });
+
+			   jQuery('#editorial-blocks .widget').each(function() {
+			     jQuery(this).height(maxHeight);
+			   });
+			
+
+
 			
 			// editorial blocks
 			jQuery('#editorial-blocks .widget').eq(0).addClass('well first-block');
@@ -96,6 +113,9 @@ Template Name: Homepage
 			// generated blocks row			
 			jQuery('#generated-blocks .widget').eq(0).addClass('well span6');
 			jQuery('#generated-blocks .widget').eq(1).addClass('well span4 offset2');
+
+			 });
+
 		</script>
 
 <?php get_footer(); ?>

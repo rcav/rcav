@@ -752,9 +752,6 @@ body {
 
 	.home .widget a.btn {
 		width: 100px;
-		margin: 0 auto;
-		position: relative;
-		top: 22px;
 	}
 
 	/* special case widget */
@@ -1039,7 +1036,6 @@ body {
 	}
 }
 
-
 @media (min-width: 768px) and (max-width: 2500px) {
 
 	.home .homepage-main-cta {
@@ -1093,6 +1089,13 @@ body {
 
 	.home .archbishop-banner-text p {
 		padding:15px 15px 0 15px;
+	}
+
+	.sidebar-homepage a.btn {
+		position:absolute;
+		bottom:-10px;
+		margin-left:70px;
+		padding-top:5px;
 	}
 
 
@@ -1293,8 +1296,6 @@ body {
 /*  ===== HEADER BACKGROUNDS ====== */
 /*  ===== Please optimize PNGs with AlphaImage or TinyPNG.org ========*/
 
-	
-
 	.parent-category-evangelization #main-header,
 	.parent-evangelization #main-header,
 	.term-evangelization #main-header,
@@ -1456,6 +1457,17 @@ body {
 	.sidebar-homepage .widget img{	
 		position:relative;
 	}
+
+	.sidebar-homepage .first-block,
+	.sidebar-homepage .second-block,
+	.sidebar-homepage .third-block {
+
+		position:relative;
+		padding-bottom:20px;
+	}
+
+
+
 
 /* ====== CATEGORY TEMPLATES  ======= */
 
@@ -1726,6 +1738,57 @@ body {
 	footer .widget h5 {
 		margin:0;
 	}
+
+
+/* LEGACY PAGES - OYYAM */
+
+#whtsnew {
+width: 720px;
+height: 311px;
+clear: both;
+background-image: url('images/legacy/bg-whtsnew.jpg');
+background-position: top right;
+background-repeat: no-repeat;
+}
+
+#whtsnew .whatContent {
+float: left;
+padding-top: 62px;
+width: 190px;
+margin-left: 30px;
+}
+
+#youthImg {
+float: left;
+width: 493px;
+}
+
+.yeventleft, .yeventright {
+width: 358px;
+float: left;
+padding-top: 13px;
+}
+
+.thumbox {
+padding-right: 13px;
+float: left;
+height: 65px;
+width: 90px;
+}
+
+.yeventleft .divboxcnt, .yeventright .divboxcnt {
+width: 230px;
+}
+
+.postname-oyyam .page-context-banner {
+	background: url('images/legacy/banner-oyyam.jpg') no-repeat;
+	width:100%;
+	height:109px;
+}
+
+.postname-oyyam article { 
+	padding: 0 !important;
+}
 
 
 /* ICONS + SPRITES */

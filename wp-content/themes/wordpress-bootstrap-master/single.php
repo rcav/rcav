@@ -49,6 +49,7 @@ if($selected_template == NULL) {
 
 
 				<div class="page-visualbreak"></div>
+				<div class="page-context-banner"></div> <!-- An empty div hook for page specific stuff -->
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 									
 					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
@@ -72,20 +73,21 @@ if($selected_template == NULL) {
 					
 						</section> <!-- end article section -->
 						
-							<section class="clearfix post-links well">
-					<?php if(get_field('post_links')): ?>
-						<h4>Related Links:</h4>
-								<ul>							
-							<?php while(has_sub_field('post_links')): ?>
-								<?php $post_objects = get_sub_field('links_to'); ?>
-								    <li>
-										<a href="<?php echo get_permalink($post_objects->ID); ?>"><?php echo get_the_title($post_objects->ID); ?></a>
+							<section class="clearfix post-links">
+								<?php if(get_field('post_links')): ?>
+									<div class="well">
+									<h4>Links:</h4>
+											<ul>							
+										<?php while(has_sub_field('post_links')): ?>
+											<?php $post_objects = get_sub_field('links_to'); ?>
+											    <li>
+													<a href="<?php echo get_permalink($post_objects->ID); ?>"><?php echo get_the_title($post_objects->ID); ?></a>
 
-									</li>
-							<?php endwhile; ?>
-						</ul>
-	
-					<?php endif; ?>
+												</li>
+										<?php endwhile; ?>
+									</ul>
+									</div>
+								<?php endif; ?>
 							<?php 
 							// only show edit button if user has permission to edit posts
 							if( $user_level > 0 ) { 
