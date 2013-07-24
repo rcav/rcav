@@ -61,6 +61,32 @@ jQuery(document).ready(function($) {
 
 	$('input#sendmail').addClass('btn btn-primary');
 	
+				// Set the first 6 editorial widget to the same height
+				var maxHeight = -1;
+
+			   $('#editorial-blocks .widget:lt(7)').each(function() {
+			     maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+			     //console.log(maxHeight);
+			   });
+
+			   $('#editorial-blocks .widget').each(function() {
+			     $(this).height(maxHeight);
+			   });
+			
+			
+			// editorial blocks
+			$('#editorial-blocks .widget').eq(0).addClass('well first-block');
+			$('#editorial-blocks .widget').eq(1).addClass('well second-block');
+			$('#editorial-blocks .widget').eq(2).addClass('well third-block');
+			$('#editorial-blocks .widget').eq(3).addClass('well fourth-block');
+			$('#editorial-blocks .widget').eq(4).addClass('well fifth-block');
+			$('#editorial-blocks .widget').eq(5).addClass('well sixth-block');
+
+			// generated blocks row			
+			$('#generated-blocks .widget').eq(0).addClass('well span6');
+			$('#generated-blocks .widget').eq(1).addClass('well span4 offset2');
+
+
 	// Input placeholder text fix for IE
 	$('[placeholder]').focus(function() {
 	  var input = $(this);
