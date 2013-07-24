@@ -58,7 +58,7 @@
 					    <fieldset>
 							<div class="clearfix">
 								<div class="input-append input-prepend">
-									<span class="add-on"><i class="icon-search"></i></span><input type="text" name="s" id="search" placeholder="Search" value="" class="placeholder"><button type="submit" class="btn btn-primary">Search</button>
+									<span class="add-on"><i class="icon-search"></i></span><input type="text" name="s" id="search" placeholder="Search" value="" class="placeholder"><button type="submit" class="btn btn-primary">Go</button>
 								</div>
 					        </div>
 					    </fieldset>

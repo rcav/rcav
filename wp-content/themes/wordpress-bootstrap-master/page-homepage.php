@@ -14,7 +14,7 @@ Template Name: Homepage
 					
 					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
 
-						<section class="row-fluid post_content top-unit">
+						<section class="row-fluid top-unit">
 						
 							<div class="span9" id="homepage-slider">
 						
@@ -42,7 +42,7 @@ Template Name: Homepage
 													
 						</section> <!-- end article header -->
 						
-						<section class="row-fluid post_content" id="editorial-blocks">
+						<section class="row-fluid" id="editorial-blocks">
 						
 							<div class="span12">					
 								<?php get_sidebar('sidebar2');  ?>						
@@ -50,7 +50,7 @@ Template Name: Homepage
 													
 						</section> <!-- end article header -->
 					
-						<section class="row-fluid post_content" id="generated-blocks">
+						<section class="row-fluid" id="generated-blocks">
 						
 							<div class="span12">
 								<?php get_sidebar('sidebar3');  ?>						
