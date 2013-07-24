@@ -58,6 +58,8 @@ jQuery(document).ready(function($) {
 	},function(){
 		$('a.edit-post').hide();
 	});
+
+	$('input#sendmail').addClass('btn btn-primary');
 	
 	// Input placeholder text fix for IE
 	$('[placeholder]').focus(function() {
