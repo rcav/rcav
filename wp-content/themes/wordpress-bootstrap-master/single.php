@@ -81,10 +81,20 @@ if($selected_template == NULL) {
 												$a = get_sub_field('custom_link_title'); 
 												$b = get_sub_field('custom_link_description');
 												$c = get_sub_field('custom_post_link');
+												$d = get_sub_field('custom_post_external_link');
 											?>
 
 											<div class="post-link-item">
-											<h2><a href="<?php echo get_permalink($c->ID); ?>"><?php 
+											<h2>
+												<?php if($d) { ?>
+													<a href="<?php echo get_sub_field($d); ?>">
+													
+												<?php } else if($c) { ?>
+													<a href="<?php echo get_permalink($c->ID); ?>">
+													
+												<?php } ?>
+												
+											<?php 
 											if($a) { 
 												echo $a; 
 											} else { 

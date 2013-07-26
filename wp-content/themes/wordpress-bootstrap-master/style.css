@@ -1512,7 +1512,10 @@ body {
 		margin:0;
 	}
 
- 	.post_content h2  a {
+ 	.post_content h2 a,
+ 	.post_content h3 a,
+ 	.post_content h4 a,
+ 	.post_content h5 a  {
  		color: #00a679;
  	}
 

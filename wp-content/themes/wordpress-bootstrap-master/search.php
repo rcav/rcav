@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+TEST
 			
 			<div id="content" class="clearfix row-fluid">
 			
