@@ -74,11 +74,33 @@ if($selected_template == NULL) {
 						</section> <!-- end article section -->
 						
 							<section class="clearfix post-links">
-								<?php if(get_field('post_links')): ?>
+								<?php if(get_field('primary_post_links')): ?>
+										<?php while(has_sub_field('primary_post_links')): ?>
+
+											<?php 
+												$a = get_sub_field('custom_link_title'); 
+												$b = get_sub_field('custom_link_description');
+												$c = get_sub_field('custom_post_link');
+											?>
+
+											<h2><a href="<?php echo get_permalink($c->ID); ?>"><?php 
+											if($a) { 
+												echo $a; 
+											} else { 
+												echo get_the_title($c->ID); 
+											}
+											?></a></h2>
+											<?php echo $b; ?>
+
+										<?php endwhile; ?>
+
+								<?php endif; ?>
+
+								<?php if(get_field('secondary_post_links')): ?>
 									<div class="well">
 									<h4>Links:</h4>
 											<ul>							
-										<?php while(has_sub_field('post_links')): ?>
+										<?php while(has_sub_field('secondary_post_links')): ?>
 											<?php $post_objects = get_sub_field('links_to'); ?>
 											    <li>
 													<a href="<?php echo get_permalink($post_objects->ID); ?>"><?php echo get_the_title($post_objects->ID); ?></a>
@@ -88,6 +110,9 @@ if($selected_template == NULL) {
 									</ul>
 									</div>
 								<?php endif; ?>
+
+
+
 							<?php 
 							// only show edit button if user has permission to edit posts
 							if( $user_level > 0 ) { 

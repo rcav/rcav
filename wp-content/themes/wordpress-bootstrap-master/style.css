@@ -1299,7 +1299,8 @@ body {
 	.parent-category-evangelization #main-header,
 	.parent-evangelization #main-header,
 	.term-evangelization #main-header,
-	.term-vocations #main-header  { 
+	.term-vocations #main-header,
+	.term-stewardship #main-header  { 
 		background:url('images/assets/backgrounds/diocesan-offices.png') no-repeat;
 		background-position: top right;
 	}
