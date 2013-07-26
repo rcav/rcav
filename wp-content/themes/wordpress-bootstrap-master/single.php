@@ -73,7 +73,7 @@ if($selected_template == NULL) {
 					
 						</section> <!-- end article section -->
 						
-							<section class="clearfix post-links">
+							<section class="clearfix post_content">
 								<?php if(get_field('primary_post_links')): ?>
 										<?php while(has_sub_field('primary_post_links')): ?>
 
@@ -83,6 +83,7 @@ if($selected_template == NULL) {
 												$c = get_sub_field('custom_post_link');
 											?>
 
+											<div class="post-link-item">
 											<h2><a href="<?php echo get_permalink($c->ID); ?>"><?php 
 											if($a) { 
 												echo $a; 
@@ -91,6 +92,7 @@ if($selected_template == NULL) {
 											}
 											?></a></h2>
 											<?php echo $b; ?>
+										</div>
 
 										<?php endwhile; ?>
 
