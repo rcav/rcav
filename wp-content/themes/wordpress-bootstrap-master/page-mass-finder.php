@@ -71,7 +71,6 @@ Template Name: Mass Finder
 									$submitted_check = $_SERVER['REQUEST_METHOD'] == "POST";
 									if($submitted_check)  {
 										// set $city variable
-										$city = NULL;	
 										$city =$_POST['city']; 
 
 										// build our query $args array
