@@ -937,6 +937,10 @@ body {
 		display:none;
 	}
 
+	.home .fourth-block, .home .fifth-block, .home .sixth-block {
+		height:150px;
+	}
+
 }
 
 @media (min-width: 480px) and (max-width: 600px){ 
