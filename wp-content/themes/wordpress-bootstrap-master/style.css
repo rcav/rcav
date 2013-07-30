@@ -1149,7 +1149,10 @@ body {
 
 /* ===== GLOBAL OVERRIDES =====  */
 
-	.not-homepage #logo, .single #logo, .category #logo { /* should be a better catch all here */
+	.not-homepage #logo, 
+	.single #logo, 
+	.category #logo,
+	.search #logo { /* should be a better catch all here */
 		background:url('images/assets/logo-inside.png') 0 0;
 		margin-top:20px;
 		width:245px; 
@@ -1311,7 +1314,8 @@ body {
 	.pagename-mass-finder #main-header,
 	.parent-term-vocations #main-header,
 	.term-vocations #main-header,
-	.no-term #main-header { 
+	.no-term #main-header,
+	.search #main-header { 
 		background:url('images/assets/backgrounds/parishes.png') no-repeat;
 		background-position: top right;
 	}

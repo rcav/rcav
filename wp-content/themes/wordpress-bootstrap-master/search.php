@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-TEST
 			
 			<div id="content" class="clearfix row-fluid">
 			
@@ -15,7 +14,9 @@ TEST
 							
 							<h3><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
 							
-							<p class="meta">Posted <?php the_date(); ?></time> <?php _e("by", "bonestheme"); ?> <?php the_author_posts_link(); ?> <!--<span class="amp">&</span> <?php _e("filed under", "bonestheme"); ?> <?php the_category(', '); ?>.</p>-->
+							<p class="meta"><?php the_date(); ?></time> 
+
+
 						
 						</header> <!-- end article header -->
 					
@@ -61,7 +62,7 @@ TEST
 			
 				</div> <!-- end #main -->
     			
-    			<?php get_sidebar(); // sidebar 1 ?>
+    			<?php // get_sidebar(); // sidebar 1 ?>
     
 			</div> <!-- end #content -->
 
