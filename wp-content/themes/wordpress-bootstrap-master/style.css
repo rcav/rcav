@@ -937,7 +937,7 @@ body {
 		display:none;
 	}
 
-	.home .fourth-block, .home .fifth-block, .home .sixth-block {
+	.fourth-block,  .fifth-block, .sixth-block {
 		height:150px;
 	}
 
