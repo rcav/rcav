@@ -930,7 +930,7 @@ body {
 
 	/* use more generic markup here */
 	.home #archbishop-banner {
-		background-position: -80px 0;
+		background-position: -30px 0 !important;
 	}
 
 }
@@ -1452,8 +1452,8 @@ body {
 
 	.home #archbishop-banner {
 		height: 170px;
-		background-image: url('images/assets/homepage-archbishop-cta.png');
-		background-repeat: no-repeat;
+		background: url('images/assets/homepage-archbishop-cta.png') no-repeat;
+		background-position: 0 0;
 		float: right;
 		margin-top: -70px;
 		width: 100%;
