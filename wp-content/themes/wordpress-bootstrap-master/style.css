@@ -1322,7 +1322,8 @@ body {
 
 	.parent-category-education #main-header,
 	.term-education #main-header,
-	.parent-education #main-header { 
+	.parent-education #main-header,
+	.pagename-oyyam #main-header { 
 		background:url('images/assets/backgrounds/education-training.png') no-repeat;
 		background-position: top right;
 	}
@@ -1382,9 +1383,9 @@ body {
 	}
 
 /* ======= SLIDESHOW ======= */
-
+/*
 	.slider-wrapper { max-height:250px;}
-
+*/
 	/*  ===== FORMS =====  */
 
 	.visual-form-builder ul.vfb-section li { 
@@ -1795,6 +1796,30 @@ clear: both;
 background-image: url('images/legacy/bg-whtsnew.jpg');
 background-position: top right;
 background-repeat: no-repeat;
+}
+
+.oyyam-main-cta {
+	background-image: url('images/legacy/bg-whtsnew.jpg');
+	background-position: top right;
+background-repeat: no-repeat;
+height: 311px;
+width:931px;
+}
+
+.oyyam-main-cta span {
+	display: block;
+	margin-top:80px;
+	margin-right:15px;
+	float:right;
+	width:200px;
+}
+
+.oyyam-main-cta span ul li {
+	padding-bottom:10px;
+}
+
+.oyyam-main-cta span ul { 
+	list-style-type: none;
 }
 
 #whtsnew .whatContent {

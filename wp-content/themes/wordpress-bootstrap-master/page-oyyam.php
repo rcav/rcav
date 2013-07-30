@@ -14,9 +14,9 @@ Template Name: OYYAM
 					
 					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
 
-						<section class="row-fluid top-unit">
+						<section class="row-fluid">
 						
-							<div class="span9" id="homepage-slider">
+							<div class="span9">
 						
 									<?php 
 										$post_object = get_field('oyyam_slideshow_selector');
@@ -31,7 +31,9 @@ Template Name: OYYAM
 							</div>
 
 							<div class="oyyam-main-cta">
+								<span>
 								<?php echo get_field('oyyam_whats_new'); ?>
+								</span>
 							</div>
 													
 						</section> <!-- end article header -->
@@ -39,7 +41,7 @@ Template Name: OYYAM
 						<section class="row-fluid" id="editorial-blocks">
 						
 							<div class="span12">					
-								<?php get_sidebar('sidebar5');  ?>						
+								<?php //get_sidebar('sidebar5');  ?>						
 							</div>
 													
 						</section> <!-- end article header -->

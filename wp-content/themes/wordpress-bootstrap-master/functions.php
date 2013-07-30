@@ -918,7 +918,7 @@ function add_dashboard_widgets() {
 }*/
 
 // Register the new dashboard widget with the 'wp_dashboard_setup' action
-add_action('wp_dashboard_setup', 'add_dashboard_widgets' );
+//add_action('wp_dashboard_setup', 'add_dashboard_widgets' );
 
 function post_type_page_category() {  
 // Add tag metabox to page
