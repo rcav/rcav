@@ -41,7 +41,6 @@ Redirect 301 /project_advance	/project-advance-overview/
 Redirect 301 /pgc	/protecting-gods-children-overview
 Redirect 301 /permanentdiaconate	/permanent-diaconate-overview
 Redirect 301 /pd-faq	/permanent-diaconate-faq
-Redirect 301 (?i)/OYYAM	/?p=13909
 Redirect 301 (?i)/OYYAM/Young_Adult_Communities	/young-adult-communities
 Redirect 301 (?i)/OYYAM/WYD_2013_Information	/world-youth-day-2011-info
 Redirect 301 (?i)/OYYAM/University_Students_Mass	/?p=16022
