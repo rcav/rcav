@@ -102,73 +102,79 @@ Template Name: Mass Finder
 									if(isset($city)) {
 										echo '<h4>Parishes in <strong>' . $_POST['city'] .'</strong></h4>';
 									};
-									   while($parish_posts->have_posts()) : $parish_posts->the_post();
+
+
+									   if($parish_posts->have_posts()) {
+
+									   	while($parish_posts->have_posts()) {;
 								?>
 
-								 	<div class="mass-finder-result">
+										 	<div class="mass-finder-result">
 
-								 	<h4><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>">
-								    <?php the_title(); ?></a></h4>
+										 	<h4><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>">
+										    <?php the_title(); ?></a></h4>
 
-								    <?php if(get_field('address1')) {
-								    	echo get_field('address1'); 
-								    }
-								   	?>
-								   
-								    <?php if(get_field('city')) {
-								    	echo get_field('city'); 
-								    }
-								   	?>
+										    <?php if(get_field('address1')) {
+										    	echo get_field('address1'); 
+										    }
+										   	?>
+										   
+										    <?php if(get_field('city')) {
+										    	echo get_field('city'); 
+										    }
+										   	?>
 
-								    <?php if(get_field('province')) {
-								    	echo get_field('province'); 
-								    }
-								   	?>
+										    <?php if(get_field('province')) {
+										    	echo get_field('province'); 
+										    }
+										   	?>
 
-								    <?php if(get_field('postal')) {
-								    	echo get_field('postal'); 
-								    }
-								   	?>
+										    <?php if(get_field('postal')) {
+										    	echo get_field('postal'); 
+										    }
+										   	?>
 
-									<?php 
-										$root_path = $_SERVER['DOCUMENT_ROOT'];
-										$path = $root_path . '/xml-data/contacts_phone_sql.xml';
-										$s = simplexml_load_file($path);
-											foreach($s->children() as $child):
-												if($child->pid == $current_pid ) {  
-													echo '<br />';
-													echo $child->contact_type . ': ';
-													echo $child->contact_value . '<br />';
-												}
-											endforeach; 
-										?>								   	
+											<?php 
+												$root_path = $_SERVER['DOCUMENT_ROOT'];
+												$path = $root_path . '/xml-data/contacts_phone_sql.xml';
+												$s = simplexml_load_file($path);
+													foreach($s->children() as $child):
+														if($child->pid == $current_pid ) {  
+															echo '<br />';
+															echo $child->contact_type . ': ';
+															echo $child->contact_value . '<br />';
+														}
+													endforeach; 
+												?>								   	
 
-								 	<?php if(get_field('primarylanguage')) 
-								 		{ 
-								 			echo '<div> Language:' . get_field('primarylanguage') . '</div>';
-								 		}
-								 	?>
-	
-								 	<?php if(get_field('reverands')) 
-								 		{ 
-								 			echo '<div>' . get_field('reverands') . '</div>';
-								 		}
-								 	?>
+										 	<?php if(get_field('primarylanguage')) 
+										 		{ 
+										 			echo '<div> Language:' . get_field('primarylanguage') . '</div>';
+										 		}
+										 	?>
+			
+										 	<?php if(get_field('reverands')) 
+										 		{ 
+										 			echo '<div>' . get_field('reverands') . '</div>';
+										 		}
+										 	?>
 
-								 	<?php if(get_field('gmap_link')) 
-										echo '<i class="icon-map-marker"></i> <a href="' . get_field('gmap_link') . '" target="_blank">View Map</a> |';
-									?> <i class="icon-time"></i>  <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>">Mass and Devotion Times</a>
+										 	<?php if(get_field('gmap_link')) 
+												echo '<i class="icon-map-marker"></i> <a href="' . get_field('gmap_link') . '" target="_blank">View Map</a> |';
+											?> <i class="icon-time"></i>  <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>">Mass and Devotion Times</a>
 
-									<br />
+											<br />
 
 
-									</div>
+											</div>
 								 	<?php 
 
-								 	endwhile; 
+								 	};
 
-								 // endif;
+								  } else {
 
+								  	
+								  }
 								 ?>
 						</article>
 					</div>
