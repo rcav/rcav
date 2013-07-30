@@ -28,7 +28,7 @@ Template Name: Mass Finder
 								<form method="POST" id="massfinder" name="massfinder" action="">
 										<select type="select" name="city" id="city" value=""/>
 											<option value="">Select a City</option>
-											<option value="All">Show All</option>
+											
 											<option value="Abbotsford">Abbotsford</option>
 											<option value="Agassiz">Agassiz</option>
 											<option value="Aldergrove">Aldergrove</option>
@@ -75,7 +75,6 @@ Template Name: Mass Finder
 										$city =$_POST['city']; 
 
 										// build our query $args array
-									if($city !== 'All') { 
 										$args = array
 										(
 										'post_type' =>'parish',
@@ -84,15 +83,6 @@ Template Name: Mass Finder
 										'orderby' => 'title',
 										'order' => 'ASC'
 										);	
-									} else {
-										$args = array
-										(
-										'post_type' =>'parish',
-										'posts_per_page' => '-1',
-										'orderby' => 'title',
-										'order' => 'ASC'
-										);
-									};
 
 									  $parish_posts = new WP_Query($args);
 									  //print_r($parish_posts);
@@ -104,9 +94,7 @@ Template Name: Mass Finder
 									};
 
 
-									   if($parish_posts->have_posts()) {
-
-									   	while($parish_posts->have_posts()) {;
+									   if($parish_posts->have_posts()) : while($parish_posts->have_posts()) : $parish_posts->the_post();
 								?>
 
 										 	<div class="mass-finder-result">
@@ -135,6 +123,8 @@ Template Name: Mass Finder
 										   	?>
 
 											<?php 
+											/*
+											// Lost current_pid data during post conversion
 												$root_path = $_SERVER['DOCUMENT_ROOT'];
 												$path = $root_path . '/xml-data/contacts_phone_sql.xml';
 												$s = simplexml_load_file($path);
@@ -145,6 +135,7 @@ Template Name: Mass Finder
 															echo $child->contact_value . '<br />';
 														}
 													endforeach; 
+												*/
 												?>								   	
 
 										 	<?php if(get_field('primarylanguage')) 
@@ -169,12 +160,13 @@ Template Name: Mass Finder
 											</div>
 								 	<?php 
 
-								 	};
+								 	endwhile; else : ?>
 
-								  } else {
+								 		<p>Nothing selected.</p>
+								 	<?php 
 
-								  	
-								  }
+								  endif;
+
 								 ?>
 						</article>
 					</div>
