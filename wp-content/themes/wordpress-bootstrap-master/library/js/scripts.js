@@ -75,16 +75,16 @@ jQuery(document).ready(function($) {
 			
 			
 			// editorial blocks
-			$('#editorial-blocks .widget').eq(0).addClass('well first-block');
-			$('#editorial-blocks .widget').eq(1).addClass('well second-block');
-			$('#editorial-blocks .widget').eq(2).addClass('well third-block');
-			$('#editorial-blocks .widget').eq(3).addClass('well fourth-block');
-			$('#editorial-blocks .widget').eq(4).addClass('well fifth-block');
-			$('#editorial-blocks .widget').eq(5).addClass('well sixth-block');
+			$('#editorial-blocks .widget').eq(0).addClass('first-block');
+			$('#editorial-blocks .widget').eq(1).addClass('second-block');
+			$('#editorial-blocks .widget').eq(2).addClass('third-block');
+			$('#editorial-blocks .widget').eq(3).addClass('fourth-block');
+			$('#editorial-blocks .widget').eq(4).addClass('fifth-block');
+			$('#editorial-blocks .widget').eq(5).addClass('sixth-block');
 
 			// generated blocks row			
-			$('#generated-blocks .widget').eq(0).addClass('well span6');
-			$('#generated-blocks .widget').eq(1).addClass('well span4 offset2');
+			$('#generated-blocks .widget').eq(0).addClass('span6');
+			$('#generated-blocks .widget').eq(1).addClass('span4 offset2');
 
 
 	// Input placeholder text fix for IE
