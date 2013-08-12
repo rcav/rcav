@@ -1569,7 +1569,8 @@ body {
 		font-size:1.3em;
 		padding: 0 0 10px 0;
 		margin: 0;
-		line-height: 1em;	
+		line-height: 1em;
+		font-family: 'frutiger-lightlight';	
 		color: #00a679;
 	}
 
@@ -1578,8 +1579,9 @@ body {
 		font-weight: normal;
 		padding: 0;
 		margin: 0 0 10px 0;
-		line-height: 1.2em;	
-		color:#005cdb;
+		line-height: 1.2em;
+		font-family: 'frutiger-lightlight';		
+		color:#1A3A73;
 	}
 
 	.post_content h4 {
