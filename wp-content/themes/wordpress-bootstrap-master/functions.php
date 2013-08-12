@@ -901,6 +901,13 @@ function change_wp_login_url()
 add_filter('login_headerurl', 'change_wp_login_url');
 
 
+function oyyam_latest_posts($attr) {
+  return "<h1>test</h1>";
+add_shortcode( 'oyyam', 'oyyam_latest_posts' );
+
+}
+
+
 // Function that outputs the contents of the dashboard widget
 /*function dashboard_widget_function() {
   $current_user = wp_get_current_user();
