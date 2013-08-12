@@ -1570,7 +1570,6 @@ body {
 		padding: 0 0 10px 0;
 		margin: 0;
 		line-height: 1em;
-		font-family: 'frutiger-lightlight';	
 		color: #00a679;
 	}
 
@@ -1579,8 +1578,7 @@ body {
 		font-weight: normal;
 		padding: 0;
 		margin: 0 0 10px 0;
-		line-height: 1.2em;
-		font-family: 'frutiger-lightlight';		
+		line-height: 1.2em;	
 		color:#1A3A73;
 	}
 
