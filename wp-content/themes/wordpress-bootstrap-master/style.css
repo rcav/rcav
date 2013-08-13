@@ -782,6 +782,13 @@ body {
 		z-index:10;
 	}
 
+	.home .theme-default .nivoSlider {
+	-webkit-box-shadow: 0px 0px 0px 0px #fff !important;
+	-moz-box-shadow: 0px 0px 0px 0px #fff !important;
+	box-shadow: 0px 0px 0px 0px #fff !important;
+
+	}
+
 	#content #main article {
 		padding:10px 20px 0 20px;
 	}
@@ -1190,14 +1197,23 @@ body {
 
 
 	/* rounded mass finder button on inside pages */
-	.button-mass-finder a {
-		background: url('images/assets/sprites.png') no-repeat;
+	.right-sidebar .button-mass-finder a,
+	.right-sidebar a.button-mass-finder {
+		/*background: url('images/assets/sprites.png') no-repeat;
 		display: block;
-		width: 192;
+		width: 192px;
 		height: 42px;
 		position:relative;
-
+		*/
+		background: url('images/assets/sprites.png') no-repeat;
+		background-position: 3px -41px;
+		display: block;
+		width: 192px;
+		height: 43px;
+		position: relative;
 	}
+
+	.button-mass-finder span { display: none;}
 
 
 	 a.btn {
