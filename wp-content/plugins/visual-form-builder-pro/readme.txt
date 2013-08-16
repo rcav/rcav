@@ -2,11 +2,59 @@
 Contributors: mmuro
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 2.3.4
+Stable tag: 2.3.7
 
 Visual Form Builder Pro is an affordable WordPress plugin that helps you build beautiful, fully functional forms in only a few minutes without writing PHP, CSS, or HTML.
 
 == Release Notes ==
+
+**Version 2.3.7 — Aug 01, 2013**
+
+* Add form Email Rules
+* Add Time Period options to Export date range
+* Add vfb_validate_input, vfb_sanitize_input, vfb_akismet_check, vfb_isBot actions
+* Add form_success_type to the vfb_form_success_message filter
+* Add vfb_skip_total_zero filter for skipping PayPal redirection when the total is zero
+* Add vfb_sender_mail_header, vfb_show_version filters
+* Add an ID attribute to the form container div
+* Add form status (publish or draft)
+* Update CSS enqueue to only load when form exists on the page
+* Update email from names to use mb_encode_mimeheader for proper encoding
+* Update Migrate Forms and Dismiss links to always ensure they point to the proper page
+* Update list of user agent strings to test against in vfb_blocked_spam_bots
+* Update padding on select elements
+* Update Instructions field to include CSS Classes and Field Layout options
+* Update form output to force bullets to hide, but only if list-style-type isn't set
+* Update code for properly transferring form rules when duplicating a form
+* Update forms management to use Trash method instead of Deleting
+* Update import to display progress bars
+* Update form output to only display the "for" attribute for certain fields
+* Update Export to always download a file, even if no results are found
+* Fix bug for file uploads when vfb_skip_empty_fields is set
+* Fix bug when sorting and field sequence is not properly set
+* Fix bug where migration link may not appear
+* Fix bug during migration where field_default was not transferring
+* Fix bug during migration where field_options_other did not exist
+* Deprecate spam check for empty user agent
+* Remove texas from spam words
+* Remove DONOTCACHEPAGE constant as it's no longer needed
+
+**Version 2.3.6 — Jul 16, 2013**
+
+* Fix bug where confirmation function fails
+
+**Version 2.3.5 — Jul 16, 2013**
+
+* Add sorting to checkbox/radio/select options
+* Add vfb_skip_referrer_check filter
+* Add 15 new string filters
+* Update interface icons
+* Update submit button name/id attributes to conform to new naming convention
+* Fix bug where form preview did not display RTL or language attributes
+* Fix bug where User Name dropdown would appear when no required text or name fields were set
+* Fix sprintf error when max file size has been reached
+* Fix disabled fields not skipping when using the vfb_skip_empty_fields filter
+* Remove unnecessary queries during email
 
 **Version 2.3.4 — Jun 28, 2013**
 
@@ -27,7 +75,6 @@ Visual Form Builder Pro is an affordable WordPress plugin that helps you build b
 * Fix bug where the Hidden field Post URL was not being properly saved
 * Fix bug where Payments running total box would not appear if hidden by conditional logic
 * Remove old "Display Forms" help image and just use text
-
 
 **Version 2.3.3 — Jun 06, 2013**
 
@@ -50,7 +97,6 @@ Visual Form Builder Pro is an affordable WordPress plugin that helps you build b
 * Fix bug where details would not display when updating Entry
 * Fix bug where delete link did not work in Form List view
 * Fix bug where Instructions data would not appear in email when included in vfb_removed_field_types
-
 
 **Version 2.3.2 — May 08, 2013**
 

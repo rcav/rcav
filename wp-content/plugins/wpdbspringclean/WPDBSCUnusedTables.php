@@ -221,9 +221,13 @@ class wpdbspringclean_admin extends WP_List_Table {
 	
 			$found_at_least_a_table = false;
 			$wpdbsc_string = "Tables_in_".constant("DB_NAME"); //we'll need this later to manipulate through the "show tables" array output
-			$plugins_dir_path = ABSPATH . 'wp-content/plugins/'; 
-			$themes_dir_path = ABSPATH . 'wp-content/themes/';
+			//$plugins_dir_path = ABSPATH . 'wp-content/plugins/'; 
+			//$themes_dir_path = ABSPATH . 'wp-content/themes/';
 	
+			$wpdbsc_dir_path = plugin_dir_path( __FILE__ ); //dir path of this plugin
+			$plugins_dir_path = dirname($wpdbsc_dir_path); //dir path of plugins
+			$themes_dir_path = dirname($plugins_dir_path).'/themes'; //dir path of themes
+			
 			foreach( $results as $sum ) {
 				if (!in_array($sum->$wpdbsc_string, $wp_core_tables))
 				{
@@ -343,7 +347,9 @@ function wpdbscListUnusedTables(){
 	    $testListTable->prepare_items();
 ?>        		
 
-        <h4>WPDBSpringClean Has Identified The Following Tables As Not Being Used By A Currently Installed Plugin</h4>
+        <div class="wpdbsc_blue_box">
+        	<p>After performing a search, the results for DB tables which WPDBSpringClean deems to be unused by another plugin will be displayed below.</p>
+        </div>
         <p class="search-res">NOTE: If you are unsure about deleting any tables, it is recommended that you take a DB backup before using WPDBSpringClean</p>
 
         <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->

@@ -4,7 +4,7 @@ Plugin Name: WPDBSpringClean
 Plugin URI: http://wpsolutions-hq.com 
 Description: A WordPress Plugin which deletes unused plugin tables from the database and also allows you to optimize existing DB tables
 Author: WPSolutions-HQ 
-Version: 1.5 
+Version: 1.6 
 Author URI: http://wpsolutions-hq.com 
 */
 

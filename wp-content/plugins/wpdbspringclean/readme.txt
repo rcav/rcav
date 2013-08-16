@@ -64,6 +64,9 @@ believes are not being used and it will give you the option of deleting some or 
 
 == Changelog ==
 
+= 1.6 =
+* Improved the way in which the "plugins" directories are retrieved when searching. The plugin will now also work correctly for instances where people may have moved the "wp-contents" directory.
+
 = 1.5 =
 * Corrected a mistake in the logic which was automatically performing an unused table search when plugin was installed for the first time
 * fixed bug where deletion of tables using bulk delete was not working properly

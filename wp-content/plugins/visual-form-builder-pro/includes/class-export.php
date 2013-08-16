@@ -6,7 +6,7 @@
  */
 class VisualFormBuilder_Pro_Export {
 
-	protected $export_version = '2.3';
+	protected $export_version = '2.4';
 
 	public function __construct(){
 		global $wpdb;
@@ -155,6 +155,11 @@ class VisualFormBuilder_Pro_Export {
         				<option value="0">End Date</option>
         				<?php $this->months_dropdown(); ?>
         			</select>
+        			<?php _e( 'or', 'visual-form-builder-pro' ); ?>
+        			<select name="entries_date_period">
+        				<option value="0">Time Period</option>
+        				<?php $this->time_periods(); ?>
+        			</select>
         		</li>
 				<!-- Pages to Export -->
 				<?php $num_pages = ceil( $entries_count / 1000 ); ?>
@@ -275,6 +280,8 @@ class VisualFormBuilder_Pro_Export {
 	<vfb:form_email_from_name><?php echo $this->cdata( $form->form_email_from_name ); ?></vfb:form_email_from_name>
 	<vfb:form_email_from_override><?php echo $form->form_email_from_override; ?></vfb:form_email_from_override>
 	<vfb:form_email_from_name_override><?php echo $form->form_email_from_name_override; ?></vfb:form_email_from_name_override>
+	<vfb:form_email_rule_setting><?php echo $form->form_email_rule_setting; ?></vfb:form_email_rule_setting>
+	<vfb:form_email_rule><?php echo $this->cdata( $form->form_email_rule ); ?></vfb:form_email_rule>
 	<vfb:form_success_type><?php echo $form->form_success_type; ?></vfb:form_success_type>
 	<vfb:form_success_message><?php echo $this->cdata( $form->form_success_message ); ?></vfb:form_success_message>
 	<vfb:form_notification_setting><?php echo $form->form_notification_setting; ?></vfb:form_notification_setting>
@@ -297,6 +304,7 @@ class VisualFormBuilder_Pro_Export {
 	<vfb:form_entries_allowed><?php echo $form->form_entries_allowed; ?></vfb:form_entries_allowed>
 	<vfb:form_entries_schedule><?php echo $this->cdata( $form->form_entries_schedule ); ?></vfb:form_entries_schedule>
 	<vfb:form_unique_entry><?php echo $form->form_unique_entry; ?></vfb:form_unique_entry>
+	<vfb:form_status><?php echo $form->form_status; ?></vfb:form_status>
 </vfb:form>
 <?php
 					endforeach;
@@ -458,6 +466,7 @@ class VisualFormBuilder_Pro_Export {
 			'form_id' 		=> 0,
 			'start_date' 	=> false,
 			'end_date' 		=> false,
+			'period'		=> false,
 			'page'			=> 0,
 			'fields'		=> $initial_fields,
 		);
@@ -471,11 +480,42 @@ class VisualFormBuilder_Pro_Export {
 			if ( 0 !== $args['form_id'] )
 				$where .= $wpdb->prepare( " AND form_id = %d", $args['form_id'] );
 
-			if ( $args['start_date'] )
-				$where .= $wpdb->prepare( " AND date_submitted >= %s", date( 'Y-m-d', strtotime( $args['start_date'] ) ) );
+			if ( $args['period'] ) {
 
-			if ( $args['end_date'] )
-				$where .= $wpdb->prepare( " AND date_submitted < %s", date( 'Y-m-d', strtotime( '+1 month', strtotime( $args['end_date'] ) ) ) );
+				switch ( $args['period'] ) :
+					case 'today' :
+						$where .= " AND DATE( date_submitted ) = CURDATE()" ;
+						break;
+
+					case 'yesterday' :
+						$where .= " AND DATE( date_submitted ) = CURDATE() - INTERVAL 1 DAY" ;
+						break;
+
+					case 'week' :
+						$where .= " AND YEARWEEK( date_submitted ) = YEARWEEK( CURDATE() )" ;
+						break;
+
+					case 'week-last' :
+						$where .= " AND YEARWEEK( date_submitted ) = YEARWEEK( CURDATE() - INTERVAL 7 DAY )" ;
+						break;
+
+					case 'month' :
+						$where .= " AND MONTH( date_submitted ) = MONTH( CURDATE() )" ;
+						break;
+
+					case 'month-last' :
+						$where .= " AND MONTH( date_submitted ) = MONTH( CURDATE() - INTERVAL 1 MONTH )" ;
+						break;
+
+				endswitch;
+
+			} else {
+				if ( $args['start_date'] )
+					$where .= $wpdb->prepare( " AND date_submitted >= %s", date( 'Y-m-d', strtotime( $args['start_date'] ) ) );
+
+				if ( $args['end_date'] )
+					$where .= $wpdb->prepare( " AND date_submitted < %s", date( 'Y-m-d', strtotime( '+1 month', strtotime( $args['end_date'] ) ) ) );
+			}
 
 			if ( $args['page'] > 1 )
 				$limit = ( $args['page'] - 1 ) * 1000 . ',1000';
@@ -483,9 +523,9 @@ class VisualFormBuilder_Pro_Export {
 
 		$form_id = ( 0 !== $args['form_id'] ) ? $args['form_id'] : null;
 
-		$entries = $wpdb->get_results( "SELECT * FROM $this->entries_table_name WHERE entry_approved = 1 $where ORDER BY entries_id ASC LIMIT $limit" );
-		$form_key = $wpdb->get_var( $wpdb->prepare( "SELECT form_key, form_title FROM $this->form_table_name WHERE form_id = %d", $args['form_id'] ) );
-		$form_title = $wpdb->get_var( null, 1 );
+		$entries      = $wpdb->get_results( "SELECT * FROM $this->entries_table_name WHERE entry_approved = 1 $where ORDER BY entries_id ASC LIMIT $limit" );
+		$form_key     = $wpdb->get_var( $wpdb->prepare( "SELECT form_key, form_title FROM $this->form_table_name WHERE form_id = %d", $args['form_id'] ) );
+		$form_title   = $wpdb->get_var( null, 1 );
 
 		$sitename = sanitize_key( get_bloginfo( 'name' ) );
 		if ( ! empty($sitename) ) $sitename .= '.';
@@ -503,10 +543,6 @@ class VisualFormBuilder_Pro_Export {
 				$content_type = 'application/vnd.ms-excel';
 			break;
 		}
-
-		// Return nothing if no entries found
-		if ( !$entries )
-			return;
 
 		header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );
 		header( 'Content-Description: File Transfer' );
@@ -1001,7 +1037,10 @@ class VisualFormBuilder_Pro_Export {
 			if ( $_REQUEST['entries_form_id'] )
 				$args['form_id'] = (int) $_REQUEST['entries_form_id'];
 
-			if ( $_REQUEST['entries_start_date'] || $_REQUEST['entries_end_date'] ) {
+			if ( $_REQUEST['entries_date_period'] ) {
+				$args['period'] = $_REQUEST['entries_date_period'];
+
+			} elseif ( $_REQUEST['entries_start_date'] || $_REQUEST['entries_end_date'] ) {
 				$args['start_date'] = $_REQUEST['entries_start_date'];
 				$args['end_date'] = $_REQUEST['entries_end_date'];
 			}
@@ -1067,9 +1106,8 @@ class VisualFormBuilder_Pro_Export {
 			return;
 
 		$m = isset( $_REQUEST['m'] ) ? (int) $_REQUEST['m'] : 0;
-?>
-<?php
-		foreach ( $months as $arc_row ) {
+
+		foreach ( $months as $arc_row ) :
 			if ( 0 == $arc_row->year )
 				continue;
 
@@ -1080,8 +1118,28 @@ class VisualFormBuilder_Pro_Export {
 				esc_attr( $arc_row->year . '-' . $month ),
 				sprintf( __( '%1$s %2$d' ), $wp_locale->get_month( $month ), $year )
 			);
-		}
-?>
-<?php
+		endforeach;
+	}
+
+	/**
+	 * Output time periods for entires date range
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function time_periods() {
+		$entries = $this->get_entry_IDs();
+
+		if ( !$entries )
+			return;
+
+		?>
+		<option value="today">Today</option>
+		<option value="yesterday">Yesterday</option>
+		<option value="week">This Week</option>
+		<option value="week-last">Last Week</option>
+		<option value="month">This Month</option>
+		<option value="month-last">Last Month</option>
+		<?php
 	}
 }

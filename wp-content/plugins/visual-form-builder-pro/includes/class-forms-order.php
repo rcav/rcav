@@ -13,6 +13,44 @@ class VisualFormBuilder_Pro_Forms_Order extends WP_List_Table {
 		$this->field_table_name   = $wpdb->prefix . 'vfb_pro_fields';
 		$this->form_table_name    = $wpdb->prefix . 'vfb_pro_forms';
 		$this->entries_table_name = $wpdb->prefix . 'vfb_pro_entries';
+
+		// Set parent defaults
+		parent::__construct( array(
+			'singular'  => 'form',
+			'plural'    => 'forms',
+			'ajax'      => false
+		) );
+	}
+
+	/**
+	 * Display column names
+	 *
+	 * @since 1.2
+	 * @returns $item string Column name
+	 */
+	function column_default( $item, $column_name ){
+		switch ( $column_name ) {
+			case 'id':
+			case 'form_id' :
+			case 'entries' :
+				return $item[ $column_name ];
+		}
+	}
+
+	/**
+	 * Builds the actual columns
+	 *
+	 * @since 1.2
+	 */
+	function get_columns(){
+		$columns = array(
+			'cb' 			=> '<input type="checkbox" />', //Render a checkbox instead of text
+			'form_title' 	=> __( 'Form' , 'visual-form-builder-pro'),
+			'form_id' 		=> __( 'Form ID' , 'visual-form-builder-pro'),
+			'entries'		=> __( 'Entries', 'visual-form-builder-pro' ),
+		);
+
+		return $columns;
 	}
 
 	/**
@@ -21,7 +59,7 @@ class VisualFormBuilder_Pro_Forms_Order extends WP_List_Table {
 	 * @since 1.2
 	 * @returns array() $cols SQL results
 	 */
-	function get_forms( $orderby = 'form_id', $order = 'ASC', $search = '' ){
+	function get_forms( $orderby = 'form_id', $order = 'ASC', $per_page, $offset = 0, $search = '' ){
 		global $wpdb, $current_user;
 
 		get_currentuserinfo();
@@ -38,6 +76,15 @@ class VisualFormBuilder_Pro_Forms_Order extends WP_List_Table {
 			$form_order = implode( ',', $form_order );
 		}
 
+		$where = '';
+
+		// Forms type filter
+		$where .= ( $this->get_form_status() && 'all' !== $this->get_form_status() ) ? $wpdb->prepare( ' AND forms.form_status = %s', $this->get_form_status() ) : '';
+
+		// Always display all forms, unless an Form Type filter is set
+		if ( !$this->get_form_status() || in_array( $this->get_form_status(), array( 'all', 'draft' ) ) )
+			$where .= $wpdb->prepare( ' AND forms.form_status IN("%s", "%s")', 'publish', 'draft' );
+
 		$sql_order = sanitize_sql_orderby( "$orderby $order" );
 
 		if ( in_array( $user_form_order_type, array( 'order', '' ) ) )
@@ -45,9 +92,60 @@ class VisualFormBuilder_Pro_Forms_Order extends WP_List_Table {
 		else
 			$sql_order = sanitize_sql_orderby( 'form_title ASC' );
 
-		$cols = $wpdb->get_results( "SELECT form_id, form_title FROM $this->form_table_name WHERE 1=1 $search ORDER BY $sql_order" );
+		$cols = $wpdb->get_results( "SELECT forms.form_id, forms.form_title, forms.form_status FROM $this->form_table_name AS forms WHERE 1=1 $where $search ORDER BY $sql_order" );
 
 		return $cols;
+	}
+
+	/**
+	 * Get the form status: All, Trash
+	 *
+	 * @since 2.3.7
+	 * @returns string Form status
+	 */
+	function get_form_status() {
+		if ( !isset( $_REQUEST['form_status'] ) )
+			return false;
+
+		return esc_html( $_REQUEST['form_status'] );
+	}
+
+	/**
+	 * Build the different views for the entries screen
+	 *
+	 * @since 2.1
+	 * @returns array $status_links Status links with counts
+	 */
+	function get_views() {
+		$status_links = array();
+		$num_forms    = $this->get_forms_count();
+		$class        = '';
+		$link         = '?page=visual-form-builder-pro';
+
+		$stati = array(
+			'all'    => _n_noop( 'All <span class="count">(<span class="pending-count">%s</span>)</span>', 'All <span class="count">(<span class="pending-count">%s</span>)</span>' ),
+			'draft'  => _n_noop( 'Draft <span class="count">(<span class="pending-count">%s</span>)</span>', 'Drafts <span class="count">(<span class="pending-count">%s</span>)</span>' ),
+			'trash'  => _n_noop( 'Trash <span class="count">(<span class="trash-count">%s</span>)</span>', 'Trash <span class="count">(<span class="trash-count">%s</span>)</span>' ),
+		);
+
+		$total_forms = (int) $num_forms->all;
+		$entry_status = isset( $_REQUEST['form_status'] ) ? $_REQUEST['form_status'] : 'all';
+
+		foreach ( $stati as $status => $label ) {
+			$class = ( $status == $entry_status ) ? ' class="current"' : '';
+
+			if ( !isset( $num_forms->$status ) )
+				$num_forms->$status = 10;
+
+			$link = add_query_arg( 'form_status', $status, $link );
+
+			$status_links[ $status ] = "<li class='$status'><a href='$link'$class>" . sprintf(
+				translate_nooped_plural( $label, $num_forms->$status ),
+				number_format_i18n( $num_forms->$status )
+			) . '</a>';
+		}
+
+		return $status_links;
 	}
 
 	/**
@@ -87,9 +185,29 @@ class VisualFormBuilder_Pro_Forms_Order extends WP_List_Table {
 	function get_forms_count() {
 		global $wpdb;
 
-		$count = $wpdb->get_var( "SELECT COUNT(*) FROM $this->form_table_name" );
+		$stats = array();
 
-		return $count;
+		$forms = $wpdb->get_results( "SELECT forms.form_status, COUNT(*) AS num_forms FROM $this->form_table_name AS forms GROUP BY forms.form_status", ARRAY_A );
+
+		$total = 0;
+		$published = array( 'publish' => 'publish', 'draft' => 'draft', 'trash' => 'trash' );
+		foreach ( (array) $forms as $row ) {
+			// Don't count trashed toward totals
+			if ( 'trash' != $row['form_status'] )
+				$total += $row['num_forms'];
+			if ( isset( $published[ $row['form_status' ] ] ) )
+				$stats[ $published[ $row['form_status' ] ] ] = $row['num_forms'];
+		}
+
+		$stats['all'] = $total;
+		foreach ( $published as $key ) {
+			if ( empty( $stats[ $key ] ) )
+				$stats[ $key ] = 0;
+		}
+
+		$stats = (object) $stats;
+
+		return $stats;
 	}
 
 	/**
@@ -108,7 +226,33 @@ class VisualFormBuilder_Pro_Forms_Order extends WP_List_Table {
 	 * @since 1.2
 	 */
 	function prepare_items() {
-		global $wpdb, $current_user;
+		global $wpdb;
+
+		// get the current user ID
+		$user = get_current_user_id();
+
+		// get the current admin screen
+		$screen = get_current_screen();
+
+		// retrieve the "per_page" option
+		$screen_option = $screen->get_option( 'per_page', 'option' );
+
+		// retrieve the value of the option stored for the current user
+		$per_page = get_user_meta( $user, $screen_option, true );
+
+		// get the default value if none is set
+		if ( empty ( $per_page) || $per_page < 1 )
+			$per_page = $screen->get_option( 'per_page', 'default' );
+
+		// Get the date/time format that is saved in the options table
+		$date_format = get_option( 'date_format' );
+		$time_format = get_option( 'time_format' );
+
+		// What page are we looking at?
+		$current_page = $this->get_pagenum();
+
+		// Use offset for pagination
+		$offset = ( $current_page - 1 ) * $per_page;
 
 		// Get entries search terms
 		$search_terms = ( !empty( $_REQUEST['s'] ) ) ? explode( ' ', $_REQUEST['s'] ) : array();
@@ -118,7 +262,7 @@ class VisualFormBuilder_Pro_Forms_Order extends WP_List_Table {
 		foreach( $search_terms as $term ) {
 			$term = esc_sql( like_escape( $term ) );
 
-			$search .= "{$searchand}((form_title LIKE '%{$term}%') OR (form_key LIKE '%{$term}%') OR (form_email_subject LIKE '%{$term}%'))";
+			$search .= "{$searchand}((forms.form_title LIKE '%{$term}%') OR (forms.form_key LIKE '%{$term}%') OR (forms.form_email_subject LIKE '%{$term}%'))";
 			$searchand = ' AND ';
 		}
 
@@ -146,15 +290,27 @@ class VisualFormBuilder_Pro_Forms_Order extends WP_List_Table {
 				'form_id'		=> $form->form_id,
 				'form_title' 	=> stripslashes( $form->form_title ),
 				'entries'		=> $entries_counts,
+				'status'		=> $form->form_status,
 			);
 		endforeach;
 
-		// How many forms do we have?
-		$total_items = $this->get_forms_count();
+		$where = '';
+
+		// Forms type filter
+		$where .= ( $this->get_form_status() && 'all' !== $this->get_form_status() ) ? $wpdb->prepare( ' AND forms.form_status = %s', $this->get_form_status() ) : '';
+
+		// Always display all forms, unless an Form Type filter is set
+		if ( !$this->get_form_status() || 'all' == $this->get_form_status() )
+			$where .= $wpdb->prepare( ' AND forms.form_status = %s', 'publish' );
+
+		// How many form do we have?
+		$total_items = $wpdb->get_var( "SELECT COUNT(*) FROM $this->form_table_name AS forms WHERE 1=1 $where" );
 
 		// Register our pagination
 		$this->set_pagination_args( array(
 			'total_items'	=> $total_items,
+			'per_page'		=> $per_page,
+			'total_pages'	=> ceil( $total_items / $per_page ),
 		) );
 
 		// Add sorted data to the items property
@@ -182,10 +338,16 @@ class VisualFormBuilder_Pro_Forms_Order extends WP_List_Table {
 	function single_row( $item ) {
 
 		$count = $item['entries'];
+
+		$draft_state = '';
+
+		// Append Draft status to title
+		if ( 'draft' == $item['status'] && 'draft' !== $this->get_form_status() )
+			$draft_state = sprintf( '<strong> - %s</strong>', __( 'Draft', 'visual-form-builder-pro' ) );
 ?>
 		<div class="vfb-box form-boxes" id="vfb-form-<?php echo $item['form_id']; ?>">
 			<div class="vfb-form-meta-actions">
-				<h2 title="<?php esc_attr_e( 'Drag to reorder', 'visual-form-builder-pro' ); ?>" class="form-boxes-title"><?php echo $item['form_title']; ?></h2>
+				<h2 title="<?php esc_attr_e( 'Drag to reorder', 'visual-form-builder-pro' ); ?>" class="form-boxes-title"><?php echo $item['form_title'] . $draft_state; ?></h2>
 
 				<div class="vfb-form-meta-entries">
 					<ul class="vfb-meta-entries-list">
@@ -208,17 +370,32 @@ class VisualFormBuilder_Pro_Forms_Order extends WP_List_Table {
 			<div class="clear"></div>
 			<div class="vfb-publishing-actions">
 	            <p>
-	            <?php if ( current_user_can( 'vfb_edit_forms' ) ) : ?>
-	            	<a class="" href="<?php echo esc_url( add_query_arg( array( 'form' => $item['form_id'] ), admin_url( 'admin.php?page=visual-form-builder-pro' ) ) ); ?>">
-	            	<strong><?php _e( 'Edit Form', 'visual-form-builder-pro' ); ?></strong>
-	            	</a> |
-	            <?php endif; ?>
-	            <?php if ( current_user_can( 'vfb_delete_forms' ) ) : ?>
-	            	<a class="submitdelete menu-delete" href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=visual-form-builder-pro&amp;action=delete_form&amp;form=' . $item['form_id'] ), 'delete-form-' . $item['form_id'] ) ); ?>" class=""><?php _e( 'Delete' , 'visual-form-builder-pro'); ?></a> |
-	            <?php endif; ?>
-	            <?php if ( current_user_can( 'vfb_edit_forms' ) ) : ?>
-	            	<a href="<?php echo esc_url( add_query_arg( array( 'form' => $item['form_id'], 'preview' => 1 ), plugins_url( 'visual-form-builder-pro/form-preview.php' ) ) ); ?>" class="" target="_blank" title="<?php _e( 'Preview the Form', 'visual-form-builder-pro' ); ?>"><?php _e( 'Preview', 'visual-form-builder-pro' ); ?></a>
-	            <?php endif; ?>
+	            <?php
+	            // Default Forms view
+	            if ( !$this->get_form_status() || in_array( $this->get_form_status(), array( 'all', 'draft' ) ) ) :
+					// Edit Form
+					if ( current_user_can( 'vfb_edit_forms' ) ) :
+						echo sprintf( '<a href="?page=%s&action=%s&form=%s"><strong>%s</strong></a> | ', $_REQUEST['page'], 'edit', $item['form_id'], __( 'Edit', 'visual-form-builder-pro' ) );
+					endif;
+				endif;
+
+				// Trashed Forms view
+            	if ( current_user_can( 'vfb_delete_forms' ) ) :
+            		if ( !$this->get_form_status() || in_array( $this->get_form_status(), array( 'all', 'draft' ) ) )
+						echo sprintf( '<a class="submitdelete menu-delete" href="?page=%s&action=%s&form=%s">%s</a> | ', $_REQUEST['page'], 'trash', $item['form_id'], __( 'Trash', 'visual-form-builder-pro' ) );
+					elseif ( $this->get_form_status() && 'trash' == $this->get_form_status() ) {
+						echo sprintf( '<a href="?page=%s&action=%s&form=%s">%s</a> | ', $_REQUEST['page'], 'restore', $item['form_id'], __( 'Restore', 'visual-form-builder-pro' ) );
+						echo sprintf( '<a class="submitdelete menu-delete" href="?page=%s&action=%s&form=%s">%s</a>', $_REQUEST['page'], 'delete', $item['form_id'], __( 'Delete Permanently', 'visual-form-builder-pro' ) );
+					}
+            	endif;
+
+            	// Ensure Preview link is always last
+            	if ( !$this->get_form_status() || in_array( $this->get_form_status(), array( 'all', 'draft' ) ) ) :
+	            	if ( current_user_can( 'vfb_edit_forms' ) ) :
+						echo sprintf( '<a href="%1$s" id="%3$s" class="view-form" target="_blank">%3$s</a>', esc_url( add_query_arg( array( 'form' => $item['form_id'], 'preview' => 1 ), plugins_url( 'visual-form-builder-pro/form-preview.php' ) ) ), $item['form_id'], __( 'Preview', 'visual-form-builder-pro' ) );
+					endif;
+				endif;
+	            ?>
 	            </p>
 			</div> <!-- .vfb-publishing-actions -->
 		</div> <!-- .vfb-box -->

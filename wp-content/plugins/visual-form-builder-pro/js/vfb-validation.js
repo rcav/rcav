@@ -20,6 +20,11 @@ jQuery(document).ready(function($) {
 		});
 	});
 
+	// Force bullets to hide, but only if list-style-type isn't set
+	$( '.visual-form-builder li:not(.vfb-item-instructions li)' ).filter( function(){
+		return $( this ).css( 'list-style-type' ) !== 'none';
+	}).css( 'list-style', 'none' );
+
 	// !Display jQuery UI date picker
 	$( '.vfb-date-picker' ).each( function(){
 		var vfb_dateFormat = $( this ).attr( 'data-dp-dateFormat' ) ? $( this ).attr( 'data-dp-dateFormat' ) : 'mm/dd/yy';

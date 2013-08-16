@@ -40,11 +40,16 @@ $form_entries_schedule 		= unserialize( $form->form_entries_schedule );
 
 $form_unique_entry 			= stripslashes( $form->form_unique_entry );
 
+$form_email_rule_setting	= $form->form_email_rule_setting;
+$form_email_rule			= maybe_unserialize( $form->form_email_rule );
+
+$form_status				= $form->form_status;
+
 // Only show required text fields for the sender name override
 $senders = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->field_table_name WHERE form_id = %d AND field_type IN( 'text', 'name' ) AND field_validation = '' AND field_required = 'yes'", $form_nav_selected_id ) );
 
 // Only show required email fields for the email override
-$emails = $wpdb->get_results( "SELECT * FROM $this->field_table_name WHERE (form_id = $form_nav_selected_id AND field_type='text' AND field_validation = 'email' AND field_required = 'yes') OR (form_id = $form_nav_selected_id AND field_type='email' AND field_validation = 'email' AND field_required = 'yes')" );
+$emails = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->field_table_name WHERE (form_id = %d AND field_type='text' AND field_validation = 'email' AND field_required = 'yes') OR (form_id = %d AND field_type='email' AND field_validation = 'email' AND field_required = 'yes')", $form_nav_selected_id, $form_nav_selected_id ) );
 
 // Only show required email fields for the email override
 $paypal_fields = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->field_table_name WHERE (form_id = %d AND (field_type='text' OR field_type='currency' OR field_type='select' OR field_type='radio' OR field_type='checkbox')) ORDER BY field_sequence ASC", $form_nav_selected_id ) );
@@ -114,12 +119,23 @@ $page_main = $this->_admin_pages[ 'vfb-pro' ];
 
 
                 <div class="vfb-button-group">
-					<a href="#form-settings" id="form-settings-button" class="vfb-button vfb-first <?php echo $opened_tab; ?>"><?php _e( 'Settings' , 'visual-form-builder-pro'); ?><span class="button-icon vfb-small-arrow"></span></a>
+					<a href="#form-settings" id="form-settings-button" class="vfb-button vfb-settings <?php echo $opened_tab; ?>">
+						<?php _e( 'Settings' , 'visual-form-builder-pro'); ?>
+						<span class="vfb-interface-icon vfb-interface-settings"></span>
+					</a>
+
 					<?php if ( current_user_can( 'vfb_copy_forms' ) ) : ?>
-                    <a href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=visual-form-builder-pro&amp;action=copy_form&amp;form=' . $form_nav_selected_id ), 'copy-form-' . $form_nav_selected_id ) ); ?>" class="vfb-button vfb-duplicate"><?php _e( 'Duplicate' , 'visual-form-builder-pro'); ?><span class="button-icon plus"></span></a>
+                    <a href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=visual-form-builder-pro&amp;action=copy_form&amp;form=' . $form_nav_selected_id ), 'copy-form-' . $form_nav_selected_id ) ); ?>" class="vfb-button vfb-duplicate">
+                    	<?php _e( 'Duplicate' , 'visual-form-builder-pro'); ?>
+                    	<span class="vfb-interface-icon vfb-interface-duplicate"></span>
+                    </a>
                     <?php endif; ?>
+
                     <?php if ( current_user_can( 'vfb_delete_forms' ) ) : ?>
-                    <a href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=visual-form-builder-pro&amp;action=delete_form&amp;form=' . $form_nav_selected_id ), 'delete-form-' . $form_nav_selected_id ) ); ?>" class="vfb-button vfb-delete vfb-last menu-delete"><?php _e( 'Delete' , 'visual-form-builder-pro'); ?><span class="button-icon delete"></span></a>
+                    <a href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=visual-form-builder-pro&amp;action=trash&amp;form=' . $form_nav_selected_id ), 'delete-form-' . $form_nav_selected_id ) ); ?>" class="vfb-button vfb-delete vfb-last menu-delete">
+                    	<?php _e( 'Trash' , 'visual-form-builder-pro'); ?>
+                    	<span class="vfb-interface-icon vfb-interface-trash"></span>
+                    </a>
                     <?php endif; ?>
 
                     <?php submit_button( __( 'Save', 'visual-form-builder-pro' ), 'primary', 'save_form', false ); ?>
@@ -129,6 +145,19 @@ $page_main = $this->_admin_pages[ 'vfb-pro' ];
                     <!-- !General settings section -->
                     <a href="#general-settings" class="settings-links<?php echo ( $settings_accordion == 'general-settings' ) ? ' on' : ''; ?>"><?php _e( 'General', 'visual-form-builder-pro' ); ?><span class="vfb-large-arrow"></span></a>
                     <div id="general-settings" class="form-details<?php echo ( $settings_accordion == 'general-settings' ) ? ' on' : ''; ?>">
+                        <!-- Form Status -->
+                        <p class="description description-wide">
+                        <label for="form-label-alignment">
+                            <?php _e( 'Form Status' , 'visual-form-builder-pro'); ?>
+                            <span class="vfb-tooltip" title="<?php esc_attr_e( 'About Form Status', 'visual-form-builder-pro' ); ?>" rel="<?php esc_attr_e( 'Change the Form Status from Published to Draft to prevent form output. This is useful when you want to take a form offline without removing the shortcode.', 'visual-form-builder-pro' ); ?>">(?)</span>
+        					<br />
+                         </label>
+                            <select name="form_status" id="form-status" class="widefat">
+                                <option value="publish" <?php selected( $form_status, 'publish' ); ?>><?php _e( 'Published' , 'visual-form-builder-pro'); ?></option>
+                                <option value="draft" <?php selected( $form_status, 'draft' ); ?>><?php _e( 'Draft' , 'visual-form-builder-pro'); ?></option>
+                            </select>
+                        </p>
+                        <br class="clear" />
                         <!-- Label Alignment -->
                         <p class="description description-wide">
                         <label for="form-label-alignment">
@@ -227,7 +256,7 @@ $page_main = $this->_admin_pages[ 'vfb-pro' ];
                             	<?php _e( "User's Name (optional)" , 'visual-form-builder-pro'); ?>
                                 <span class="vfb-tooltip" title="<?php esc_attr_e( "About User's Name", 'visual-form-builder-pro' ); ?>" rel="<?php esc_attr_e( 'Select a required text field from your form to use as the From display name in the email.', 'visual-form-builder-pro' ); ?>">(?)</span>
         						<br />
-        					<?php if ( empty( $emails ) ) : ?>
+        					<?php if ( empty( $senders ) ) : ?>
                             <span><?php _e( 'No required text fields detected', 'visual-form-builder-pro' ); ?></span>
                             <?php else : ?>
                             <select name="form_email_from_name_override" id="form_email_from_name_override" class="widefat">
@@ -290,7 +319,12 @@ $page_main = $this->_admin_pages[ 'vfb-pro' ];
                                     <input type="text" value="<?php echo stripslashes( $email_to ); ?>" name="form_email_to[]" class="widefat" id="form-email-to-<?php echo "$count"; ?>" />
                                 </label>
 
-                                <a href="#" class="addEmail" title="<?php esc_attr_e( 'Add an Email', 'visual-form-builder-pro' ); ?>"><?php _e( 'Add', 'visual-form-builder-pro' ); ?></a> <a href="#" class="deleteEmail" title="<?php esc_attr_e( 'Delete Email' ); ?>"><?php _e( 'Delete', 'visual-form-builder-pro' ); ?></a>
+                                <a href="#" class="addEmail vfb-interface-icon vfb-interface-plus" title="<?php esc_attr_e( 'Add an Email', 'visual-form-builder-pro' ); ?>">
+                                	<?php _e( 'Add', 'visual-form-builder-pro' ); ?>
+                                </a>
+                                <a href="#" class="deleteEmail vfb-interface-icon vfb-interface-minus" title="<?php esc_attr_e( 'Delete Email', 'visual-form-builder-pro' ); ?>">
+                                	<?php _e( 'Delete', 'visual-form-builder-pro' ); ?>
+                                </a>
 
                             </p>
                             <br class="clear" />
@@ -299,6 +333,16 @@ $page_main = $this->_admin_pages[ 'vfb-pro' ];
                                 $count++;
                             endforeach;
                         ?>
+                        <div class="clear"></div>
+
+                        <!-- !E-mail Rules -->
+						<p class="description description-wide vfb-email-rules">
+						<a href="<?php echo add_query_arg( array( 'action' => 'visual_form_builder_email_rules', 'form_id' => $form_nav_selected_id, 'width' => '768' ), admin_url( 'admin-ajax.php' ) ); ?>" class="vfb-button thickbox" title="Email Rules">
+							<?php _e( 'Email Rules' , 'visual-form-builder-pro'); ?>
+							<span class="vfb-interface-icon vfb-interface-conditional"></span>
+						</a>
+						</p>
+
                         <div class="clear"></div>
                     </div> <!-- #email-details -->
 

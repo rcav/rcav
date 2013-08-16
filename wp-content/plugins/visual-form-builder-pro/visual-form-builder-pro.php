@@ -5,11 +5,11 @@ Plugin URI: http://vfb.matthewmuro.com
 Description: Dynamically build forms using a simple interface. Forms include jQuery validation, a basic logic-based verification system, and entry tracking.
 Author: Matthew Muro
 Author URI: http://matthewmuro.com
-Version: 2.3.4
+Version: 2.3.7
 */
 
 // Version number to output as meta tag
-define( 'VFB_PRO_VERSION', '2.3.4' );
+define( 'VFB_PRO_VERSION', '2.3.7' );
 
 /**
  * Template tag function
@@ -18,6 +18,8 @@ define( 'VFB_PRO_VERSION', '2.3.4' );
  * @echo class function VFB form code
  */
 function vfb_pro( $args = '' ){
+	global $visual_form_builder_pro;
+
 	// Parse the arguments into an array
 	$args = wp_parse_args( $args );
 
@@ -25,7 +27,7 @@ function vfb_pro( $args = '' ){
 	$form_id = absint( $args['id'] );
 
 	// Print the output
-	echo do_shortcode( "[vfb id=$form_id]" );
+	echo $visual_form_builder_pro->form_code( $args );
 }
 
 // Add action so themes can call via do_action( 'vfb_pro', $id );
@@ -47,7 +49,7 @@ class Visual_Form_Builder_Pro{
 	 * @var string
 	 * @access protected
 	 */
-	protected $vfb_db_version = '2.3';
+	protected $vfb_db_version = '2.4';
 
 	/**
 	 * The plugin API
@@ -117,7 +119,7 @@ class Visual_Form_Builder_Pro{
 		$this->entries_table_name 	= $wpdb->prefix . 'vfb_pro_entries';
 
 		// Add suffix to load dev files
-		$this->load_dev_files = ( defined( 'VFB_SCRIPT_DEBUG' ) && VFB_SCRIPT_DEBUG ) ? '.dev' : '';
+		$this->load_dev_files = ( defined( 'VFB_SCRIPT_DEBUG' ) && VFB_SCRIPT_DEBUG ) ? '' : '.min';
 
 		// Build options and settings pages.
 		add_action( 'admin_menu', array( &$this, 'add_admin' ) );
@@ -140,6 +142,8 @@ class Visual_Form_Builder_Pro{
 			'conditional_fields_save',
 			'paypal_price',
 			'form_settings',
+			'email_rules',
+			'email_rules_save',
 
 			// All Forms list
 			'form_order',
@@ -184,6 +188,7 @@ class Visual_Form_Builder_Pro{
 		//add_action( 'init', array( &$this, 'delete_transient' ) );
 
 		add_action( 'admin_notices', array( &$this, 'admin_notices' ) );
+		add_action( 'admin_notices', array( &$this, 'migration_check' ) );
 
 		add_shortcode( 'vfb', array( &$this, 'form_code' ) );
 		add_action( 'init', array( &$this, 'email' ), 10 );
@@ -236,7 +241,7 @@ class Visual_Form_Builder_Pro{
 	 * @since 2.3.3
 	 */
 	public function add_meta_keyword() {
-		echo sprintf( "<meta name='vfb-pro-version' content='%s' />\n", VFB_PRO_VERSION );
+		echo apply_filters( 'vfb_show_version', '<!-- <meta name="vfbPro" version="'. VFB_PRO_VERSION . '" /> -->' . "\n" );
 	}
 
 	/**
@@ -629,24 +634,21 @@ class Visual_Form_Builder_Pro{
 					'option'	=> 'vfb_entries_per_page'
 				) );
 
-			break;
+				break;
 
 			case $page_main :
 
-				if ( isset( $_REQUEST['form'] ) ) :
-					add_screen_option( 'layout_columns', array(
-						'max'		=> 3,
-						'default'	=> 2
-					) );
-				else :
-					add_screen_option( 'per_page', array(
-						'label'		=> __( 'Forms per page', 'visual-form-builder-pro' ),
-						'default'	=> 20,
-						'option'	=> 'vfb_forms_per_page'
-					) );
-				endif;
+				add_screen_option( 'layout_columns', array(
+					'max'		=> 3,
+					'default'	=> 2
+				) );
+				add_screen_option( 'per_page', array(
+					'label'		=> __( 'Forms per page', 'visual-form-builder-pro' ),
+					'default'	=> 20,
+					'option'	=> 'vfb_forms_per_page'
+				) );
 
-			break;
+				break;
 		endswitch;
 	}
 
@@ -795,6 +797,41 @@ class Visual_Form_Builder_Pro{
 	}
 
 	/**
+	 * Display migrate link
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function migration_check() {
+		// If the free version is active, display warning
+		if ( is_plugin_active( 'visual-form-builder/visual-form-builder.php' ) )
+			echo sprintf( '<div id="message" class="error"><p>%s</p></div>', __( 'The free version of Visual Form Builder is still active. In order for Visual Form Builder Pro to function and render correctly, you must deactivate the free version.' , 'visual-form-builder-pro' ) );
+
+		// If VFB is not detected and the user can't install plugins, quit
+		if ( !get_option( 'vfb_db_version' ) && !current_user_can( 'install_plugins' ) )
+			return;
+
+		// If they have upgraded or dismissed, don't display
+		if ( get_option( 'vfb_db_upgrade' ) || get_option( 'vfb_ignore_notice' ) )
+			return;
+?>
+		<div class="updated">
+			<h3><?php _e( 'New to Visual Form Builder Pro?', 'visual-form-builder-pro' ); ?></h3>
+			<p>
+				<?php _e( 'Transferring your existing data from Visual Form Builder to the Pro version is easy. Simply click on the Migrate Forms button below.', 'visual-form-builder-pro' ); ?>
+			</p>
+			<p>
+				<?php _e( 'If you have already started using the Pro version, please be aware that <strong style="color:red">migrating will wipe the Visual Form Builder Pro tables clean</strong>.', 'visual-form-builder-pro' ); ?>
+			</p>
+			<p>
+				<a href="<?php echo esc_attr( add_query_arg( 'action', 'upgrade', admin_url( 'admin.php?page=visual-form-builder-pro' ) ) ); ?>" class="button button-primary"><?php _e( 'Migrate Forms', 'visual-form-builder-pro' ); ?></a>
+				<a href="<?php echo esc_attr( add_query_arg( 'action', 'ignore_notice', admin_url( 'admin.php?page=visual-form-builder-pro' ) ) ); ?>" class="button button-secondary"><?php _e( 'Dismiss', 'visual-form-builder-pro' ); ?></a>
+			</p>
+		</div> <!-- .updated -->
+<?php
+	}
+
+	/**
 	 * Check database version and run SQL install, if needed
 	 *
 	 * @since 2.1
@@ -863,6 +900,8 @@ class Visual_Form_Builder_Pro{
 				form_email_from_name VARCHAR(255),
 				form_email_from_override VARCHAR(255),
 				form_email_from_name_override VARCHAR(255),
+				form_email_rule_setting TINYINT(1),
+				form_email_rule LONGTEXT,
 				form_success_type VARCHAR(25) DEFAULT 'text',
 				form_success_message TEXT,
 				form_notification_setting VARCHAR(25),
@@ -885,6 +924,7 @@ class Visual_Form_Builder_Pro{
 				form_entries_allowed VARCHAR(25),
 				form_entries_schedule VARCHAR(100),
 				form_unique_entry TINYINT(1) DEFAULT '0',
+				form_status VARCHAR(20) DEFAULT 'publish',
 				PRIMARY KEY  (form_id)
 			) DEFAULT CHARACTER SET $charset COLLATE $collate;";
 
@@ -962,7 +1002,7 @@ class Visual_Form_Builder_Pro{
 	 */
 	public function admin_scripts() {
 		wp_enqueue_style( 'jquery-ui-datepicker', plugins_url( '/css/smoothness/jquery-ui-1.9.2.min.css', __FILE__ ) );
-		wp_enqueue_style( 'visual-form-builder-style', plugins_url( "/css/visual-form-builder-admin$this->load_dev_files.css", __FILE__ ), array(), '20130611' );
+		wp_enqueue_style( 'visual-form-builder-style', plugins_url( "/css/visual-form-builder-admin$this->load_dev_files.css", __FILE__ ), array(), '20130716' );
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_style( 'thickbox' );
 
@@ -974,12 +1014,12 @@ class Visual_Form_Builder_Pro{
 		wp_enqueue_script( 'postbox' );
 		wp_enqueue_script( 'jquery-form-validation', plugins_url( '/js/jquery.validate.min.js', __FILE__ ), array( 'jquery' ), '1.9.0', true );
 		wp_enqueue_script( 'vfb-admin', plugins_url( "/js/vfb-admin$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-form-validation' ), '', true );
-		wp_enqueue_script( 'nested-sortable', plugins_url( '/js/jquery.ui.nestedSortable.js', __FILE__ ) , array( 'jquery', 'jquery-ui-sortable' ), '1.3.6', true );
-		wp_enqueue_script( 'jquery-ui-timepicker', plugins_url( '/js/jquery.ui.timepicker.js', __FILE__ ) , array( 'jquery', 'jquery-ui-datepicker' ), '1.1.1', true );
+		wp_enqueue_script( 'nested-sortable', plugins_url( "/js/jquery.ui.nestedSortable$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-ui-sortable' ), '1.3.6', true );
+		wp_enqueue_script( 'jquery-ui-timepicker', plugins_url( "/js/jquery.ui.timepicker$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-ui-datepicker' ), '1.1.1', true );
 
 		// Only load Google Charts if viewing Analytics to prevent errors
 		if ( isset( $_REQUEST['page'] ) && in_array( $_REQUEST['page'], array( 'vfb-reports' ) ) ) {
-			wp_enqueue_script( 'raphael-js', plugins_url( '/js/raphael-2.1.0.min.js', __FILE__ ), array(), '2.1.0', false );
+			wp_enqueue_script( 'raphael-js', plugins_url( '/js/raphael.min.js', __FILE__ ), array(), '2.1.0', false );
 			wp_enqueue_script( 'morris-js', plugins_url( '/js/morris.min.js', __FILE__ ), array( 'raphael-js' ), '0.4.2', false );
 			wp_enqueue_script( 'vfb-charts', plugins_url( "/js/vfb-charts$this->load_dev_files.js", __FILE__ ), array( 'morris-js' ), '', false );
 		}
@@ -1001,9 +1041,9 @@ class Visual_Form_Builder_Pro{
 		$this->add_scripts = true;
 
 		wp_register_script( 'jquery-form-validation', plugins_url( '/js/jquery.validate.min.js', __FILE__ ), array( 'jquery' ), '1.9.0', true );
-		wp_register_script( 'visual-form-builder-validation', plugins_url( '/js/vfb-validation.js', __FILE__ ) , array( 'jquery', 'jquery-form-validation' ), '', true );
-		wp_register_script( 'visual-form-builder-metadata', plugins_url( '/js/jquery.metadata.js', __FILE__ ) , array( 'jquery', 'jquery-form-validation' ), '', true );
-		wp_register_script( 'farbtastic-js', plugins_url( '/js/farbtastic.js', __FILE__ ), array( 'jquery' ), '1.3', true );
+		wp_register_script( 'visual-form-builder-validation', plugins_url( "/js/vfb-validation$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-form-validation' ), '', true );
+		wp_register_script( 'visual-form-builder-metadata', plugins_url( "/js/jquery.metadata$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-form-validation' ), '', true );
+		wp_register_script( 'farbtastic-js', plugins_url( "/js/farbtastic$this->load_dev_files.js", __FILE__ ), array( 'jquery' ), '1.3', true );
 		wp_register_script( 'vfb-ckeditor', plugins_url( '/js/ckeditor/ckeditor.js', __FILE__ ), array( 'jquery' ), '4.1', true );
 
 		wp_enqueue_script( 'jquery-form-validation' );
@@ -1023,8 +1063,28 @@ class Visual_Form_Builder_Pro{
 	 * @since 1.0
 	 */
 	public function css() {
+
 		wp_register_style( 'vfb-jqueryui-css', apply_filters( 'vfb-date-picker-css', plugins_url( '/css/smoothness/jquery-ui-1.9.2.min.css', __FILE__ ) ) );
-		wp_register_style( 'visual-form-builder-css', apply_filters( 'visual-form-builder-css', plugins_url( '/css/visual-form-builder.css', __FILE__ ) ) );
+		wp_register_style( 'visual-form-builder-css', apply_filters( 'visual-form-builder-css', plugins_url( "/css/visual-form-builder$this->load_dev_files.css", __FILE__ ) ) );
+
+		// Get active widgets
+		$widget = is_active_widget( false, false, 'vfb_widget' );
+
+		// If in admin Preview, always enqueue
+		if ( !defined( 'VFB_PRO_PREVIEW' ) ) {
+			// If no widget is found, test for shortcode
+			if ( empty( $widget ) ) {
+				// If WordPress 3.6, use internal function. Otherwise, my own
+				if ( function_exists( 'has_shortcode' ) ) {
+					global $post;
+
+					if ( !has_shortcode( $post->post_content, 'vfb' ) )
+						return;
+				} elseif ( !$this->has_shortcode( 'vfb' ) ) {
+					return;
+				}
+			}
+		}
 
 		wp_enqueue_style( 'visual-form-builder-css' );
 		wp_enqueue_style( 'vfb-jqueryui-css' );
@@ -1046,301 +1106,616 @@ class Visual_Form_Builder_Pro{
 		if ( !isset( $_REQUEST['action'] ) )
 			return;
 
-		if ( in_array( $_REQUEST['page'], array( 'visual-form-builder-pro', 'vfb-add-new', 'vfb-entries', 'vfb-email-design', 'vfb-reports' ) ) ) :
-			switch ( $_REQUEST['action'] ) :
-				case 'create_form' :
+		if ( !in_array( $_REQUEST['page'], array( 'visual-form-builder-pro', 'vfb-add-new', 'vfb-entries', 'vfb-email-design', 'vfb-reports' ) ) )
+			return;
 
-					check_admin_referer( 'create_form' );
+		switch ( $_REQUEST['action'] ) :
+			case 'create_form' :
 
-					$form_key 		= sanitize_title( $_REQUEST['form_title'] );
-					$form_title 	= $_REQUEST['form_title'];
-					$form_from_name = $_REQUEST['form_email_from_name'];
-					$form_subject 	= $_REQUEST['form_email_subject'];
-					$form_from 		= $_REQUEST['form_email_from'];
-					$form_to 		= serialize( $_REQUEST['form_email_to'] );
+				check_admin_referer( 'create_form' );
+
+				$form_key 		= sanitize_title( $_REQUEST['form_title'] );
+				$form_title 	= $_REQUEST['form_title'];
+				$form_from_name = $_REQUEST['form_email_from_name'];
+				$form_subject 	= $_REQUEST['form_email_subject'];
+				$form_from 		= $_REQUEST['form_email_from'];
+				$form_to 		= serialize( $_REQUEST['form_email_to'] );
 
 
-					$email_design = array(
-						'format' 				=> 'html',
-						'link_love' 			=> 'yes',
-						'footer_text' 			=> '',
-						'background_color' 		=> '#eeeeee',
-						'header_text' 			=> $form_subject,
-						'header_image' 			=> '',
-						'header_color' 			=> '#810202',
-						'header_text_color' 	=> '#ffffff',
-						'fieldset_color' 		=> '#680606',
-						'section_color' 		=> '#5C6266',
-						'section_text_color' 	=> '#ffffff',
-						'text_color' 			=> '#333333',
-						'link_color' 			=> '#1b8be0',
-						'row_color' 			=> '#ffffff',
-						'row_alt_color' 		=> '#eeeeee',
-						'border_color' 			=> '#cccccc',
-						'footer_color' 			=> '#333333',
-						'footer_text_color' 	=> '#ffffff',
-						'font_family' 			=> 'Arial',
-						'header_font_size' 		=> 32,
-						'fieldset_font_size' 	=> 20,
-						'section_font_size' 	=> 15,
-						'text_font_size' 		=> 13,
-						'footer_font_size' 		=> 11
-					);
+				$email_design = array(
+					'format' 				=> 'html',
+					'link_love' 			=> 'yes',
+					'footer_text' 			=> '',
+					'background_color' 		=> '#eeeeee',
+					'header_text' 			=> $form_subject,
+					'header_image' 			=> '',
+					'header_color' 			=> '#810202',
+					'header_text_color' 	=> '#ffffff',
+					'fieldset_color' 		=> '#680606',
+					'section_color' 		=> '#5C6266',
+					'section_text_color' 	=> '#ffffff',
+					'text_color' 			=> '#333333',
+					'link_color' 			=> '#1b8be0',
+					'row_color' 			=> '#ffffff',
+					'row_alt_color' 		=> '#eeeeee',
+					'border_color' 			=> '#cccccc',
+					'footer_color' 			=> '#333333',
+					'footer_text_color' 	=> '#ffffff',
+					'font_family' 			=> 'Arial',
+					'header_font_size' 		=> 32,
+					'fieldset_font_size' 	=> 20,
+					'section_font_size' 	=> 15,
+					'text_font_size' 		=> 13,
+					'footer_font_size' 		=> 11
+				);
 
-					$newdata = array(
-						'form_key' 				=> $form_key,
-						'form_title' 			=> $form_title,
-						'form_email_from_name'	=> $form_from_name,
-						'form_email_subject'	=> $form_subject,
-						'form_email_from'		=> $form_from,
-						'form_email_to'			=> $form_to,
-						'form_email_design' 	=> serialize( $email_design ),
-						'form_success_message'	=> '<p class="vfb-form-success">Your form was successfully submitted. Thank you for contacting us.</p>'
-					);
+				$newdata = array(
+					'form_key' 				=> $form_key,
+					'form_title' 			=> $form_title,
+					'form_email_from_name'	=> $form_from_name,
+					'form_email_subject'	=> $form_subject,
+					'form_email_from'		=> $form_from,
+					'form_email_to'			=> $form_to,
+					'form_email_design' 	=> serialize( $email_design ),
+					'form_success_message'	=> '<p class="vfb-form-success">Your form was successfully submitted. Thank you for contacting us.</p>'
+				);
 
-					// Create the form
-					$wpdb->insert( $this->form_table_name, $newdata );
+				// Create the form
+				$wpdb->insert( $this->form_table_name, $newdata );
 
-					// Get form ID to add our first field
-					$new_form_selected = $wpdb->insert_id;
+				// Get form ID to add our first field
+				$new_form_selected = $wpdb->insert_id;
 
-					// Setup the initial fieldset
-					$initial_fieldset = array(
-						'form_id' 			=> $wpdb->insert_id,
-						'field_key' 		=> 'fieldset',
-						'field_type' 		=> 'fieldset',
-						'field_name' 		=> 'Fieldset',
-						'field_sequence' 	=> 0
-					);
+				// Setup the initial fieldset
+				$initial_fieldset = array(
+					'form_id' 			=> $wpdb->insert_id,
+					'field_key' 		=> 'fieldset',
+					'field_type' 		=> 'fieldset',
+					'field_name' 		=> 'Fieldset',
+					'field_sequence' 	=> 0
+				);
 
-					// Add the first fieldset to get things started
-					$wpdb->insert( $this->field_table_name, $initial_fieldset );
+				// Add the first fieldset to get things started
+				$wpdb->insert( $this->field_table_name, $initial_fieldset );
 
-					$verification_fieldset = array(
-						'form_id' 			=> $new_form_selected,
-						'field_key' 		=> 'verification',
-						'field_type' 		=> 'verification',
-						'field_name' 		=> 'Verification',
-						'field_description' => '(This is for preventing spam)',
-						'field_sequence' 	=> 1
-					);
+				$verification_fieldset = array(
+					'form_id' 			=> $new_form_selected,
+					'field_key' 		=> 'verification',
+					'field_type' 		=> 'verification',
+					'field_name' 		=> 'Verification',
+					'field_description' => '(This is for preventing spam)',
+					'field_sequence' 	=> 1
+				);
 
-					// Insert the submit field
-					$wpdb->insert( $this->field_table_name, $verification_fieldset );
+				// Insert the submit field
+				$wpdb->insert( $this->field_table_name, $verification_fieldset );
 
-					$verify_fieldset_parent_id = $wpdb->insert_id;
+				$verify_fieldset_parent_id = $wpdb->insert_id;
 
-					$secret = array(
-						'form_id' 			=> $new_form_selected,
-						'field_key' 		=> 'secret',
-						'field_type' 		=> 'secret',
-						'field_name' 		=> 'Please enter any two digits with no spaces (Example: 12)',
-						'field_size' 		=> 'medium',
-						'field_required' 	=> 'yes',
-						'field_parent' 		=> $verify_fieldset_parent_id,
-						'field_sequence' 	=> 2
-					);
+				$secret = array(
+					'form_id' 			=> $new_form_selected,
+					'field_key' 		=> 'secret',
+					'field_type' 		=> 'secret',
+					'field_name' 		=> 'Please enter any two digits',
+					'field_description'	=> 'Example: 12',
+					'field_size' 		=> 'medium',
+					'field_required' 	=> 'yes',
+					'field_parent' 		=> $verify_fieldset_parent_id,
+					'field_sequence' 	=> 2
+				);
 
-					// Insert the submit field
-					$wpdb->insert( $this->field_table_name, $secret );
+				// Insert the submit field
+				$wpdb->insert( $this->field_table_name, $secret );
 
-					// Make the submit last in the sequence
-					$submit = array(
-						'form_id' 			=> $new_form_selected,
-						'field_key' 		=> 'submit',
-						'field_type' 		=> 'submit',
-						'field_name' 		=> 'Submit',
-						'field_parent' 		=> $verify_fieldset_parent_id,
-						'field_sequence' 	=> 3
-					);
+				// Make the submit last in the sequence
+				$submit = array(
+					'form_id' 			=> $new_form_selected,
+					'field_key' 		=> 'submit',
+					'field_type' 		=> 'submit',
+					'field_name' 		=> 'Submit',
+					'field_parent' 		=> $verify_fieldset_parent_id,
+					'field_sequence' 	=> 3
+				);
 
-					// Insert the submit field
-					$wpdb->insert( $this->field_table_name, $submit );
+				// Insert the submit field
+				$wpdb->insert( $this->field_table_name, $submit );
 
-					// Redirect to keep the URL clean (use AJAX in the future?)
-					wp_redirect( 'admin.php?page=visual-form-builder-pro&form=' . $new_form_selected );
-					exit();
-
-				break;
-
-				case 'update_form' :
-
-					check_admin_referer( 'vfb_update_form' );
-
-					$form_id 						= absint( $_REQUEST['form_id'] );
-					$form_key 						= sanitize_title( $_REQUEST['form_title'], $form_id );
-					$form_title 					= $_REQUEST['form_title'];
-					$form_subject 					= $_REQUEST['form_email_subject'];
-					$form_to 						= serialize( array_map( 'sanitize_email', $_REQUEST['form_email_to'] ) );
-					$form_from 						= sanitize_email( $_REQUEST['form_email_from'] );
-					$form_from_name 				= $_REQUEST['form_email_from_name'];
-					$form_from_override 			= isset( $_REQUEST['form_email_from_override'] ) ? $_REQUEST['form_email_from_override'] : '';
-					$form_from_name_override 		= isset( $_REQUEST['form_email_from_name_override'] ) ? $_REQUEST['form_email_from_name_override'] : '';
-					$form_success_type 				= $_REQUEST['form_success_type'];
-					$form_notification_setting 		= isset( $_REQUEST['form_notification_setting'] ) ? $_REQUEST['form_notification_setting'] : '';
-					$form_notification_email_name 	= isset( $_REQUEST['form_notification_email_name'] ) ? $_REQUEST['form_notification_email_name'] : '';
-					$form_notification_email_from 	= isset( $_REQUEST['form_notification_email_from'] ) ? sanitize_email( $_REQUEST['form_notification_email_from'] ) : '';
-					$form_notification_email 		= isset( $_REQUEST['form_notification_email'] ) ? $_REQUEST['form_notification_email'] : '';
-					$form_notification_subject 		= isset( $_REQUEST['form_notification_subject'] ) ? $_REQUEST['form_notification_subject'] : '';
-					$form_notification_message 		= isset( $_REQUEST['form_notification_message'] ) ? wp_richedit_pre( $_REQUEST['form_notification_message'] ) : '';
-					$form_notification_entry 		= isset( $_REQUEST['form_notification_entry'] ) ? $_REQUEST['form_notification_entry'] : '';
-					$form_paypal_setting 			= isset( $_REQUEST['form_paypal_setting'] ) ? $_REQUEST['form_paypal_setting'] : '';
-					$form_paypal_email 				= isset( $_REQUEST['form_paypal_email'] ) ? sanitize_email( $_REQUEST['form_paypal_email'] ) : '';
-					$form_paypal_currency 			= isset( $_REQUEST['form_paypal_currency'] ) ? $_REQUEST['form_paypal_currency'] : '';
-					$form_paypal_shipping 			= isset( $_REQUEST['form_paypal_shipping'] ) ? $_REQUEST['form_paypal_shipping'] : '';
-					$form_paypal_tax 				= isset( $_REQUEST['form_paypal_tax'] ) ? $_REQUEST['form_paypal_tax'] : '';
-					$form_paypal_field_price 		= isset( $_REQUEST['form_paypal_field_price'] ) ? serialize( $_REQUEST['form_paypal_field_price'] ) : '';
-					$form_paypal_item_name 			= isset( $_REQUEST['form_paypal_item_name'] ) ? $_REQUEST['form_paypal_item_name'] : '';
-					$form_label_alignment 			= $_REQUEST['form_label_alignment'];
-					$form_verification 				= $_REQUEST['form_verification'];
-					$form_entries_allowed			= isset( $_REQUEST['form_entries_allowed'] ) ? sanitize_text_field( $_REQUEST['form_entries_allowed'] ) : '';
-					$form_entries_schedule			= isset( $_REQUEST['form_entries_schedule'] ) ? serialize( array_map( 'sanitize_text_field', $_REQUEST['form_entries_schedule'] ) ) : '';
-					$form_unique_entry 				= isset( $_REQUEST['form_unique_entry'] ) ? absint( $_REQUEST['form_unique_entry'] ) : 0;
-
-					// Add confirmation based on which type was selected
-					switch ( $form_success_type ) {
-						case 'text' :
-						case 'display-entry' :
-							$form_success_message = wp_richedit_pre( $_REQUEST['form_success_message_text'] );
-						break;
-						case 'page' :
-							$form_success_message = $_REQUEST['form_success_message_page'];
-						break;
-						case 'redirect' :
-							$form_success_message = $_REQUEST['form_success_message_redirect'];
-						break;
-					}
-
-					$newdata = array(
-						'form_key'						=> $form_key,
-						'form_title' 					=> $form_title,
-						'form_email_subject' 			=> $form_subject,
-						'form_email_to' 				=> $form_to,
-						'form_email_from' 				=> $form_from,
-						'form_email_from_name' 			=> $form_from_name,
-						'form_email_from_override' 		=> $form_from_override,
-						'form_email_from_name_override' => $form_from_name_override,
-						'form_success_type' 			=> $form_success_type,
-						'form_success_message' 			=> $form_success_message,
-						'form_notification_setting' 	=> $form_notification_setting,
-						'form_notification_email_name' 	=> $form_notification_email_name,
-						'form_notification_email_from' 	=> $form_notification_email_from,
-						'form_notification_email' 		=> $form_notification_email,
-						'form_notification_subject' 	=> $form_notification_subject,
-						'form_notification_message' 	=> $form_notification_message,
-						'form_notification_entry' 		=> $form_notification_entry,
-						'form_paypal_setting' 			=> $form_paypal_setting,
-						'form_paypal_email' 			=> $form_paypal_email,
-						'form_paypal_currency' 			=> $form_paypal_currency,
-						'form_paypal_shipping' 			=> $form_paypal_shipping,
-						'form_paypal_tax' 				=> $form_paypal_tax,
-						'form_paypal_field_price' 		=> $form_paypal_field_price,
-						'form_paypal_item_name' 		=> $form_paypal_item_name,
-						'form_label_alignment' 			=> $form_label_alignment,
-						'form_verification' 			=> $form_verification,
-						'form_entries_allowed' 			=> $form_entries_allowed,
-						'form_entries_schedule' 		=> $form_entries_schedule,
-						'form_unique_entry'				=> $form_unique_entry
-					);
-
-					$where = array( 'form_id' => $form_id );
-
-					// Update form details
-					$wpdb->update( $this->form_table_name, $newdata, $where );
-
-					$field_ids = array();
-
-					// Get max post vars, if available. Otherwise set to 1000
-					$max_post_vars = ( ini_get( 'max_input_vars' ) ) ? intval( ini_get( 'max_input_vars' ) ) : 1000;
-
-					// Set a message to be displayed if we've reached a limit
-					if ( count( $_POST, COUNT_RECURSIVE ) > $max_post_vars )
-						$this->post_max_vars = true;
-
-					foreach ( $_REQUEST['field_id'] as $fields ) :
-							$field_ids[] = $fields;
-					endforeach;
-
-					// Initialize field sequence
-					$field_sequence = 0;
-
-					// Loop through each field and update
-					foreach ( $field_ids as $id ) :
-						$id = absint( $id );
-
-						$field_name 		= ( isset( $_REQUEST['field_name-' . $id] ) ) ? trim( $_REQUEST['field_name-' . $id] ) : '';
-						$field_key 			= sanitize_key( sanitize_title( $field_name, $id ) );
-						$field_desc 		= ( isset( $_REQUEST['field_description-' . $id] ) ) ? trim( $_REQUEST['field_description-' . $id] ) : '';
-						$field_options 		= ( isset( $_REQUEST['field_options-' . $id] ) ) ? serialize( array_map( 'trim', $_REQUEST['field_options-' . $id] ) ) : '';
-						$field_options_other= ( isset( $_REQUEST['field_options_other-' . $id] ) ) ? serialize( array_map( 'trim', $_REQUEST['field_options_other-' . $id] ) ) : '';
-						$field_validation 	= ( isset( $_REQUEST['field_validation-' . $id] ) ) ? $_REQUEST['field_validation-' . $id] : '';
-						$field_required 	= ( isset( $_REQUEST['field_required-' . $id] ) ) ? $_REQUEST['field_required-' . $id] : '';
-						$field_size 		= ( isset( $_REQUEST['field_size-' . $id] ) ) ? $_REQUEST['field_size-' . $id] : '';
-						$field_css 			= ( isset( $_REQUEST['field_css-' . $id] ) ) ? $_REQUEST['field_css-' . $id] : '';
-						$field_layout 		= ( isset( $_REQUEST['field_layout-' . $id] ) ) ? $_REQUEST['field_layout-' . $id] : '';
-						$field_default 		= ( isset( $_REQUEST['field_default-' . $id] ) ) ? trim( $_REQUEST['field_default-' . $id] ) : '';
-
-						$field_data = array(
-							'field_key' 		=> $field_key,
-							'field_name' 		=> $field_name,
-							'field_description' => $field_desc,
-							'field_options'		=> $field_options,
-							'field_options_other'=> $field_options_other,
-							'field_validation' 	=> $field_validation,
-							'field_required' 	=> $field_required,
-							'field_size' 		=> $field_size,
-							'field_css' 		=> $field_css,
-							'field_layout' 		=> $field_layout,
-							'field_sequence' 	=> $field_sequence,
-							'field_default' 	=> $field_default
-						);
-
-						$where = array(
-							'form_id' 	=> $form_id,
-							'field_id' 	=> $id
-						);
-
-						// Update all fields
-						$wpdb->update( $this->field_table_name, $field_data, $where );
-
-						$field_sequence++;
-					endforeach;
+				// Redirect to keep the URL clean (use AJAX in the future?)
+				wp_redirect( 'admin.php?page=visual-form-builder-pro&form=' . $new_form_selected );
+				exit();
 
 				break;
 
-				case 'delete_form' :
-					$id = absint( $_REQUEST['form'] );
+			case 'update_form' :
 
-					check_admin_referer( 'delete-form-' . $id );
+				check_admin_referer( 'vfb_update_form' );
 
-					// Delete form and all fields
-					$wpdb->query( $wpdb->prepare( "DELETE FROM $this->form_table_name WHERE form_id = %d", $id ) );
-					$wpdb->query( $wpdb->prepare( "DELETE FROM $this->field_table_name WHERE form_id = %d", $id ) );
-					$wpdb->query( $wpdb->prepare( "DELETE FROM $this->entries_table_name WHERE form_id = %d", $id ) );
+				$form_id 						= absint( $_REQUEST['form_id'] );
+				$form_key 						= sanitize_title( $_REQUEST['form_title'], $form_id );
+				$form_title 					= $_REQUEST['form_title'];
+				$form_subject 					= $_REQUEST['form_email_subject'];
+				$form_to 						= serialize( array_map( 'sanitize_email', $_REQUEST['form_email_to'] ) );
 
-					// Redirect to keep the URL clean (use AJAX in the future?)
-					wp_redirect( add_query_arg( 'action', 'deleted', 'admin.php?page=visual-form-builder-pro' ) );
-					exit();
+				$form_from 						= sanitize_email( $_REQUEST['form_email_from'] );
+				$form_from_name 				= $_REQUEST['form_email_from_name'];
+				$form_from_override 			= isset( $_REQUEST['form_email_from_override'] ) ? $_REQUEST['form_email_from_override'] : '';
+				$form_from_name_override 		= isset( $_REQUEST['form_email_from_name_override'] ) ? $_REQUEST['form_email_from_name_override'] : '';
+
+				$form_success_type 				= $_REQUEST['form_success_type'];
+
+				$form_notification_setting 		= isset( $_REQUEST['form_notification_setting'] ) ? $_REQUEST['form_notification_setting'] : '';
+				$form_notification_email_name 	= isset( $_REQUEST['form_notification_email_name'] ) ? $_REQUEST['form_notification_email_name'] : '';
+				$form_notification_email_from 	= isset( $_REQUEST['form_notification_email_from'] ) ? sanitize_email( $_REQUEST['form_notification_email_from'] ) : '';
+				$form_notification_email 		= isset( $_REQUEST['form_notification_email'] ) ? $_REQUEST['form_notification_email'] : '';
+				$form_notification_subject 		= isset( $_REQUEST['form_notification_subject'] ) ? $_REQUEST['form_notification_subject'] : '';
+				$form_notification_message 		= isset( $_REQUEST['form_notification_message'] ) ? wp_richedit_pre( $_REQUEST['form_notification_message'] ) : '';
+				$form_notification_entry 		= isset( $_REQUEST['form_notification_entry'] ) ? $_REQUEST['form_notification_entry'] : '';
+
+				$form_paypal_setting 			= isset( $_REQUEST['form_paypal_setting'] ) ? $_REQUEST['form_paypal_setting'] : '';
+				$form_paypal_email 				= isset( $_REQUEST['form_paypal_email'] ) ? sanitize_email( $_REQUEST['form_paypal_email'] ) : '';
+				$form_paypal_currency 			= isset( $_REQUEST['form_paypal_currency'] ) ? $_REQUEST['form_paypal_currency'] : '';
+				$form_paypal_shipping 			= isset( $_REQUEST['form_paypal_shipping'] ) ? $_REQUEST['form_paypal_shipping'] : '';
+				$form_paypal_tax 				= isset( $_REQUEST['form_paypal_tax'] ) ? $_REQUEST['form_paypal_tax'] : '';
+				$form_paypal_field_price 		= isset( $_REQUEST['form_paypal_field_price'] ) ? serialize( $_REQUEST['form_paypal_field_price'] ) : '';
+				$form_paypal_item_name 			= isset( $_REQUEST['form_paypal_item_name'] ) ? $_REQUEST['form_paypal_item_name'] : '';
+
+				$form_label_alignment 			= $_REQUEST['form_label_alignment'];
+				$form_verification 				= $_REQUEST['form_verification'];
+
+				$form_entries_allowed			= isset( $_REQUEST['form_entries_allowed'] ) ? sanitize_text_field( $_REQUEST['form_entries_allowed'] ) : '';
+				$form_entries_schedule			= isset( $_REQUEST['form_entries_schedule'] ) ? serialize( array_map( 'sanitize_text_field', $_REQUEST['form_entries_schedule'] ) ) : '';
+
+				$form_unique_entry 				= isset( $_REQUEST['form_unique_entry'] ) ? absint( $_REQUEST['form_unique_entry'] ) : 0;
+
+				$form_status					= $_REQUEST['form_status'];
+
+				// Add confirmation based on which type was selected
+				switch ( $form_success_type ) {
+					case 'text' :
+					case 'display-entry' :
+						$form_success_message = wp_richedit_pre( $_REQUEST['form_success_message_text'] );
+					break;
+					case 'page' :
+						$form_success_message = $_REQUEST['form_success_message_page'];
+					break;
+					case 'redirect' :
+						$form_success_message = $_REQUEST['form_success_message_redirect'];
+					break;
+				}
+
+				$newdata = array(
+					'form_key'						=> $form_key,
+					'form_title' 					=> $form_title,
+					'form_email_subject' 			=> $form_subject,
+					'form_email_to' 				=> $form_to,
+					'form_email_from' 				=> $form_from,
+					'form_email_from_name' 			=> $form_from_name,
+					'form_email_from_override' 		=> $form_from_override,
+					'form_email_from_name_override' => $form_from_name_override,
+					'form_success_type' 			=> $form_success_type,
+					'form_success_message' 			=> $form_success_message,
+					'form_notification_setting' 	=> $form_notification_setting,
+					'form_notification_email_name' 	=> $form_notification_email_name,
+					'form_notification_email_from' 	=> $form_notification_email_from,
+					'form_notification_email' 		=> $form_notification_email,
+					'form_notification_subject' 	=> $form_notification_subject,
+					'form_notification_message' 	=> $form_notification_message,
+					'form_notification_entry' 		=> $form_notification_entry,
+					'form_paypal_setting' 			=> $form_paypal_setting,
+					'form_paypal_email' 			=> $form_paypal_email,
+					'form_paypal_currency' 			=> $form_paypal_currency,
+					'form_paypal_shipping' 			=> $form_paypal_shipping,
+					'form_paypal_tax' 				=> $form_paypal_tax,
+					'form_paypal_field_price' 		=> $form_paypal_field_price,
+					'form_paypal_item_name' 		=> $form_paypal_item_name,
+					'form_label_alignment' 			=> $form_label_alignment,
+					'form_verification' 			=> $form_verification,
+					'form_entries_allowed' 			=> $form_entries_allowed,
+					'form_entries_schedule' 		=> $form_entries_schedule,
+					'form_unique_entry'				=> $form_unique_entry,
+					'form_status'					=> $form_status,
+				);
+
+				$where = array( 'form_id' => $form_id );
+
+				// Update form details
+				$wpdb->update( $this->form_table_name, $newdata, $where );
+
+				$field_ids = array();
+
+				// Get max post vars, if available. Otherwise set to 1000
+				$max_post_vars = ( ini_get( 'max_input_vars' ) ) ? intval( ini_get( 'max_input_vars' ) ) : 1000;
+
+				// Set a message to be displayed if we've reached a limit
+				if ( count( $_POST, COUNT_RECURSIVE ) > $max_post_vars )
+					$this->post_max_vars = true;
+
+				foreach ( $_REQUEST['field_id'] as $fields ) :
+						$field_ids[] = $fields;
+				endforeach;
+
+				// Initialize field sequence
+				$field_sequence = 0;
+
+				// Loop through each field and update
+				foreach ( $field_ids as $id ) :
+					$id = absint( $id );
+
+					$field_name 		= ( isset( $_REQUEST['field_name-' . $id] ) ) ? trim( $_REQUEST['field_name-' . $id] ) : '';
+					$field_key 			= sanitize_key( sanitize_title( $field_name, $id ) );
+					$field_desc 		= ( isset( $_REQUEST['field_description-' . $id] ) ) ? trim( $_REQUEST['field_description-' . $id] ) : '';
+					$field_options 		= ( isset( $_REQUEST['field_options-' . $id] ) ) ? serialize( array_map( 'trim', $_REQUEST['field_options-' . $id] ) ) : '';
+					$field_options_other= ( isset( $_REQUEST['field_options_other-' . $id] ) ) ? serialize( array_map( 'trim', $_REQUEST['field_options_other-' . $id] ) ) : '';
+					$field_validation 	= ( isset( $_REQUEST['field_validation-' . $id] ) ) ? $_REQUEST['field_validation-' . $id] : '';
+					$field_required 	= ( isset( $_REQUEST['field_required-' . $id] ) ) ? $_REQUEST['field_required-' . $id] : '';
+					$field_size 		= ( isset( $_REQUEST['field_size-' . $id] ) ) ? $_REQUEST['field_size-' . $id] : '';
+					$field_css 			= ( isset( $_REQUEST['field_css-' . $id] ) ) ? $_REQUEST['field_css-' . $id] : '';
+					$field_layout 		= ( isset( $_REQUEST['field_layout-' . $id] ) ) ? $_REQUEST['field_layout-' . $id] : '';
+					$field_default 		= ( isset( $_REQUEST['field_default-' . $id] ) ) ? trim( $_REQUEST['field_default-' . $id] ) : '';
+
+					$field_data = array(
+						'field_key' 		=> $field_key,
+						'field_name' 		=> $field_name,
+						'field_description' => $field_desc,
+						'field_options'		=> $field_options,
+						'field_options_other'=> $field_options_other,
+						'field_validation' 	=> $field_validation,
+						'field_required' 	=> $field_required,
+						'field_size' 		=> $field_size,
+						'field_css' 		=> $field_css,
+						'field_layout' 		=> $field_layout,
+						'field_sequence' 	=> $field_sequence,
+						'field_default' 	=> $field_default
+					);
+
+					$where = array(
+						'form_id' 	=> $form_id,
+						'field_id' 	=> $id
+					);
+
+					// Update all fields
+					$wpdb->update( $this->field_table_name, $field_data, $where );
+
+					$field_sequence++;
+				endforeach;
 
 				break;
 
-				case 'copy_form' :
-					$id = absint( $_REQUEST['form'] );
+			case 'delete_form' :
+				$id = absint( $_REQUEST['form'] );
 
-					check_admin_referer( 'copy-form-' . $id );
+				check_admin_referer( 'delete-form-' . $id );
 
-					// Get all fields and data for the request form
-					$fields = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->field_table_name WHERE form_id = %d", $id ) );
-					$form = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $this->form_table_name WHERE form_id = %d", $id ) );
-					$override = $wpdb->get_var( $wpdb->prepare( "SELECT form_email_from_override, form_email_from_name_override, form_notification_email FROM $this->form_table_name WHERE form_id = %d", $id ) );
-					$from_name = $wpdb->get_var( null, 1 );
-					$notify = $wpdb->get_var( null, 2 );
+				// Delete form and all fields
+				$wpdb->query( $wpdb->prepare( "DELETE FROM $this->form_table_name WHERE form_id = %d", $id ) );
+				$wpdb->query( $wpdb->prepare( "DELETE FROM $this->field_table_name WHERE form_id = %d", $id ) );
+				$wpdb->query( $wpdb->prepare( "DELETE FROM $this->entries_table_name WHERE form_id = %d", $id ) );
 
-					// Copy this form and force the initial title to denote a copy
+				// Redirect to keep the URL clean (use AJAX in the future?)
+				wp_redirect( add_query_arg( 'action', 'deleted', 'admin.php?page=visual-form-builder-pro' ) );
+				exit();
+
+				break;
+
+			case 'copy_form' :
+				$id = absint( $_REQUEST['form'] );
+
+				check_admin_referer( 'copy-form-' . $id );
+
+				// Get all fields and data for the request form
+				$fields     = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->field_table_name WHERE form_id = %d", $id ) );
+				$form       = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $this->form_table_name WHERE form_id = %d", $id ) );
+				$override   = $wpdb->get_var( $wpdb->prepare( "SELECT form_email_from_override, form_email_from_name_override, form_notification_email FROM $this->form_table_name WHERE form_id = %d", $id ) );
+				$from_name  = $wpdb->get_var( null, 1 );
+				$notify     = $wpdb->get_var( null, 2 );
+
+				// Copy this form and force the initial title to denote a copy
+
+				$data = array(
+					'form_key' 						=> sanitize_title( $form->form_key . ' copy' ),
+					'form_title' 					=> $form->form_title . ' Copy',
+					'form_email_subject' 			=> $form->form_email_subject,
+					'form_email_to' 				=> $form->form_email_to,
+					'form_email_from' 				=> $form->form_email_from,
+					'form_email_from_name' 			=> $form->form_email_from_name,
+					'form_email_from_override' 		=> $form->form_email_from_override,
+					'form_email_from_name_override' => $form->form_email_from_name_override,
+					'form_success_type' 			=> $form->form_success_type,
+					'form_success_message' 			=> $form->form_success_message,
+					'form_notification_setting' 	=> $form->form_notification_setting,
+					'form_notification_email_name' 	=> $form->form_notification_email_name,
+					'form_notification_email_from' 	=> $form->form_notification_email_from,
+					'form_notification_email' 		=> $form->form_notification_email,
+					'form_notification_subject' 	=> $form->form_notification_subject,
+					'form_notification_message' 	=> $form->form_notification_message,
+					'form_notification_entry' 		=> $form->form_notification_entry,
+					'form_email_design' 			=> $form->form_email_design,
+					'form_paypal_setting' 			=> $form->form_paypal_setting,
+					'form_paypal_email' 			=> $form->form_paypal_email,
+					'form_paypal_currency' 			=> $form->form_paypal_currency,
+					'form_paypal_shipping' 			=> $form->form_paypal_shipping,
+					'form_paypal_tax' 				=> $form->form_paypal_tax,
+					'form_paypal_field_price' 		=> $form->form_paypal_field_price,
+					'form_paypal_item_name' 		=> $form->form_paypal_item_name,
+					'form_label_alignment' 			=> $form->form_label_alignment,
+					'form_verification' 			=> $form->form_verification,
+					'form_entries_allowed' 			=> $form->form_entries_allowed,
+					'form_entries_schedule'			=> $form->form_entries_schedule,
+					'form_unique_entry'				=> $form->form_unique_entry,
+					'form_email_rule_setting'		=> $form->form_email_rule_setting,
+					'form_email_rule'				=> $form->form_email_rule,
+				);
+
+				$wpdb->insert( $this->form_table_name, $data );
+
+				// Get form ID to add our first field
+				$new_form_selected = $wpdb->insert_id;
+
+				// Copy each field and data
+				foreach ( $fields as $field ) :
 
 					$data = array(
-						'form_key' 						=> sanitize_title( $form->form_key . ' copy' ),
-						'form_title' 					=> $form->form_title . ' Copy',
+						'form_id' 			=> $new_form_selected,
+						'field_key' 		=> $field->field_key,
+						'field_type' 		=> $field->field_type,
+						'field_name' 		=> $field->field_name,
+						'field_description' => $field->field_description,
+						'field_options' 	=> $field->field_options,
+						'field_options_other'=> $field->field_options_other,
+						'field_sequence' 	=> $field->field_sequence,
+						'field_validation' 	=> $field->field_validation,
+						'field_required' 	=> $field->field_required,
+						'field_size' 		=> $field->field_size,
+						'field_css' 		=> $field->field_css,
+						'field_layout' 		=> $field->field_layout,
+						'field_parent' 		=> $field->field_parent,
+						'field_default' 	=> $field->field_default,
+						'field_rule_setting'=> $field->field_rule_setting,
+						'field_rule' 		=> $field->field_rule
+					);
+
+					$wpdb->insert( $this->field_table_name, $data );
+
+					// Save field IDs so we can update the field rules
+					$old_ids[ $field->field_id ] = $wpdb->insert_id;
+
+					// If a parent field, save the old ID and the new ID to update new parent ID
+					if ( in_array( $field->field_type, array( 'fieldset', 'section', 'verification' ) ) )
+						$parents[ $field->field_id ] = $wpdb->insert_id;
+
+					if ( $override == $field->field_id )
+						$wpdb->update( $this->form_table_name, array( 'form_email_from_override' => $wpdb->insert_id ), array( 'form_id' => $new_form_selected ) );
+
+					if ( $from_name == $field->field_id )
+						$wpdb->update( $this->form_table_name, array( 'form_email_from_name_override' => $wpdb->insert_id ), array( 'form_id' => $new_form_selected ) );
+
+					if ( $notify == $field->field_id )
+						$wpdb->update( $this->form_table_name, array( 'form_notification_email' => $wpdb->insert_id ), array( 'form_id' => $new_form_selected ) );
+				endforeach;
+
+				// Loop through our parents and update them to their new IDs
+				foreach ( $parents as $k => $v ) :
+					$wpdb->update( $this->field_table_name, array( 'field_parent' => $v ), array( 'form_id' => $new_form_selected, 'field_parent' => $k ) );
+				endforeach;
+
+				// Get email rule
+				$get_email_rules = $wpdb->get_var( $wpdb->prepare( "SELECT form_email_rule FROM $this->form_table_name WHERE form_id = %d", $id ) );
+				$email_rules = maybe_unserialize( $get_email_rules );
+
+				// Update email rule field IDs
+				if ( $email_rules ) :
+					$new_email_rules = array(
+						'form_email_rule_setting' 	=> $email_rules['form_email_rule_setting'],
+						'form_id'					=> $new_form_selected,
+					);
+
+					foreach ( $email_rules['rules'] as $key => $val ) :
+						$new_email_rules['rules'][$key]['field']	= $val['field'];
+						$new_email_rules['rules'][$key]['option']	= $val['option'];
+						$new_email_rules['rules'][$key]['email'] 	= $val['email'];
+
+						if ( array_key_exists( $val['field'], $old_ids ) )
+							$new_email_rules['rules'][$key]['field'] = $old_ids[ $val['field'] ];
+
+					endforeach;
+
+					$wpdb->update( $this->form_table_name,
+						array( 'form_email_rule' => maybe_serialize( $new_email_rules ) ),
+						array( 'form_id' => $new_form_selected )
+					);
+				endif;
+
+				// Update conditional logic field IDs
+				foreach ( $old_ids as $k => $v ) :
+
+					// Get field rule
+					$get_field_rules = $wpdb->get_var( $wpdb->prepare( "SELECT field_rule FROM $this->field_table_name WHERE form_id = %d AND field_id = %d", $id, $k ) );
+
+					$field_rules = maybe_unserialize( $get_field_rules );
+					if ( !$field_rules )
+						continue;
+
+					$new = array(
+						'conditional_setting' 	=> $field_rules['conditional_setting'],
+						'conditional_show'		=> $field_rules['conditional_show'],
+						'conditional_logic'		=> $field_rules['conditional_logic'],
+						'rules'					=> array(),
+						'field_id'				=> $v,
+					);
+
+					foreach ( $field_rules['rules'] as $key => $val ) :
+						$new['rules'][$key]['field']		= $val['field'];
+						$new['rules'][$key]['condition'] 	= $val['condition'];
+						$new['rules'][$key]['option']		= $val['option'];
+
+						if ( array_key_exists( $val['field'], $old_ids ) )
+							$new['rules'][$key]['field'] = $old_ids[ $val['field'] ];
+
+					endforeach;
+
+					$wpdb->update( $this->field_table_name,
+						array( 'field_rule' => maybe_serialize( $new ) ),
+						array( 'field_id' => $v )
+					);
+
+				endforeach;
+
+				break;
+
+			case 'email_design' :
+				$form_id = absint( $_REQUEST['form_id'] );
+
+				check_admin_referer( 'update-design-' . $form_id );
+
+				$email = unserialize( $wpdb->get_var( $wpdb->prepare( "SELECT form_email_design FROM $this->form_table_name WHERE form_id = %d", $form_id ) ) );
+
+				$header_image = ( !empty( $email['header_image'] ) ) ? $email['header_image'] : '';
+
+				if ( isset( $_FILES['header_image'] ) ) {
+					$value = $_FILES['header_image'];
+
+					if ( $value['size'] > 0 ) {
+						// Handle the upload using WP's wp_handle_upload function. Takes the posted file and an options array
+						$uploaded_file = wp_handle_upload( $value, array( 'test_form' => false ) );
+
+						@list( $width, $height, $type, $attr ) = getimagesize( $uploaded_file['file'] );
+
+						if ( $width == 600 && $height == 137 )
+							$header_image = ( isset( $uploaded_file['file'] ) ) ? $uploaded_file['url'] : '';
+						elseif ( $width > 600 ) {
+							$oitar = $width / 600;
+
+							$image = wp_crop_image( $uploaded_file['file'], 0, 0, $width, $height, 600, $height / $oitar, false, str_replace( basename( $uploaded_file['file'] ), 'vfb-header-img-' . basename( $uploaded_file['file'] ), $uploaded_file['file'] ) );
+
+							if ( is_wp_error( $image ) )
+								wp_die( __( 'Image could not be processed.  Please go back and try again.' ), __( 'Image Processing Error' ) );
+							$header_image = str_replace( basename( $uploaded_file['url'] ), basename( $image ), $uploaded_file['url'] );
+						}
+						else {
+							$dst_width = 600;
+							$dst_height = absint( $height * ( 600 / $width ) );
+
+							$cropped = wp_crop_image( $uploaded_file['file'], 0, 0, $width, $height, $dst_width, $dst_height, false, str_replace( basename( $uploaded_file['file'] ), 'vfb-header-img-' . basename( $uploaded_file['file'] ), $uploaded_file['file'] ) );
+
+							if ( is_wp_error( $cropped ) )
+								wp_die( __( 'Image could not be processed.  Please go back and try again.' ), __( 'Image Processing Error' ) );
+							$header_image = str_replace( basename( $uploaded_file['url'] ), basename( $cropped ), $uploaded_file['url'] );
+						}
+					}
+				}
+
+				$email_design = array(
+					'format' 				=> $_REQUEST['format'],
+					'link_love' 			=> $_REQUEST['link_love'],
+					'footer_text' 			=> $_REQUEST['footer_text'],
+					'background_color' 		=> $_REQUEST['background_color'],
+					'header_text' 			=> $_REQUEST['header_text'],
+					'header_image' 			=> $header_image,
+					'header_color' 			=> $_REQUEST['header_color'],
+					'header_text_color' 	=> $_REQUEST['header_text_color'],
+					'fieldset_color' 		=> $_REQUEST['fieldset_color'],
+					'section_color' 		=> $_REQUEST['section_color'],
+					'section_text_color' 	=> $_REQUEST['section_text_color'],
+					'text_color' 			=> $_REQUEST['text_color'],
+					'link_color' 			=> $_REQUEST['link_color'],
+					'row_color' 			=> $_REQUEST['row_color'],
+					'row_alt_color' 		=> $_REQUEST['row_alt_color'],
+					'border_color' 			=> $_REQUEST['border_color'],
+					'footer_color' 			=> $_REQUEST['footer_color'],
+					'footer_text_color' 	=> $_REQUEST['footer_text_color'],
+					'font_family' 			=> $_REQUEST['font_family'],
+					'header_font_size' 		=> $_REQUEST['header_font_size'],
+					'fieldset_font_size' 	=> $_REQUEST['fieldset_font_size'],
+					'section_font_size' 	=> $_REQUEST['section_font_size'],
+					'text_font_size' 		=> $_REQUEST['text_font_size'],
+					'footer_font_size' 		=> $_REQUEST['footer_font_size']
+				);
+
+				$newdata = array( 'form_email_design' => serialize( $email_design ) );
+
+				$where = array( 'form_id' => $form_id );
+
+				// Update form details
+				$wpdb->update( $this->form_table_name, $newdata, $where );
+				break;
+
+			case 'email_delete_header' :
+				$form_id = absint( $_REQUEST['form'] );
+
+				check_admin_referer( 'delete-header-img-' . $form_id );
+
+				$email = unserialize( $wpdb->get_var( $wpdb->prepare( "SELECT form_email_design FROM $this->form_table_name WHERE form_id = %d", $form_id ) ) );
+
+				foreach( $email as $field => &$value ) {
+					$value = ( 'header_image' !== $field ) ? $value : '';
+				}
+
+				$newdata = array( 'form_email_design' => serialize( $email ) );
+
+				$where = array( 'form_id' => $form_id );
+
+				// Update form details
+				$wpdb->update( $this->form_table_name, $newdata, $where );
+
+				// Redirect to keep the URL clean (use AJAX in the future?)
+				wp_redirect( 'admin.php?page=vfb-email-design' );
+				exit();
+
+				break;
+
+			case 'upgrade' :
+
+				// Set database names of free version
+				$vfb_fields = $wpdb->prefix . 'visual_form_builder_fields';
+				$vfb_forms = $wpdb->prefix . 'visual_form_builder_forms';
+				$vfb_entries = $wpdb->prefix . 'visual_form_builder_entries';
+
+				// Get all forms, fields, and entries
+				$forms = $wpdb->get_results( "SELECT * FROM $vfb_forms ORDER BY form_id" );
+
+				// Truncate the tables in case any forms or fields have been added
+				$wpdb->query( "TRUNCATE TABLE $this->form_table_name" );
+				$wpdb->query( "TRUNCATE TABLE $this->field_table_name" );
+				$wpdb->query( "TRUNCATE TABLE $this->entries_table_name" );
+
+				// Setup email design defaults
+				$email_design = array(
+					'format' 				=> 'html',
+					'link_love' 			=> 'yes',
+					'footer_text' 			=> '',
+					'background_color' 		=> '#eeeeee',
+					'header_text'			=> '',
+					'header_image' 			=> '',
+					'header_color' 			=> '#810202',
+					'header_text_color' 	=> '#ffffff',
+					'fieldset_color' 		=> '#680606',
+					'section_color' 		=> '#5C6266',
+					'section_text_color' 	=> '#ffffff',
+					'text_color' 			=> '#333333',
+					'link_color' 			=> '#1b8be0',
+					'row_color' 			=> '#ffffff',
+					'row_alt_color' 		=> '#eeeeee',
+					'border_color' 			=> '#cccccc',
+					'footer_color' 			=> '#333333',
+					'footer_text_color' 	=> '#ffffff',
+					'font_family' 			=> 'Arial',
+					'header_font_size' 		=> 32,
+					'fieldset_font_size' 	=> 20,
+					'section_font_size' 	=> 15,
+					'text_font_size' 		=> 13,
+					'footer_font_size' 		=> 11
+				);
+
+				// Migrate all forms, fields, and entries
+				foreach ( $forms as $form ) :
+
+					// Set email header text default as form subject
+					$email_design['header_text'] = $form->form_email_subject;
+
+					$data = array(
+						'form_id' 						=> $form->form_id,
+						'form_key' 						=> $form->form_key,
+						'form_title' 					=> $form->form_title,
 						'form_email_subject' 			=> $form->form_email_subject,
 						'form_email_to' 				=> $form->form_email_to,
 						'form_email_from' 				=> $form->form_email_from,
@@ -1356,37 +1731,28 @@ class Visual_Form_Builder_Pro{
 						'form_notification_subject' 	=> $form->form_notification_subject,
 						'form_notification_message' 	=> $form->form_notification_message,
 						'form_notification_entry' 		=> $form->form_notification_entry,
-						'form_email_design' 			=> $form->form_email_design,
-						'form_paypal_setting' 			=> $form->form_paypal_setting,
-						'form_paypal_email' 			=> $form->form_paypal_email,
-						'form_paypal_currency' 			=> $form->form_paypal_currency,
-						'form_paypal_shipping' 			=> $form->form_paypal_shipping,
-						'form_paypal_tax' 				=> $form->form_paypal_tax,
-						'form_paypal_field_price' 		=> $form->form_paypal_field_price,
-						'form_paypal_item_name' 		=> $form->form_paypal_item_name,
-						'form_label_alignment' 			=> $form->form_label_alignment,
-						'form_verification' 			=> $form->form_verification,
-						'form_entries_allowed' 			=> $form->form_entries_allowed,
-						'form_entries_schedule'			=> $form->form_entries_schedule,
-						'form_unique_entry'				=> $form->form_unique_entry
+						'form_email_design' 			=> serialize( $email_design ),
+						'form_label_alignment' 			=> '',
+						'form_verification' 			=> 1,
+						'form_entries_allowed' 			=> '',
+						'form_entries_schedule'			=> '',
+						'form_unique_entry'				=> 0
 					);
 
 					$wpdb->insert( $this->form_table_name, $data );
 
-					// Get form ID to add our first field
-					$new_form_selected = $wpdb->insert_id;
-
+					$fields = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $vfb_fields WHERE form_id = %d ORDER BY field_id", $form->form_id ) );
 					// Copy each field and data
-					foreach ( $fields as $field ) :
+					foreach ( $fields as $field ) {
 
 						$data = array(
-							'form_id' 			=> $new_form_selected,
+							'field_id' 			=> $field->field_id,
+							'form_id' 			=> $field->form_id,
 							'field_key' 		=> $field->field_key,
 							'field_type' 		=> $field->field_type,
 							'field_name' 		=> $field->field_name,
 							'field_description' => $field->field_description,
 							'field_options' 	=> $field->field_options,
-							'field_options_other'=> $field->field_options_other,
 							'field_sequence' 	=> $field->field_sequence,
 							'field_validation' 	=> $field->field_validation,
 							'field_required' 	=> $field->field_required,
@@ -1394,335 +1760,80 @@ class Visual_Form_Builder_Pro{
 							'field_css' 		=> $field->field_css,
 							'field_layout' 		=> $field->field_layout,
 							'field_parent' 		=> $field->field_parent,
-							'field_default' 	=> $field->field_default,
-							'field_rule_setting'=> $field->field_rule_setting,
-							'field_rule' 		=> $field->field_rule
+							'field_default'		=> $field->field_default,
 						);
 
 						$wpdb->insert( $this->field_table_name, $data );
-
-						// Save field IDs so we can update the field rules
-						$old_ids[ $field->field_id ] = $wpdb->insert_id;
-
-						// If a parent field, save the old ID and the new ID to update new parent ID
-						if ( in_array( $field->field_type, array( 'fieldset', 'section', 'verification' ) ) )
-							$parents[ $field->field_id ] = $wpdb->insert_id;
-
-						if ( $override == $field->field_id )
-							$wpdb->update( $this->form_table_name, array( 'form_email_from_override' => $wpdb->insert_id ), array( 'form_id' => $new_form_selected ) );
-
-						if ( $from_name == $field->field_id )
-							$wpdb->update( $this->form_table_name, array( 'form_email_from_name_override' => $wpdb->insert_id ), array( 'form_id' => $new_form_selected ) );
-
-						if ( $notify == $field->field_id )
-							$wpdb->update( $this->form_table_name, array( 'form_notification_email' => $wpdb->insert_id ), array( 'form_id' => $new_form_selected ) );
-					endforeach;
-
-					// Loop through our parents and update them to their new IDs
-					foreach ( $parents as $k => $v ) :
-						$wpdb->update( $this->field_table_name, array( 'field_parent' => $v ), array( 'form_id' => $new_form_selected, 'field_parent' => $k ) );
-					endforeach;
-
-					// Loop through all of the IDs and update the rules if a match is found
-					foreach ( $old_ids as $k => $v ) :
-						// Get field key
-						$field_key = $wpdb->get_var( $wpdb->prepare( "SELECT field_key FROM $this->field_table_name WHERE form_id = %d AND field_id = %d", $id, $k ) );
-
-						// Setup search and replace for IDs
-						$search = 's:' . strlen( $k ) .':"' . $k . '"';
-						$replace = 's:' . strlen( $v ) .':"' . $v . '"';
-
-						$wpdb->query( $wpdb->prepare( "UPDATE $this->field_table_name SET field_rule = REPLACE(field_rule, %s, %s) WHERE form_id = %d", $search, $replace, $new_form_selected ) );
-
-						// Assemble field_id_attr
-						$key = 'vfb-' . $field_key . '-';
-
-						// Setup search and replace for field_id_attr
-						$search = 's:' . strlen( $key . $k ) .':"' . $key . $k . '"';
-						$replace = 's:' . strlen( $key . $v ) .':"' . $key . $v . '"';
-
-						$wpdb->query( $wpdb->prepare( "UPDATE $this->field_table_name SET field_rule = REPLACE(field_rule, %s, %s) WHERE form_id = %d", $search, $replace, $new_form_selected ) );
-					endforeach;
-
-					// Redirect to keep the URL clean (use AJAX in the future?)
-					wp_redirect( 'admin.php?page=visual-form-builder-pro&form=' . $new_form_selected );
-					exit();
-
-				break;
-
-				case 'email_design' :
-					$form_id = absint( $_REQUEST['form_id'] );
-
-					check_admin_referer( 'update-design-' . $form_id );
-
-					$email = unserialize( $wpdb->get_var( $wpdb->prepare( "SELECT form_email_design FROM $this->form_table_name WHERE form_id = %d", $form_id ) ) );
-
-					$header_image = ( !empty( $email['header_image'] ) ) ? $email['header_image'] : '';
-
-					if ( isset( $_FILES['header_image'] ) ) {
-						$value = $_FILES['header_image'];
-
-						if ( $value['size'] > 0 ) {
-							// Handle the upload using WP's wp_handle_upload function. Takes the posted file and an options array
-							$uploaded_file = wp_handle_upload( $value, array( 'test_form' => false ) );
-
-							@list( $width, $height, $type, $attr ) = getimagesize( $uploaded_file['file'] );
-
-							if ( $width == 600 && $height == 137 )
-								$header_image = ( isset( $uploaded_file['file'] ) ) ? $uploaded_file['url'] : '';
-							elseif ( $width > 600 ) {
-								$oitar = $width / 600;
-
-								$image = wp_crop_image( $uploaded_file['file'], 0, 0, $width, $height, 600, $height / $oitar, false, str_replace( basename( $uploaded_file['file'] ), 'vfb-header-img-' . basename( $uploaded_file['file'] ), $uploaded_file['file'] ) );
-
-								if ( is_wp_error( $image ) )
-									wp_die( __( 'Image could not be processed.  Please go back and try again.' ), __( 'Image Processing Error' ) );
-								$header_image = str_replace( basename( $uploaded_file['url'] ), basename( $image ), $uploaded_file['url'] );
-							}
-							else {
-								$dst_width = 600;
-								$dst_height = absint( $height * ( 600 / $width ) );
-
-								$cropped = wp_crop_image( $uploaded_file['file'], 0, 0, $width, $height, $dst_width, $dst_height, false, str_replace( basename( $uploaded_file['file'] ), 'vfb-header-img-' . basename( $uploaded_file['file'] ), $uploaded_file['file'] ) );
-
-								if ( is_wp_error( $cropped ) )
-									wp_die( __( 'Image could not be processed.  Please go back and try again.' ), __( 'Image Processing Error' ) );
-								$header_image = str_replace( basename( $uploaded_file['url'] ), basename( $cropped ), $uploaded_file['url'] );
-							}
-						}
 					}
 
-					$email_design = array(
-						'format' 				=> $_REQUEST['format'],
-						'link_love' 			=> $_REQUEST['link_love'],
-						'footer_text' 			=> $_REQUEST['footer_text'],
-						'background_color' 		=> $_REQUEST['background_color'],
-						'header_text' 			=> $_REQUEST['header_text'],
-						'header_image' 			=> $header_image,
-						'header_color' 			=> $_REQUEST['header_color'],
-						'header_text_color' 	=> $_REQUEST['header_text_color'],
-						'fieldset_color' 		=> $_REQUEST['fieldset_color'],
-						'section_color' 		=> $_REQUEST['section_color'],
-						'section_text_color' 	=> $_REQUEST['section_text_color'],
-						'text_color' 			=> $_REQUEST['text_color'],
-						'link_color' 			=> $_REQUEST['link_color'],
-						'row_color' 			=> $_REQUEST['row_color'],
-						'row_alt_color' 		=> $_REQUEST['row_alt_color'],
-						'border_color' 			=> $_REQUEST['border_color'],
-						'footer_color' 			=> $_REQUEST['footer_color'],
-						'footer_text_color' 	=> $_REQUEST['footer_text_color'],
-						'font_family' 			=> $_REQUEST['font_family'],
-						'header_font_size' 		=> $_REQUEST['header_font_size'],
-						'fieldset_font_size' 	=> $_REQUEST['fieldset_font_size'],
-						'section_font_size' 	=> $_REQUEST['section_font_size'],
-						'text_font_size' 		=> $_REQUEST['text_font_size'],
-						'footer_font_size' 		=> $_REQUEST['footer_font_size']
-					);
+					$entries = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $vfb_entries WHERE form_id = %d ORDER BY entries_id", $form->form_id ) );
 
-					$newdata = array( 'form_email_design' => serialize( $email_design ) );
-
-					$where = array( 'form_id' => $form_id );
-
-					// Update form details
-					$wpdb->update( $this->form_table_name, $newdata, $where );
-				break;
-
-				case 'email_delete_header' :
-					$form_id = absint( $_REQUEST['form'] );
-
-					check_admin_referer( 'delete-header-img-' . $form_id );
-
-					$email = unserialize( $wpdb->get_var( $wpdb->prepare( "SELECT form_email_design FROM $this->form_table_name WHERE form_id = %d", $form_id ) ) );
-
-					foreach( $email as $field => &$value ) {
-						$value = ( 'header_image' !== $field ) ? $value : '';
-					}
-
-					$newdata = array( 'form_email_design' => serialize( $email ) );
-
-					$where = array( 'form_id' => $form_id );
-
-					// Update form details
-					$wpdb->update( $this->form_table_name, $newdata, $where );
-
-					// Redirect to keep the URL clean (use AJAX in the future?)
-					wp_redirect( 'admin.php?page=vfb-email-design' );
-					exit();
-
-				break;
-
-				case 'upgrade' :
-
-					// Set database names of free version
-					$vfb_fields = $wpdb->prefix . 'visual_form_builder_fields';
-					$vfb_forms = $wpdb->prefix . 'visual_form_builder_forms';
-					$vfb_entries = $wpdb->prefix . 'visual_form_builder_entries';
-
-					// Get all forms, fields, and entries
-					$forms = $wpdb->get_results( "SELECT * FROM $vfb_forms ORDER BY form_id" );
-
-					// Truncate the tables in case any forms or fields have been added
-					$wpdb->query( "TRUNCATE TABLE $this->form_table_name" );
-					$wpdb->query( "TRUNCATE TABLE $this->field_table_name" );
-					$wpdb->query( "TRUNCATE TABLE $this->entries_table_name" );
-
-					// Setup email design defaults
-					$email_design = array(
-						'format' 				=> 'html',
-						'link_love' 			=> 'yes',
-						'footer_text' 			=> '',
-						'background_color' 		=> '#eeeeee',
-						'header_text'			=> '',
-						'header_image' 			=> '',
-						'header_color' 			=> '#810202',
-						'header_text_color' 	=> '#ffffff',
-						'fieldset_color' 		=> '#680606',
-						'section_color' 		=> '#5C6266',
-						'section_text_color' 	=> '#ffffff',
-						'text_color' 			=> '#333333',
-						'link_color' 			=> '#1b8be0',
-						'row_color' 			=> '#ffffff',
-						'row_alt_color' 		=> '#eeeeee',
-						'border_color' 			=> '#cccccc',
-						'footer_color' 			=> '#333333',
-						'footer_text_color' 	=> '#ffffff',
-						'font_family' 			=> 'Arial',
-						'header_font_size' 		=> 32,
-						'fieldset_font_size' 	=> 20,
-						'section_font_size' 	=> 15,
-						'text_font_size' 		=> 13,
-						'footer_font_size' 		=> 11
-					);
-
-					// Migrate all forms, fields, and entries
-					foreach ( $forms as $form ) :
-
-						// Set email header text default as form subject
-						$email_design['header_text'] = $form->form_email_subject;
+					// Copy each entry
+					foreach ( $entries as $entry ) {
 
 						$data = array(
-							'form_id' 						=> $form->form_id,
-							'form_key' 						=> $form->form_key,
-							'form_title' 					=> $form->form_title,
-							'form_email_subject' 			=> $form->form_email_subject,
-							'form_email_to' 				=> $form->form_email_to,
-							'form_email_from' 				=> $form->form_email_from,
-							'form_email_from_name' 			=> $form->form_email_from_name,
-							'form_email_from_override' 		=> $form->form_email_from_override,
-							'form_email_from_name_override' => $form->form_email_from_name_override,
-							'form_success_type' 			=> $form->form_success_type,
-							'form_success_message' 			=> $form->form_success_message,
-							'form_notification_setting' 	=> $form->form_notification_setting,
-							'form_notification_email_name' 	=> $form->form_notification_email_name,
-							'form_notification_email_from' 	=> $form->form_notification_email_from,
-							'form_notification_email' 		=> $form->form_notification_email,
-							'form_notification_subject' 	=> $form->form_notification_subject,
-							'form_notification_message' 	=> $form->form_notification_message,
-							'form_notification_entry' 		=> $form->form_notification_entry,
-							'form_email_design' 			=> serialize( $email_design ),
-							'form_label_alignment' 			=> '',
-							'form_verification' 			=> 1,
-							'form_entries_allowed' 			=> '',
-							'form_entries_schedule'			=> '',
-							'form_unique_entry'				=> 0
+							'form_id' 			=> $entry->form_id,
+							'data' 				=> $entry->data,
+							'subject' 			=> $entry->subject,
+							'sender_name' 		=> $entry->sender_name,
+							'sender_email' 		=> $entry->sender_email,
+							'emails_to' 		=> $entry->emails_to,
+							'date_submitted' 	=> $entry->date_submitted,
+							'ip_address'	 	=> $entry->ip_address
 						);
 
-						$wpdb->insert( $this->form_table_name, $data );
-
-						$fields = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $vfb_fields WHERE form_id = %d ORDER BY field_id", $form->form_id ) );
-						// Copy each field and data
-						foreach ( $fields as $field ) {
-
-							$data = array(
-								'field_id' 			=> $field->field_id,
-								'form_id' 			=> $field->form_id,
-								'field_key' 		=> $field->field_key,
-								'field_type' 		=> $field->field_type,
-								'field_name' 		=> $field->field_name,
-								'field_description' => $field->field_description,
-								'field_options' 	=> $field->field_options,
-								'field_options_other'=> $field->field_options_other,
-								'field_sequence' 	=> $field->field_sequence,
-								'field_validation' 	=> $field->field_validation,
-								'field_required' 	=> $field->field_required,
-								'field_size' 		=> $field->field_size,
-								'field_css' 		=> $field->field_css,
-								'field_layout' 		=> $field->field_layout,
-								'field_parent' 		=> $field->field_parent
-							);
-
-							$wpdb->insert( $this->field_table_name, $data );
-						}
-
-						$entries = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $vfb_entries WHERE form_id = %d ORDER BY entries_id", $form->form_id ) );
-
-						// Copy each entry
-						foreach ( $entries as $entry ) {
-
-							$data = array(
-								'form_id' 			=> $entry->form_id,
-								'data' 				=> $entry->data,
-								'subject' 			=> $entry->subject,
-								'sender_name' 		=> $entry->sender_name,
-								'sender_email' 		=> $entry->sender_email,
-								'emails_to' 		=> $entry->emails_to,
-								'date_submitted' 	=> $entry->date_submitted,
-								'ip_address'	 	=> $entry->ip_address
-							);
-
-							$wpdb->insert( $this->entries_table_name, $data );
-						}
-
-					endforeach;
-
-					// Automatically deactivate free version of Visual Form Builder, if active
-					if ( is_plugin_active( 'visual-form-builder/visual-form-builder.php' ) )
-						deactivate_plugins( '/visual-form-builder/visual-form-builder.php' );
-
-					// Set upgrade as complete so admin notice closes
-					update_option( 'vfb_db_upgrade', 1 );
-
-				break;
-
-				case 'update_entry' :
-					$entry_id = absint( $_REQUEST['entry_id'] );
-
-					check_admin_referer( 'update-entry-' . $entry_id );
-
-					// Get this entry's data
-					$entry = $wpdb->get_var( $wpdb->prepare( "SELECT data FROM $this->entries_table_name WHERE entries_id = %d", $entry_id ) );
-
-					$data = unserialize( $entry );
-
-					// Loop through each field in the update form and save in a way we can use
-					foreach ( $_REQUEST['field'] as $key => $value ) {
-						$fields[ $key ] = $value;
+						$wpdb->insert( $this->entries_table_name, $data );
 					}
 
-					foreach ( $data as $key => $value ) :
+				endforeach;
 
-						$id = $data[ $key ]['id'];
+				// Automatically deactivate free version of Visual Form Builder, if active
+				if ( is_plugin_active( 'visual-form-builder/visual-form-builder.php' ) )
+					deactivate_plugins( '/visual-form-builder/visual-form-builder.php' );
 
-						// Special case for checkbox and radios not showing up in $_POST
-						if ( !isset( $fields[ $id ] ) && in_array( $data[ $key ][ 'type' ], array( 'checkbox', 'radio' ) ) )
-							$data[ $key ]['value'] = '';
-
-						// Only update value if set in $_POST
-						if ( isset( $fields[ $id ] ) ) {
-							if ( in_array( $data[ $key ][ 'type' ], array( 'checkbox' ) ) )
-								$data[ $key ]['value'] = implode( ', ', $fields[ $id ] );
-							else
-								$data[ $key ]['value'] = esc_html( $fields[ $id ] );
-						}
-					endforeach;
-
-					$where = array( 'entries_id' => $entry_id );
-					// Update entry data
-					$wpdb->update( $this->entries_table_name, array( 'data' => serialize( $data ), 'notes' => $_REQUEST['entries-notes'] ), $where );
+				// Set upgrade as complete so admin notice closes
+				update_option( 'vfb_db_upgrade', 1 );
 
 				break;
-			endswitch;
-		endif;
+
+			case 'update_entry' :
+				$entry_id = absint( $_REQUEST['entry_id'] );
+
+				check_admin_referer( 'update-entry-' . $entry_id );
+
+				// Get this entry's data
+				$entry = $wpdb->get_var( $wpdb->prepare( "SELECT data FROM $this->entries_table_name WHERE entries_id = %d", $entry_id ) );
+
+				$data = unserialize( $entry );
+
+				// Loop through each field in the update form and save in a way we can use
+				foreach ( $_REQUEST['field'] as $key => $value ) {
+					$fields[ $key ] = $value;
+				}
+
+				foreach ( $data as $key => $value ) :
+
+					$id = $data[ $key ]['id'];
+
+					// Special case for checkbox and radios not showing up in $_POST
+					if ( !isset( $fields[ $id ] ) && in_array( $data[ $key ][ 'type' ], array( 'checkbox', 'radio' ) ) )
+						$data[ $key ]['value'] = '';
+
+					// Only update value if set in $_POST
+					if ( isset( $fields[ $id ] ) ) {
+						if ( in_array( $data[ $key ][ 'type' ], array( 'checkbox' ) ) )
+							$data[ $key ]['value'] = implode( ', ', $fields[ $id ] );
+						else
+							$data[ $key ]['value'] = esc_html( $fields[ $id ] );
+					}
+				endforeach;
+
+				$where = array( 'entries_id' => $entry_id );
+				// Update entry data
+				$wpdb->update( $this->entries_table_name, array( 'data' => serialize( $data ), 'notes' => $_REQUEST['entries-notes'] ), $where );
+
+				break;
+		endswitch;
 	}
 
 	/**
@@ -1736,7 +1847,7 @@ class Visual_Form_Builder_Pro{
 		$data = array();
 
 		foreach ( $_REQUEST['order'] as $k ) :
-			if ( 'root' !== $k['item_id'] ) :
+			if ( 'root' !== $k['item_id'] && !empty( $k['item_id'] ) ) :
 				$data[] = array(
 					'field_id' 	=> $k['item_id'],
 					'parent' 	=> $k['parent_id']
@@ -1744,10 +1855,15 @@ class Visual_Form_Builder_Pro{
 			endif;
 		endforeach;
 
-		foreach ( $data as $k => $v ) {
+		foreach ( $data as $k => $v ) :
 			// Update each field with it's new sequence and parent ID
-			$wpdb->update( $this->field_table_name, array( 'field_sequence' => $k, 'field_parent' => $v['parent'] ), array( 'field_id' => $v['field_id'] ) );
-		}
+			$wpdb->update( $this->field_table_name, array(
+				'field_sequence'	=> $k,
+				'field_parent'  	=> $v['parent'] ),
+				array( 'field_id' => $v['field_id'] ),
+				'%d'
+			);
+		endforeach;
 
 		die(1);
 	}
@@ -2206,7 +2322,12 @@ class Visual_Form_Builder_Pro{
 							?>
 						</select>
 
-						<a href="#" class="addCondition" title="Add Condition"><?php _e( 'Add', 'visual-form-builder-pro' ); ?></a> <a href="#" class="deleteCondition" title="Delete Condition"><?php _e( 'Delete', 'visual-form-builder-pro' ); ?></a>
+						<a href="#" class="addCondition vfb-interface-icon vfb-interface-plus" title="Add Condition">
+							<?php _e( 'Add', 'visual-form-builder-pro' ); ?>
+						</a>
+						<a href="#" class="deleteCondition vfb-interface-icon vfb-interface-minus" title="Delete Condition">
+							<?php _e( 'Delete', 'visual-form-builder-pro' ); ?>
+						</a>
 					</div> <!-- #vfb-conditional-fields-data -->
 					<?php endfor; ?>
 
@@ -2243,7 +2364,11 @@ class Visual_Form_Builder_Pro{
 							}
 						?>
 						</select>
-						<a href="#" class="addCondition" title="Add Condition"><?php _e( 'Add', 'visual-form-builder-pro' ); ?></a> <a href="#" class="deleteCondition" title="Delete Condition"><?php _e( 'Delete', 'visual-form-builder-pro' ); ?></a>
+						<a href="#" class="addCondition vfb-interface-icon vfb-interface-plus" title="Add Condition">
+							<?php _e( 'Add', 'visual-form-builder-pro' ); ?></a>
+						<a href="#" class="deleteCondition vfb-interface-icon vfb-interface-minus" title="Delete Condition">
+							<?php _e( 'Delete', 'visual-form-builder-pro' ); ?>
+						</a>
 					</div> <!-- #vfb-conditional-fields-data -->
 					<?php endif; ?>
 			</div> <!-- #vfb-build-conditional-fields-container -->
@@ -2329,6 +2454,175 @@ class Visual_Form_Builder_Pro{
 		die(1);
 	}
 
+	public function ajax_email_rules() {
+		global $wpdb;
+
+		$form_id = absint( $_REQUEST['form_id'] );
+
+		// Get the field name and cache the query for the other variables
+		$email_rules = $wpdb->get_var( $wpdb->prepare(
+			"SELECT form_email_rule, form_email_rule_setting
+			FROM $this->form_table_name
+			WHERE form_id = %d",
+			$form_id )
+		);
+
+		$email_rule_setting = $wpdb->get_var( null, 1 );
+		$rules 		= maybe_unserialize( $email_rules );
+
+		// Only get checkbox, select, and radio for list of options
+		$fields = $wpdb->get_results( $wpdb->prepare(
+			"SELECT *
+			FROM $this->field_table_name
+			WHERE field_type IN('select', 'radio') AND form_id = %d
+			ORDER BY field_sequence ASC",
+			$form_id )
+		);
+
+		$field_options = $wpdb->get_var( null, 4 );
+
+		// Display the conditional rules if setting is on
+		$display = ( $email_rule_setting ) ? ' class="show-fields"' : '';
+
+		// Count the number of rules for our index
+		$num_fields = count( $rules['rules'] );
+
+		if ( !$fields ) {
+			echo sprintf( '<div class="warning error"><p>%s</p></div>', __( 'A Select, or Radio field is needed in order to setup email rules.', 'visual-form-builder-pro' ) );
+			wp_die();
+		}
+?>
+<div id="vfb-email-rules">
+	<form id="vfb-add-email-rules" class="media-upload-form type-form validate">
+		<h3 class="media-title">Conditional Field Rules</h3>
+			<p><?php _e( 'This option will allow you to send additional emails to different addresses based on user selection.', 'visual-form-builder-pro' ); ?></p>
+			<p>
+			<label for="vfb-email-rule-setting">
+				<input type="checkbox" name="form_email_rule_setting" id="vfb-email-rule-setting" value="1" <?php checked( $email_rule_setting, '1' ); ?> />
+				<?php _e( 'Enable Email Rules', 'visual-form-builder-pro' ); ?>
+			</label>
+			</p>
+			<div id="vfb-build-email-rules-container"<?php echo $display; ?>>
+
+			<?php if ( 1 == $email_rule_setting ) : ?>
+				<?php for ( $i = 0; $i < $num_fields; $i++ ) : ?>
+
+				<div class="vfb-email-rules-data">
+					if <select name="rules[<?php echo $i; ?>][field]" class="vfb-conditional-other-fields">
+						<?php foreach ( $fields as $field ) : ?>
+							<option value="<?php echo $field->field_id; ?>" <?php selected( $rules['rules'][ $i ]['field'], $field->field_id ); ?>><?php echo esc_html( stripslashes( $field->field_name ) ); ?></option>
+						<?php endforeach; ?>
+					</select>
+					<?php _e( 'is', 'visual-form-builder-pro' ); ?>
+					<?php
+						$these_opts = $wpdb->get_var( $wpdb->prepare( "SELECT field_options FROM $this->field_table_name WHERE field_id = %d ORDER BY field_sequence ASC", $rules['rules'][ $i ]['field'] ) );
+					?>
+					<select name="rules[<?php echo $i; ?>][option]" class="vfb-conditional-other-fields-options">
+						<?php
+						if ( !empty( $these_opts ) ) {
+							$options = maybe_unserialize( $these_opts );
+
+							foreach ( $options as $option ) { ?>
+								<option value="<?php echo esc_attr( stripslashes( $option ) ); ?>" <?php selected( $rules['rules'][ $i ]['option'], $option ); ?>><?php echo esc_html( stripslashes( $option ) ); ?></option>
+							<?php }
+						}
+						?>
+					</select>
+					<?php _e( 'email', 'visual-form-builder-pro' ); ?>
+					<input type="text" name="rules[<?php echo $i; ?>][email]" class="vfb-conditional-condition" value="<?php esc_attr_e( $rules['rules'][$i]['email'] ); ?>">
+
+					<a href="#" class="addEmailRule vfb-interface-icon vfb-interface-plus" title="Add Condition">
+						<?php _e( 'Add', 'visual-form-builder-pro' ); ?>
+					</a>
+					<a href="#" class="deleteEmailRule vfb-interface-icon vfb-interface-minus" title="Delete Condition">
+						<?php _e( 'Delete', 'visual-form-builder-pro' ); ?>
+					</a>
+				</div> <!-- #vfb-conditional-fields-data -->
+				<?php endfor; ?>
+			<?php else : ?>
+				<div class="vfb-email-rules-data">
+					if <select name="rules[0][field]" class="vfb-conditional-other-fields">
+						<?php foreach ( $fields as $field ) : ?>
+							<option value="<?php echo $field->field_id; ?>"><?php echo esc_html( stripslashes( $field->field_name ) ); ?></option>
+						<?php endforeach; ?>
+					</select>
+					<?php _e( 'is', 'visual-form-builder-pro' ); ?>
+					<select name="rules[0][option]" class="vfb-conditional-other-fields-options">
+					<?php
+						if ( !empty( $field_options ) ) {
+							$options = maybe_unserialize( $field_options );
+
+							foreach ( $options as $option ) {
+								echo sprintf( '<option value="%1$s">%2$s</option>', esc_attr( stripslashes( $option ) ), esc_html( stripslashes( $option ) ) );
+							}
+						}
+					?>
+					</select>
+					<?php _e( 'email', 'visual-form-builder-pro' ); ?>
+					<input type="text" name="rules[0][email]" class="vfb-conditional-condition" value="">
+
+					<a href="#" class="addEmailRule vfb-interface-icon vfb-interface-plus" title="Add Condition">
+						<?php _e( 'Add', 'visual-form-builder-pro' ); ?></a>
+					<a href="#" class="deleteEmailRule vfb-interface-icon vfb-interface-minus" title="Delete Condition">
+						<?php _e( 'Delete', 'visual-form-builder-pro' ); ?>
+					</a>
+				</div> <!-- #vfb-conditional-fields-data -->
+			<?php endif; ?>
+			</div> <!-- #vfb-build-email-rules-container -->
+		<input type="hidden" name="form_id" value="<?php echo $form_id; ?>" />
+		<p>
+			<input type="submit" class="button-primary" value="Save" />
+			<span id="vfb-saving-email-rule">
+				<img alt="" src="<?php echo admin_url( '/images/wpspin_light.gif' ); ?>" class="waiting spinner"  />
+				<div id="vfb-saving-email-rule-error"></div>
+			</span>
+		</p>
+	</form>
+</div> <!-- #vfb-email-rules -->
+<?php
+		wp_die();
+	}
+
+	/**
+	 * Save the conditional fields
+	 *
+	 * @since 1.9
+	 */
+	public function ajax_email_rules_save() {
+		global $wpdb;
+
+		if ( !isset( $_REQUEST['action'] ) )
+			return;
+
+		if ( $_REQUEST['action'] == 'visual_form_builder_email_rules_save' ) {
+
+			parse_str( $_REQUEST['data'], $data );
+
+			// Reset the array index in case it's become mangled during cloning
+			$conditions = array_values( $data['rules'] );
+
+			// Reload the rules back into our $data array
+			$data['rules'] = $conditions;
+
+			$form_id 		= absint( $data['form_id'] );
+			$rule_setting 	= isset( $data['form_email_rule_setting'] ) ? absint( $data['form_email_rule_setting'] ) : 0;
+			$rules 			= ( 1 == $rule_setting ) ? serialize( $data ) : '';
+
+			$new_data = array(
+				'form_email_rule_setting'=> $rule_setting,
+				'form_email_rule'        => $rules,
+			);
+
+			$result = $wpdb->update( $this->form_table_name, $new_data, array( 'form_id' => $form_id ) );
+
+			// Return an error if updating failed
+			if ( false === $result )
+				echo 'Saving failed. Email rules not updated.';
+		}
+
+		die(1);
+	}
+
 	/**
 	 * The jQuery PayPal Assign Price to Fields callback
 	 *
@@ -2379,6 +2673,12 @@ class Visual_Form_Builder_Pro{
 		die(1);
 	}
 
+	/**
+	 * Form Settings dropdown saving
+	 *
+	 * @access public
+	 * @return void
+	 */
 	public function ajax_form_settings() {
 		global $current_user;
 		get_currentuserinfo();
@@ -2468,22 +2768,22 @@ class Visual_Form_Builder_Pro{
 			$date = $rows = array();
 			$i = 1;
 
-			switch( $view ) {
+			switch( $view ) :
 				case 'monthly' :
 					$where = 'Year, Month';
 					$d = 'Y-m';
-				break;
+					break;
 
 				case 'weekly' :
 					$where = 'Year, Week';
 					$d = 'Y \WW';
-				break;
+					break;
 
 				case 'daily' :
 					$where = 'Year, Month, Day';
 					$d = 'Y-m-d';
-				break;
-			}
+					break;
+			endswitch;
 
 			if ( $start !== '0' )
 				$date_where .= $wpdb->prepare( " AND date_submitted >= %s", date( 'Y-m-d', strtotime( $start ) ) );
@@ -2697,7 +2997,7 @@ class Visual_Form_Builder_Pro{
 
 		// Ordered view
 		if ( in_array( $user_form_order_type, array( 'order', '' ) ) ) :
-
+			$forms_order->views();
 			$forms_order->prepare_items();
 
 			$forms_order->search_box( 'search', 'search_id' );
@@ -2914,72 +3214,60 @@ class Visual_Form_Builder_Pro{
 	 * @since 1.0
 	 */
 	public function admin_notices(){
-		if ( isset( $_REQUEST['action'] ) ) {
-			switch( $_REQUEST['action'] ) {
-				case 'create_form' :
-					echo '<div id="message" class="updated"><p>' . __( 'The form has been successfully created.' , 'visual-form-builder-pro') . '</p></div>';
-				break;
-				case 'update_form' :
-					echo '<div id="message" class="updated"><p>' . sprintf( __( 'The %s form has been updated. <a href="%s" target="_blank">View the Preview</a> to see how it looks.' , 'visual-form-builder-pro'), '<strong>' . $_REQUEST['form_title'] . '</strong>', add_query_arg( array( 'form' => $_REQUEST['form_id'], 'preview' => 1 ), plugins_url( 'visual-form-builder-pro/form-preview.php' ) ) ) . '</p></div>';
+		if ( !isset( $_REQUEST['action'] ) )
+			return;
 
-					if ( $this->post_max_vars ) :
-						// Get max post vars, if available. Otherwise set to 1000
-						$max_post_vars = ( ini_get( 'max_input_vars' ) ) ? intval( ini_get( 'max_input_vars' ) ) : 1000;
+		switch( $_REQUEST['action'] ) :
+			case 'create_form' :
+				echo sprintf( '<div id="message" class="updated"><p>%s</p></div>', __( 'Form created.' , 'visual-form-builder-pro' ) );
+				break;
 
-						echo '<div id="message" class="error"><p>' . sprintf( __( 'Error saving form. The maximum amount of data allowed by your server has been reached. Please update <a href="%s" target="_blank">max_input_vars</a> in your php.ini file to allow more data to be saved. Current limit is <strong>%d</strong>', 'visual-form-builder-pro' ), 'http://www.php.net/manual/en/info.configuration.php#ini.max-input-vars', $max_post_vars ) . '</p></div>';
-					endif;
-				break;
-				case 'deleted' :
-					echo '<div id="message" class="updated"><p>' . __( 'The form has been successfully deleted.' , 'visual-form-builder-pro') . '</p></div>';
-				break;
-				case 'copy_form' :
-					echo '<div id="message" class="updated"><p>' . __( 'The form has been successfully duplicated.' , 'visual-form-builder-pro') . '</p></div>';
-				break;
-				case 'ignore_notice' :
-					update_option( 'vfb_ignore_notice', 1 );
-				break;
-				case 'upgrade' :
-					echo '<div id="message" class="updated"><p>' . __( 'You have successfully migrated to Visual Form Builder Pro!' , 'visual-form-builder-pro') . '</p></div>';
-				break;
-				case 'email_design' :
-					echo '<div id="message" class="updated"><p>' . sprintf( __( 'Email design has been updated. <a href="%s" target="_blank">View the Preview</a> to see how it looks.' , 'visual-form-builder-pro'), add_query_arg( 'form', $_REQUEST['form_id'], plugins_url( 'visual-form-builder-pro/email-preview.php' ) ) ) . '</p></div>';
-				break;
-				case 'update_entry' :
-					echo '<div id="message" class="updated"><p>' . __( 'Entry has been successfully updated.' , 'visual-form-builder-pro') . '</p></div>';
-				break;
-			}
+			case 'update_form' :
+				$preview_link = sprintf( __( 'Form updated. <a href="%s" target="_blank">View preview</a>' , 'visual-form-builder-pro' ), add_query_arg( array( 'form' => $_REQUEST['form_id'], 'preview' => 1 ), plugins_url( 'visual-form-builder-pro/form-preview.php' ) ) );
+				echo sprintf( '<div id="message" class="updated"><p>%s</p></div>', $preview_link );
 
-		}
+				if ( $this->post_max_vars ) :
+					// Get max post vars, if available. Otherwise set to 1000
+					$max_post_vars = ( ini_get( 'max_input_vars' ) ) ? intval( ini_get( 'max_input_vars' ) ) : 1000;
 
-		// If the free version of VFB is detected and the user is an admin, display the notice
-		if ( get_option( 'vfb_db_version' ) && current_user_can( 'install_plugins' ) ) {
-			// If they have upgraded, don't display
-			if ( ! get_option( 'vfb_db_upgrade' ) ) {
-				// If they've dismissed the notice, don't display
-				if ( ! get_option( 'vfb_ignore_notice' ) ) {
-?>					<div class="updated">
-					<p>
-						<?php _e( 'A version of Visual Form Builder has been detected. To copy your forms and data to Visual Form Builder Pro, click the Migrate Forms button below', 'visual-form-builder-pro' ); ?>
-					</p>
-					<p>
-						<?php _e( '<strong>Note</strong>: It is recommended that you perform this action <em>before</em> you begin adding forms.', 'visual-form-builder-pro' ); ?>
-					</p>
-					<p>
-						<a href="?page=visual-form-builder-pro&action=upgrade" class="button button-primary"><?php _e( 'Migrate Forms', 'visual-form-builder-pro' ); ?></a>
-						<a href="?page=visual-form-builder-pro&action=ignore_notice" class="button button-secondary"><?php _e( 'Dismiss', 'visual-form-builder-pro' ); ?></a>
-					</p>
-					</div> <!-- .updated -->
-<?php
-				}
-			}
+					echo '<div id="message" class="error"><p>' . sprintf( __( 'Error saving form. The maximum amount of data allowed by your server has been reached. Please update <a href="%s" target="_blank">max_input_vars</a> in your php.ini file to allow more data to be saved. Current limit is <strong>%d</strong>', 'visual-form-builder-pro' ), 'http://www.php.net/manual/en/info.configuration.php#ini.max-input-vars', $max_post_vars ) . '</p></div>';
+				endif;
+				break;
 
-			// If the free version is active and user has upgraded or dismissed notice
-			if ( is_plugin_active( 'visual-form-builder/visual-form-builder.php' ) ) {
-				if ( get_option( 'vfb_db_upgrade' ) || get_option( 'vfb_ignore_notice' ) )
-					echo '<div id="message" class="error"><p>' . __( 'The free version of Visual Form Builder is still active. In order for Visual Form Builder Pro to function and render correctly, you must deactivate the free version.' , 'visual-form-builder-pro') . '</p></div>';
-			}
-		}
+			case 'trash' :
+				echo sprintf( '<div id="message" class="updated"><p>%s</p></div>', __( 'Item moved to the Trash.' , 'visual-form-builder-pro' ) );
+				break;
 
+			case 'delete' :
+				echo sprintf( '<div id="message" class="updated"><p>%s</p></div>', __( 'Item permanently deleted.' , 'visual-form-builder-pro' ) );
+				break;
+
+			case 'restore' :
+				echo sprintf( '<div id="message" class="updated"><p>%s</p></div>', __( 'Item restored from the Trash.' , 'visual-form-builder-pro' ) );
+				break;
+
+			case 'copy_form' :
+				$new_form_link = sprintf( '<a href="?page=%s&action=%s&form=%s">%s</a>', $_REQUEST['page'], 'edit', $_REQUEST['form'], __( 'Edit.', 'visual-form-builder-pro' ) );
+				echo sprintf( '<div id="message" class="updated"><p>%s %s</p></div>', __( 'Item successfully duplicated.' , 'visual-form-builder-pro' ), $new_form_link );
+				break;
+
+			case 'ignore_notice' :
+				update_option( 'vfb_ignore_notice', 1 );
+				break;
+
+			case 'upgrade' :
+				echo sprintf( '<div id="message" class="updated"><p>%s</p></div>', __( 'You have successfully migrated to Visual Form Builder Pro!' , 'visual-form-builder-pro' ) );
+				break;
+
+			case 'email_design' :
+				$preview_link = sprintf( __( 'Email design updated. <a href="%s" target="_blank">View preview</a>' , 'visual-form-builder-pro' ), add_query_arg( array( 'form' => $_REQUEST['form_id'], ), plugins_url( 'visual-form-builder-pro/email-preview.php' ) ) );
+				echo sprintf( '<div id="message" class="updated"><p>%s</p></div>', $preview_link );
+				break;
+
+			case 'update_entry' :
+				echo sprintf( '<div id="message" class="updated"><p>%s</p></div>', __( 'Entry updated.' , 'visual-form-builder-pro' ) );
+				break;
+		endswitch;
 	}
 
 	/**
@@ -3199,15 +3487,18 @@ class Visual_Form_Builder_Pro{
 				echo '<span class="subtitle">' . sprintf( __( 'Search results for "%s"' , 'visual-form-builder-pro'), $_REQUEST['s'] );
 ?>
 		</h2>
-		<?php if ( empty( $form_nav_selected_id ) ) : ?>
-		<div id="vfb-form-list">
-			<div id="vfb-main" class="vfb-order-type-<?php echo ( in_array( $user_form_order_type, array( 'order', '' ) ) ) ? 'order' : 'list'; ?>">
-			<?php $this->all_forms(); ?>
-			</div> <!-- #vfb-main -->
-		</div> <!-- #vfb-form-list -->
 <?php
-			elseif ( !empty( $form_nav_selected_id ) && $form_nav_selected_id !== '0' ) :
+			// Display form editor or the form list
+			if ( isset( $_GET['form'] ) && 'edit' == $_GET['action'] ) :
 				include_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'includes/admin-form-creator.php' );
+			else :
+?>
+			<div id="vfb-form-list">
+				<div id="vfb-main" class="vfb-order-type-<?php echo ( in_array( $user_form_order_type, array( 'order', '' ) ) ) ? 'order' : 'list'; ?>">
+				<?php $this->all_forms(); ?>
+				</div> <!-- #vfb-main -->
+			</div> <!-- #vfb-form-list -->
+<?php
 			endif;
 ?>
 	</div>
@@ -3224,72 +3515,80 @@ class Visual_Form_Builder_Pro{
 
 		$form_id = ( isset( $_REQUEST['form_id'] ) ) ? (int) esc_html( $_REQUEST['form_id'] ) : '';
 
-		if ( isset( $_REQUEST['visual-form-builder-submit'] ) ) :
+		if ( !isset( $_REQUEST['vfb-submit'] ) )
+			return;
 
-			do_action( 'vfb_confirmation', $form_id, $this->new_entry_id );
+		do_action( 'vfb_confirmation', $form_id, $this->new_entry_id );
 
-			// Allow custom query arguments to be appended to redirects
-			$query_args = apply_filters( 'vfb_redirect_query_args', '', $form_id, $this->new_entry_id );
+		// Allow custom query arguments to be appended to redirects
+		$query_args = apply_filters( 'vfb_redirect_query_args', '', $form_id, $this->new_entry_id );
 
-			// Get forms
-			$order = sanitize_sql_orderby( 'form_id DESC' );
-			$forms 	= $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->form_table_name WHERE form_id = %d ORDER BY $order", $form_id ) );
+		// Get forms
+		$order = sanitize_sql_orderby( 'form_id DESC' );
+		$forms 	= $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->form_table_name WHERE form_id = %d ORDER BY $order", $form_id ) );
 
-			foreach ( $forms as $form ) :
+		foreach ( $forms as $form ) :
 
-				// If user wants this to redirect to PayPal
-				if ( $form->form_paypal_setting ) {
+			// If user wants this to redirect to PayPal
+			if ( $form->form_paypal_setting ) {
 
-					$paypal_data = array(
-						'paypal_field'	=> $form->form_paypal_field_price,
-						'item_name'		=> $form->form_paypal_item_name,
-						'currency_code'	=> $form->form_paypal_currency,
-						'tax_rate'		=> $form->form_paypal_tax,
-						'shipping'		=> $form->form_paypal_shipping,
-						'business'		=> $form->form_paypal_email,
-					);
+				$paypal_data = array(
+					'paypal_field'	=> $form->form_paypal_field_price,
+					'item_name'		=> $form->form_paypal_item_name,
+					'currency_code'	=> $form->form_paypal_currency,
+					'tax_rate'		=> $form->form_paypal_tax,
+					'shipping'		=> $form->form_paypal_shipping,
+					'business'		=> $form->form_paypal_email,
+				);
 
-					$this->paypal_redirect( $paypal_data, $form_id );
+				$this->paypal_redirect( $paypal_data, $form_id );
+			}
+
+			// Allow templating within confirmation message
+			$form->form_success_message = $this->templating( $form->form_success_message );
+
+			// Apply a filter for the success message
+			$form->form_success_message = apply_filters( 'vfb_form_success_message', $form->form_success_message, $form_id, $form->form_success_type );
+
+			// If text, return output and format the HTML for display
+			if ( 'text' == $form->form_success_type ) :
+				return stripslashes( html_entity_decode( wp_kses_stripslashes( $form->form_success_message ) ) );
+			// If page, redirect to the permalink
+			elseif ( 'page' == $form->form_success_type ) :
+				$page = get_permalink( $form->form_success_message );
+				wp_redirect( esc_url_raw( $page . $query_args ) );
+				exit();
+			// If redirect, redirect to the URL
+			elseif ( 'redirect' == $form->form_success_type ) :
+				wp_redirect( esc_url_raw( $form->form_success_message . $query_args ) );
+				exit();
+			// Display Entry with Text message prepended
+			elseif ( 'display-entry' == $form->form_success_type ) :
+				// At least output the Text message
+				$output = stripslashes( html_entity_decode( wp_kses_stripslashes( $form->form_success_message ) ) );
+
+				// Only add entry to output if Display Entries is active
+				if ( class_exists( 'VFB_Pro_Display_Entries' ) ) {
+					$output .= vfb_display_entries( array(
+						'entry_id' 	=> $this->new_entry_id,
+						'echo'		=> 0
+					));
 				}
 
-				// Allow templating within confirmation message
-				$form->form_success_message = $this->templating( $form->form_success_message );
+				return $output;
+			endif;
 
-				// Apply a filter for the success message
-				$form->form_success_message = apply_filters( 'vfb_form_success_message', $form->form_success_message, $form_id );
-
-				// If text, return output and format the HTML for display
-				if ( 'text' == $form->form_success_type ) :
-					return stripslashes( html_entity_decode( wp_kses_stripslashes( $form->form_success_message ) ) );
-				// If page, redirect to the permalink
-				elseif ( 'page' == $form->form_success_type ) :
-					$page = get_permalink( $form->form_success_message );
-					wp_redirect( esc_url_raw( $page . $query_args ) );
-					exit();
-				// If redirect, redirect to the URL
-				elseif ( 'redirect' == $form->form_success_type ) :
-					wp_redirect( esc_url_raw( $form->form_success_message . $query_args ) );
-					exit();
-				// Display Entry with Text message prepended
-				elseif ( 'display-entry' == $form->form_success_type ) :
-					// At least output the Text message
-					$output = stripslashes( html_entity_decode( wp_kses_stripslashes( $form->form_success_message ) ) );
-
-					// Only add entry to output if Display Entries is active
-					if ( class_exists( 'VFB_Pro_Display_Entries' ) ) {
-						$output .= vfb_display_entries( array(
-							'entry_id' 	=> $this->new_entry_id,
-							'echo'		=> 0
-						));
-					}
-
-					return $output;
-				endif;
-
-			endforeach;
-		endif;
+		endforeach;
 	}
 
+	/**
+	 * PayPal redirection
+	 *
+	 * @access public
+	 * @param mixed $data
+	 * @param mixed $form_id
+	 * @return void
+	 */
 	public function paypal_redirect( $data, $form_id ) {
 
 		extract( $data );
@@ -3330,6 +3629,11 @@ class Visual_Form_Builder_Pro{
 		endif;
 
 		$data['amount'] = $amount;
+
+		$skip_total_zero = apply_filters( 'vfb_skip_total_zero', false, $form_id );
+
+		if ( $skip_total_zero && empty( $data['amount'] ) )
+			return;
 
 		$extra_vars = apply_filters( 'vfb_paypal_extra_vars', array(), $form_id );
 
@@ -3396,6 +3700,9 @@ class Visual_Form_Builder_Pro{
 	 * @since 1.3
 	 */
 	public function validate_input( $data, $name, $type, $required, $form_verification, $field_rule_setting = 0 ) {
+
+		do_action_ref_array( 'vfb_validate_input', array( $data, $name, $type, $required, $form_verification, $field_rule_setting ) );
+
 		// Skip the validation if the verification is off and secret is still required
 		if ( 'yes' == $required && 'secret' == $type && 0 == $form_verification )
 			return true;
@@ -3405,37 +3712,37 @@ class Visual_Form_Builder_Pro{
 			return true;
 
 		if ( 'yes' == $required && strlen( $data ) == 0 )
-			wp_die( "<h1>$name</h1><br>" . __( 'This field is required and cannot be empty.', 'visual-form-builder-pro' ), $name, array( 'back_link' => true ) );
+			wp_die( "<h1>$name</h1><br>" . apply_filters( 'vfb_str_validate_required', __( 'This field is required and cannot be empty.', 'visual-form-builder-pro' ) ), $name, array( 'back_link' => true ) );
 
 		if ( strlen( $data ) > 0 ) :
-			switch( $type ) {
+			switch( $type ) :
 				case 'email' :
 					if ( !is_email( $data ) )
-						wp_die( "<h1>$name</h1><br>" . __( 'Not a valid email address', 'visual-form-builder-pro' ), '', array( 'back_link' => true ) );
-				break;
+						wp_die( "<h1>$name</h1><br>" . apply_filters( 'vfb_str_validate_email', __( 'Not a valid email address', 'visual-form-builder-pro' ) ), '', array( 'back_link' => true ) );
+						break;
 
 				case 'number' :
 				case 'currency' :
 					if ( !is_numeric( $data ) )
-						wp_die( "<h1>$name</h1><br>" . __( 'Not a valid number', 'visual-form-builder-pro' ), '', array( 'back_link' => true ) );
-				break;
+						wp_die( "<h1>$name</h1><br>" . apply_filters( 'vfb_str_validate_number', __( 'Not a valid number', 'visual-form-builder-pro' ) ), '', array( 'back_link' => true ) );
+						break;
 
 				case 'phone' :
 					if ( strlen( $data ) > 9 && preg_match( '/^((\+)?[1-9]{1,2})?([-\s\.])?((\(\d{1,4}\))|\d{1,4})(([-\s\.])?[0-9]{1,12}){1,2}$/', $data ) )
 						return true;
 					else
-						wp_die( "<h1>$name</h1><br>" . __( 'Not a valid phone number. Most US/Canada and International formats accepted.', 'visual-form-builder-pro' ), '', array( 'back_link' => true ) );
-				break;
+						wp_die( "<h1>$name</h1><br>" . apply_filters( 'vfb_str_validate_phone', __( 'Not a valid phone number. Most US/Canada and International formats accepted.', 'visual-form-builder-pro' ) ), '', array( 'back_link' => true ) );
+						break;
 
 				case 'url' :
 					if ( !preg_match( '|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $data ) )
-						wp_die( "<h1>$name</h1><br>" . __( 'Not a valid URL.', 'visual-form-builder-pro' ), '', array( 'back_link' => true ) );
-				break;
+						wp_die( "<h1>$name</h1><br>" . apply_filters( 'vfb_str_validate_url', __( 'Not a valid URL.', 'visual-form-builder-pro' ) ), '', array( 'back_link' => true ) );
+						break;
 
 				default :
 					return true;
-				break;
-			}
+					break;
+			endswitch;
 		endif;
 	}
 
@@ -3445,50 +3752,62 @@ class Visual_Form_Builder_Pro{
 	 * @since 1.9
 	 */
 	public function sanitize_input( $data, $type ) {
+
+		do_action( 'vfb_sanitize_input', $data, $type );
+
 		if ( strlen( $data ) > 0 ) :
-			switch( $type ) {
+			switch( $type ) :
 				case 'text' :
 					return sanitize_text_field( $data );
-				break;
+					break;
 
 				case 'textarea' :
 					return wp_strip_all_tags( $data );
-				break;
+					break;
 
 				case 'email' :
 					return sanitize_email( $data );
-				break;
+					break;
 
 				case 'username' :
 					return sanitize_user( strtolower( $data ) );
-				break;
+					break;
 
 				case 'html' :
 					return wp_kses_data( force_balance_tags( $data ) );
-				break;
+					break;
 
 				case 'min' :
 				case 'max' :
 				case 'number' :
 					return floatval( $data );
-				break;
+					break;
 
 				case 'address' :
 					$allowed_html = array( 'br' => array() );
 					return wp_kses( $data, $allowed_html );
-				break;
+					break;
 
 				default :
 					return wp_kses_data( $data );
-				break;
-			}
+					break;
+			endswitch;
 		endif;
 	}
 
 
+	/**
+	 * Akismet check
+	 *
+	 * @access protected
+	 * @param mixed $data
+	 * @return void
+	 */
 	protected function akismet_check( $data ) {
 		if ( !function_exists( 'akismet_http_post' ) )
 			return false;
+
+		do_action( 'vfb_akismet_check', $data );
 
 		global $akismet_api_host, $akismet_api_port;
 
@@ -3516,19 +3835,25 @@ class Visual_Form_Builder_Pro{
 	 * @since 1.3
 	 */
 	public function isBot() {
-		$bots = apply_filters( 'vfb_blocked_spam_bots', array( 'archiver', 'binlar', 'casper', 'checkprivacy', 'clshttp', 'cmsworldmap', 'comodo', 'curl', 'diavol', 'dotbot', 'email', 'extract', 'feedfinder', 'flicky',  'grab', 'harvest', 'httrack', 'ia_archiver', 'jakarta', 'kmccrew', 'libwww', 'loader', 'miner', 'nikto', 'nutch', 'planetwork', 'purebot', 'pycurl', 'python', 'scan', 'skygrid', 'sucker', 'turnit', 'vikspider', 'wget', 'winhttp', 'youda', 'zmeu', 'zune' ) );
+		$bots = apply_filters( 'vfb_blocked_spam_bots', array(
+			'<', '>', '&lt;', '%0A', '%0D', '%27', '%3C', '%3E', '%00', 'href',
+			'binlar', 'casper', 'cmsworldmap', 'comodo', 'diavol',
+			'dotbot', 'feedfinder', 'flicky', 'ia_archiver', 'jakarta',
+			'kmccrew', 'nutch', 'planetwork', 'purebot', 'pycurl',
+			'skygrid', 'sucker', 'turnit', 'vikspider', 'zmeu',
+			)
+		);
 
 		$isBot = false;
 
-		$user_agent = wp_kses_data( $_SERVER['HTTP_USER_AGENT'] );
+		$user_agent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? wp_kses_data( $_SERVER['HTTP_USER_AGENT'] ) : '';
+
+		do_action( 'vfb_isBot', $user_agent, $bots );
 
 		foreach ( $bots as $bot ) {
 			if ( stripos( $user_agent, $bot ) !== false )
 				$isBot = true;
 		}
-
-		if ( empty( $user_agent ) || $user_agent == ' ' )
-			$isBot = true;
 
 		return $isBot;
 	}
@@ -3552,6 +3877,16 @@ class Visual_Form_Builder_Pro{
 		return $key;
 	}
 
+	/**
+	 * Build array form items output for email
+	 *
+	 * Includes the Address, Name, Time, and Checkbox fields
+	 *
+	 * @access public
+	 * @param mixed $value
+	 * @param string $type (default: '')
+	 * @return void
+	 */
 	public function build_array_form_item( $value, $type = '' ) {
 
 		$output = '';
@@ -3575,7 +3910,7 @@ class Visual_Form_Builder_Pro{
 
 			case 'time' :
 				$output = ( array_key_exists( 'ampm', $value ) ) ? substr_replace( implode( ':', $value ), ' ', 5, 1 ) : implode( ':', $value );
-			break;
+				break;
 
 			case 'address' :
 
@@ -3613,7 +3948,7 @@ class Visual_Form_Builder_Pro{
 					$output .= $value['country'];
 				}
 
-			break;
+				break;
 
 			case 'name' :
 
@@ -3638,25 +3973,28 @@ class Visual_Form_Builder_Pro{
 					$output .= $value['suffix'];
 				}
 
-			break;
+				break;
 
 			case 'checkbox' :
-
 				$output = esc_html( implode( ', ', $value ) );
-
-			break;
+				break;
 
 			default :
-
 				$output = wp_specialchars_decode( stripslashes( esc_html( $value ) ), ENT_QUOTES );
-
-			break;
+				break;
 
 		endswitch;
 
 		return $output;
 	}
 
+	/**
+	 * Payments Add-On form output
+	 *
+	 * @access public
+	 * @param mixed $form_id
+	 * @return void
+	 */
 	public function payments_output( $form_id ) {
 		// Run Payments add-on
 		if ( class_exists( 'VFB_Pro_Payments' ) )
@@ -3727,6 +4065,35 @@ class Visual_Form_Builder_Pro{
 		endif;
 
 		return $output;
+	}
+
+
+	/**
+	 * Check whether the content contains the specified shortcode
+	 *
+	 * @access public
+	 * @param string $shortcode (default: '')
+	 * @return void
+	 */
+	function has_shortcode($shortcode = '') {
+
+		$post_to_check = get_post(get_the_ID());
+
+		// false because we have to search through the post content first
+		$found = false;
+
+		// if no short code was provided, return false
+		if (!$shortcode) {
+			return $found;
+		}
+		// check the post content for the short code
+		if ( stripos($post_to_check->post_content, '[' . $shortcode) !== false ) {
+			// we have found the short code
+			$found = true;
+		}
+
+		// return our final results
+		return $found;
 	}
 }
 

@@ -51,40 +51,59 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 
 		$actions = array();
 
-		// Edit Form
-		if ( current_user_can( 'vfb_edit_forms' ) ) :
-			$form_title = sprintf( '<strong><a href="?page=%s&form=%s" id="%3$s" class="view-form">%s</a></strong>', $_REQUEST['page'], $item['form_id'], $item['form_title'] );
-			$actions['edit'] = sprintf( '<a href="?page=%s&action=%s&form=%s" id="%3$s" class="view-form">%s</a>', $_REQUEST['page'], 'edit', $item['form_id'], __( 'Edit', 'visual-form-builder-pro' ) );
+		$form_title = sprintf( '<strong>%s</strong>', $item['form_title'] );
+
+		$draft_state = '';
+
+		// Default Entries view
+		if ( !$this->get_form_status() || in_array( $this->get_form_status(), array( 'all', 'draft' ) ) ) :
+			// Edit Form
+			if ( current_user_can( 'vfb_edit_forms' ) ) :
+				// Append Draft status to title
+				if ( 'draft' == $item['status'] && 'draft' !== $this->get_form_status() )
+					$draft_state = sprintf( '<strong> - %s</strong>', __( 'Draft', 'visual-form-builder-pro' ) );
+
+				$form_title = sprintf( '<a href="?page=%s&action=%s&form=%s" id="%3$s" class="view-form">%s</a>%s', $_REQUEST['page'], 'edit', $item['form_id'], $form_title, $draft_state );
+				$actions['edit'] = sprintf( '<a href="?page=%s&action=%s&form=%s" id="%3$s" class="view-form">%s</a>', $_REQUEST['page'], 'edit', $item['form_id'], __( 'Edit', 'visual-form-builder-pro' ) );
+			endif;
+
+			// Email Design
+			if ( current_user_can( 'vfb_edit_email_design' ) ) :
+				$actions['email'] = sprintf( '<a href="%s&form_id=%s" id="%3$s" class="view-form">%s</a>', admin_url( 'admin.php?page=vfb-email-design' ), $item['form_id'], __( 'Email Design', 'visual-form-builder-pro' ) );
+			endif;
+
+			// Analytics
+			if ( current_user_can( 'vfb_view_analytics' ) ) :
+				$actions['analytics'] = sprintf( '<a href="%s&form_id=%s" id="%3$s" class="view-form">%s</a>', admin_url( 'admin.php?page=vfb-reports' ), $item['form_id'], __( 'Analytics', 'visual-form-builder-pro' ) );
+			endif;
+
+			// Payments Add-on
+			if ( current_user_can( 'vfb_edit_forms' ) && class_exists( 'VFB_Pro_Payments' ) ) :
+				$actions['payments'] = sprintf( '<a href="%s&form_id=%s" id="%3$s" class="view-form">%s</a>', admin_url( 'admin.php?page=vfb-payments' ), $item['form_id'], __( 'Payments', 'visual-form-builder-pro' ) );
+			endif;
+
+			// Duplicate Form
+			if ( current_user_can( 'vfb_copy_forms' ) ) :
+				$actions['copy'] = sprintf( '<a href="%s&action=%s&form=%s" id="%3$s" class="view-form">%s</a>', wp_nonce_url( admin_url( 'admin.php?page=visual-form-builder-pro' ), 'copy-form-' . $item['form_id'] ), 'copy_form', $item['form_id'], __( 'Duplicate', 'visual-form-builder-pro' ) );
+			endif;
 		endif;
 
-		// Email Design
-		if ( current_user_can( 'vfb_edit_email_design' ) ) :
-			$actions['email'] = sprintf( '<a href="%s&form_id=%s" id="%3$s" class="view-form">%s</a>', admin_url( 'admin.php?page=vfb-email-design' ), $item['form_id'], __( 'Email Design', 'visual-form-builder-pro' ) );
-		endif;
-
-		// Analytics
-		if ( current_user_can( 'vfb_view_analytics' ) ) :
-			$actions['analytics'] = sprintf( '<a href="%s&form_id=%s" id="%3$s" class="view-form">%s</a>', admin_url( 'admin.php?page=vfb-reports' ), $item['form_id'], __( 'Analytics', 'visual-form-builder-pro' ) );
-		endif;
-
-		// Payments Add-on
-		if ( current_user_can( 'vfb_edit_forms' ) && class_exists( 'VFB_Pro_Payments' ) ) :
-			$actions['payments'] = sprintf( '<a href="%s&form_id=%s" id="%3$s" class="view-form">%s</a>', admin_url( 'admin.php?page=vfb-payments' ), $item['form_id'], __( 'Payments', 'visual-form-builder-pro' ) );
-		endif;
-
-		// Duplicate Form
-		if ( current_user_can( 'vfb_copy_forms' ) ) :
-			$actions['copy'] = sprintf( '<a href="%s&action=%s&form=%s" id="%3$s" class="view-form">%s</a>', wp_nonce_url( admin_url( 'admin.php?page=visual-form-builder-pro' ), 'copy-form-' . $item['form_id'] ), 'copy_form', $item['form_id'], __( 'Duplicate', 'visual-form-builder-pro' ) );
-		endif;
-
-		// Delete Form
+		// Trashed Forms view
 		if ( current_user_can( 'vfb_delete_forms' ) ) :
-			$actions['delete'] = sprintf( '<a href="%s&action=%s&form=%s" id="%3$s" class="view-form">%s</a>', wp_nonce_url( admin_url( 'admin.php?page=visual-form-builder-pro' ), 'delete-form-' . $item['form_id'] ), 'delete_form', $item['form_id'], __( 'Delete', 'visual-form-builder-pro' ) );
+			if ( !$this->get_form_status() || in_array( $this->get_form_status(), array( 'all', 'draft' ) ) )
+				$actions['trash'] = sprintf( '<a href="?page=%s&action=%s&form=%s">%s</a>', $_REQUEST['page'], 'trash', $item['form_id'], __( 'Trash', 'visual-form-builder-pro' ) );
+			elseif ( $this->get_form_status() && 'trash' == $this->get_form_status() ) {
+				$actions['restore'] = sprintf( '<a href="?page=%s&action=%s&form=%s">%s</a>', $_REQUEST['page'], 'restore', $item['form_id'], __( 'Restore', 'visual-form-builder-pro' ) );
+				$actions['delete'] = sprintf( '<a href="?page=%s&action=%s&form=%s">%s</a>', $_REQUEST['page'], 'delete', $item['form_id'], __( 'Delete Permanently', 'visual-form-builder-pro' ) );
+			}
 		endif;
 
-		// Preview Form
-		if ( current_user_can( 'vfb_edit_forms' ) ) :
-			$actions['view'] = sprintf( '<a href="%1$s" id="%3$s" class="view-form" target="_blank">%3$s</a>', esc_url( add_query_arg( array( 'form' => $item['form_id'], 'preview' => 1 ), plugins_url( 'visual-form-builder-pro/form-preview.php' ) ) ), $item['form_id'], __( 'Preview', 'visual-form-builder-pro' ) );
+		// Ensure Preview link is always last
+		if ( !$this->get_form_status() || in_array( $this->get_form_status(), array( 'all', 'draft' ) ) ) :
+			// Preview Form
+			if ( current_user_can( 'vfb_edit_forms' ) ) :
+				$actions['view'] = sprintf( '<a href="%1$s" id="%3$s" class="view-form" target="_blank">%3$s</a>', esc_url( add_query_arg( array( 'form' => $item['form_id'], 'preview' => 1 ), plugins_url( 'visual-form-builder-pro/form-preview.php' ) ) ), $item['form_id'], __( 'Preview', 'visual-form-builder-pro' ) );
+			endif;
 		endif;
 
 		return sprintf( '%1$s %2$s', $form_title, $this->row_actions( $actions ) );
@@ -162,10 +181,30 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 		if ( $this->current_filter_action() )
 			$where .= ' AND forms.form_id = ' . $this->current_filter_action();
 
+		// Forms type filter
+		$where .= ( $this->get_form_status() && 'all' !== $this->get_form_status() ) ? $wpdb->prepare( ' AND forms.form_status = %s', $this->get_form_status() ) : '';
+
+		// Always display all forms, unless an Form Type filter is set
+		if ( !$this->get_form_status() || in_array( $this->get_form_status(), array( 'all', 'draft' ) ) )
+			$where .= $wpdb->prepare( ' AND forms.form_status IN("%s","%s")', 'publish', 'draft' );
+
 		$sql_order = sanitize_sql_orderby( "$orderby $order" );
-		$cols = $wpdb->get_results( "SELECT forms.form_id, forms.form_title FROM $this->form_table_name AS forms WHERE 1=1 $where $search ORDER BY $sql_order LIMIT $per_page $offset" );
+		$cols = $wpdb->get_results( "SELECT forms.form_id, forms.form_title, forms.form_status FROM $this->form_table_name AS forms WHERE 1=1 $where $search ORDER BY $sql_order LIMIT $per_page $offset" );
 
 		return $cols;
+	}
+
+	/**
+	 * Get the form status: All, Trash
+	 *
+	 * @since 2.3.7
+	 * @returns string Form status
+	 */
+	function get_form_status() {
+		if ( !isset( $_REQUEST['form_status'] ) )
+			return false;
+
+		return esc_html( $_REQUEST['form_status'] );
 	}
 
 	/**
@@ -176,15 +215,17 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 	 */
 	function get_views() {
 		$status_links = array();
-		$num_forms = $this->get_forms_count();
-		$class = '';
-		$link = '?page=visual-form-builder';
+		$num_forms    = $this->get_forms_count();
+		$class        = '';
+		$link         = '?page=visual-form-builder-pro';
 
 		$stati = array(
 			'all'    => _n_noop( 'All <span class="count">(<span class="pending-count">%s</span>)</span>', 'All <span class="count">(<span class="pending-count">%s</span>)</span>' ),
+			'draft'  => _n_noop( 'Draft <span class="count">(<span class="pending-count">%s</span>)</span>', 'Drafts <span class="count">(<span class="pending-count">%s</span>)</span>' ),
+			'trash'  => _n_noop( 'Trash <span class="count">(<span class="trash-count">%s</span>)</span>', 'Trash <span class="count">(<span class="trash-count">%s</span>)</span>' ),
 		);
 
-		$total_entries = (int) $num_forms->all;
+		$total_forms = (int) $num_forms->all;
 		$entry_status = isset( $_REQUEST['form_status'] ) ? $_REQUEST['form_status'] : 'all';
 
 		foreach ( $stati as $status => $label ) {
@@ -243,9 +284,23 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 
 		$stats = array();
 
-		$count = $wpdb->get_var( "SELECT COUNT(*) FROM $this->form_table_name" );
+		$forms = $wpdb->get_results( "SELECT forms.form_status, COUNT(*) AS num_forms FROM $this->form_table_name AS forms GROUP BY forms.form_status", ARRAY_A );
 
-		$stats['all'] = $count;
+		$total = 0;
+		$published = array( 'publish' => 'publish', 'draft' => 'draft', 'trash' => 'trash' );
+		foreach ( (array) $forms as $row ) {
+			// Don't count trashed toward totals
+			if ( 'trash' != $row['form_status'] )
+				$total += $row['num_forms'];
+			if ( isset( $published[ $row['form_status' ] ] ) )
+				$stats[ $published[ $row['form_status' ] ] ] = $row['num_forms'];
+		}
+
+		$stats['all'] = $total;
+		foreach ( $published as $key ) {
+			if ( empty( $stats[ $key ] ) )
+				$stats[ $key ] = 0;
+		}
 
 		$stats = (object) $stats;
 
@@ -279,14 +334,21 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 		$actions = array();
 
 		// Build the row actions
-		if ( current_user_can( 'vfb_delete_forms' ) )
-			$actions['delete'] = __( 'Delete Permanently', 'visual-form-builder-pro' );
+		if ( current_user_can( 'vfb_delete_forms' ) ) {
+			if ( !$this->get_form_status() || in_array( $this->get_form_status(), array( 'all', 'draft' ) ) ) {
+				$actions['trash'] = __( 'Move to Trash', 'visual-form-builder-pro' );
+			}
+			elseif ( $this->get_form_status() && 'trash' == $this->get_form_status() ) {
+				$actions['restore'] = __( 'Restore', 'visual-form-builder-pro' );
+				$actions['delete'] = __( 'Delete Permanently', 'visual-form-builder-pro' );
+			}
+		}
 
 		return apply_filters( 'vfb_forms_bulk_actions', $actions );
 	}
 
 	/**
-	 * Process ALL actions on the Entries screen, not only Bulk Actions
+	 * Process ALL actions on the Form screen, not only Bulk Actions
 	 *
 	 * @since 1.2
 	 */
@@ -303,13 +365,20 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 				$form_id = (array) $_REQUEST['form'];
 		}
 
-		switch( $this->current_action() ) {
+		switch( $this->current_action() ) :
 			case 'trash' :
 				foreach ( $form_id as $id ) {
 					$id = absint( $id );
-					$wpdb->update( $this->form_table_name, array( 'form_approved' => 'trash' ), array( 'form_id' => $id ) );
+					$wpdb->update( $this->form_table_name, array( 'form_status' => 'trash' ), array( 'form_id' => $id ) );
 				}
-			break;
+				break;
+
+			case 'restore' :
+				foreach ( $form_id as $id ) {
+					$id = absint( $id );
+					$wpdb->update( $this->form_table_name, array( 'form_status' => 'publish' ), array( 'form_id' => $id ) );
+				}
+				break;
 
 			case 'delete' :
 				foreach ( $form_id as $id ) {
@@ -318,9 +387,9 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 					$wpdb->query( $wpdb->prepare( "DELETE FROM $this->field_table_name WHERE form_id = %d", $id ) );
 					$wpdb->query( $wpdb->prepare( "DELETE FROM $this->entries_table_name WHERE form_id = %d", $id ) );
 				}
-			break;
+				break;
 
-		}
+		endswitch;
 	}
 
 	/**
@@ -426,20 +495,30 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 				'form_id'		=> $form->form_id,
 				'form_title' 	=> stripslashes( $form->form_title ),
 				'entries'		=> $entries_counts,
+				'status'		=> $form->form_status,
 			);
 		endforeach;
 
-		// How many forms do we have?
-		$total_items = $this->get_forms_count();
+		$where = '';
+
+		// Forms type filter
+		$where .= ( $this->get_form_status() && 'all' !== $this->get_form_status() ) ? $wpdb->prepare( ' AND forms.form_status = %s', $this->get_form_status() ) : '';
+
+		// Always display all forms, unless an Form Type filter is set
+		if ( !$this->get_form_status() || 'all' == $this->get_form_status() )
+			$where .= $wpdb->prepare( ' AND forms.form_status = %s', 'publish' );
+
+		// How many form do we have?
+		$total_items = $wpdb->get_var( "SELECT COUNT(*) FROM $this->form_table_name AS forms WHERE 1=1 $where" );
 
 		// Add sorted data to the items property
 		$this->items = $data;
 
 		// Register our pagination
 		$this->set_pagination_args( array(
-			'total_items'	=> $total_items->all,
+			'total_items'	=> $total_items,
 			'per_page'		=> $per_page,
-			'total_pages'	=> ceil( $total_items->all / $per_page )
+			'total_pages'	=> ceil( $total_items / $per_page )
 		) );
 	}
 

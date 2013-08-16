@@ -7,7 +7,7 @@
 class VisualFormBuilder_Pro_Import {
 
 	protected $id, $version,
-			  $max_version = '2.3',
+			  $max_version = '2.4',
 			  $existing_forms = array(),
 			  $forms = array(),
 			  $fields = array(),
@@ -129,7 +129,7 @@ class VisualFormBuilder_Pro_Import {
 
 		wp_cache_flush();
 
-		echo sprintf( '<p>%1$s<a href="%2$s">%3$s</a></p>',
+		echo sprintf( '<p>%1$s <a href="%2$s">%3$s</a></p>',
 			__( 'All done.', 'visual-form-builder-pro' ),
 			admin_url( 'admin.php?page=visual-form-builder-pro' ),
 			__( 'View Forms', 'visual-form-builder-pro' )
@@ -148,9 +148,18 @@ class VisualFormBuilder_Pro_Import {
 		if ( empty( $this->forms ) )
 			return;
 
+		$progress = 0;
+		$count = count( $this->forms );
+
+		$existing_output = $errors = '';
+
 		echo sprintf( '<p>%s</p>', __( 'Importing forms...', 'visual-form-builder-pro' ) );
 
 		foreach ( $this->forms as $form ) :
+			// Ensure older import files add a form status
+			if ( empty( $form['form_status'] ) )
+				$form['form_status'] = 'publish';
+
 			$data = array(
 				'form_id' 						=> $form['form_id'],
 				'form_key' 						=> $form['form_key'],
@@ -161,6 +170,8 @@ class VisualFormBuilder_Pro_Import {
 				'form_email_from_name' 			=> $form['form_email_from_name'],
 				'form_email_from_override' 		=> $form['form_email_from_override'],
 				'form_email_from_name_override' => $form['form_email_from_name_override'],
+				'form_email_rule_setting'		=> $form['form_email_rule_setting'],
+				'form_email_rule'				=> $form['form_email_rule'],
 				'form_success_type' 			=> $form['form_success_type'],
 				'form_success_message' 			=> $form['form_success_message'],
 				'form_notification_setting' 	=> $form['form_notification_setting'],
@@ -175,7 +186,8 @@ class VisualFormBuilder_Pro_Import {
 				'form_verification' 			=> $form['form_verification'],
 				'form_entries_allowed' 			=> $form['form_entries_allowed'],
 				'form_entries_schedule' 		=> $form['form_entries_schedule'],
-				'form_unique_entry' 			=> $form['form_unique_entry']
+				'form_unique_entry' 			=> $form['form_unique_entry'],
+				'form_status'					=> $form['form_status'],
 			);
 
 			$form_id = $this->form_exists( $form['form_id'] );
@@ -185,7 +197,7 @@ class VisualFormBuilder_Pro_Import {
 				$data['form_id'] = '';
 				$this->existing_forms[ $form['form_id'] ] = '';
 
-				echo sprintf( '<p><strong>%1$s :</strong> %2$s</p>',
+				$existing_output .= sprintf( '<p><strong>%1$s :</strong> %2$s</p>',
 					stripslashes( $form['form_title'] ),
 					__( 'Form ID already exists. Assigning a new form ID.', 'visual-form-builder-pro' )
 				);
@@ -194,13 +206,22 @@ class VisualFormBuilder_Pro_Import {
 			$insert = $wpdb->insert( $this->form_table_name, $data );
 
 			if ( !$insert )
-				echo '<p>' . sprintf( __( '<strong>Error: </strong> The %s form could not be imported.', 'visual-form-builder-pro' ), stripslashes( $form['form_title'] ) ) . '</p>';
+				$errors .= sprintf( __( '<p><strong>Error: </strong> The %s form could not be imported.</p>', 'visual-form-builder-pro' ), stripslashes( $form['form_title'] ) );
 
 			// Save the new form_id(s) to update associated fields
 			$this->existing_forms[ $form['form_id'] ] = $wpdb->insert_id;
+
+			$progress++;
+			$this->progress( $progress, $count );
+
 		endforeach;
 
+		echo $existing_output;
+		echo $errors;
+
 		echo sprintf( '<p>%s</p>', __( 'Form import process complete.', 'visual-form-builder-pro' ) );
+
+		$this->flush_output();
 
 		unset( $this->forms );
 	}
@@ -217,13 +238,18 @@ class VisualFormBuilder_Pro_Import {
 		if ( empty( $this->fields ) )
 			return;
 
+		$progress = 0;
+		$count = count( $this->fields );
+
+		$existing_output = $errors = '';
+
 		echo sprintf( '<p>%s</p>', __( 'Importing fields...', 'visual-form-builder-pro' ) );
 
 		foreach ( $this->fields as $field ) :
-			$form_id = ( array_key_exists( $field['form_id'], $this->existing_forms ) ) ? $this->existing_forms[ $field['form_id'] ] : $field['form_id'];
-			$override = $wpdb->get_var( $wpdb->prepare( "SELECT form_email_from_override, form_email_from_name_override, form_notification_email FROM $this->form_table_name WHERE form_id = %d", $form_id ) );
-			$from_name = $wpdb->get_var( null, 1 );
-			$notify = $wpdb->get_var( null, 2 );
+			$form_id     = ( array_key_exists( $field['form_id'], $this->existing_forms ) ) ? $this->existing_forms[ $field['form_id'] ] : $field['form_id'];
+			$override    = $wpdb->get_var( $wpdb->prepare( "SELECT form_email_from_override, form_email_from_name_override, form_notification_email FROM $this->form_table_name WHERE form_id = %d", $form_id ) );
+			$from_name   = $wpdb->get_var( null, 1 );
+			$notify      = $wpdb->get_var( null, 2 );
 
 			$data = array(
 				//'field_id' => $field['field_id'],
@@ -258,7 +284,7 @@ class VisualFormBuilder_Pro_Import {
 
 			// Display error message if the insert fails
 			if ( !$insert )
-				echo '<p>' . sprintf( __( '<strong>Error: </strong> The %s field could not be imported.', 'visual-form-builder-pro' ), stripslashes( $field['field_name'] ) ) . '</p>';
+				$errors .= sprintf( __( '<p><strong>Error: </strong> The %s field could not be imported.</p>', 'visual-form-builder-pro' ), stripslashes( $field['field_name'] ) );
 
 			// Save field IDs so we can update the field rules
 			$old_ids[ $field_id ] = $wpdb->insert_id;
@@ -285,27 +311,47 @@ class VisualFormBuilder_Pro_Import {
 
 			// Loop through all of the IDs and update the rules if a match is found
 			foreach ( $old_ids as $k => $v ) :
-				// Get field key
-				$field_key = $wpdb->get_var( $wpdb->prepare( "SELECT field_key FROM $this->field_table_name WHERE form_id = %d AND field_id = %d", $form_id, $k ) );
+				// Get field rule
+				$get_field_rules = $wpdb->get_var( $wpdb->prepare( "SELECT field_rule FROM $this->field_table_name WHERE form_id = %d AND field_id = %d", $form_id, $k ) );
 
-				// Setup search and replace for IDs
-				$search = 's:' . strlen( $k ) .':"' . $k . '"';
-				$replace = 's:' . strlen( $v ) .':"' . $v . '"';
+				$field_rules = maybe_unserialize( $get_field_rules );
+				if ( !$field_rules )
+					continue;
 
-				$wpdb->query( $wpdb->prepare( "UPDATE $this->field_table_name SET field_rule = REPLACE(field_rule, %s, %s) WHERE form_id = %d", $search, $replace, $form_id ) );
+				$new = array(
+					'conditional_setting' 	=> $field_rules['conditional_setting'],
+					'conditional_show'		=> $field_rules['conditional_show'],
+					'conditional_logic'		=> $field_rules['conditional_logic'],
+					'rules'					=> array(),
+					'field_id'				=> $v,
+				);
 
-				// Assemble field_id_attr
-				$key = 'vfb-' . $field_key . '-';
+				foreach ( $field_rules['rules'] as $key => $val ) :
+					$new['rules'][$key]['field']		= $val['field'];
+					$new['rules'][$key]['condition'] 	= $val['condition'];
+					$new['rules'][$key]['option']		= $val['option'];
 
-				// Setup search and replace for field_id_attr
-				$search = 's:' . strlen( $key . $k ) .':"' . $key . $k . '"';
-				$replace = 's:' . strlen( $key . $v ) .':"' . $key . $v . '"';
+					if ( array_key_exists( $val['field'], $old_ids ) )
+						$new['rules'][$key]['field'] = $old_ids[ $val['field'] ];
 
-				$wpdb->query( $wpdb->prepare( "UPDATE $this->field_table_name SET field_rule = REPLACE(field_rule, %s, %s) WHERE form_id = %d", $search, $replace, $form_id ) );
+				endforeach;
+
+				$wpdb->update( $this->field_table_name,
+					array( 'field_rule' => maybe_serialize( $new ) ),
+					array( 'field_id' => $v )
+				);
 			endforeach;
+
+			$progress++;
+			$this->progress( $progress, $count );
 		endforeach;
 
+		echo $existing_output;
+		echo $errors;
+
 		echo sprintf( '<p>%s</p>', __( 'Field import process complete.', 'visual-form-builder-pro' ) );
+
+		$this->flush_output();
 
 		unset( $this->fields );
 	}
@@ -321,6 +367,11 @@ class VisualFormBuilder_Pro_Import {
 
 		if ( empty( $this->entries ) )
 			return;
+
+		$progress = 0;
+		$count = count( $this->entries );
+
+		$existing_output = $errors = '';
 
 		echo sprintf( '<p>%s</p>', __( 'Importing entries...', 'visual-form-builder-pro' ) );
 
@@ -353,12 +404,20 @@ class VisualFormBuilder_Pro_Import {
 
 			// Display error message if the insert fails
 			if ( !$insert )
-				echo '<p>' . __( '<strong>Error: </strong> An entry could not be imported.', 'visual-form-builder-pro' ) . '</p>';
+				$errors .= sprintf( '<p>%s</p>', __( '<strong>Error: </strong> An entry could not be imported.', 'visual-form-builder-pro' ) );
+
+			$progress++;
+			$this->progress( $progress, $count );
 		endforeach;
+
+		echo $existing_output;
+		echo $errors;
 
 		echo sprintf( '<p>%s</p>', __( 'Entries import process complete.', 'visual-form-builder-pro' ) );
 
-		unset( $this->forms );
+		$this->flush_output();
+
+		unset( $this->entries );
 	}
 
 	/**
@@ -372,6 +431,11 @@ class VisualFormBuilder_Pro_Import {
 
 		if ( empty( $this->designs ) )
 			return;
+
+		$progress = 0;
+		$count = count( $this->designs );
+
+		$existing_output = $errors = '';
 
 		echo sprintf( '<p>%s</p>', __( 'Importing form design settings...', 'visual-form-builder-pro' ) );
 
@@ -391,17 +455,24 @@ class VisualFormBuilder_Pro_Import {
 			if ( $design_id ) :
 				$data['design_id'] = '';
 
-				echo '<p><strong>' . __( 'Form Design ID already exists. Assigning a new ID.', 'visual-form-builder-pro' ) . '</strong></p>';
+				$existing_output .= sprintf( '<p><strong>%s</strong></p>', __( 'Form Design ID already exists. Assigning a new ID.', 'visual-form-builder-pro' ) );
 			endif;
 
 			$insert = $wpdb->insert( $this->design_table_name, $data );
 
 			if ( !$insert )
-				echo '<p>' . sprintf( __( '<strong>Error: </strong> Form design settings for form ID %d could not be imported.', 'visual-form-builder-pro' ), $design['form_id'] ) . '</p>';
+				$errors .= '<p>' . sprintf( __( '<strong>Error: </strong> Form design settings for form ID %d could not be imported.', 'visual-form-builder-pro' ), $design['form_id'] ) . '</p>';
 
+			$progress++;
+			$this->progress( $progress, $count );
 		endforeach;
 
+		echo $existing_output;
+		echo $errors;
+
 		echo sprintf( '<p>%s</p>', __( 'Form Design import process complete.', 'visual-form-builder-pro' ) );
+
+		$this->flush_output();
 
 		unset( $this->designs );
 	}
@@ -417,6 +488,11 @@ class VisualFormBuilder_Pro_Import {
 
 		if ( empty( $this->payments ) )
 			return;
+
+		$progress = 0;
+		$count = count( $this->payments );
+
+		$existing_output = $errors = '';
 
 		echo sprintf( '<p>%s</p>', __( 'Importing payment settings...', 'visual-form-builder-pro' ) );
 
@@ -442,17 +518,24 @@ class VisualFormBuilder_Pro_Import {
 			if ( $payment_id ) :
 				$data['payment_id'] = '';
 
-				echo '<p><strong>' . __( 'Payment ID already exists. Assigning a new ID.', 'visual-form-builder-pro' ) . '</strong></p>';
+				$existing_output .= sprintf( '<p><strong>%s</strong></p>', __( 'Payment ID already exists. Assigning a new ID.', 'visual-form-builder-pro' ) );
 			endif;
 
 			$insert = $wpdb->insert( $this->payment_table_name, $data );
 
 			if ( !$insert )
-				echo '<p>' . sprintf( __( '<strong>Error: </strong> Payments settings for form ID %d could not be imported.', 'visual-form-builder-pro' ), $payment['form_id'] ) . '</p>';
+				$errors .= '<p>' . sprintf( __( '<strong>Error: </strong> Payments settings for form ID %d could not be imported.', 'visual-form-builder-pro' ), $payment['form_id'] ) . '</p>';
 
+			$progress++;
+			$this->progress( $progress, $count );
 		endforeach;
 
+		echo $existing_output;
+		echo $errors;
+
 		echo sprintf( '<p>%s</p>', __( 'Payments import process complete.', 'visual-form-builder-pro' ) );
+
+		$this->flush_output();
 
 		unset( $this->payments );
 	}
@@ -563,12 +646,10 @@ class VisualFormBuilder_Pro_Import {
 		$file = wp_import_handle_upload();
 
 		if ( isset( $file['error'] ) ) :
-			echo '<p><strong>' . __( 'Sorry, there has been an error.', 'visual-form-builder-pro' ) . '</strong><br />';
-			echo esc_html( $file['error'] ) . '</p>';
-
+			echo sprintf( '<p><strong>%s</strong><br>%s</p>', __( 'Sorry, there has been an error.', 'visual-form-builder-pro' ), esc_html( $file['error'] ) );
 			return false;
 		elseif ( ! file_exists( $file['file'] ) ) :
-			echo '<p><strong>' . __( 'Sorry, there has been an error.', 'visual-form-builder-pro' ) . '</strong><br />';
+			echo sprintf( '<p><strong>%s</strong><br>', __( 'Sorry, there has been an error.', 'visual-form-builder-pro' ) );
 			printf( __( 'The export file could not be found at <code>%s</code>. It is likely that this was caused by a permissions problem.', 'visual-form-builder-pro' ), esc_html( $file['file'] ) );
 			echo '</p>';
 
@@ -578,9 +659,7 @@ class VisualFormBuilder_Pro_Import {
 		$this->id = (int) $file['id'];
 		$import_data = $this->parse( $file['file'] );
 		if ( is_wp_error( $import_data ) ) :
-			echo '<p><strong>' . __( 'Sorry, there has been an error.', 'visual-form-builder-pro' ) . '</strong><br />';
-			echo esc_html( $import_data->get_error_message() ) . '</p>';
-
+			echo sprintf( '<p><strong>%s</strong><br>%s</p>', __( 'Sorry, there has been an error.', 'visual-form-builder-pro' ), esc_html( $import_data->get_error_message() ) );
 			return false;
 		endif;
 
@@ -606,16 +685,47 @@ class VisualFormBuilder_Pro_Import {
 			$result = $parser->parse( $file );
 
 			if ( is_wp_error( $result ) ) :
-				echo '<p><strong>' . __( 'Sorry, there has been an error.', 'visual-form-builder-pro' ) . '</strong><br />';
-				echo esc_html( $result->get_error_message() ) . '</p>';
-
-				die();
+				echo sprintf( '<p><strong>%s</strong><br>%s</p>', __( 'Sorry, there has been an error.', 'visual-form-builder-pro' ), esc_html( $result->get_error_message() ) );
+				wp_die();
 			endif;
 
 			// If SimpleXML succeeds or this is an invalid WXR file then return the results
 			if ( ! is_wp_error( $result ) || 'SimpleXML_parse_error' != $result->get_error_code() )
 				return $result;
 		endif;
+	}
+
+	/**
+	 * Flush output buffer
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function flush_output() {
+		echo str_repeat( ' ', 256 );
+
+	    if ( @ob_get_contents() )
+	        @ob_end_flush();
+
+	    flush();
+	}
+
+	/**
+	 * Display percentage of import progress
+	 *
+	 * @access public
+	 * @param mixed $current
+	 * @param mixed $total
+	 * @return void
+	 */
+	public function progress( $current, $total ) {
+		$progress = round( $current / $total * 100 );
+
+		// Only update every 10 percentage points
+		echo ( $progress % 10 == 0 ) ? sprintf( '<div class="vfb-progress" style="z-index: %1$d"><div class="vfb-progress-bar" style="width: %1$d%%;">%1$d%%</div></div>', $progress ) : '';
+
+	    $this->flush_output();
+	    usleep( 50 );
 	}
 }
 
@@ -668,6 +778,8 @@ class VFB_Parser_SimpleXML {
 				'form_email_from_name' 			=> (string) $a->form_email_from_name,
 				'form_email_from_override' 		=> (string) $a->form_email_from_override,
 				'form_email_from_name_override' => (string) $a->form_email_from_name_override,
+				'form_email_rule_setting'		=> (int) 	$a->form_email_rule_setting,
+				'form_email_rule'				=> (string) $a->form_email_rule,
 				'form_success_type' 			=> (string) $a->form_success_type,
 				'form_success_message' 			=> (string) $a->form_success_message,
 				'form_notification_setting' 	=> (string) $a->form_notification_setting,
@@ -689,7 +801,8 @@ class VFB_Parser_SimpleXML {
 				'form_verification' 			=> (int) 	$a->form_verification,
 				'form_entries_allowed' 			=> (int) 	$a->form_entries_allowed,
 				'form_entries_schedule' 		=> (string) $a->form_entries_schedule,
-				'form_unique_entry' 			=> (int) 	$a->form_unique_entry
+				'form_unique_entry' 			=> (int) 	$a->form_unique_entry,
+				'form_status'					=> (string)	$a->form_status,
 			);
 		endforeach;
 
@@ -765,8 +878,8 @@ class VFB_Parser_SimpleXML {
 				'merchant_type' 			=> (string) $a->merchant_type,
 				'merchant_details' 			=> (string) $a->merchant_details,
 				'currency' 					=> (string) $a->currency,
-				'show_running_total' 		=> (int) $a->show_running_total,
-				'collect_shipping_address' 	=> (int) $a->collect_shipping_address,
+				'show_running_total' 		=> (int) 	$a->show_running_total,
+				'collect_shipping_address' 	=> (int) 	$a->collect_shipping_address,
 				'collect_billing_info' 		=> (string) $a->collect_billing_info,
 				'recurring_payments' 		=> (string) $a->recurring_payments,
 				'advanced_vars' 			=> (string) $a->advanced_vars,

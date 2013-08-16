@@ -1,9 +1,10 @@
 === Plugin Name ===
 Contributors: matchalabs
 Tags: widget,wordpress slider,slideshow,wordpress slideshow,image slider,flexslider,flex slider,nivoslider,nivo slider,responsiveslides,responsive,responsive slides,coinslider,coin slider,slideshow,carousel,responsive slider,vertical slides,ml slider,image rotator,metaslider,meta,ajax,metaslider pro
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CQ84KC4X8YKW8
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 2.1.6
+Stable tag: 2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,7 +12,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-http://www.youtube.com/watch?v=5DgZGVulRRM
+http://www.youtube.com/watch?v=I7IfkV6iLqo
 
 Meta Slider is a flexible, intuitive slideshow administration plugin that lets you choose between 4 jQuery sliders.
 
@@ -46,9 +47,11 @@ Read more and thanks to:
 
 Want More? Get the **Meta Slider Pro** addon pack to add support for:
 
+* Live Theme Editor (new!)
 * YouTube slides
 * Vimeo slides
 * HTML slides
+* Animated Layer Slides (new!)
 * Dynamic Post Feed Slides (content slider)
 
 Find out more at http://www.metaslider.com
@@ -65,13 +68,15 @@ The not so easy way:
 
 1. Upload the `ml-slider` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Manage your slideshows using the 'MetaSlider' menu option
+1. Manage your slideshows using the 'Meta Slider' menu option
 
 == Frequently Asked Questions ==
 
 http://www.metaslider.com/documentation/
 
 = How do I include a slideshow in the header of my site? =
+
+http://www.youtube.com/watch?v=gSsWgd66Jjk
 
 You will need to paste the "Template Include" code into your theme (you can find this in the 'Usage' section underneath the slideshow settings)
 
@@ -98,6 +103,13 @@ if (is_front_page() || is_home()) {
 6. Administration panel - selecting slides
 
 == Changelog ==
+
+= 2.2.1 =
+* Fix: Responsive slides styling in FireFox (reported by and thanks to: dznr418)
+* Fix: Flex Slider carousel causing browser to crash in some circumstances
+
+= 2.2 =
+* Fix: Paragraph tags being added to output using Nivo Slider
 
 = 2.1.6 =
 * Fix: Use the original image file if the slideshow size is the same size as the image file

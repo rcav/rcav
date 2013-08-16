@@ -1,5 +1,6 @@
 .DS_store
 .gitignore
+searchreplacedb.php
 wp-local-config.php
 wp-config.php
 wp-content/uploads/
@@ -13,6 +14,7 @@ wp-content/plugins/post-type-switcher
 wp-content/plguins/duplicator
 uploadedImages
 uploadedFiles
+documents
 media
 sitemap.xml
 *.log

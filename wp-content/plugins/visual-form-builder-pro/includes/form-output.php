@@ -1,8 +1,4 @@
 <?php
-// Turn off caching plugin for this page to fix occasional nonce error
-if ( !defined( 'DONOTCACHEPAGE' ) )
-	define( 'DONOTCACHEPAGE', true );
-
 $vfb_post = $vfb_design = $vfb_design_theme = '';
 // Run Create User add-on
 if ( class_exists( 'VFB_Pro_Create_Post' ) )
@@ -24,15 +20,18 @@ if ( !$this->add_scripts )
 $form_id = ( isset( $id ) && !empty( $id ) ) ? (int) $id : key( $atts );
 
 // If form is submitted, show success message, otherwise the form
-if ( isset( $_POST['visual-form-builder-submit'] ) && isset( $_POST['form_id'] ) && $_POST['form_id'] == $form_id ) {
+if ( isset( $_POST['vfb-submit'] ) && isset( $_POST['form_id'] ) && $_POST['form_id'] == $form_id ) {
 	$output = $this->confirmation();
 	if ( !apply_filters( 'vfb_prepend_confirmation', false, $form_id ) )
 		return;
 }
 
+// Only display published forms (except in Preview mode)
+$form_status = !defined( 'VFB_PRO_PREVIEW' ) ? ' AND form_status = "publish"' : '';
+
 // Get forms
 $order = sanitize_sql_orderby( 'form_id DESC' );
-$form  = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $this->form_table_name WHERE form_id = %d ORDER BY $order", $form_id ) );
+$form  = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $this->form_table_name WHERE form_id = %d {$form_status} ORDER BY $order", $form_id ) );
 
 // Return if no form found
 if ( !$form )
@@ -107,7 +106,7 @@ else :
 	$action = apply_filters( 'vfb_form_action', '', $form_id );
 
 	// Start form container
-	$output .= '<div class="visual-form-builder-container">';
+	$output .= sprintf( '<div id="vfb-form-%d" class="visual-form-builder-container">', $form_id );
 
 	// Filter for additional output before a form
 	$output .= apply_filters( 'vfb_before_form_output', '', $form_id );
@@ -162,21 +161,26 @@ else :
 
 		// Force an initial fieldset and display an error message to strongly encourage user to add one
 		if ( $count === 1 && $field_type !== 'fieldset' ) :
-			$output .= '<fieldset class="fieldset"><div class="legend" style="background-color:#FFEBE8;border:1px solid #CC0000;"><h3>Oops! Missing Fieldset</h3><p style="color:black;">If you are seeing this message, it means you need to <strong>add a Fieldset to the beginning of your form</strong>. Your form may not function or display properly without one.</p></div><ul class="section section-' . $count . '">';
+			$output .= sprintf( '<fieldset class="vfb-fieldset"><div class="vfb-legend" style="background-color:#FFEBE8;border:1px solid #CC0000;"><h3>%1$s</h3><p style="color:black;">%2$s</p></div><ul class="section section-%3$d">',
+			__( 'Oops! Missing Fieldset', 'visual-form-builder-pro' ),
+			__( 'If you are seeing this message, it means you need to <strong>add a Fieldset to the beginning of your form</strong>. Your form may not function or display properly without one.', 'visual-form-builder-pro' ),
+			$count
+			);
 
 			$count++;
 		endif;
 
+		// Fieldset
 		if ( $field_type == 'fieldset' ) :
 			// Close each fieldset
 			if ( $open_fieldset == true )
-				$output .= '</ul><br /></fieldset>';
+				$output .= '</ul>&nbsp;</fieldset>';
 
 			if ( $open_page == true && $page !== '' )
 				$open_page = false;
 
 			// Only display Legend if field name is not blank
-			$legend = !empty( $field_name ) ? sprintf( '<div class="vfb-legend"><h3>%s</h3></div>', $field_name ) : '<br>';
+			$legend = !empty( $field_name ) ? sprintf( '<div class="vfb-legend"><h3>%s</h3></div>', $field_name ) : '&nbsp;';
 
 			$output .= sprintf(
 				'<fieldset class="vfb-fieldset vfb-fieldset-%1$d %2$s %3$s %4$s %5$s %6$s" id="item-%7$s">%8$s<ul class="vfb-section vfb-section-%1$d">',
@@ -193,6 +197,7 @@ else :
 			$open_fieldset = true;
 			$count++;
 
+		// Section
 		elseif ( $field_type == 'section' ) :
 
 			$output .= sprintf(
@@ -208,6 +213,7 @@ else :
 			$sec_id = $field_id;
 			$open_section = true;
 
+		// Page Break
 		elseif ( $field_type == 'page-break' ) :
 			$page_num += 1;
 
@@ -226,14 +232,18 @@ else :
 			$page = " vfb-page page-$page_num";
 			$open_page = true;
 
+		// Everything else
 		elseif ( !in_array( $field_type, array( 'verification', 'secret', 'submit' ) ) ) :
 
 			$columns_choice = ( !empty( $field->field_size ) && in_array( $field_type, array( 'radio', 'checkbox' ) ) ) ? esc_attr( " vfb-$field->field_size" ) : '';
 
 			if ( $field_type !== 'hidden' ) :
 
+				// Don't add for attribute for certain form items
+				$for = !in_array( $field_type, array( 'checkbox', 'radio', 'name', 'time', 'address', 'instructions' ) ) ? ' for="%6$s"' : '';
+
 				$output .= sprintf(
-					'<li class="vfb-item vfb-item-%1$s %2$s %3$s %4$s %5$s" id="item-%6$s"><label for="%6$s" class="vfb-desc">%7$s %8$s</label>',
+					'<li class="vfb-item vfb-item-%1$s %2$s %3$s %4$s %5$s" id="item-%6$s"><label' . $for . ' class="vfb-desc">%7$s %8$s</label>',
 					$field_type,
 					$columns_choice,
 					$layout,
@@ -245,8 +255,9 @@ else :
 				);
 			endif;
 
+		// Verification and Secret
 		elseif ( in_array( $field_type, array( 'verification', 'secret' ) ) ) :
-
+			// Verification
 			if ( $field_type == 'verification' ) :
 				$verification .= sprintf(
 					'<fieldset class="vfb-fieldset vfb-fieldset-%1$d %2$s %3$s %4$s" id="item-%5$s"><div class="vfb-legend"><h3>%6$s</h3></div><ul class="vfb-section vfb-section-%1$d">',
@@ -259,6 +270,7 @@ else :
 				);
 			endif;
 
+			// Secret
 			if ( $field_type == 'secret' ) :
 				// Default logged in values
 				$logged_in_display = $logged_in_value = '';
@@ -266,7 +278,7 @@ else :
 				// If the user is logged in, fill the field in for them
 				if ( is_user_logged_in() ) :
 					// Hide the secret field if logged in
-					$logged_in_display = ' style="display:none;"';
+					$logged_in_display = 'style="display:none;"';
 					$logged_in_value = 14;
 
 					// Get logged in user details
@@ -274,20 +286,35 @@ else :
 					$user_identity = ! empty( $user->ID ) ? $user->display_name : '';
 
 					// Display a message for logged in users
-					$verification .= '<li class="vfb-item" id="' . $id_attr . '">' . sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>. Verification not required.', 'visual-form-builder-pro' ), admin_url( 'profile.php' ), $user_identity ) . '</li>';
+					$logged_in_as = sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>. Verification not required.', 'visual-form-builder-pro' ), admin_url( 'profile.php' ), $user_identity );
+					$logged_in_as = apply_filters( 'vfb_str_logged_in_as', $logged_in_as, $form_id );
+
+					$verification .= sprintf(
+						'<li class="vfb-item" id="%1$s">%2$s</li>',
+						$id_attr,
+						$logged_in_as
+					);
 				endif;
 
-				$validation = ' {digits:true,maxlength:2,minlength:2}';
-				$verification .= '<li class="vfb-item vfb-item-' . $field_type . '"' . $logged_in_display . '><label for="' . $id_attr . '" class="vfb-desc">'. $field_name . $required_span . '</label>';
+				$verification .= sprintf(
+					'<li class="vfb-item vfb-item-%1$s" %2$s><label for="item-%3$s" class="vfb-desc">%4$s%5$s</label>',
+					$field_type,
+					$logged_in_display,
+					$id_attr,
+					$field_name,
+					$required_span
+				);
 
 				// Set variable for testing if required is Yes/No
-				if ( $required == '' )
-					$verification .= '<input type="hidden" name="_vfb-required-secret" value="0" />';
+				$verification .= ( empty( $required ) ) ? '<input type="hidden" name="_vfb-required-secret" value="0" />' : '';
 
-				$verification .= '<input type="hidden" name="_vfb-secret" value="vfb-' . $field_id . '" />';
+				// Set hidden secret to matching input
+				$verification .= sprintf( '<input type="hidden" name="_vfb-secret" value="vfb-%d" />', $field_id );
+
+				$validation = '{digits:true,maxlength:2,minlength:2}';
 
 				$verification_item = sprintf(
-					'<input type="text" name="vfb-%1$d" id="%2$s" value="%3$s" class="vfb-text %4$s %5$s %6$s %7$s" />',
+					'<input type="text" name="vfb-%1$d" id="item-%2$s" value="%3$s" class="vfb-text %4$s %5$s %6$s %7$s" />',
 					$field_id,
 					$id_attr,
 					$logged_in_value,
@@ -333,8 +360,7 @@ else :
 
 				$output .= ( !empty( $description ) ) ? sprintf( '<span class="vfb-span">%1$s<label>%2$s</label></span>', $form_item, $description ) : $form_item;
 
-
-			break;
+				break;
 
 			case 'textarea' :
 
@@ -389,7 +415,7 @@ else :
 
 				$output .= '</div>';
 
-			break;
+				break;
 
 			case 'select' :
 				$field_options = maybe_unserialize( $field->field_options );
@@ -413,7 +439,7 @@ else :
 
 				$output .= ( !empty( $description ) ) ? sprintf( '<span class="vfb-span"><label>%2$s</label></span>%1$s', $form_item, $description ) : $form_item;
 
-			break;
+				break;
 
 			case 'radio' :
 
@@ -471,7 +497,7 @@ else :
 
 				$output .= '<div style="clear:both"></div></div>';
 
-			break;
+				break;
 
 			case 'checkbox' :
 
@@ -502,7 +528,7 @@ else :
 
 				$output .= '<div style="clear:both"></div></div>';
 
-			break;
+				break;
 
 			case 'address' :
 
@@ -587,7 +613,7 @@ else :
 
 				$output .= "<div>$address</div>";
 
-			break;
+				break;
 
 			case 'date' :
 				$options = maybe_unserialize( $field->field_options );
@@ -606,7 +632,7 @@ else :
 
 				$output .= ( !empty( $description ) ) ? sprintf( '<span class="vfb-span">%1$s<label>%2$s</label></span>', $form_item, $description ) : $form_item;
 
-			break;
+				break;
 
 			case 'time' :
 
@@ -663,7 +689,7 @@ else :
 
 				$output .= '<div class="clear"></div>';
 
-			break;
+				break;
 
 			case 'html' :
 
@@ -683,7 +709,7 @@ else :
 
 				$output .= '</div>';
 
-			break;
+				break;
 
 			case 'file-upload' :
 
@@ -705,13 +731,13 @@ else :
 
 				$output .= ( !empty( $description ) ) ? sprintf( '<span class="vfb-span">%1$s<label>%2$s</label></span>', $form_item, $description ) : $form_item;
 
-			break;
+				break;
 
 			case 'instructions' :
 
 				$output .= $description;
 
-			break;
+				break;
 
 			case 'name' :
 
@@ -736,10 +762,10 @@ else :
 				if ( 'normal' == $format[0] ) :
 					$form_item = sprintf(
 						'<span class="vfb-name-normal">
-						<input type="text" name="vfb-%1$d[first]" id="%2$s-first" value="%3$s" class="vfb-text %5$s %6$s %7$s" /><label for="vfb-%2$d-first">%8$s</label>
+						<input type="text" name="vfb-%1$d[first]" id="%2$s-first" value="%3$s" class="vfb-text %5$s %6$s %7$s" /><label for="%2$s-first">%8$s</label>
 						</span>
 						<span class="vfb-name-normal">
-						<input type="text" name="vfb-%1$d[last]" id="%2$s-last" value="%4$s" class="vfb-text %5$s %6$s %7$s" /><label for="vfb-%2$d-last">%9$s</label>
+						<input type="text" name="vfb-%1$d[last]" id="%2$s-last" value="%4$s" class="vfb-text %5$s %6$s %7$s" /><label for="%2$s-last">%9$s</label>
 						</span>',
 						$field_id,
 						$id_attr,
@@ -754,16 +780,16 @@ else :
 				else :
 					$form_item = sprintf(
 						'<span class="vfb-name-extras">
-						<input type="text" name="vfb-%1$d[title]" id="%2$s-title" value="" class="vfb-text %5$s %6$s %7$s" size="4" /><label for="vfb-%2$d-title">%8$s</label>
+						<input type="text" name="vfb-%1$d[title]" id="%2$s-title" value="" class="vfb-text %5$s %6$s %7$s" size="4" /><label for="%2$s-title">%8$s</label>
 						</span>
 						<span class="vfb-name-extras">
-						<input type="text" name="vfb-%1$d[first]" id="%2$s-first" value="%3$s" class="vfb-text %5$s %6$s %7$s" size="14" /><label for="vfb-%2$d-first">%9$s</label>
+						<input type="text" name="vfb-%1$d[first]" id="%2$s-first" value="%3$s" class="vfb-text %5$s %6$s %7$s" size="14" /><label for="%2$s-first">%9$s</label>
 						</span>
 						<span class="vfb-name-extras">
-						<input type="text" name="vfb-%1$d[last]" id="%2$s-last" value="%4$s" class="vfb-text %5$s %6$s %7$s" size="14" /><label for="vfb-%2$d-last">%10$s</label>
+						<input type="text" name="vfb-%1$d[last]" id="%2$s-last" value="%4$s" class="vfb-text %5$s %6$s %7$s" size="14" /><label for="%2$s-last">%10$s</label>
 						</span>
 						<span class="vfb-name-extras">
-						<input type="text" name="vfb-%1$d[suffix]" id="%2$s-suffix" value="" class="vfb-text %5$s %6$s %7$s" size="3" /><label for="vfb-%2$d-suffix">%11$s</label>
+						<input type="text" name="vfb-%1$d[suffix]" id="%2$s-suffix" value="" class="vfb-text %5$s %6$s %7$s" size="3" /><label for="%2$s-suffix">%11$s</label>
 						</span>',
 						$field_id,
 						$id_attr,
@@ -781,7 +807,7 @@ else :
 
 				$output .= ( !empty( $description ) ) ? sprintf( '<span class="vfb-span"><label>%2$s</label></span>%1$s', $form_item, $description ) : $form_item;
 
-			break;
+				break;
 
 			case 'username' :
 
@@ -798,13 +824,13 @@ else :
 
 				$output .= ( !empty( $description ) ) ? sprintf( '<span class="vfb-span">%1$s<label>%2$s</label></span>', $form_item, $description ) : $form_item;
 
-			break;
+				break;
 
 			case 'password' :
 
 				$password_meter = sprintf(
 					'<div class="password-meter"><div class="password-meter-message">%1$s</div></div>',
-					__( 'Password Strength', 'visual-form-builder-pro' )
+					apply_filters( 'vfb_str_pass_strength', __( 'Password Strength', 'visual-form-builder-pro' ) )
 				);
 
 				$form_item = sprintf(
@@ -820,7 +846,7 @@ else :
 
 				$output .= ( !empty( $description ) ) ? sprintf( '<span class="vfb-span">%1$s<label>%2$s</label></span>', $form_item, $description, $password_meter ) : $form_item . $password_meter;
 
-			break;
+				break;
 
 			case 'hidden' :
 				$val = '';
@@ -870,7 +896,7 @@ else :
 					$css
 				);
 
-			break;
+				break;
 
 			case 'color-picker' :
 
@@ -892,7 +918,7 @@ else :
 
 				$output .= ( !empty( $description ) ) ? sprintf( '<span class="vfb-span">%1$s<label>%2$s</label></span>%3$s', $form_item, $description, $color_picker ) : $form_item . $color_picker;
 
-			break;
+				break;
 
 			case 'autocomplete' :
 
@@ -909,7 +935,7 @@ else :
 
 				$output .= ( !empty( $description ) ) ? sprintf( '<span class="vfb-span">%1$s<label>%2$s</label></span>', $form_item, $description ) : $form_item;
 
-			break;
+				break;
 
 			case 'min' :
 			case 'max' :
@@ -931,7 +957,7 @@ else :
 
 				$output .= ( !empty( $description ) ) ? sprintf( '<span class="vfb-span">%1$s<label>%2$s</label></span>', $form_item, $description ) : $form_item;
 
-			break;
+				break;
 
 			case 'range' :
 
@@ -955,13 +981,13 @@ else :
 
 				$output .= ( !empty( $description ) ) ? sprintf( '<span class="vfb-span">%1$s<label>%2$s</label></span>', $form_item, $description ) : $form_item;
 
-			break;
+				break;
 
 			case 'submit' :
 
 				$submit = sprintf(
-					'<li class="vfb-item vfb-item-submit" id="%2$s">
-					<input type="submit" name="visual-form-builder-submit" id="sendmail" value="%3$s" class="vfb-submit %4$s" />
+					'<li class="vfb-item vfb-item-submit" id="item-%2$s">
+					<input type="submit" name="vfb-submit" id="%2$s" value="%3$s" class="vfb-submit %4$s" />
 					</li>',
 					$field_id,
 					$id_attr,
@@ -971,7 +997,7 @@ else :
 
 				$output .= ( false == $display_verification ) ? $submit : '';
 
-			break;
+				break;
 
 			default:
 				echo '';
@@ -994,7 +1020,7 @@ else :
 					$output .= $vfb_post->form_output( $create_post_vars );
 				}
 
-			break;
+				break;
 
 		endswitch;
 
@@ -1007,7 +1033,7 @@ else :
 	endforeach;
 
 	// Close user-added fields
-	$output .= '</ul><br /></fieldset>';
+	$output .= '</ul>&nbsp;</fieldset>';
 
 	if ( $total_page !== '' )
 		$total_page = '<span class="vfb-page-counter">' . $page_count . ' / ' . $page_count . '</span>';
@@ -1032,12 +1058,12 @@ else :
 	if ( true == $display_verification ) :
 		// Output our security test
 		$output .= $verification .
-		'<li style="display:none;"><label for="vfb-spam">' .
+		'<li style="display:none;"><label>' .
 		 __( 'This box is for spam protection - <strong>please leave it blank</strong>' , 'visual-form-builder-pro' ) .
-		 '</label><div><input name="vfb-spam" id="vfb-spam" /></div></li>' .
+		 '</label><div><input name="vfb-spam" /></div></li>' .
 		 $submit . $total_page .
 		 '</ul>
-		 <br />
+		 &nbsp;
 		 </fieldset>';
 	endif;
 

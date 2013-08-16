@@ -1,1 +1,72 @@
-jQuery(document).ready(function(e){var a=["#21759b","#464646"];var d=Morris.Line({element:"vfb-graph-daily",data:b("daily"),xkey:"date",ykeys:["count","avg"],labels:["Entries","Daily Average"],lineColors:a,});var c=Morris.Area({element:"vfb-graph-monthly",data:b("monthly"),xkey:"date",ykeys:["count"],labels:["Entries"],xLabels:"month",lineColors:a,});e("#analytics-filter").click(function(g){g.preventDefault();var h=e("select[name=analytics-start-date] option:selected").val(),f=e("select[name=analytics-end-date] option:selected").val();d.setData(b("daily",h,f));c.setData(b("monthly",h,f))});function b(g,i,f){var h=[{date:"",count:0,avg:0}];i=(typeof i!=="undefined")?i:0;f=(typeof f!=="undefined")?f:0;e("img.waiting").show();e.ajax({url:ajaxurl,type:"POST",async:false,cache:false,dataType:"json",data:{action:"visual_form_builder_graphs",form:e('#analytics-switcher select[name="form_id"] option:selected').val(),view:g,date_start:i,date_end:f},success:function(j){e("img.waiting").hide();h=j.entries},error:function(k,l,j){alert(k+" "+l+" "+j);return}});return h}});
+jQuery(document).ready(function($) {
+	
+	var colors = ['#21759b','#464646'];
+	
+	// Daily graph
+	var vfb_daily = Morris.Line({
+		element: 'vfb-graph-daily',
+		data: vfb_graph_object( 'daily' ),
+		xkey: 'date',
+		ykeys: ['count', 'avg'],
+		labels: ['Entries', 'Daily Average'],
+		lineColors: colors,
+	});
+	
+	// Weekly graph
+	var vfb_monthly = Morris.Area({
+		element: 'vfb-graph-monthly',
+		data: vfb_graph_object( 'monthly' ),
+		xkey: 'date',
+		ykeys: ['count'],
+		labels: ['Entries'],
+		xLabels: 'month',
+		lineColors: colors,
+	});
+	
+	// Filter start/end date
+	$( '#analytics-filter' ).click( function(e){
+		e.preventDefault();
+		
+		var start = $( 'select[name=analytics-start-date] option:selected' ).val(),
+			end   = $( 'select[name=analytics-end-date] option:selected' ).val();
+		
+		vfb_daily.setData( vfb_graph_object( 'daily', start, end ) );
+		vfb_monthly.setData( vfb_graph_object( 'monthly', start, end ) );
+	});	
+	
+	// Get the graph data
+	function vfb_graph_object( view, start, end ) {
+		var obj = [{date:"",count:0,avg:0}];
+		
+		start = ( typeof start !== 'undefined' ) ? start : 0;
+		end   = ( typeof end   !== 'undefined' ) ? end   : 0;
+		
+		$( 'img.waiting' ).show();
+		
+		$.ajax({
+			url: ajaxurl,
+			type: 'POST',
+			async: false,
+			cache: false,
+			dataType: 'json',
+			data:{
+				action: 'visual_form_builder_graphs',
+				form: $( '#analytics-switcher select[name="form_id"] option:selected' ).val(),
+				view: view,
+				date_start: start,
+				date_end: end
+			},
+			success: function( response ) {
+				$( 'img.waiting' ).hide();
+				
+				obj = response.entries;
+			},
+			error: function( xhr,textStatus,e ) {
+				alert( xhr + ' ' + textStatus + ' ' + e );
+				return; 
+			}
+		});
+		
+		return obj;
+	}
+});

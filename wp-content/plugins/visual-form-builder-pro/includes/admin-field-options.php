@@ -45,7 +45,7 @@ foreach ( $fields as $field ) :
 <dt class="vfb-menu-item-handle vfb-menu-item-type-<?php echo esc_attr( $field->field_type ); ?>">
 	<span class="item-title"><?php echo stripslashes( esc_attr( $field->field_name ) ); ?><?php echo ( $field->field_required == 'yes' ) ? ' <span class="is-field-required">*</span>' : ''; ?></span>
     <span class="item-controls">
-    	<?php echo ( 1 == $field->field_rule_setting ) ? '<span class="item-conditional-icon"></span>' : '' ?>
+    	<?php echo ( 1 == $field->field_rule_setting ) ? '<span class="vfb-interface-icon vfb-interface-conditional"></span>' : '' ?>
 		<span class="item-type"><?php echo strtoupper( str_replace( '-', ' ', $field->field_type ) ); ?></span>
 		<a href="#" title="<?php esc_attr_e( 'Edit Field Item' , 'visual-form-builder-pro'); ?>" id="edit-<?php echo $field->field_id; ?>" class="item-edit"><?php _e( 'Edit Field Item' , 'visual-form-builder-pro'); ?></a>
 	</span>
@@ -92,6 +92,43 @@ foreach ( $fields as $field ) :
         	<span class="vfb-tooltip" title="<?php esc_attr_e( 'About Instructions Description', 'visual-form-builder-pro' ); ?>" rel="<?php esc_attr_e( 'The Instructions field allows for long form explanations, typically seen at the beginning of Fieldsets or Sections. HTML tags are allowed.', 'visual-form-builder-pro' ); ?>">(?)</span>
             <br />
 			<textarea name="field_description-<?php echo $field->field_id; ?>" class="widefat edit-menu-item-description" cols="20" rows="3" id="edit-form-item-description-<?php echo $field->field_id; ?>"><?php echo stripslashes( $field->field_description ); ?></textarea>
+		</label>
+	</p>
+
+	<!-- CSS Classes -->
+    <p class="description description-thin">
+        <label for="edit-form-item-css-<?php echo $field->field_id; ?>">
+            <?php _e( 'CSS Classes' , 'visual-form-builder-pro'); ?>
+            <span class="vfb-tooltip" rel="<?php esc_attr_e( 'For each field, you can insert your own CSS class names which can be used in your own stylesheets.', 'visual-form-builder-pro' ); ?>" title="<?php esc_attr_e( 'About CSS Classes', 'visual-form-builder-pro' ); ?>">(?)</span>
+            <br />
+            <input type="text" value="<?php echo stripslashes( esc_attr( $field->field_css ) ); ?>" name="field_css-<?php echo $field->field_id; ?>" class="widefat" id="edit-form-item-css-<?php echo $field->field_id; ?>" />
+        </label>
+    </p>
+
+    <!-- Field Layout -->
+	<p class="description description-thin">
+		<label for="edit-form-item-layout">
+			<?php _e( 'Field Layout' , 'visual-form-builder-pro'); ?>
+            <span class="vfb-tooltip" title="<?php esc_attr_e( 'About Field Layout', 'visual-form-builder-pro' ); ?>" rel="<?php esc_attr_e( 'Used to create advanced layouts. Align fields side by side in various configurations.', 'visual-form-builder-pro' ); ?>">(?)</span>
+        <br />
+			<select name="field_layout-<?php echo $field->field_id; ?>" class="widefat" id="edit-form-item-layout-<?php echo $field->field_id; ?>">
+
+				<option value="" <?php selected( $field->field_layout, '' ); ?>><?php _e( 'Default' , 'visual-form-builder-pro'); ?></option>
+                <optgroup label="------------">
+                <option value="left-half" <?php selected( $field->field_layout, 'left-half' ); ?>><?php _e( 'Left Half' , 'visual-form-builder-pro'); ?></option>
+                <option value="right-half" <?php selected( $field->field_layout, 'right-half' ); ?>><?php _e( 'Right Half' , 'visual-form-builder-pro'); ?></option>
+                </optgroup>
+                <optgroup label="------------">
+				<option value="left-third" <?php selected( $field->field_layout, 'left-third' ); ?>><?php _e( 'Left Third' , 'visual-form-builder-pro'); ?></option>
+                <option value="middle-third" <?php selected( $field->field_layout, 'middle-third' ); ?>><?php _e( 'Middle Third' , 'visual-form-builder-pro'); ?></option>
+                <option value="right-third" <?php selected( $field->field_layout, 'right-third' ); ?>><?php _e( 'Right Third' , 'visual-form-builder-pro'); ?></option>
+                </optgroup>
+                <optgroup label="------------">
+                <option value="left-two-thirds" <?php selected( $field->field_layout, 'left-two-thirds' ); ?>><?php _e( 'Left Two Thirds' , 'visual-form-builder-pro'); ?></option>
+                <option value="right-two-thirds" <?php selected( $field->field_layout, 'right-two-thirds' ); ?>><?php _e( 'Right Two Thirds' , 'visual-form-builder-pro'); ?></option>
+                </optgroup>
+                <?php apply_filters( 'vfb_admin_field_layout', $field->field_layout ); ?>
+			</select>
 		</label>
 	</p>
 
@@ -200,24 +237,38 @@ foreach ( $fields as $field ) :
 
 				// Basic count to keep track of multiple options
 				$count = 1;
+?>
+			<div class="vfb-cloned-options">
 
-				// Loop through the options
-				foreach ( $opts_vals as $options ) {
-			?>
+			<?php foreach ( $opts_vals as $options ) : ?>
 			<div id="clone-<?php echo $field->field_id . '-' . $count; ?>" class="option">
-					<input type="radio" value="<?php echo esc_attr( $count ); ?>" name="field_default-<?php echo $field->field_id; ?>" <?php checked( $field->field_default, $count ); ?> <?php echo ( $field->field_type == 'autocomplete' ) ? 'disabled="disabled"' : ''; ?> />
+				<input type="radio" value="<?php echo esc_attr( $count ); ?>" name="field_default-<?php echo $field->field_id; ?>" <?php checked( $field->field_default, $count ); ?> <?php echo ( $field->field_type == 'autocomplete' ) ? 'disabled="disabled"' : ''; ?> />
 <label for="edit-form-item-options-<?php echo $field->field_id . "-$count"; ?>" class="clonedOption">
 					<input type="text" value="<?php echo stripslashes( esc_attr( $options ) ); ?>" name="field_options-<?php echo $field->field_id; ?>[]" class="widefat" id="edit-form-item-options-<?php echo $field->field_id . "-$count"; ?>" />
 				</label>
 
-				<a href="#" class="addOption" title="<?php esc_attr_e( 'Add an Option', 'visual-form-builder-pro' ); ?>"><?php _e( 'Add', 'visual-form-builder-pro' ); ?></a> <a href="#" class="deleteOption" title="<?php esc_attr_e( 'Delete Option', 'visual-form-builder-pro' ); ?>"><?php _e( 'Delete', 'visual-form-builder-pro' ); ?></a>
+				<a href="#" class="deleteOption vfb-interface-icon vfb-interface-minus" title="<?php esc_attr_e( 'Delete Option', 'visual-form-builder-pro' ); ?>">
+					<?php _e( 'Delete', 'visual-form-builder-pro' ); ?>
+				</a>
+				<span class="vfb-interface-icon vfb-interface-sort" title="<?php esc_attr_e( 'Drag and Drop to Sort Options', 'visual-form-builder-pro' ); ?>"></span>
 			</div>
-			   <?php
+			<?php
 					$count++;
-				}
-				?>
+				endforeach;
+			?>
+
+			</div> <!-- .vfb-cloned-options -->
 			<div class="clear"></div>
-			<a href="<?php echo add_query_arg( array( 'action' => 'visual_form_builder_bulk_add', 'field_id' => $field->field_id, 'width' => '640' ), admin_url( 'admin-ajax.php' ) ); ?>" class="thickbox vfb-bulking" title="Bulk Add Options"><?php _e( 'Bulk Add Options', 'visual-form-builder-pro' ); ?></a>
+			<div class="vfb-add-options-group">
+				<a href="<?php echo add_query_arg( array( 'action' => 'visual_form_builder_bulk_add', 'field_id' => $field->field_id, 'width' => '640' ), admin_url( 'admin-ajax.php' ) ); ?>" class="thickbox vfb-button vfb-bulking" title="Bulk Add Options">
+					<?php _e( 'Bulk Add Options', 'visual-form-builder-pro' ); ?>
+					<span class="vfb-interface-icon vfb-interface-bulk-add"></span>
+				</a>
+				<a href="#" class="vfb-button vfb-add-option" title="Add Option">
+					<?php _e( 'Add Option', 'visual-form-builder-pro' ); ?>
+					<span class="vfb-interface-icon vfb-interface-plus"></span>
+				</a>
+			</div>
 			</p>
 		<?php
 			// Unset the options for any following radio, checkboxes, or selects
@@ -588,15 +639,24 @@ foreach ( $fields as $field ) :
 <?php if ( !in_array( $field->field_type, array( 'verification', 'secret', 'submit' ) ) ) : ?>
 	<div class="vfb-item-actions">
 		<!-- Delete link -->
-		<a href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=visual-form-builder-pro&amp;action=delete_field&amp;form=' . $form_nav_selected_id . '&amp;field=' . $field->field_id ), 'delete-field-' . $form_nav_selected_id ) ); ?>" class="vfb-button vfb-delete item-delete submitdelete deletion"><?php _e( 'Delete' , 'visual-form-builder-pro'); ?><span class="button-icon delete"></span></a>
+		<a href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=visual-form-builder-pro&amp;action=delete_field&amp;form=' . $form_nav_selected_id . '&amp;field=' . $field->field_id ), 'delete-field-' . $form_nav_selected_id ) ); ?>" class="vfb-button vfb-delete item-delete submitdelete deletion">
+			<?php _e( 'Delete' , 'visual-form-builder-pro'); ?>
+			<span class="vfb-interface-icon vfb-interface-trash"></span>
+		</a>
 
-		<?php if ( !in_array( $field->field_type, array( 'fieldset', 'section' ) ) ) { ?>
+		<?php if ( !in_array( $field->field_type, array( 'fieldset', 'section' ) ) ) : ?>
 		<!-- Duplicate Field link -->
-		<a href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=visual-form-builder-pro&amp;action=duplicate_field&amp;form=' . $form_nav_selected_id . '&amp;field=' . $field->field_id ), 'duplicate-field-' . $form_nav_selected_id ) ); ?>" class="vfb-button vfb-duplicate vfb-duplicate-field" title="Duplicate Field"><?php _e( 'Duplicate' , 'visual-form-builder-pro'); ?><span class="button-icon plus"></span></a>
-		<?php } ?>
+		<a href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=visual-form-builder-pro&amp;action=duplicate_field&amp;form=' . $form_nav_selected_id . '&amp;field=' . $field->field_id ), 'duplicate-field-' . $form_nav_selected_id ) ); ?>" class="vfb-button vfb-duplicate vfb-duplicate-field" title="Duplicate Field">
+			<?php _e( 'Duplicate' , 'visual-form-builder-pro'); ?>
+			<span class="vfb-interface-icon vfb-interface-duplicate"></span>
+		</a>
+		<?php endif; ?>
 
 		<!-- Conditional Logic link -->
-		<a href="<?php echo add_query_arg( array( 'action' => 'visual_form_builder_conditional_fields', 'field_id' => $field->field_id, 'form_id' => $form_nav_selected_id, 'width' => '640' ), admin_url( 'admin-ajax.php' ) ); ?>" class="vfb-button thickbox vfb-conditional-fields" title="Add Conditions"><?php _e( 'Conditional Logic' , 'visual-form-builder-pro'); ?><span class="button-icon conditional"></span></a>
+		<a href="<?php echo add_query_arg( array( 'action' => 'visual_form_builder_conditional_fields', 'field_id' => $field->field_id, 'form_id' => $form_nav_selected_id, 'width' => '640' ), admin_url( 'admin-ajax.php' ) ); ?>" class="vfb-button thickbox vfb-conditional-fields" title="Add Conditions">
+			<?php _e( 'Conditional Logic' , 'visual-form-builder-pro'); ?>
+			<span class="vfb-interface-icon vfb-interface-conditional"></span>
+		</a>
 	</div>
 <?php endif; ?>
 

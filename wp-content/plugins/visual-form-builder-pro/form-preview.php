@@ -7,7 +7,7 @@ define( 'VFB_PRO_PREVIEW', true );
 function vfb_get_wp_root_path(){
     $base = dirname( __FILE__ );
     $path = false;
-    
+
     if ( @file_exists( dirname( dirname( $base ) ) . '/wp-load.php' ) ) :
         $path = dirname( dirname( $base ) ) . '/wp-load.php';
     else :
@@ -16,16 +16,16 @@ function vfb_get_wp_root_path(){
 	    else
 	    	$path = false;
 	endif;
-    
+
     if ( $path != false )
         $path = str_replace( '\\', '/', $path );
-    
+
     if ( @file_exists( $_SERVER['DOCUMENT_ROOT'] . '/vfb-pro-abspath.php' ) )
     	include_once( $_SERVER['DOCUMENT_ROOT'] . '/vfb-pro-abspath.php' );
-    
+
     if ( defined( 'VFB_PRO_ABSPATH' ) )
     	$path = VFB_PRO_ABSPATH;
-    
+
     return $path;
 }
 
@@ -34,7 +34,7 @@ if ( @is_file( vfb_get_wp_root_path() ) )
 	require_once( vfb_get_wp_root_path() );
 else
 	die( 'Error: could not access wp-load.php. This typically happens when the wp-content folder has been moved. Please set the VFB_PRO_ABSPATH constant to manually set the path.' );
-	
+
 // If you don't have permission, get lost
 if ( !current_user_can( 'vfb_edit_forms' ) )
 	wp_die('<p>'.__('You do not have sufficient permissions to view the preview for this site.').'</p>');
@@ -51,11 +51,14 @@ $form_id = isset( $_REQUEST['form'] ) ? absint( $_REQUEST['form'] ) : 0;
 // Get form title
 $form_title = $wpdb->get_var( $wpdb->prepare( "SELECT form_title FROM $form_table_name WHERE form_id = %d", $form_id ) );
 
+$direction  = get_bloginfo( 'text_direction' );
+$language   = get_bloginfo( 'language' );
+
 // Visual Form Builder Pro class
 $vfb_pro_preview = new Visual_Form_Builder_Pro();
 ?>
 <!DOCTYPE html>
-<html>
+<html dir="<?php echo $direction; ?>" lang="<?php echo $language; ?>">
 <head>
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php echo get_option('blog_charset'); ?>" />
 <title><?php echo esc_html( $form_title ); ?> &lsaquo; Form Preview &#8212; Visual Form Builder Pro</title>
