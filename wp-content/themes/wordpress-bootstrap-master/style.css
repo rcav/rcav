@@ -805,7 +805,7 @@ body {
 		margin-top:0 !important;
 	}
 
-	#content .fluid-sidebar {
+	.home #content .fluid-sidebar {
 		margin-top: 27px;
 	}
 
@@ -1777,6 +1777,15 @@ body {
 			line-height:1.6em;
 	}
 
+
+
+/* ======= oyyam ======= */
+
+.oyyam-blocks .widget { 
+
+	background-color:#000;
+
+}
 
 
 /* ====== search ======= */

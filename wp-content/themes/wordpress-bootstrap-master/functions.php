@@ -68,6 +68,7 @@ add_filter( 'wp_title', 'bones_filter_title', 10, 2 );
 /************* THUMBNAIL SIZE OPTIONS *************/
 
 // Thumbnail sizes
+add_image_size('wpbs-category-thumb',100,100,true);
 add_image_size( 'wpbs-featured', 638, 300, true );
 add_image_size( 'wpbs-featured-post', 400, 250, true );
 add_image_size( 'wpbs-featured-home', 970, 311, true);
@@ -147,7 +148,6 @@ function bones_register_sidebars() {
       'before_title' => '<h4 class="widgettitle">',
       'after_title' => '</h4>',
     ));    
-
 
 
     register_sidebar(array(

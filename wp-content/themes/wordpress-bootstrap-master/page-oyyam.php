@@ -41,7 +41,7 @@ Template Name: OYYAM
 						<section class="row-fluid" id="editorial-blocks">
 						
 							<div class="span12">					
-								<?php //get_sidebar('sidebar5');  ?>						
+								<?php get_sidebar('sidebar5');  ?>						
 							</div>
 													
 						</section> <!-- end article header -->
