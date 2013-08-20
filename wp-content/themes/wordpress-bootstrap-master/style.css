@@ -1217,7 +1217,7 @@ body {
 
 
 	 a.btn {
-		font-family: 'frutiger-romanroman';
+		/*font-family: 'frutiger-romanroman'; */
 		font-size: 1em;
 		text-decoration:none !important;
 	}
@@ -1225,7 +1225,7 @@ body {
 	a.btn-primary {
 		color:#fff !important;
 		line-height: 1.5em;
-		padding-top: 7px;
+		/*padding-top: 7px; */
 	}
 
 	a.edit-post {
@@ -1242,6 +1242,10 @@ body {
 		line-height: 17px;
 		padding-left: 9px;
 		padding-bottom: 4px;
+	}
+
+	.single ul.nav li {
+		background-image: none;
 	}
 
 	.nostyles {
@@ -1781,12 +1785,26 @@ body {
 
 /* ======= oyyam ======= */
 
-.oyyam-blocks .widget { 
-
-	background-color:#000;
+.oyyam-blocks .widget h4 {
+	color:#fff;
 
 }
 
+.oyyam-blocks .widget { 
+	padding:10px;
+	background-color:#FFBA1F;
+	border-radius: 5px;
+}
+
+.oyyam-blocks .widget:first-child {
+	background-color:#0068f2;
+
+}
+
+.oyyam-blocks .widget:last-child {
+	background-color:#cea7e5;
+	
+}
 
 /* ====== search ======= */
 

@@ -114,7 +114,7 @@ class MetaVimeoSlide extends MetaSlide {
         $row .= "    <td class='col-1'>";
         $row .= "        <div class='thumb' style='background-image: url({$thumb})'>";
         $row .= "            <a class='delete-slide confirm' href='?page=metaslider&id={$this->slider->ID}&deleteSlide={$this->slide->ID}'>x</a>";
-        $row .= "            <span class='slide-details'>Vimeo</span>";
+        $row .= "            <span class='slide-details'>" . __("Vimeo", 'metasliderpro') . "</span>";
         $row .= "            <span class='vimeo'></span>";
         $row .= "        </div>";
         $row .= "    </td>";

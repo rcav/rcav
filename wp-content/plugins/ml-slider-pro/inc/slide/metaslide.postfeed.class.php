@@ -15,7 +15,7 @@ class MetaPostFeedSlide extends MetaSlide {
     }
 
     /**
-     * Create a new postfeed slide
+     *  
      */
     public function ajax_create_slide() {
         $slider_id = intval($_POST['slider_id']);
@@ -258,11 +258,11 @@ class MetaPostFeedSlide extends MetaSlide {
      * @return string drop down list HTML
      */
     private function get_order_direction_options() {
-        $selected_direction = isset($this->slide_settings['order']) ? $this->slide_settings['order'] : 'ASC';
+        $selected_direction = isset($this->slide_settings['order']) ? $this->slide_settings['order'] : 'DESC';
 
         $options = array(
-            'ASC' => 'ASC',
-            'DESC' => 'DESC'
+            'DESC' => 'DESC',
+            'ASC' => 'ASC'
         );
 
         $html = "<select name='attachment[{$this->slide->ID}][settings][order]'>";
@@ -377,6 +377,7 @@ class MetaPostFeedSlide extends MetaSlide {
         $args['posts_per_page'] = $this->get_number_of_posts();
         $args['order_by'] = $this->get_order_by();
         $args['order'] = $this->get_order();
+        $args['meta_key'] = '_thumbnail_id';
         $args['tax_query'] = array('relation' => 'OR');
 
         // add taxonomy limits
@@ -404,9 +405,7 @@ class MetaPostFeedSlide extends MetaSlide {
 
         while ( $the_query->have_posts() ) {
             $the_query->the_post();
-
             $id = get_post_thumbnail_id($the_query->post->ID);
-
             $thumb = false;
             
             if ($id > 0) {

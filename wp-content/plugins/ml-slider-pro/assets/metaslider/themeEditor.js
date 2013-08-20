@@ -1,4 +1,3 @@
-
 jQuery(document).ready(function() {
     // show the confirm dialogue
     jQuery(".confirm").live('click', function() {

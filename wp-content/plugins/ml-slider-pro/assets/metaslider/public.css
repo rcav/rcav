@@ -1,3 +1,23 @@
+.metaslider .msHtmlOverlay .animation_in,
+.metaslider .msHtmlOverlay .animation_out {
+  width: 100%;
+  height: 100%;
+}
+.metaslider .msHtmlOverlay .layer .content {
+  overflow: hidden;
+}
+.metaslider .msHtmlOverlay .layer * {
+  margin: 0;
+  padding: 0;
+  line-height: 1.4em;
+  font-size: 1em; 
+}
+.metaslider .msHtmlOverlay .layer .youtube_sc.fluid.widescreen {
+  padding-bottom:56.25%
+}
+.metaslider .msHtmlOverlay .layer .youtube_sc.fluid.fourthree { 
+  padding-bottom:75%
+}
 .metaslider .msHtmlOverlay {
   position: absolute; 
   top: 0; 

@@ -47,14 +47,16 @@ class MetaSliderThemeEditor {
     public function get_theme_select_options($themes, $selected_theme) {
         $custom_themes = $this->get_themes();
 
-        if (is_array($custom_themes) && count($custom_themes) > 0) {
-            foreach ($custom_themes as $slug => $theme) {
-                $themes .= "<option value='{$slug}' class='option nivo flex responsive coin'";
-                if ($slug == $selected_theme) {
-                    $themes .= " selected=selected";
-                }
-                $themes .= ">{$theme['title']}</option>";
+        if (!is_array($custom_themes)) {
+            return $themes;
+        }
+
+        foreach ($custom_themes as $slug => $theme) {
+            $themes .= "<option value='{$slug}' class='option nivo flex responsive coin'";
+            if ($slug == $selected_theme) {
+                $themes .= " selected=selected";
             }
+            $themes .= ">{$theme['title']}</option>";
         }
 
         return $themes;
@@ -354,25 +356,25 @@ class MetaSliderThemeEditor {
                     <table class='widefat settings'>
                         <thead>
                             <tr>
-                                <th width='40%'>Theme Settings</th>
+                                <th width='40%'><?php _e("Theme Settings", 'metasliderpro') ?></th>
                                 <th><input type='submit' name='save_theme' value='Save' class='alignright button button-primary' /></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Theme Name</td>
+                                <td><?php _e("Theme Name", 'metasliderpro') ?></td>
                                 <td><input type='text' name='theme[title]' value='<?php echo $this->get_setting('title') ?>' />
                             <tr>
-                                <td colspan='2' class='highlight'>Slideshow</td>
+                                <td colspan='2' class='highlight'><?php _e("Slideshow", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td>Outer Border Radius</td>
+                                <td><?php _e("Outer Border Radius", 'metasliderpro') ?></td>
                                 <td>
-                                    <input type='number' min='0' max='50' id='theme_outer_border_radius' name='theme[outer_border_radius]' value='<?php echo $this->get_setting('outer_border_radius'); ?>' />px
+                                    <input type='number' min='0' max='50' id='theme_outer_border_radius' name='theme[outer_border_radius]' value='<?php echo $this->get_setting('outer_border_radius'); ?>' /><?php _e("px", 'metasliderpro') ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td>CSS3 Shadow</td>
+                                <td><?php _e("CSS3 Shadow", 'metasliderpro') ?></td>
                                 <td>
                                     <select id='shadow' name='theme[shadow]'>
                                         <option value='none' <?php if ($this->get_setting('shadow') == 'none') echo 'selected=selected'?>>None</option>
@@ -386,131 +388,131 @@ class MetaSliderThemeEditor {
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan='2' class='highlight'>Caption</td>
+                                <td colspan='2' class='highlight'><?php _e("Caption", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td>Position</td>
+                                <td><?php _e("Position", 'metasliderpro') ?></td>
                                 <td>
                                     <select id='caption_position' name='theme[caption_position]'>
-                                        <option value='bottomLeft' <?php if ($this->get_setting('caption_position') == 'bottomLeft') echo 'selected=selected'?>>Bottom Left</option>
-                                        <option value='bottomRight' <?php if ($this->get_setting('caption_position') == 'bottomRight') echo 'selected=selected'?>>Bottom Right</option>
-                                        <option value='topLeft' <?php if ($this->get_setting('caption_position') == 'topLeft') echo 'selected=selected'?>>Top Left</option>
-                                        <option value='topRight' <?php if ($this->get_setting('caption_position') == 'topRight') echo 'selected=selected'?>>Top Right</option>
-                                        <option value='underneath' <?php if ($this->get_setting('caption_position') == 'underneath') echo 'selected=selected'?>>Underneath</option>
+                                        <option value='bottomLeft' <?php if ($this->get_setting('caption_position') == 'bottomLeft') echo 'selected=selected'?>><?php _e("Bottom Left", 'metasliderpro') ?></option>
+                                        <option value='bottomRight' <?php if ($this->get_setting('caption_position') == 'bottomRight') echo 'selected=selected'?>><?php _e("Bottom Right", 'metasliderpro') ?></option>
+                                        <option value='topLeft' <?php if ($this->get_setting('caption_position') == 'topLeft') echo 'selected=selected'?>><?php _e("Top Left", 'metasliderpro') ?></option>
+                                        <option value='topRight' <?php if ($this->get_setting('caption_position') == 'topRight') echo 'selected=selected'?>><?php _e("Top Right", 'metasliderpro') ?></option>
+                                        <option value='underneath' <?php if ($this->get_setting('caption_position') == 'underneath') echo 'selected=selected'?>><?php _e("Underneath", 'metasliderpro') ?></option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Width</td>
+                                <td><?php _e("Width", 'metasliderpro') ?></td>
                                 <td><input type='number' min='0' max='100' id='theme_caption_width' name='theme[caption_width]' value='<?php echo $this->get_setting('caption_width'); ?>' />%</td>
                             </tr>
                             <tr>
-                                <td>Text Color</td>
+                                <td><?php _e("Text Color", 'metasliderpro') ?></td>
                                 <td>
                                     <input type='text' class='colorpicker' id='colourpicker-caption-text-colour' name='theme[caption_text_colour]' value='<?php echo $this->get_setting('caption_text_colour'); ?>' />
                                 </td>
                             </tr>
                             <tr>
-                                <td>Background Color</td>
+                                <td><?php _e("Background Color", 'metasliderpro') ?></td>
                                 <td>
                                     <input type='text' class='colorpicker' id='colourpicker-caption-background-colour' name='theme[caption_background_colour]' value='<?php echo $this->get_setting('caption_background_colour') ?>' />
                                 </td>
                             </tr>
                             <tr>
-                                <td>Vertical Margin</td>
-                                <td><input type='number' min='0' max='500' id='theme_caption_vertical_margin' name='theme[caption_vertical_margin]' value='<?php echo $this->get_setting('caption_vertical_margin'); ?>' />px</td>
+                                <td><?php _e("Vertical Margin", 'metasliderpro') ?></td>
+                                <td><input type='number' min='0' max='500' id='theme_caption_vertical_margin' name='theme[caption_vertical_margin]' value='<?php echo $this->get_setting('caption_vertical_margin'); ?>' /><?php _e("px", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td>Horizontal Margin</td>
-                                <td><input type='number' min='0' max='500' id='theme_caption_horizontal_margin' name='theme[caption_horizontal_margin]' value='<?php echo $this->get_setting('caption_horizontal_margin'); ?>' />px</td>
+                                <td><?php _e("Horizontal Margin", 'metasliderpro') ?></td>
+                                <td><input type='number' min='0' max='500' id='theme_caption_horizontal_margin' name='theme[caption_horizontal_margin]' value='<?php echo $this->get_setting('caption_horizontal_margin'); ?>' /><?php _e("px", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td colspan='2' class='highlight'>Arrows</td>
+                                <td colspan='2' class='highlight'><?php _e("Arrows", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td>Style</td>
+                                <td><?php _e("Style", 'metasliderpro') ?></td>
                                 <td>
                                     <select id='arrow_style' name='theme[arrow_type]'><?php echo $arrow_style ?></select>
                                     <select id='arrow_colour' name='theme[arrow_colour]'><?php echo $arrow_colour ?></select>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Opacity</td>
+                                <td><?php _e("Opacity", 'metasliderpro') ?></td>
                                 <td><input type='number' min='0' max='100' step='1' id='theme_arrow_opacity' name='theme[arrow_opacity]' value='<?php echo $this->get_setting('arrow_opacity'); ?>' />%</td>
                             </tr>
                             <tr>
-                                <td>Distance from Edge</td>
-                                <td><input type='number' min='-50' max='50' id='theme_arrow_indent' name='theme[arrow_indent]' value='<?php echo $this->get_setting('arrow_indent'); ?>' />px</td>
+                                <td><?php _e("Distance from edge", 'metasliderpro') ?></td>
+                                <td><input type='number' min='-50' max='50' id='theme_arrow_indent' name='theme[arrow_indent]' value='<?php echo $this->get_setting('arrow_indent'); ?>' /><?php _e("px", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td colspan='2' class='highlight'>Navigation</td>
+                                <td colspan='2' class='highlight'><?php _e("Navigation", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td>Position</td>
+                                <td><?php _e("Position", 'metasliderpro') ?></td>
                                 <td>
                                     <select id='arrow_position' name='theme[nav_position]'>
-                                        <option value='default' <?php if ($this->get_setting('nav_position') == 'default') echo 'selected=selected'?>>Default</option>
-                                        <option value='topLeft' <?php if ($this->get_setting('nav_position') == 'topLeft') echo 'selected=selected'?>>Top Left</option>
-                                        <option value='topCenter' <?php if ($this->get_setting('nav_position') == 'topCenter') echo 'selected=selected'?>>Top Center</option>
-                                        <option value='topRight' <?php if ($this->get_setting('nav_position') == 'topRight') echo 'selected=selected'?>>Top Right</option>
-                                        <option value='bottomLeft' <?php if ($this->get_setting('nav_position') == 'bottomLeft') echo 'selected=selected'?>>Bottom Left</option>
-                                        <option value='bottomCenter' <?php if ($this->get_setting('nav_position') == 'bottomCenter') echo 'selected=selected'?>>Bottom Center</option>
-                                        <option value='bottomRight' <?php if ($this->get_setting('nav_position') == 'bottomRight') echo 'selected=selected'?>>Bottom Right</option>
+                                        <option value='default' <?php if ($this->get_setting('nav_position') == 'default') echo 'selected=selected'?>><?php _e("Default", 'metasliderpro') ?></option>
+                                        <option value='topLeft' <?php if ($this->get_setting('nav_position') == 'topLeft') echo 'selected=selected'?>><?php _e("Top Left", 'metasliderpro') ?></option>
+                                        <option value='topCenter' <?php if ($this->get_setting('nav_position') == 'topCenter') echo 'selected=selected'?>><?php _e("Top Center", 'metasliderpro') ?></option>
+                                        <option value='topRight' <?php if ($this->get_setting('nav_position') == 'topRight') echo 'selected=selected'?>><?php _e("Top Right", 'metasliderpro') ?></option>
+                                        <option value='bottomLeft' <?php if ($this->get_setting('nav_position') == 'bottomLeft') echo 'selected=selected'?>><?php _e("Bottom Left", 'metasliderpro') ?></option>
+                                        <option value='bottomCenter' <?php if ($this->get_setting('nav_position') == 'bottomCenter') echo 'selected=selected'?>><?php _e("Bottom Center", 'metasliderpro') ?></option>
+                                        <option value='bottomRight' <?php if ($this->get_setting('nav_position') == 'bottomRight') echo 'selected=selected'?>><?php _e("Bottom Right", 'metasliderpro') ?></option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Vertical Margin</td>
-                                <td><input type='number' min='0' max='500' id='theme_nav_vertical_margin' name='theme[nav_vertical_margin]' value='<?php echo $this->get_setting('nav_vertical_margin'); ?>' />px</td>
+                                <td><?php _e("Vertical Margin", 'metasliderpro') ?></td>
+                                <td><input type='number' min='0' max='500' id='theme_nav_vertical_margin' name='theme[nav_vertical_margin]' value='<?php echo $this->get_setting('nav_vertical_margin'); ?>' /><?php _e("px", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td>Horizontal Margin</td>
-                                <td><input type='number' min='0' max='500' id='theme_nav_horizontal_margin' name='theme[nav_horizontal_margin]' value='<?php echo $this->get_setting('nav_horizontal_margin'); ?>' />px</td>
+                                <td><?php _e("Horizontal Margin", 'metasliderpro') ?></td>
+                                <td><input type='number' min='0' max='500' id='theme_nav_horizontal_margin' name='theme[nav_horizontal_margin]' value='<?php echo $this->get_setting('nav_horizontal_margin'); ?>' /><?php _e("px", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td colspan='2' class='highlight'>Bullets</td>
+                                <td colspan='2' class='highlight'><?php _e("Bullets", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td>Fill Color</td>
+                                <td><?php _e("Fill Color", 'metasliderpro') ?></td>
                                 <td>
                                     <input type='text' class='colorpicker' id='colourpicker-fill-start' name='theme[dot_fill_colour_start]' value='<?php echo $this->get_setting('dot_fill_colour_start'); ?>' />
                                     <input type='text' class='colorpicker' id='colourpicker-fill-end' name='theme[dot_fill_colour_end]' value='<?php echo $this->get_setting('dot_fill_colour_end'); ?>' />
                                 </td>
                             </tr>
                             <tr>
-                                <td>Fill Color (Active)</td>
+                                <td><?php _e("Fill Color (Active)", 'metasliderpro') ?></td>
                                 <td>
                                     <input type='text' class='colorpicker' id='colourpicker-active-fill-start' name='theme[active_dot_fill_colour_start]' value='<?php echo $this->get_setting('active_dot_fill_colour_start'); ?>' />
                                     <input type='text' class='colorpicker' id='colourpicker-active-fill-end' name='theme[active_dot_fill_colour_end]' value='<?php echo $this->get_setting('active_dot_fill_colour_end'); ?>' />
                                 </td>
                             </tr>
                             <tr>
-                                <td>Border Color</td>
+                                <td><?php _e("Border Color", 'metasliderpro') ?></td>
                                 <td>
                                     <input type='text' class='colorpicker' id='colourpicker-border-colour' name='theme[dot_border_colour]' value='<?php echo $this->get_setting('dot_border_colour'); ?>' />
                                 </td>
                             </tr>
                             <tr>
-                                <td>Border Color (Active)</td>
+                                <td><?php _e("Border Color (Active)", 'metasliderpro') ?></td>
                                 <td>
                                     <input type='text' class='colorpicker' id='colourpicker-active-border-colour' name='theme[active_dot_border_colour]' value='<?php echo $this->get_setting('active_dot_border_colour'); ?>' />
                                 </td>
                             </tr>
                             <tr>
-                                <td>Size</td>
-                                <td><input type='number' min='0' max='50' id='theme_dot_size' name='theme[dot_size]' value='<?php echo $this->get_setting('dot_size'); ?>' />px</td>
+                                <td><?php _e("Size", 'metasliderpro') ?></td>
+                                <td><input type='number' min='0' max='50' id='theme_dot_size' name='theme[dot_size]' value='<?php echo $this->get_setting('dot_size'); ?>' /><?php _e("px", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td>Spacing</td>
-                                <td><input type='number' min='0' max='50' id='theme_dot_spacing' name='theme[dot_spacing]' value='<?php echo $this->get_setting('dot_spacing'); ?>' />px</td>
+                                <td><?php _e("Spacing", 'metasliderpro') ?></td>
+                                <td><input type='number' min='0' max='50' id='theme_dot_spacing' name='theme[dot_spacing]' value='<?php echo $this->get_setting('dot_spacing'); ?>' /><?php _e("px", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td>Border Width</td>
-                                <td><input type='number' min='0' max='50' id='theme_dot_border_width' name='theme[dot_border_width]' value='<?php echo $this->get_setting('dot_border_width'); ?>' />px</td>
+                                <td><?php _e("Border Width", 'metasliderpro') ?></td>
+                                <td><input type='number' min='0' max='50' id='theme_dot_border_width' name='theme[dot_border_width]' value='<?php echo $this->get_setting('dot_border_width'); ?>' /><?php _e("px", 'metasliderpro') ?></td>
                             </tr>
                             <tr>
-                                <td>Border Radius</td>
-                                <td><input type='number' min='0' max='50' id='theme_dot_border_radius' name='theme[dot_border_radius]' value='<?php echo $this->get_setting('dot_border_radius'); ?>' />px</td>
+                                <td><?php _e("Border Radius", 'metasliderpro') ?></td>
+                                <td><input type='number' min='0' max='50' id='theme_dot_border_radius' name='theme[dot_border_radius]' value='<?php echo $this->get_setting('dot_border_radius'); ?>' /><?php _e("px", 'metasliderpro') ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -519,7 +521,7 @@ class MetaSliderThemeEditor {
             </div>
 
             <div class='right'>
-                <div class='wrap'><h3 style='margin: 0 0 10px 0;'>Live Preview</h3>
+                <div class='wrap'><h3 style='margin: 0 0 10px 0;'><?php _e("Live Preview", 'metasliderpro') ?></h3>
                     <?php
                         if ($sliders = $this->get_sliders_for_preview()) {
                             echo "<form style='margin-bottom: 10px;' accept-charset='UTF-8' action='?page=metaslider-theme-editor' method='post'>";
@@ -537,7 +539,7 @@ class MetaSliderThemeEditor {
                     <?php echo do_shortcode("[metaslider id=" . $this->preview_slider_id . "]") ?>
 
                     <p style='margin-top: 30px'>
-                        <i>This is a preview only. To apply the theme to a slideshow, edit the slideshow and select this theme from the theme dropdown menu.</i>
+                        <i><?php _e("This is a preview only. To apply the theme to a slideshow, edit the slideshow and select this theme from the theme dropdown menu.", 'metasliderpro') ?></i>
                     </p>
                 </div>
             </div>
@@ -635,11 +637,14 @@ class MetaSliderThemeEditor {
             height: {$this->theme['dot_size']}px;
             margin-left: {$this->theme['dot_spacing']}px;
             margin-right: {$this->theme['dot_spacing']}px;
+            background: {$this->theme['dot_fill_colour_start']};
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from({$this->theme['dot_fill_colour_start']}), to({$this->theme['dot_fill_colour_end']}));
             background: -webkit-linear-gradient(top, {$this->theme['dot_fill_colour_start']}, {$this->theme['dot_fill_colour_end']});
             background: -moz-linear-gradient(top, {$this->theme['dot_fill_colour_start']}, {$this->theme['dot_fill_colour_end']});
             background: -ms-linear-gradient(top, {$this->theme['dot_fill_colour_start']}, {$this->theme['dot_fill_colour_end']});
             background: -o-linear-gradient(top, {$this->theme['dot_fill_colour_start']}, {$this->theme['dot_fill_colour_end']});
+            background: linear-gradient(top, {$this->theme['dot_fill_colour_start']}, {$this->theme['dot_fill_colour_end']});
+
         }
 
         #metaslider_container_{$id} .flex-control-nav li a.flex-active, 
@@ -647,11 +652,13 @@ class MetaSliderThemeEditor {
         #metaslider_container_{$id} .rslides_tabs li.rslides_here a, 
         #metaslider_container_{$id} .cs-buttons a.cs-active {
             border: {$this->theme['dot_border_width']}px solid {$this->theme['active_dot_border_colour']};
+            background: {$this->theme['active_dot_fill_colour_start']};
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from({$this->theme['active_dot_fill_colour_start']}), to({$this->theme['active_dot_fill_colour_end']}));
             background: -webkit-linear-gradient(top, {$this->theme['active_dot_fill_colour_start']}, {$this->theme['active_dot_fill_colour_end']});
             background: -moz-linear-gradient(top, {$this->theme['active_dot_fill_colour_start']}, {$this->theme['active_dot_fill_colour_end']});
             background: -ms-linear-gradient(top, {$this->theme['active_dot_fill_colour_start']}, {$this->theme['active_dot_fill_colour_end']});
             background: -o-linear-gradient(top, {$this->theme['active_dot_fill_colour_start']}, {$this->theme['active_dot_fill_colour_end']});
+            background: linear-gradient(top, {$this->theme['active_dot_fill_colour_start']}, {$this->theme['active_dot_fill_colour_end']});
         }
 
         #metaslider_container_{$id} .flex-control-nav,
@@ -889,7 +896,7 @@ class MetaSliderThemeEditor {
                 $arrow_select_options .= " selected=selected";
             }
 
-            $arrow_select_options .= ">Type {$id}</option>";
+            $arrow_select_options .= ">" . __("Type", 'metasliderpro') . " {$id}</option>";
         }
 
         return $arrow_select_options;

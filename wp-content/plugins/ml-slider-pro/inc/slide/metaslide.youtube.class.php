@@ -92,7 +92,7 @@ class MetaYouTubeSlide extends MetaSlide {
         $row .= "    <td class='col-1'>";
         $row .= "        <div class='thumb' style='background-image: url({$thumb})'>";
         $row .= "            <a class='delete-slide confirm' href='?page=metaslider&id={$this->slider->ID}&deleteSlide={$this->slide->ID}'>x</a>";
-        $row .= "            <span class='slide-details'>YouTube</span>";
+        $row .= "            <span class='slide-details'>" . __("YouTube", 'metasliderpro') . "</span>";
         $row .= "            <span class='youtube'></span>";
         $row .= "        </div>";
         $row .= "    </td>";
@@ -162,7 +162,7 @@ class MetaYouTubeSlide extends MetaSlide {
             unset($options["pauseOnHover"]);
         }
 
-        $options['useCSS'] = 'false';
+        $options["useCSS"] = "false";
         $options["before"][] = "jQuery('#metaslider_{$slider_id} .youtube').each(function(index) {jQuery(this).tubeplayer('pause');});";
         
         // we don't want this filter hanging around if there's more than one slideshow on the page

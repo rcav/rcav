@@ -64,23 +64,26 @@ jQuery(document).ready(function($) {
 				// Set the first 6 editorial widget to the same height
 				var maxHeight = -1;
 
-			   $('.home #editorial-blocks .widget:lt(7)').each(function() {
+			   $('.home #editorial-blocks .widget:lt(7), .oyyam-blocks .widget:lt(7)').each(function() {
 			     maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
 			     //console.log(maxHeight);
 			   });
 
-			   $('.home #editorial-blocks .widget').each(function() {
+			   $('.home #editorial-blocks .widget, .oyyam-blocks .widget').each(function() {
 			     $(this).height(maxHeight);
 			   });
 			
+
+
+
 			
 			// editorial blocks
-			$('.home #editorial-blocks .widget').eq(0).addClass('first-block');
-			$('.home #editorial-blocks .widget').eq(1).addClass('second-block');
-			$('.home #editorial-blocks .widget').eq(2).addClass('third-block');
-			$('.home #editorial-blocks .widget').eq(3).addClass('fourth-block');
-			$('.home #editorial-blocks .widget').eq(4).addClass('fifth-block');
-			$('.home #editorial-blocks .widget').eq(5).addClass('sixth-block');
+			$('.home #editorial-blocks .widget, .oyyam-blocks .widget').eq(0).addClass('first-block');
+			$('.home #editorial-blocks .widget, .oyyam-blocks .widget').eq(1).addClass('second-block');
+			$('.home #editorial-blocks .widget, .oyyam-blocks .widget').eq(2).addClass('third-block');
+			$('.home #editorial-blocks .widget, .oyyam-blocks .widget').eq(3).addClass('fourth-block');
+			$('.home #editorial-blocks .widget, .oyyam-blocks .widget').eq(4).addClass('fifth-block');
+			$('.home #editorial-blocks .widget, .oyyam-blocks .widget').eq(5).addClass('sixth-block');
 
 			// generated blocks row			
 			$('.home #generated-blocks .widget').eq(0).addClass('span6');

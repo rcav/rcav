@@ -14,9 +14,8 @@
 							<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
 							<header>
-								<div class="page-header"><h1 class="single-title" itemprop="headline"><?php single_cat_title(); ?> <?php 
-								$current_category = single_cat_title("", false); // not very pretty
-								if( $current_category = 'oyyam') { echo 'Blog';};?></h1></div>
+								<div class="page-header"><h1 class="single-title" itemprop="headline"><?php single_cat_title(); ?></h1></div>
+								
 							</header>
 
 									<section class="post_content clearfix" itemprop="articleBody">

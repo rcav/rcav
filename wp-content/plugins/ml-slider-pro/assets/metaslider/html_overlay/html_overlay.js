@@ -1,7 +1,13 @@
 (function ($) {
     $(function () {
-        $('.metaslider .wysiwyg').each(function() {
-            CodeMirror.fromTextArea(document.getElementById($(this).attr('id')), {
+        $('.metaslider .rawEdit').live('click', function(e) {
+            e.preventDefault();
+            var rawEditButton = $(this);
+            var openLayerEditorButton = $(this).prev('button');
+
+            var textarea_id = rawEditButton.attr('rel');
+
+            var codeMirror = CodeMirror.fromTextArea(document.getElementById(textarea_id), {
                 tabMode: 'indent',
                 mode: 'xml',
                 lineNumbers: true,
@@ -11,7 +17,26 @@
                     cm.save();
                 }
             });
-        });
+
+            var close_button = $("<button class='close button-secondary'>x</button>").click(function(e) {
+                e.preventDefault();
+                rawEditButton.show();
+                openLayerEditorButton.show();
+                $(this).parent().siblings('.CodeMirror').remove();
+                $(this).remove();
+            });
+
+
+            var button_wrap = $("<div class='close_raw_edit_wrap' />");
+
+            button_wrap.html(close_button);
+
+            $('#' + textarea_id).after(button_wrap);
+
+            rawEditButton.hide();
+            openLayerEditorButton.hide();
+
+        })
     });
 }(jQuery));
 
@@ -61,22 +86,7 @@ wp.media.view.Toolbar.Custom = wp.media.view.Toolbar.extend({
             };
 
             jQuery.post(ajaxurl, data, function(response) {
-                id = jQuery('.wysiwyg', response).attr('id');
                 window.parent.jQuery(".metaslider .left table").append(response);
-
-                CodeMirror.fromTextArea(document.getElementById(id), {
-                    tabMode: 'indent',
-                    mode: 'xml',
-                    lineNumbers: true,
-                    lineWrapping: true,
-                    theme: 'monokai',
-                    onChange: function(cm) {
-                        cm.save();
-                    }
-                });
-
-                
-
                 window.parent.jQuery(".media-modal-close").click();
             });
         });
