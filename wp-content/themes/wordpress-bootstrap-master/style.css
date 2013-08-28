@@ -1421,6 +1421,7 @@ body {
 	.page-header h1 { margin-top:0; }
 
 	.container-fluid { 
+		background:#ffffff;
 	} 
 
 /* ====== SIDEBAR ====== */
