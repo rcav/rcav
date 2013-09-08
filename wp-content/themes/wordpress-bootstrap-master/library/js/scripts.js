@@ -64,7 +64,7 @@ jQuery(document).ready(function($) {
 				// Set the first 6 editorial widget to the same height
 				var maxHeight = -1;
 
-			   $('.home #editorial-blocks .widget:lt(7), .oyyam-blocks .widget:lt(7)').each(function() {
+			   $('.home #editorial-blocks .widget:lt(3), .oyyam-blocks .widget:lt(7)').each(function() {
 			     maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
 			     //console.log(maxHeight);
 			   });
@@ -73,8 +73,6 @@ jQuery(document).ready(function($) {
 			     $(this).height(maxHeight);
 			   });
 			
-
-
 
 			
 			// editorial blocks
