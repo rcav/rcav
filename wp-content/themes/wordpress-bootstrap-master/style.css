@@ -1790,7 +1790,11 @@ body {
 	background-color:#FFBA1F;
 	border-radius: 5px;
 	color:#fff;
+	min-height:150px;
+}
 
+.oyyam-blocks .widget .btn {
+	margin-bottom:20px;
 }
 
 .oyyam-blocks .first-block {
