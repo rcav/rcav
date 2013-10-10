@@ -6,6 +6,15 @@ if ( class_exists( 'VFB_Pro_Create_Post' ) )
 
 global $wpdb;
 
+// Get global settings
+$vfb_settings 	= get_option( 'vfb-settings' );
+
+// Settings - Prepend Confirmation
+$settings_prepend_confirm	= isset( $vfb_settings['prepend-confirm'] ) ? true : false;
+
+// Settings - Place Address labels above fields
+$settings_address_labels	= isset( $vfb_settings['address-labels'] ) ? false : true;
+
 // Extract shortcode attributes, set defaults
 extract( shortcode_atts( array(
 	'id' => ''
@@ -22,7 +31,7 @@ $form_id = ( isset( $id ) && !empty( $id ) ) ? (int) $id : key( $atts );
 // If form is submitted, show success message, otherwise the form
 if ( isset( $_POST['vfb-submit'] ) && isset( $_POST['form_id'] ) && $_POST['form_id'] == $form_id ) {
 	$output = $this->confirmation();
-	if ( !apply_filters( 'vfb_prepend_confirmation', false, $form_id ) )
+	if ( !apply_filters( 'vfb_prepend_confirmation', $settings_prepend_confirm, $form_id ) )
 		return;
 }
 
@@ -53,7 +62,7 @@ $rules = $this->get_conditional_fields( $form_id );
 // Setup default variables needed
 $count = 1;
 $page_num = 0;
-$page = $total_page = $verification = '';
+$page = $total_page = $verification = $recaptcha = '';
 $open_fieldset = $open_section = $open_page = false;
 $submit = 'Submit';
 
@@ -99,8 +108,11 @@ else :
 	// Label alignment
 	$label_alignment = ( $form->form_label_alignment !== '' ) ? esc_attr( " $form->form_label_alignment" ) : '';
 
+	// Settings - Remove default SPAM Verification
+	$settings_form_verification = isset( $vfb_settings['spam-verification'] ) ? false : $form->form_verification;
+
 	// Set a default for displaying the verification section
-	$display_verification = apply_filters( 'vfb_display_verification', $form->form_verification );
+	$display_verification = apply_filters( 'vfb_display_verification', $settings_form_verification );
 
 	// Allow the default action to be hooked into
 	$action = apply_filters( 'vfb_form_action', '', $form_id );
@@ -294,6 +306,35 @@ else :
 						$id_attr,
 						$logged_in_as
 					);
+				else :
+					$recaptcha_setting	= maybe_unserialize( $field->field_options );
+					$use_recaptcha 		= isset( $recaptcha_setting['setting'] ) ? $recaptcha_setting['setting'] : false;
+
+					if ( $use_recaptcha ) :
+						if ( !function_exists( 'recaptcha_get_html' ) )
+	                        require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'recaptchalib.php' );
+
+	                    $vfb_settings  = get_option( 'vfb-settings' );
+	                    $public_key    = $vfb_settings['recaptcha-public-key'];
+
+						if ( empty( $public_key ) ) :
+							$recaptcha .= __( 'reCAPTCHA Public Key not found. Both Public and Private keys must be set in order for reCAPTCHA to function.', 'visual-form-builder-pro' );
+						else :
+		                    $is_ssl = !empty( $_SERVER['HTTPS'] );
+							$recaptcha_theme  = apply_filters( 'vfb_recaptcha_theme', 'white', $form_id );
+							$recaptcha_lang   = apply_filters( 'vfb_recaptcha_lang', 'en', $form_id );
+							$recaptcha_opts   = apply_filters( 'vfb_recaptcha_opts', '', $form_id );
+
+							$recaptcha .= sprintf(
+								'<script type="text/javascript">var RecaptchaOptions = {theme : "%1$s", lang : "%2$s"%3$s}</script>',
+								$recaptcha_theme,
+								$recaptcha_lang,
+								$recaptcha_opts
+							);
+		                    $recaptcha .= recaptcha_get_html( $public_key, null, $is_ssl );
+						endif;
+                    endif;
+
 				endif;
 
 				$verification .= sprintf(
@@ -313,6 +354,9 @@ else :
 
 				$validation = '{digits:true,maxlength:2,minlength:2}';
 
+				if ( $recaptcha ) :
+					$verification_item = $recaptcha;
+				else :
 				$verification_item = sprintf(
 					'<input type="text" name="vfb-%1$d" id="item-%2$s" value="%3$s" class="vfb-text %4$s %5$s %6$s %7$s" />',
 					$field_id,
@@ -323,6 +367,7 @@ else :
 					$validation,
 					$css
 				);
+				endif;
 
 				$verification .= ( !empty( $description ) ) ? sprintf( '<span class="vfb-span">%1$s<label>%2$s</label></span>', $verification_item, $description ) : $verification_item;
 
@@ -563,7 +608,7 @@ else :
 
 				$address_parts = apply_filters( 'vfb_address_labels', $address_parts, $form_id );
 
-				$label_placement = apply_filters( 'vfb_address_labels_placement', true, $form_id );
+				$label_placement = apply_filters( 'vfb_address_labels_placement', $settings_address_labels, $form_id );
 
 				$placement_bottom = ( $label_placement ) ? '<label for="%2$s-%4$s">%5$s</label>' : '';
 				$placement_top    = ( !$label_placement ) ? '<label for="%2$s-%4$s">%5$s</label>' : '';
@@ -851,6 +896,8 @@ else :
 			case 'hidden' :
 				$val = '';
 
+				$current_user = wp_get_current_user();
+
 				// If the options field isn't empty, unserialize and build array
 				if ( !empty( $field->field_options ) ) :
 					if ( is_serialized( $field->field_options ) )
@@ -859,29 +906,41 @@ else :
 						switch ( $opts_vals[0] ) :
 							case 'form_id' :
 								$val = $form_id;
-							break;
+								break;
 							case 'form_title' :
 								$val = stripslashes( $form->form_title );
-							break;
+								break;
 							case 'ip' :
 								$val = $_SERVER['REMOTE_ADDR'];
-							break;
+								break;
 							case 'uid' :
 								$val = uniqid();
-							break;
+								break;
 							case 'post_id' :
 								$val = get_the_id();
-							break;
+								break;
 							case 'post_title' :
 								$val = get_the_title();
-							break;
+								break;
 							case 'post_url' :
 								$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : substr( $_SERVER['PHP_SELF'], 1 );
 								$val = site_url( wp_unslash( $request_uri ) );
-							break;
+								break;
+							case 'current_user_id' :
+								$val = $current_user instanceof WP_User ? $current_user->ID : '';
+								break;
+							case 'current_user_name' :
+								$val = $current_user instanceof WP_User ? $current_user->display_name : '';
+								break;
+							case 'current_user_username' :
+								$val = $current_user instanceof WP_User ? $current_user->user_login : '';
+								break;
+							case 'current_user_email' :
+								$val = $current_user instanceof WP_User ? $current_user->user_email : '';
+								break;
 							case 'custom' :
 								$val = ( !empty( $default ) ) ? $default : trim( stripslashes( $opts_vals[1] ) );
-							break;
+								break;
 						endswitch;
 				endif;
 

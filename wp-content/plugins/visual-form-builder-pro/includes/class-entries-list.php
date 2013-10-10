@@ -45,6 +45,7 @@ class VisualFormBuilder_Pro_Entries_List extends WP_List_Table {
 			case 'emails_to':
 			case 'date':
 			case 'ip_address':
+			case 'entry_id' :
 				return $item[ $column_name ];
 		}
 	}
@@ -118,7 +119,7 @@ class VisualFormBuilder_Pro_Entries_List extends WP_List_Table {
 			'emails_to' 	=> __( 'Emailed To' , 'visual-form-builder-pro'),
 			'ip_address' 	=> __( 'IP Address' , 'visual-form-builder-pro'),
 			'date' 			=> __( 'Date Submitted' , 'visual-form-builder-pro'),
-			'id' 			=> __( 'Entry ID' , 'visual-form-builder-pro')
+			'entry_id' 		=> __( 'Entry ID' , 'visual-form-builder-pro')
 		);
 
 		return $columns;
@@ -152,7 +153,7 @@ class VisualFormBuilder_Pro_Entries_List extends WP_List_Table {
 				$order_col = $orderby;
 			break;
 
-			case 'id' :
+			case 'entry_id' :
 				$order_col = 'entries_id';
 			break;
 		}
@@ -293,7 +294,8 @@ class VisualFormBuilder_Pro_Entries_List extends WP_List_Table {
 			'subject' 		=> array( 'subject', false ),
 			'sender_name' 	=> array( 'sender_name', false ),
 			'sender_email' 	=> array( 'sender_email', false ),
-			'date' 			=> array( 'date', true )
+			'date' 			=> array( 'date', true ),
+			'entry_id'		=> array( 'entry_id', true ),
 		);
 
 		return $sortable_columns;
@@ -546,7 +548,7 @@ class VisualFormBuilder_Pro_Entries_List extends WP_List_Table {
 
 		// Get column headers
 		$columns  = $this->get_columns();
-		$hidden   = array();
+		$hidden   = get_hidden_columns( $this->screen );
 
 		// Get sortable columns
 		$sortable = $this->get_sortable_columns();
@@ -589,7 +591,7 @@ class VisualFormBuilder_Pro_Entries_List extends WP_List_Table {
 					'sender_email'	=> stripslashes( $entry->sender_email ),
 					'emails_to' 	=> implode( ',', unserialize( stripslashes( $entry->emails_to ) ) ),
 					'date' 			=> date( "$date_format $time_format", strtotime( $entry->date_submitted ) ),
-					'ip_address' 	=> $entry->ip_address
+					'ip_address' 	=> $entry->ip_address,
 			);
 		}
 

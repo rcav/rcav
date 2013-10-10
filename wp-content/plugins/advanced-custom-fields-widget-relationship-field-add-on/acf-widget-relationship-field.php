@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields - Widget Relationship Field add-on
 Plugin URI: https://bitbucket.org/djbokka/widget-relationship-field-add-on-for-advanced-custom-fields
 Description: This plugin is an add-on for Advanced Custom Fields. It allows you to use a "relationship" field to select widgets at a page level.
-Version: 1.2
+Version: 1.3.1
 Author: Dallas Johnson
 License: GPL3
 */
@@ -27,5 +27,5 @@ License: GPL3
 add_action('acf/register_fields', 'acf_field_widget_relationship_field');
 
 function acf_field_widget_relationship_field(){
-		include_once('widget-relationship-field-v4.php');
+	include_once('widget-relationship-field-v4.php');
 }

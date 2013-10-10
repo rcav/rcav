@@ -1,4 +1,4 @@
-<div class="sidebar-homepage fluid-sidebar sidebar" role="complementary">
+<div class="sidebar-homepage sidebar" role="complementary">
 				
 		<?php
 		if ( ! acf_Widget::dynamic_widgets( 'sidebar3' ) ) {

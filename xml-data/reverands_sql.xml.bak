@@ -1,0 +1,1123 @@
+<?xml version="1.0" standalone="yes"?>
+<RECORDS>
+<RECORD>
+<rid>26</rid>
+<pid>87</pid>
+<reverand_name>Rev. John Alex Pinto, OCD (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>27</rid>
+<pid>69</pid>
+<reverand_name>Rev. Pierre Leblond, OP (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>36</rid>
+<pid>77</pid>
+<reverand_name>Rev. Ken Forster, OMI (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>40</rid>
+<pid>16</pid>
+<reverand_name>Rev. Stanley Galvon (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>43</rid>
+<pid>16</pid>
+<reverand_name>Rev. John Tritschler</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>44</rid>
+<pid>63</pid>
+<reverand_name>Rev. Alessandro Lovato (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>47</rid>
+<pid>24</pid>
+<reverand_name>Rev. James Comey (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>49</rid>
+<pid>22</pid>
+<reverand_name>Most Rev. J. Michael Miller, CSB (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>50</rid>
+<pid>22</pid>
+<reverand_name>Rector: Very Rev. Glenn Dion</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>53</rid>
+<pid>22</pid>
+<reverand_name>Rev. Ryszgard Zgorzelak, SDS</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>54</rid>
+<pid>22</pid>
+<reverand_name>Rev. John Eason (Seaports Chaplain)</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>55</rid>
+<pid>22</pid>
+<reverand_name>Rev. Terrance Larkin</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>56</rid>
+<pid>11</pid>
+<reverand_name>Rev. Vittorio Scomparin (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>57</rid>
+<pid>15</pid>
+<reverand_name>Rev. Bruce-John Hamilton (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>58</rid>
+<pid>15</pid>
+<reverand_name>Rev. Henry Yeung</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>59</rid>
+<pid>17</pid>
+<reverand_name>Rev. Rudolph V. D&apos;Souza, OCD</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>60</rid>
+<pid>17</pid>
+<reverand_name>Rev. Boniface C. D&apos;Souza, OCD</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>61</rid>
+<pid>12</pid>
+<reverand_name>Rev. Paul Chu (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>62</rid>
+<pid>60</pid>
+<reverand_name>Rev. David Poirier, SA (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>67</rid>
+<pid>64</pid>
+<reverand_name>Rev. Paul Tran, OP (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>72</rid>
+<pid>16</pid>
+<reverand_name>Rev. Kiran Kumar Thumma, SAC</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>73</rid>
+<pid>93</pid>
+<reverand_name>Rev. Stanley Galvon (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>74</rid>
+<pid>93</pid>
+<reverand_name>Rev. Edwin Kulling</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>75</rid>
+<pid>93</pid>
+<reverand_name>Rev. Kiran Kumar Thumma, SAC</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>76</rid>
+<pid>18</pid>
+<reverand_name>Rev. Maciej Wos, SDS (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>79</rid>
+<pid>19</pid>
+<reverand_name>Rev. Vincent Cuong Nguyen (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>81</rid>
+<pid>46</pid>
+<reverand_name>Rev. Mario Marin (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>82</rid>
+<pid>21</pid>
+<reverand_name>Rev. Lawrence Holland</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>83</rid>
+<pid>21</pid>
+<reverand_name>Rev. Msgr. S. Jensen, PH</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>84</rid>
+<pid>25</pid>
+<reverand_name>Rev. Paul Smith, OFM (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>87</rid>
+<pid>26</pid>
+<reverand_name>Rev. Patrick Tepoorten (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>88</rid>
+<pid>27</pid>
+<reverand_name>Rev. Drago Gveric, OFM</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>89</rid>
+<pid>27</pid>
+<reverand_name>Rev. Dujo Boban, OFM (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>90</rid>
+<pid>29</pid>
+<reverand_name>Rev. Patrick C. Chisholm (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>91</rid>
+<pid>38</pid>
+<reverand_name>Rev. Ronald Thompson (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>92</rid>
+<pid>37</pid>
+<reverand_name>Rev. Francesco D&apos;Agostino, CS</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>93</rid>
+<pid>37</pid>
+<reverand_name>Rev. Peter Sordi, CS</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>99</rid>
+<pid>32</pid>
+<reverand_name>Rev. Peter Altamirano, OMI (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>100</rid>
+<pid>35</pid>
+<reverand_name>Rev. Nicolas Tumbelaka</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>101</rid>
+<pid>34</pid>
+<reverand_name>Rev. Mariano Barreto, SFX (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>102</rid>
+<pid>33</pid>
+<reverand_name>Rev. Denes Lakatos (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>103</rid>
+<pid>30</pid>
+<reverand_name>Rev. Leonardo Rocha, CS (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>104</rid>
+<pid>31</pid>
+<reverand_name>Rev. Mario Villaraza, SDB (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>105</rid>
+<pid>31</pid>
+<reverand_name>Rev Jan Staszel, SDB</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>106</rid>
+<pid>31</pid>
+<reverand_name>Rev. John Basso, SDB</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>107</rid>
+<pid>31</pid>
+<reverand_name>Rev. David Sajdak, SDB</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>108</rid>
+<pid>55</pid>
+<reverand_name>Rev. Anh Thu (John) Tran, CSJB (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>109</rid>
+<pid>55</pid>
+<reverand_name>Rev. Dominic Qin, CSJB</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>110</rid>
+<pid>55</pid>
+<reverand_name>Rev. Aloysius Lou</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>111</rid>
+<pid>54</pid>
+<reverand_name>Rev. Eugenio Aloisio (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>112</rid>
+<pid>50</pid>
+<reverand_name>Rev. Slawomir Oblak, OMI (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>113</rid>
+<pid>50</pid>
+<reverand_name>Rev. François Dyjak, OMI</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>114</rid>
+<pid>10</pid>
+<reverand_name>Rev. Tien Tran (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>115</rid>
+<pid>13</pid>
+<reverand_name>Msgr. Gregory N. Smith, JCD, PH (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>116</rid>
+<pid>14</pid>
+<reverand_name>Rev. Edwin Neufeld</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>117</rid>
+<pid>14</pid>
+<reverand_name>Rev. Irudayampattu Lazar Arockiadass, HGN</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>118</rid>
+<pid>20</pid>
+<reverand_name>Rev. Erik Deprey, FSSP (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>119</rid>
+<pid>20</pid>
+<reverand_name>Rev. Daniel Geddes, FSSP</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>120</rid>
+<pid>23</pid>
+<reverand_name>Rev. David P. Hughes (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>121</rid>
+<pid>39</pid>
+<reverand_name>Rev. Anthony Ho</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>122</rid>
+<pid>40</pid>
+<reverand_name>Rev. Ken Forster, OMI (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>123</rid>
+<pid>40</pid>
+<reverand_name>Rev. Aloys Luken, OMI</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>124</rid>
+<pid>41</pid>
+<reverand_name>Rev. Edgar Polotan, OSA (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>125</rid>
+<pid>41</pid>
+<reverand_name>Rev. Leo Cameron, OSA</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>126</rid>
+<pid>43</pid>
+<reverand_name>Rev. Wilfred Gomes (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>127</rid>
+<pid>43</pid>
+<reverand_name>Rev. Joseph Bongmah Tangka</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>128</rid>
+<pid>42</pid>
+<reverand_name>Rev. Joseph Tae Woo Lee (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>129</rid>
+<pid>42</pid>
+<reverand_name>Rev. Luke Myoung-Mo Yang</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>131</rid>
+<pid>44</pid>
+<reverand_name>Rev. James Hughes (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>132</rid>
+<pid>44</pid>
+<reverand_name>Rev. Salvador Reyes</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>134</rid>
+<pid>49</pid>
+<reverand_name>Rev. Paul Than Bui (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>135</rid>
+<pid>49</pid>
+<reverand_name>Rev. Jijimon Symon Vellakkada, HGN</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>136</rid>
+<pid>51</pid>
+<reverand_name>Rev. Craig Scott (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>139</rid>
+<pid>58</pid>
+<reverand_name>Rev. George Varghese Edattukaran (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>140</rid>
+<pid>65</pid>
+<reverand_name>Rev. Donald Larson (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>141</rid>
+<pid>65</pid>
+<reverand_name>Rev. Pablo Santa Maria-Watson</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>142</rid>
+<pid>62</pid>
+<reverand_name>Rev. Joseph Hieu Nguyen (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>143</rid>
+<pid>61</pid>
+<reverand_name>Rev. Mark Bautista</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>144</rid>
+<pid>66</pid>
+<reverand_name>Rev. Lawrence Donnelly (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>145</rid>
+<pid>67</pid>
+<reverand_name>Rev. Amador M. Abundo (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>146</rid>
+<pid>68</pid>
+<reverand_name>Rev. Nelson Santos, CSsR (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>148</rid>
+<pid>94</pid>
+<reverand_name>Rev. Vincent Cuong Nguyen (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>150</rid>
+<pid>70</pid>
+<reverand_name>Rev. Augustine Obiwumma (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>152</rid>
+<pid>70</pid>
+<reverand_name>Rev. De Paul Doan, CSJB</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>153</rid>
+<pid>71</pid>
+<reverand_name>Rev. Msgr. Bernard Rossi, PH, JCD (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>155</rid>
+<pid>72</pid>
+<reverand_name>Rev. Anthony Boniface (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>156</rid>
+<pid>73</pid>
+<reverand_name>Rev. John McCarthy (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>157</rid>
+<pid>75</pid>
+<reverand_name>Rev. Vincent J. Hawkswell (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>158</rid>
+<pid>75</pid>
+<reverand_name>Rev. Cyrille Ogbabo, C S Sp</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>159</rid>
+<pid>74</pid>
+<reverand_name>Rev. Richard Au (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>160</rid>
+<pid>76</pid>
+<reverand_name>Rev. Msgr. Dennis Luterbach, PH (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>162</rid>
+<pid>79</pid>
+<reverand_name>Rev. Martin Moser, OMI (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>163</rid>
+<pid>79</pid>
+<reverand_name>Rev. Terence Conway, OMI</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>164</rid>
+<pid>80</pid>
+<reverand_name>Rev. Msgr. Pedro Lopez-Gallo, PA, JUD (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>165</rid>
+<pid>81</pid>
+<reverand_name>Rev. Frank A. Landry (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>166</rid>
+<pid>82</pid>
+<reverand_name>Rev. Bede Le (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>167</rid>
+<pid>83</pid>
+<reverand_name>Rev. Juraj Kopanicky (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>171</rid>
+<pid>91</pid>
+<reverand_name>Rev. Maximos Basha, OSBC (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>172</rid>
+<pid>56</pid>
+<reverand_name>Rev. Antonio Tapparello, CS</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>176</rid>
+<pid>69</pid>
+<reverand_name>Rev. Gabriel de Chadarévian, OP</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>177</rid>
+<pid>78</pid>
+<reverand_name>Rev. John Brioux, OMI (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>178</rid>
+<pid>84</pid>
+<reverand_name>Rev. William Ashley (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>179</rid>
+<pid>87</pid>
+<reverand_name>Bro. Jerry Prazma, OMI</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>180</rid>
+<pid>85</pid>
+<reverand_name>Rev. John G. Horgan (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>183</rid>
+<pid>28</pid>
+<reverand_name>Rev. David Farfán Guerrero, MCCJ</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>184</rid>
+<pid>40</pid>
+<reverand_name>Bro. Ed Lynch, OMI</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>185</rid>
+<pid>89</pid>
+<reverand_name>Served by Our Lady of Good Hope Parish, Hope</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>187</rid>
+<pid>92</pid>
+<reverand_name>served by St. Mary’s Parish, Chilliwack </reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>188</rid>
+<pid>77</pid>
+<reverand_name>Rev. Aloys Luken, OMI</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>189</rid>
+<pid>77</pid>
+<reverand_name>Bro. Ed Lynch, OMI</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>190</rid>
+<pid>79</pid>
+<reverand_name>Bro. Tom Cavanaugh, OMI</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>191</rid>
+<pid>86</pid>
+<reverand_name>Rev. Stanley Galvon (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>192</rid>
+<pid>86</pid>
+<reverand_name>Rev. John Tritschler</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>194</rid>
+<pid>90</pid>
+<reverand_name>Served by Holy Trinity Parish, North Vancouver</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>196</rid>
+<pid>18</pid>
+<reverand_name>Rev. Krzysztof (Chris) Pastuszka, SDS</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>199</rid>
+<pid>69</pid>
+<reverand_name>Rev. Claude Noel, OP (in residence)</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>200</rid>
+<pid>47</pid>
+<reverand_name>Fr. Gary a. Franken (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>201</rid>
+<pid>52</pid>
+<reverand_name>Rev. Jerald D&apos;Souza, OCD</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>202</rid>
+<pid>53</pid>
+<reverand_name>Rev. Thomas Smith</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>203</rid>
+<pid>45</pid>
+<reverand_name>Rev. Joaquim Dias</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>207</rid>
+<pid>22</pid>
+<reverand_name>Rev. Fred Buttner</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>208</rid>
+<pid>76</pid>
+<reverand_name>Rev. Rodney Nootebos</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>212</rid>
+<pid>36</pid>
+<reverand_name>Rev. David Louch, CSsR</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>213</rid>
+<pid>36</pid>
+<reverand_name>Rev. William Comerford, CSsR</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>214</rid>
+<pid>36</pid>
+<reverand_name>Rev. Brendan Boland, CSsR</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>220</rid>
+<pid>54</pid>
+<reverand_name>Rev. Alan Boisclair</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>221</rid>
+<pid>55</pid>
+<reverand_name>Rev. Joseph Phuong Nguyen</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>222</rid>
+<pid>26</pid>
+<reverand_name>Rev. Dennis Flores</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>223</rid>
+<pid>22</pid>
+<reverand_name>Rev. Anicet Pinto</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>224</rid>
+<pid>19</pid>
+<reverand_name>Rev. David Farfán Guerrero, MCCJ</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>225</rid>
+<pid>94</pid>
+<reverand_name>Rev. David Farfán Guerrero, MCCJ</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>226</rid>
+<pid>66</pid>
+<reverand_name>Rev. Thomas Nicholson</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>227</rid>
+<pid>64</pid>
+<reverand_name>Rev. Dominic Phamvanbao, OP</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>228</rid>
+<pid>13</pid>
+<reverand_name>Rev. Xavier Royappan, SAC</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>229</rid>
+<pid>48</pid>
+<reverand_name>Rev. Terry McNamara, OMI (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>230</rid>
+<pid>42</pid>
+<reverand_name>Rev. Damiano Phak</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>231</rid>
+<pid>64</pid>
+<reverand_name>Rev. Joseph Vu, OP</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>232</rid>
+<pid>64</pid>
+<reverand_name>Rev. Lawrence Chu, OP</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>234</rid>
+<pid>59</pid>
+<reverand_name>Rev. Terrance S. Bileski (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>236</rid>
+<pid>29</pid>
+<reverand_name>Rev. Claude Mutongo Makulu, O.Praem.</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>237</rid>
+<pid>68</pid>
+<reverand_name>Rev. Bryan Duggan</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>239</rid>
+<pid>10</pid>
+<reverand_name>Rev. Hector del Rosario</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>240</rid>
+<pid>26</pid>
+<reverand_name>Rev. Saju Sebastian Karimbaniyil, HGN</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>241</rid>
+<pid>86</pid>
+<reverand_name>Rev. Kiran Kumar Thumma, SAC</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>243</rid>
+<pid>24</pid>
+<reverand_name>Rev. Reynaldo Usman, AM</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>244</rid>
+<pid>36</pid>
+<reverand_name>Rev. Babu Mathew, CSsR</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>246</rid>
+<pid>57</pid>
+<reverand_name>Rev. Robert Allore, SJ</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>247</rid>
+<pid>57</pid>
+<reverand_name>Rev. Michael Stogre, SJ</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>248</rid>
+<pid>53</pid>
+<reverand_name>Rev. Tomson Egirious</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>249</rid>
+<pid>38</pid>
+<reverand_name>Rev. Justin Huang</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>250</rid>
+<pid>71</pid>
+<reverand_name>Rev. Edwin Kulling</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>251</rid>
+<pid>60</pid>
+<reverand_name>Rev. Henry Mrema</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>252</rid>
+<pid>59</pid>
+<reverand_name>Rev. Hien Nguyen</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>253</rid>
+<pid>73</pid>
+<reverand_name>Rev. Emmanuel Obinna Onumadu</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>254</rid>
+<pid>37</pid>
+<reverand_name>Rev. Richard Zanotti, CS (Pastor)</reverand_name>
+<is_primary>1</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>255</rid>
+<pid>37</pid>
+<reverand_name>Rev. Eduardo Quintero Mejia, CS</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>256</rid>
+<pid>52</pid>
+<reverand_name>Rev. Alfredo Socorro Pereira</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>257</rid>
+<pid>56</pid>
+<reverand_name>Re. Gianantonio Baggio, CS</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>258</rid>
+<pid>60</pid>
+<reverand_name>Rev. Raymond Luis, SA</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>259</rid>
+<pid>41</pid>
+<reverand_name>Rev. Ronnie Custorio, OSA</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+</RECORDS>

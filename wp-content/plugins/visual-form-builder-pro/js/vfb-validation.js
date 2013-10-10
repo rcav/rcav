@@ -2,7 +2,22 @@ jQuery(document).ready(function($) {
 	// !Validate each form on the page
 	$( '.visual-form-builder' ).each( function() {
 		$( this ).validate({
-			rules: {},
+			rules: {
+				recaptcha_response_field: {
+		            required: true,
+		            /*remote: {
+			            url: VfbAjax.ajaxurl,
+			            type: 'POST',
+			            async: false,
+						cache: false,
+			            data: {
+			            	action: 'visual_form_builder_check_recaptcha',
+			                recaptcha_challenge_field: function(){ return $( '#recaptcha_challenge_field' ).val(); },
+			                recaptcha_response_field: function(){ return $( '#recaptcha_response_field' ).val(); }
+			           }
+			        }*/
+		        }
+			},
 			onkeyup: function(element) {
 				if ( element.type == 'password' )
 					this.element(element);
@@ -14,14 +29,21 @@ jQuery(document).ready(function($) {
 					error.appendTo( element.parent().parent() );
 				else if ( element.is( ':password' ) )
 					error.hide();
+				else if ( 'recaptcha_response_field' == element.attr( 'id' ) )
+					error.insertAfter( '#recaptcha_table' );
 				else
 					error.insertAfter( element );
-			}
+			},
+			/*messages: {
+		        recaptcha_response_field: {
+		            remote: 'Incorrect captcha answer. Please try again.'
+		        }
+		    }*/
 		});
 	});
 
 	// Force bullets to hide, but only if list-style-type isn't set
-	$( '.visual-form-builder li:not(.vfb-item-instructions li)' ).filter( function(){
+	$( '.visual-form-builder li:not(.vfb-item-instructions li, .vfb-span li)' ).filter( function(){
 		return $( this ).css( 'list-style-type' ) !== 'none';
 	}).css( 'list-style', 'none' );
 

@@ -1987,3 +1987,10 @@ width: 230px;
     font-style: normal;
 
 }
+
+
+.breadcrumbs {
+  font-size: 12px;
+  margin: -15px 0 15px 0;
+}
+

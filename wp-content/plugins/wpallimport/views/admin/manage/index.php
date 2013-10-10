@@ -1,7 +1,7 @@
 <h2>
 	<?php _e('Manage Imports', 'pmxi_plugin') ?>
 	&nbsp;
-	<a href="<?php echo esc_url(add_query_arg(array('page' => 'pmxi-admin-import'), admin_url('admin.php'))) ?>" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font-size:15px; padding:10px 20px; text-decoration:none;"><?php echo esc_html_x('New Import', 'pmxi_plugin'); ?></a>
+	<a href="<?php echo esc_url(add_query_arg(array('page' => 'pmxi-admin-import'), admin_url('admin.php'))) ?>" class="add-new-h2"><?php echo esc_html_x('New Import', 'pmxi_plugin'); ?></a>
 </h2>
 
 <?php if ($this->errors->get_error_codes()): ?>
@@ -178,13 +178,13 @@ $columns = array(
 
 										<span class="edit"><a class="edit" href="<?php echo esc_url(add_query_arg(array('id' => $item['id'], 'action' => 'edit'), $this->baseUrl)) ?>"><?php _e('Edit Template', 'pmxi_plugin') ?></a></span> |
 										<span class="edit"><a class="edit" href="<?php echo esc_url(add_query_arg(array('id' => $item['id'], 'action' => 'options'), $this->baseUrl)) ?>"><?php _e('Edit Options', 'pmxi_plugin') ?></a></span> |
-										<span class="update"><a class="update" href="<?php echo esc_url(add_query_arg(array('id' => $item['id'], 'action' => 'update'), $this->baseUrl)) ?>"><?php _e('Update', 'pmxi_plugin') ?></a></span> |
+										<span class="update"><a class="update" href="<?php echo esc_url(add_query_arg(array('id' => $item['id'], 'action' => 'update'), $this->baseUrl)) ?>"><?php _e('Re-Run Import', 'pmxi_plugin') ?></a></span> |
 
 										<?php if ( in_array($item['type'], array('url', 'ftp', 'file'))): ?>
-											<span class="edit get_cron_url"><a class="edit" href="javascript:void(0);" rel='<?php echo "wget -q -O /dev/null \"".home_url()."?import_key=".PMXI_Plugin::getInstance()->getOption('cron_job_key')."&import_id=".$item['id']."&action=processing\"\n" . "wget -q -O /dev/null "."\"".home_url()."?import_key=".PMXI_Plugin::getInstance()->getOption('cron_job_key')."&import_id=".$item['id']."&action=trigger"."\"";?>'><?php _e('Get Cron URL', 'pmxi_plugin') ?></a></span> |
+											<!--span class="edit get_cron_url"><a class="edit" href="javascript:void(0);" rel='<?php echo "wget -q -O /dev/null \"".home_url()."?import_key=".PMXI_Plugin::getInstance()->getOption('cron_job_key')."&import_id=".$item['id']."&action=processing\"\n" . "wget -q -O /dev/null "."\"".home_url()."?import_key=".PMXI_Plugin::getInstance()->getOption('cron_job_key')."&import_id=".$item['id']."&action=trigger"."\"";?>'><?php _e('Get Cron URL', 'pmxi_plugin') ?></a></span> |-->
 											<span class="edit"><a class="edit" href="<?php echo esc_url(add_query_arg(array('id' => $item['id'], 'action' => 'scheduling'), $this->baseUrl)) ?>"><?php _e('Cron Scheduling', 'pmxi_plugin') ?></a></span> |
 										<?php endif; ?>
-										<span class="update"><a class="update" href="<?php echo esc_url(add_query_arg(array('page' => 'pmxi-admin-import', 'id' => $item['id']), admin_url('admin.php'))) ?>"><?php _e('Use New File', 'pmxi_plugin') ?></a></span> |
+										<span class="update"><a class="update" href="<?php echo esc_url(add_query_arg(array('page' => 'pmxi-admin-import', 'id' => $item['id']), admin_url('admin.php'))) ?>"><?php _e('Re-Run With New File', 'pmxi_plugin') ?></a></span> |
 										<span class="update"><a class="update" href="<?php echo esc_url(add_query_arg(array('id' => $item['id'], 'action' => 'log'), $this->baseUrl)) ?>"><?php _e('Download Log', 'pmxi_plugin') ?></a></span> |
 										<span class="delete"><a class="delete" href="<?php echo esc_url(add_query_arg(array('id' => $item['id'], 'action' => 'delete'), $this->baseUrl)) ?>"><?php _e('Delete', 'pmxi_plugin') ?></a></span>
 										<?php if ( "Yes" == $item['large_import'] and $item['imported'] != $item['count']):?>
@@ -230,7 +230,7 @@ $columns = array(
 		<div class="alignleft actions">
 			<select name="bulk-action2">
 				<option value="" selected="selected"><?php _e('Bulk Actions', 'pmxi_plugin') ?></option>
-				<?php if ('trash' != $type): ?>
+				<?php if ( empty($type) or 'trash' != $type): ?>
 					<option value="delete"><?php _e('Delete', 'pmxi_plugin') ?></option>
 				<?php else: ?>
 					<option value="restore"><?php _e('Restore', 'pmxi_plugin')?></option>

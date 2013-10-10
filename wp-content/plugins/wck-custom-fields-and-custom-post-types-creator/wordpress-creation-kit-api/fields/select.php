@@ -5,15 +5,17 @@
  * @param string $context Context where the function is used. Depending on it some actions are preformed.;
  * @return string $element input element html string. */
  
-$element .= '<select name="'. esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'"  id="'. $frontend_prefix . esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'" class="mb-select mb-field" >';
+$element .= '<select name="'. esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'"  id="';
+if( !empty( $frontend_prefix ) )
+	$element .= $frontend_prefix;
+$element .= esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'" class="mb-select mb-field" >';
 			
 if( !empty( $details['default-option'] ) && $details['default-option'] )
 	$element .= '<option value="">'. __('...Chose', 'wck') .'</option>';
 
+$options = '';
 if( !empty( $details['options'] ) ){
-
-		$i = 0;
-		$options = '';
+		$i = 0;		
 		foreach( $details['options'] as $option ){
 			
 			if( strpos( $option, '%' ) === false ){

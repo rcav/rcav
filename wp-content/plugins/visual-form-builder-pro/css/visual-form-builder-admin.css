@@ -1205,6 +1205,33 @@ ul.vfb-fields-col-2{
 	margin:10px 0;
 }
 
+#vfb-email-designer {
+	float:left;
+	display: inline;
+	margin-right: 1em;
+	width: 45%;
+}
+
+	.rtl #vfb-email-designer {
+		float: right;
+		margin-right: 0;
+		margin-left: 1em;
+	}
+
+#vfb-email-design-preview {
+	float: left;
+	display: inline;
+	width: 45%;
+}
+
+	.rtl #vfb-email-design-preview {
+		float: right;
+	}
+
+	#vfb-email-design-preview iframe {
+		width: 100%;
+	}
+
 /* !Analytics */
 .charts-container{
 	margin-top:23px;

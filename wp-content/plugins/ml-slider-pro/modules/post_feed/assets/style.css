@@ -1,0 +1,110 @@
+.metaslider .thumb.post_feed {
+  background-repeat: no-repeat;
+  background-size: auto auto !important;
+  background-image: url('icon.png'), -moz-linear-gradient(top, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
+  background-image: url('icon.png'), -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e2e2e2), color-stop(50%, #dbdbdb), color-stop(51%, #d1d1d1), color-stop(100%, #fefefe));
+  background-image: url('icon.png'), -webkit-linear-gradient(top, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
+  background-image: url('icon.png'), -o-linear-gradient(top, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
+  background-image: url('icon.png'), -ms-linear-gradient(top, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
+  background-image: url('icon.png'), linear-gradient(to bottom, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
+}
+
+.metaslider select {
+  height: auto;
+}
+.metaslider .slide.post_feed .settings {
+  float: left;
+  height: 150px;
+  overflow: auto;
+}
+.metaslider .slide.post_feed fieldset {
+  float: left;
+  height: 100%;
+  vertical-align: top;
+}
+.metaslider .slide.post_feed fieldset.col-left {
+  width: 24%;
+}
+@media (max-width: 1200px) {
+  .metaslider .slide.post_feed fieldset.col-left {
+    width: 40%;
+  }
+}
+.metaslider .slide.post_feed fieldset.col-middle {
+  width: 24%;
+  margin: 0 2%;
+}
+@media (max-width: 1200px) {
+  .metaslider .slide.post_feed fieldset.col-middle {
+    width: 40%;
+  }
+}
+.metaslider .slide.post_feed fieldset.col-right {
+  width: 48%;
+  float: right;
+}
+@media (max-width: 1200px) {
+  .metaslider .slide.post_feed fieldset.col-right {
+    width: 90%;
+    float: none;
+  }
+}
+.metaslider .close_raw_edit_wrap {
+  position: relative;
+  z-index: 99999;
+}
+.metaslider .close_raw_edit_wrap button {
+  position: absolute;
+  right: 17px;
+  top: 3px;
+}
+.metaslider .slide.post_feed fieldset.col-left .scroll ul {
+  margin: 2px 0 0 5px;
+}
+.metaslider .slide.post_feed fieldset .scroll {
+  width: 100%;
+  overflow-y: auto;
+  height: 121px;
+  border: 1px solid #ccc;
+  background: white;
+}
+.metaslider .slide.post_feed fieldset .scroll .header {
+  font-weight: bold;
+  margin-left: -5px;
+}
+.metaslider .slide.post_feed fieldset .scroll input {
+  margin: 0;
+}
+.metaslider .slide.post_feed fieldset .scroll ul {
+  margin: 0 0 0 10px;
+  font-size: 10px;
+}
+.metaslider .slide.post_feed fieldset .scroll li {
+  list-style-type: none;
+  margin: 0;
+}
+.metaslider .slide.post_feed .col-right .row {
+  float: left;
+  width: 100%;
+  margin-bottom: 2px;
+}
+.metaslider .slide.post_feed .col-right label {
+  width: 30%;
+  float: left;
+  margin: 5px 5px 0 0;
+}
+.metaslider .slide.post_feed td.col-2 {
+  font-size: 0.9em;
+}
+.metaslider .slide fieldset legend {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  color: #333;
+  margin-bottom: 3px;
+}
+.metaslider .slide fieldset select.multi {
+  width: 100%;
+  height: 120px;
+  margin: 0;
+}

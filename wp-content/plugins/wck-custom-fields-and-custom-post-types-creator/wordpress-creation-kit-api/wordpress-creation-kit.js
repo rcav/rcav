@@ -52,8 +52,14 @@ function addMeta(value, id, nonce){
 			values[key.toString()] = jQuery(this).val().toString();
 	});
 	
+	meta = value;
 	
-	jQuery.post( wckAjaxurl ,  { action:"wck_add_meta"+value, meta:value, id:id, values:values, _ajax_nonce:nonce}, function(response) {
+	if( value.indexOf("-wcknested-") != -1 ){
+		metaDetails = value.split("-wcknested-");
+		meta = metaDetails[0];
+	}
+		
+	jQuery.post( wckAjaxurl ,  { action:"wck_add_meta"+meta, meta:value, id:id, values:values, _ajax_nonce:nonce}, function(response) {
 
 			jQuery( '#'+value+' .field-label').removeClass('error');
 		
@@ -69,7 +75,7 @@ function addMeta(value, id, nonce){
 			}
 			else{		
 				/* refresh the list */
-				jQuery.post( wckAjaxurl ,  { action:"wck_refresh_list"+value, meta:value, id:id}, function(response) {					
+				jQuery.post( wckAjaxurl ,  { action:"wck_refresh_list"+meta, meta:value, id:id}, function(response) {					
 					
 					jQuery('#container_'+value).replaceWith(response);
 					
@@ -83,7 +89,7 @@ function addMeta(value, id, nonce){
 						
 					/* restore the add form to the original values */					
 					if( !jQuery( '#'+value ).hasClass('single') ){
-						jQuery.post( wckAjaxurl ,  { action:"wck_add_form"+value, meta:value, id:id }, function(response) {			
+						jQuery.post( wckAjaxurl ,  { action:"wck_add_form"+meta, meta:value, id:id }, function(response) {			
 							jQuery( '#'+value ).replaceWith( response );							
 							wck_set_to_widest( '.field-label', '#'+value );
 						});
@@ -113,6 +119,7 @@ function addMeta(value, id, nonce){
 				});
 			}
 		});	
+	
 }
 
 /* remove reccord from the meta */
@@ -122,19 +129,26 @@ function removeMeta(value, id, element_id, nonce){
 	
 	if( response == true ){
 	
+		meta = value;
+	
+		if( value.indexOf("-wcknested-") != -1 ){
+			metaDetails = value.split("-wcknested-");
+			meta = metaDetails[0];
+		}
+	
 		jQuery('#'+value).parent().css({'opacity':'0.4', 'position':'relative'}).append('<div id="mb-ajax-loading"></div>');
-		jQuery.post( wckAjaxurl ,  { action:"wck_remove_meta"+value, meta:value, id:id, element_id:element_id, _ajax_nonce:nonce}, function(response) {
+		jQuery.post( wckAjaxurl ,  { action:"wck_remove_meta"+meta, meta:value, id:id, element_id:element_id, _ajax_nonce:nonce}, function(response) {
 		
 				/* If single add the form */
 				if( jQuery( '#container_'+value ).hasClass('single') ){
-					jQuery.post( wckAjaxurl ,  { action:"wck_add_form"+value, meta:value, id:id }, function(response) {			
+					jQuery.post( wckAjaxurl ,  { action:"wck_add_form"+meta, meta:value, id:id }, function(response) {			
 						jQuery( '#container_'+value ).before( response );
 						jQuery( '#'+value ).addClass('single');	
 					});
 				}
 				
 				/* refresh the list */
-				jQuery.post( wckAjaxurl ,  { action:"wck_refresh_list"+value, meta:value, id:id}, function(response) {	
+				jQuery.post( wckAjaxurl ,  { action:"wck_refresh_list"+meta, meta:value, id:id}, function(response) {	
 					jQuery('#container_'+value).replaceWith(response);
 					
 					/* set width of strong label */
@@ -182,8 +196,16 @@ function mb_sortable_elements() {
 				
 				jQuery('#'+value).parent().css({'opacity':'0.4', 'position':'relative'}).append('<div id="mb-ajax-loading"></div>');
 				
-				jQuery.post( wckAjaxurl ,  { action:"wck_reorder_meta"+value, meta:value, id:id, values:values}, function(response) {			
-					jQuery.post( wckAjaxurl ,  { action:"wck_refresh_list"+value, meta:value, id:id}, function(response) {
+				meta = value;
+	
+				if( value.indexOf("-wcknested-") != -1 ){
+					metaDetails = value.split("-wcknested-");
+					meta = metaDetails[0];
+				}
+	
+				
+				jQuery.post( wckAjaxurl ,  { action:"wck_reorder_meta"+meta, meta:value, id:id, values:values}, function(response) {			
+					jQuery.post( wckAjaxurl ,  { action:"wck_refresh_list"+meta, meta:value, id:id}, function(response) {
 							jQuery('#container_'+value).replaceWith(response);
 							
 							/* set width of strong label */
@@ -212,16 +234,25 @@ jQuery(mb_sortable_elements);
 
 
 /* show the update form */
-function showUpdateFormMeta(value, id, element_id, nonce){
+function showUpdateFormMeta(value, id, element_id, nonce){	
 	if( jQuery( '#update_container_' + value + '_' + element_id ).length == 0 ){
 		jQuery('#container_'+value).parent().css({'opacity':'0.4', 'position':'relative'}).append('<div id="mb-ajax-loading"></div>');
 		
 		if( jQuery( '#container_' + value + " tbody" ).hasClass('ui-sortable') )
 			jQuery( '#container_' + value + " tbody" ).sortable("disable");
 		
-		jQuery.post( wckAjaxurl ,  { action:"wck_show_update"+value, meta:value, id:id, element_id:element_id, _ajax_nonce:nonce}, function(response) {	
+		
+		meta = value;
+	
+		if( value.indexOf("-wcknested-") != -1 ){
+			metaDetails = value.split("-wcknested-");
+			meta = metaDetails[0];
+		}
+		
+		
+		jQuery.post( wckAjaxurl ,  { action:"wck_show_update"+meta, meta:value, id:id, element_id:element_id, _ajax_nonce:nonce}, function(response) {	
 				//jQuery('#container_'+value+' #element_'+element_id).append(response);
-				jQuery(response).insertAfter('#container_'+value+' #element_'+element_id);
+				jQuery(response).insertAfter('#container_'+value+' > tbody > #element_'+element_id);
 				
 				/* set width of field-label */
 				wck_set_to_widest('.field-label', '#update_container_' + value + '_' + element_id );				
@@ -276,9 +307,18 @@ function updateMeta(value, id, element_id, nonce){
 		else		
 			values[key.toString()] = jQuery(this).val().toString();
 		
-	});	
+	});
 	
-	jQuery.post( wckAjaxurl ,  { action:"wck_update_meta"+value, meta:value, id:id, element_id:element_id, values:values, _ajax_nonce:nonce}, function(response) {
+	
+	meta = value;
+	
+	if( value.indexOf("-wcknested-") != -1 ){
+		metaDetails = value.split("-wcknested-");
+		meta = metaDetails[0];
+	}
+	
+	
+	jQuery.post( wckAjaxurl ,  { action:"wck_update_meta"+meta, meta:value, id:id, element_id:element_id, values:values, _ajax_nonce:nonce}, function(response) {
 
 			jQuery( '#update_container_'+value+'_'+element_id + ' .field-label').removeClass('error');
 		
@@ -306,7 +346,7 @@ function updateMeta(value, id, element_id, nonce){
 				jQuery('#update_container_'+value+'_'+element_id).remove();
 				
 				/* refresh the list */
-				jQuery.post( wckAjaxurl ,  { action:"wck_refresh_entry"+value, meta:value, id:id, element_id:element_id}, function(response) {	
+				jQuery.post( wckAjaxurl ,  { action:"wck_refresh_entry"+meta, meta:value, id:id, element_id:element_id}, function(response) {	
 					jQuery('#container_'+value+' #element_'+element_id).replaceWith(response);
 					
 					/* set width of strong label */

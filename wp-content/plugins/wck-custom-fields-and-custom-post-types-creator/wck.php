@@ -3,7 +3,7 @@
 Plugin Name: WCK - Custom Fields and Custom Post Types Creator
 Description: WordPress Creation Kit consists of three tools that can help you create and maintain custom post types, custom taxonomies and most importantly, custom fields and metaboxes for your posts, pages or CPT's.
 Author: Reflection Media, Madalin Ungureanu
-Version: 1.0.2
+Version: 1.0.3
 Author URI: http://www.reflectionmedia.ro
 
 License: GPL2
@@ -91,4 +91,9 @@ if (file_exists ($wck_premium_update . 'update-checker.php')){
 		$wck_update = new wck_PluginUpdateChecker('http://updatemetadata.cozmoslabs.com/?localSerialNumber='.$wck_serial.'&uniqueproduct=WCKH', __FILE__, 'wck-hobby');
 	}
 }
+
+/* include nested repeaters */
+if( file_exists( dirname(__FILE__).'/wordpress-creation-kit-api/wck-nested-repeaters/wck-nested-repeaters.php' ) )
+	require_once('wordpress-creation-kit-api/wck-nested-repeaters/wck-nested-repeaters.php');
+
 ?>

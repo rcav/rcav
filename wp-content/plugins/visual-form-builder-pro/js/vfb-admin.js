@@ -1137,7 +1137,7 @@ jQuery(document).ready(function($) {
 		});
 	});
 
-	/* !Export options switch */
+	// !Export options switch
 	var vfb_filters = $( '#vfb-export' ).find( '.vfb-export-filters' );
 
 	$( '#vfb-export' ).find( 'input:radio' ).change( function() {
@@ -1148,14 +1148,14 @@ jQuery(document).ready(function($) {
 		}
 	});
 
-	/* !Entries Select All */
+	// !Entries Select All
 	$( '#vfb-export-select-all' ).click( function( e ) {
 		e.preventDefault();
 
 		$( '#vfb-export-entries-fields input[type="checkbox"]' ).prop( 'checked', true );
 	});
 
-	/* !Entries fields */
+	// !Entries fields
 	$( '#vfb-export-entries-forms' ).change( function(){
 		var id = $( this ).val(),
 			count = vfb_entries_count( id );

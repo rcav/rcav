@@ -4,14 +4,20 @@
 /* Add Scripts */
 add_action('admin_enqueue_scripts', 'wck_cfc_print_scripts' );
 function wck_cfc_print_scripts($hook){
-	$post_type = $_GET['post_type'] ? $_GET['post_type'] : get_post_type( $_GET['post'] );
-	if( 'wck-meta-box' == $post_type ){			
-		wp_register_style('wck-cfc-css', plugins_url('/css/wck-cfc.css', __FILE__));
-		wp_enqueue_style('wck-cfc-css');
+	if( isset( $_GET['post_type'] ) || isset( $_GET['post'] ) ){
+		if( isset( $_GET['post_type'] ) )
+			$post_type = $_GET['post_type'];
+		else if( isset( $_GET['post'] ) )
+			$post_type = get_post_type( $_GET['post'] );
+		
+		if( 'wck-meta-box' == $post_type ){			
+			wp_register_style('wck-cfc-css', plugins_url('/css/wck-cfc.css', __FILE__));
+			wp_enqueue_style('wck-cfc-css');
 
-		wp_register_script('wck-cfc-js', plugins_url('/js/wck-cfc.js', __FILE__), array( 'jquery' ), '1.0' );
-		wp_enqueue_script('wck-cfc-js');
-	}	
+			wp_register_script('wck-cfc-js', plugins_url('/js/wck-cfc.js', __FILE__), array( 'jquery' ), '1.0' );
+			wp_enqueue_script('wck-cfc-js');
+		}
+	}
 }
 
 /* hook to create custom post types */
@@ -70,10 +76,12 @@ function wck_cfc_create_box(){
 		);
 	$output = 'objects'; // or objects
 	$post_types = get_post_types($args,$output);
-	$post_type_names = array(); 
-	foreach ($post_types  as $post_type ) {
-		if ( $post_type->name != 'attachment' && $post_type->name != 'wck-meta-box' && $post_type->name != 'wck-frontend-posting' && $post_type->name != 'wck-option-page' && $post_type->name != 'wck-option-field' ) 
-			$post_type_names[] = $post_type->name;
+	$post_type_names = array();
+	if( !empty( $post_types ) ){
+		foreach ($post_types  as $post_type ) {
+			if ( $post_type->name != 'attachment' && $post_type->name != 'wck-meta-box' && $post_type->name != 'wck-frontend-posting' && $post_type->name != 'wck-option-page' && $post_type->name != 'wck-option-field' ) 
+				$post_type_names[] = $post_type->name;
+		}
 	}
 	
 	/* get page templates */	
@@ -87,6 +95,12 @@ function wck_cfc_create_box(){
 		array( 'type' => 'select', 'title' => __( 'Sortable', 'wck' ), 'options' => array( 'true', 'false' ), 'default' => 'false', 'description' => __( 'Whether the entries are sortable or not. Thsi is valid for repeater fields.', 'wck' ) ),
 		array( 'type' => 'text', 'title' => __( 'Post ID', 'wck' ), 'description' => __( 'ID of a post on which the meta box should appear.', 'wck' ) )			
 	);
+	
+	/* only in pro version */
+	if( function_exists( 'wck_nr_add_repeater_boxes' ) ){
+			$nested_arg = array( array( 'type' => 'select', 'title' => __( 'Nested', 'wck' ), 'options' => array( 'true', 'false' ), 'default' => 'false', 'description' => __( 'Set to true if you want this metabox to be a nested repeater inside another repeater.', 'wck' ) ) );
+			array_splice( $cfc_box_args_fields, 1, 0, $nested_arg );
+	}
 	
 	if( !empty( $templates ) )
 		$cfc_box_args_fields[] = array( 'type' => 'select', 'title' => __( 'Page Template', 'wck' ), 'options' => $templates, 'default-option' => true, 'description' => __( 'If post type is "page" you can further select a page templete. The meta box will only appear  on the page that has that selected page template.', 'wck' ) );
@@ -106,19 +120,23 @@ function wck_cfc_create_box(){
 	new Wordpress_Creation_Kit( $args );
 	
 	/* set up field types */
-	$field_types = array( 'text', 'textarea', 'select', 'checkbox', 'radio', 'upload', 'wysiwyg editor', 'datepicker', 'country select', 'user select' );
+	$field_types = array( 'text', 'textarea', 'select', 'checkbox', 'radio', 'upload', 'wysiwyg editor', 'datepicker', 'country select', 'user select', 'cpt select' );
 	$field_types = apply_filters( 'wck_field_types', $field_types );
 	
+	/* setup post types */
+	$post_types = get_post_types( '', 'names' ); 
+	
 	/* set up the fields array */
-	$cfc_box_fields_fields = array( 
+	$cfc_box_fields_fields = apply_filters( 'wck_cfc_box_fields_fields', array( 
 		array( 'type' => 'text', 'title' => __( 'Field Title', 'wck' ), 'description' => __( 'Title of the field. A slug will automatically be generated.', 'wck' ), 'required' => true ),
 		array( 'type' => 'select', 'title' => __( 'Field Type', 'wck' ), 'options' => $field_types, 'default-option' => true, 'description' => __( 'The field type', 'wck' ), 'required' => true ),
 		array( 'type' => 'textarea', 'title' => __( 'Description', 'wck' ), 'description' => 'The description of the field.' ),				
 		array( 'type' => 'select', 'title' => __( 'Required', 'wck' ), 'options' => array( 'false', 'true' ), 'default' => 'false', 'description' => __( 'Whether the field is required or not', 'wck' ) ),
+		array( 'type' => 'select', 'title' => __( 'CPT', 'wck' ), 'options' => $post_types, 'default' => 'post', 'description' => __( 'Select what custom post type should be used in the CPT Select.', 'wck' ) ),
 		array( 'type' => 'text', 'title' => __( 'Default Value', 'wck' ), 'description' => __( 'Default value of the field. For Checkboxes if there are multiple values separete them with a ","', 'wck' ) ),
 		array( 'type' => 'text', 'title' => __( 'Options', 'wck' ), 'description' => __( 'Options for field types "select", "checkbox" and "radio". For multiple options separete them with a ",". You can use the following structure if you want the label to be different from the value: %LabelOne%valueone,%LabelTwo%valuetwo,%LabelThree%valuethree', 'wck' ) ),
 		array( 'type' => 'radio', 'title' => __( 'Attach upload to post', 'wck' ), 'description' => __( 'Whether or not the uploads should be attached to the post', 'wck' ), 'options' => array( 'yes', 'no' ) )
-	);	
+	) );	
 	
 	
 	/* set up the box arguments */
@@ -140,78 +158,18 @@ function wck_cfc_description_for_args_box(){
 	echo '<div class="cfc-message"><p>'. __( 'Enter below the arguments for the meta box.', 'wck' ) .'</p></div>';	
 }
 
-
-/* advanced label options container for update form */
-add_filter( "wck_before_update_form_wck_cfc_fields_element_1", 'wck_cfc_update_form_get_field_value', 10, 3 );
-function wck_cfc_update_form_get_field_value( $form, $i, $value ){
-	$GLOBALS['wck_cfc_update_field_type'] = $value;
-	return $form;
+/* add css classes on update form. Allows us to show/hide elements based on field type select value */
+add_filter( 'wck_update_container_class_wck_cfc_fields', 'wck_cfc_update_container_class', 10, 4 );
+function wck_cfc_update_container_class($wck_update_container_css_class, $meta, $results, $element_id) {
+	$wck_element_type = Wordpress_Creation_Kit::wck_generate_slug( $results[$element_id]["field-type"] );
+	return "class='update_container_$meta update_container_$wck_element_type element_type_$wck_element_type'";
 }
 
-add_filter( "wck_before_update_form_wck_cfc_fields_element_5", 'wck_cfc_update_form_option_wrapper_start', 10, 3 );
-function wck_cfc_update_form_option_wrapper_start( $form, $i, $value ){
-	if( !in_array( $GLOBALS['wck_cfc_update_field_type'], array( 'select', 'checkbox', 'radio' ) ) )
-		$form .= '<div class="hide-options" style="display:none;">';
-	return $form;
-}
-
-add_filter( "wck_after_update_form_wck_cfc_fields_element_5", 'wck_cfc_update_form_option_wrapper_end', 10, 3 );
-function wck_cfc_update_form_option_wrapper_end( $form, $i, $value ){
-	if( !in_array( $GLOBALS['wck_cfc_update_field_type'], array( 'select', 'checkbox', 'radio' ) ) )
-		$form .= '</div>';
-	return $form;
-}
-
-/* attach to post show or hide based on field typr */
-add_filter( "wck_before_update_form_wck_cfc_fields_element_6", 'wck_cfc_update_form_attach_wrapper_start', 10, 3 );
-function wck_cfc_update_form_attach_wrapper_start( $form, $i, $value ){
-	if( $GLOBALS['wck_cfc_update_field_type'] != 'upload' )
-		$form .= '<div class="hide-attach" style="display:none;">';
-	return $form;
-}
-
-add_filter( "wck_after_update_form_wck_cfc_fields_element_6", 'wck_cfc_update_form_attach_wrapper_end', 10, 3 );
-function wck_cfc_update_form_attach_wrapper_end( $form, $i, $value ){
-	if( $GLOBALS['wck_cfc_update_field_type'] != 'upload' )
-		$form .= '</div>';
-	return $form;
-}
-
-
-/* display or show options based on the field type */
-add_filter( "wck_before_listed_wck_cfc_fields_element_1", 'wck_cfc_display_label_wrapper_start', 10, 3 );
-function wck_cfc_display_label_wrapper_start( $form, $i, $value ){
-	$GLOBALS['wck_cfc_field_type'] = $value;
-	return $form;
-}
-
-add_filter( "wck_before_listed_wck_cfc_fields_element_5", 'wck_cfc_display_label_wrapper_options_start', 10, 3 );
-function wck_cfc_display_label_wrapper_options_start( $form, $i, $value ){
-	if( !in_array( $GLOBALS['wck_cfc_field_type'], array( 'select', 'checkbox', 'radio' ) ) )
-		$form .= '<div style="display:none;">';
-	return $form;
-}
-
-add_filter( "wck_after_listed_wck_cfc_fields_element_5", 'wck_cfc_display_label_wrapper_options_end', 10, 3 );
-function wck_cfc_display_label_wrapper_options_end( $form, $i, $value ){
-	if( !in_array( $GLOBALS['wck_cfc_field_type'], array( 'select', 'checkbox', 'radio' ) ) )
-		$form .= '</div>';
-	return $form;
-}
-
-/* Show or hide attach field in list view */
-add_filter( "wck_before_listed_wck_cfc_fields_element_6", 'wck_cfc_display_label_wrapper_attach_start', 10, 3 );
-function wck_cfc_display_label_wrapper_attach_start( $form, $i, $value ){
-	if( $GLOBALS['wck_cfc_field_type'] != 'upload' )
-		$form .= '<div style="display:none;">';
-	return $form;
-}
-
-add_filter( "wck_after_listed_wck_cfc_fields_element_6", 'wck_cfc_display_label_wrapper_attach_end', 10, 3 );
-function wck_cfc_display_label_wrapper_attach_end( $form, $i, $value ){
-	if( $GLOBALS['wck_cfc_field_type'] != 'upload' )
-		$form .= '</div>';
-	return $form;
+add_filter( 'wck_element_class_wck_cfc_fields', 'wck_cfc_element_class', 10, 4 );
+function wck_cfc_element_class($wck_element_class, $meta, $results, $element_id){
+	$wck_element_type = Wordpress_Creation_Kit::wck_generate_slug( $results[$element_id]["field-type"] );
+	$wck_element_class = "class='element_type_$wck_element_type'";
+	return $wck_element_class;
 }
 
 /* Show the slug for field title */
@@ -242,71 +200,79 @@ function wck_cfc_create_boxes_args(){
 	
 	$all_box_args = array();
 	
-	foreach( $all_meta_boxes as $meta_box ){
-		$wck_cfc_args = get_post_meta( $meta_box->ID, 'wck_cfc_args', true );
-		$wck_cfc_fields = get_post_meta( $meta_box->ID, 'wck_cfc_fields', true );
-		
-		$box_title = get_the_title( $meta_box->ID );
-		/* treat case where the post has no title */
-		if( empty( $box_title ) )
-			$box_title = '(no title)';
-		
-		$fields_array = array();
-		if( !empty( $wck_cfc_fields ) ){
-			foreach( $wck_cfc_fields as $wck_cfc_field ){
-				$fields_inner_array = array( 'type' => $wck_cfc_field['field-type'], 'title' => $wck_cfc_field['field-title'] ); 
-				if( !empty( $wck_cfc_field['description'] ) )
-					$fields_inner_array['description'] = $wck_cfc_field['description']; 
-				if( !empty( $wck_cfc_field['required'] ) )
-					$fields_inner_array['required'] = $wck_cfc_field['required'] == 'false' ? false : true;
-				if( !empty( $wck_cfc_field['default-value'] ) )
-					$fields_inner_array['default'] = $wck_cfc_field['default-value'];
-				if( !empty( $wck_cfc_field['options'] ) ){
-					$fields_inner_array['options'] = explode( ',', $wck_cfc_field['options'] );
-					
-					foreach( $fields_inner_array['options'] as  $key => $value ){
-						$fields_inner_array['options'][$key] = trim( $value );
-					}					
-					
-				}
-				if( !empty( $wck_cfc_field['attach-upload-to-post'] ) )
-					$fields_inner_array['attach_to_post'] = $wck_cfc_field['attach-upload-to-post'] == 'yes' ? true : false;
-					
-				$fields_array[] = $fields_inner_array;
-			}
-		}
-		
-		if( !empty( $wck_cfc_args ) ){
-			foreach( $wck_cfc_args as $wck_cfc_arg ){
+	if( !empty( $all_meta_boxes ) ){
+		foreach( $all_meta_boxes as $meta_box ){
+			$wck_cfc_args = get_post_meta( $meta_box->ID, 'wck_cfc_args', true );
+			$wck_cfc_fields = get_post_meta( $meta_box->ID, 'wck_cfc_fields', true );
 			
-				/* metabox_id must be different from meta_name */
-				$metabox_id = Wordpress_Creation_Kit::wck_generate_slug( $box_title );				
-				if( $wck_cfc_arg['meta-name'] == $metabox_id )
-					$metabox_id = 'wck-'. $metabox_id;
-				
-				$box_args = array(
-								'metabox_id' => $metabox_id,
-								'metabox_title' => $box_title,
-								'post_type' => $wck_cfc_arg['post-type'],
-								'meta_name' => $wck_cfc_arg['meta-name'],
-								'meta_array' => $fields_array
-							);
-				if( !empty( $wck_cfc_arg['sortable'] ) )
-					$box_args['sortable'] = $wck_cfc_arg['sortable'] == 'false' ? false : true;
-				
-				if( !empty( $wck_cfc_arg['repeater'] ) )					
-					$box_args['single'] = $wck_cfc_arg['repeater'] == 'false' ? true : false;
-				
-				if( !empty( $wck_cfc_arg['post-id'] ) )
-					$box_args['post_id'] = $wck_cfc_arg['post-id'];
-					
-				if( !empty( $wck_cfc_arg['page-template'] ) )
-					$box_args['page_template'] = $wck_cfc_arg['page-template'];	
+			$box_title = get_the_title( $meta_box->ID );
+			/* treat case where the post has no title */
+			if( empty( $box_title ) )
+				$box_title = '(no title)';
+			
+			$fields_array = array();
+			if( !empty( $wck_cfc_fields ) ){
+				foreach( $wck_cfc_fields as $wck_cfc_field ){
+					$fields_inner_array = array( 'type' => $wck_cfc_field['field-type'], 'title' => $wck_cfc_field['field-title'] ); 
 
-				/* create the box */
-				//new Wordpress_Creation_Kit( $box_args );
+					if( !empty( $wck_cfc_field['description'] ) )
+						$fields_inner_array['description'] = $wck_cfc_field['description']; 
+					if( !empty( $wck_cfc_field['required'] ) )
+						$fields_inner_array['required'] = $wck_cfc_field['required'] == 'false' ? false : true;
+					if ( !empty( $wck_cfc_field['cpt'] ) )
+						$fields_inner_array['cpt'] = $wck_cfc_field['cpt']; 
+					if( !empty( $wck_cfc_field['default-value'] ) )
+						$fields_inner_array['default'] = $wck_cfc_field['default-value'];
+					if( !empty( $wck_cfc_field['options'] ) ){
+						$fields_inner_array['options'] = explode( ',', $wck_cfc_field['options'] );
+						
+						if( !empty( $fields_inner_array['options'] ) ){
+							foreach( $fields_inner_array['options'] as  $key => $value ){
+								$fields_inner_array['options'][$key] = trim( $value );
+							}
+						}
+						
+					}
+					if( !empty( $wck_cfc_field['attach-upload-to-post'] ) )
+						$fields_inner_array['attach_to_post'] = $wck_cfc_field['attach-upload-to-post'] == 'yes' ? true : false;
+						
+					$fields_array[] = $fields_inner_array;
+				}
+			}
+			
+			if( !empty( $wck_cfc_args ) ){
+				foreach( $wck_cfc_args as $wck_cfc_arg ){
 				
-				$all_box_args[] = $box_args;
+					/* metabox_id must be different from meta_name */
+					$metabox_id = Wordpress_Creation_Kit::wck_generate_slug( $box_title );				
+					if( $wck_cfc_arg['meta-name'] == $metabox_id )
+						$metabox_id = 'wck-'. $metabox_id;
+					
+					$box_args = array(
+									'metabox_id' => $metabox_id,
+									'metabox_title' => $box_title,
+									'post_type' => $wck_cfc_arg['post-type'],
+									'meta_name' => $wck_cfc_arg['meta-name'],
+									'meta_array' => $fields_array
+								);
+					if( !empty( $wck_cfc_arg['sortable'] ) )
+						$box_args['sortable'] = $wck_cfc_arg['sortable'] == 'false' ? false : true;
+					
+					if( !empty( $wck_cfc_arg['repeater'] ) )					
+						$box_args['single'] = $wck_cfc_arg['repeater'] == 'false' ? true : false;
+					
+					if( !empty( $wck_cfc_arg['post-id'] ) )
+						$box_args['post_id'] = $wck_cfc_arg['post-id'];
+						
+					if( !empty( $wck_cfc_arg['page-template'] ) )
+						$box_args['page_template'] = $wck_cfc_arg['page-template'];	
+					
+					/* nested repeater arg for pro version only */
+					if( !empty( $wck_cfc_arg['nested'] ) )                                  
+						$box_args['nested'] = $wck_cfc_arg['nested'] == 'false' ? false : true;
+									
+					$all_box_args[] = apply_filters( "wck_cfc_box_args_".$wck_cfc_arg['meta-name'], $box_args );
+				}
 			}
 		}
 	}
@@ -331,12 +297,12 @@ function wck_cfc_ceck_meta_name( $bool, $value, $post_id ){
 	
 	if( empty( $wck_cfc_args ) ){		
 		//this is the add case		
-		$check_meta_existance = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(meta_key) FROM $wpdb->postmeta WHERE meta_key = '$value'" ) );		
+		$check_meta_existance = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(meta_key) FROM $wpdb->postmeta WHERE meta_key = %s", $value ) );		
 	}
 	else{
 		//this is the update case
 		if( $wck_cfc_args[0]['meta-name'] != $value ){
-			$check_meta_existance = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(meta_key) FROM $wpdb->postmeta WHERE meta_key = '$value'" ) );
+			$check_meta_existance = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(meta_key) FROM $wpdb->postmeta WHERE meta_key = %s", $value ) );
 		}
 		else 
 			$check_meta_existance = false;
@@ -424,15 +390,19 @@ function wck_cfc_change_field_title( $meta, $id, $values, $element_id ){
 			
 			$wck_cfc_args = get_post_meta( $id, 'wck_cfc_args', true );
 			$meta_name = $wck_cfc_args[0]['meta-name'];
-			$post_id_with_this_meta = $wpdb->get_results( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '$meta_name'" ) );
+			$post_id_with_this_meta = $wpdb->get_results( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = %s", $meta_name ) );
 			
-			foreach( $post_id_with_this_meta as $post ){
-				$results = get_post_meta( $post->post_id, $meta_name, true );
-				foreach( $results as $key => $result ){			
-					$results[$key][ Wordpress_Creation_Kit::wck_generate_slug( $values['field-title'] ) ] = $results[$key][ Wordpress_Creation_Kit::wck_generate_slug( $wck_cfc_fields[$element_id]['field-title'] ) ];
-					unset( $results[$key][ Wordpress_Creation_Kit::wck_generate_slug( $wck_cfc_fields[$element_id]['field-title'] ) ] );
+			if( !empty( $post_id_with_this_meta ) ){
+				foreach( $post_id_with_this_meta as $post ){
+					$results = get_post_meta( $post->post_id, $meta_name, true );
+					if( !empty( $results ) ){
+						foreach( $results as $key => $result ){			
+							$results[$key][ Wordpress_Creation_Kit::wck_generate_slug( $values['field-title'] ) ] = $results[$key][ Wordpress_Creation_Kit::wck_generate_slug( $wck_cfc_fields[$element_id]['field-title'] ) ];
+							unset( $results[$key][ Wordpress_Creation_Kit::wck_generate_slug( $wck_cfc_fields[$element_id]['field-title'] ) ] );
+						}
+					}
+					update_post_meta( $post->post_id, $meta_name, $results );
 				}
-				update_post_meta( $post->post_id, $meta_name, $results );
 			}
 		}
 	}
@@ -444,6 +414,12 @@ function wck_cfc_edit_columns($columns){
 	$columns['cfc-id'] = __( "Id", "wck" );
 	$columns['cfc-post-type'] = __( "Post Type", "wck" ); 
 	$columns['cfc-page-template'] = __( "Page Template", "wck" ); 
+	
+	/* only in pro version */
+	if( function_exists( 'wck_nr_add_repeater_boxes' ) ){
+		$columns['cfc-nested-repeater'] = __( "Nested Repeater", "wck" ); 
+	}
+	
 	return $columns;
 }
 
@@ -500,7 +476,16 @@ function wck_cfc_custom_columns( $column_name, $post_id ){
 	if( $column_name == 'cfc-page-template' ){
 		$page_template_arg = get_post_meta( $post_id, 'wck_cfc_page_template_arg', true );
 		echo $page_template_arg;
-	}	
+	}
+
+	/* only in pro version */
+	if( function_exists( 'wck_nr_add_repeater_boxes' ) ){		
+		if( $column_name == 'cfc-nested-repeater' ){
+			$box_args = get_post_meta( $post_id, 'wck_cfc_args', true );
+			if( !empty( $box_args[0]['nested'] ) ) 
+				echo $box_args[0]['nested'];
+		}
+	}
 }
 
 /* Add side metaboxes */

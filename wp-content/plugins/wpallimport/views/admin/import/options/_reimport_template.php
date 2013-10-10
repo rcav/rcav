@@ -1,7 +1,7 @@
 <tr>
-	<td colspan="3">
+	<td colspan="3" style="padding-top:20px;">
 		<fieldset class="optionsset">
-			<legend><?php _e('Record Matching','pmxi_plugin');?></legend>
+			<legend><?php _e('Record Matching','pmxi_plugin');?></legend>		
 			<div class="input" style="margin-bottom:15px;">
 				<input type="radio" id="auto_matching_<?php echo $entry; ?>" class="switcher" name="duplicate_matching" value="auto" <?php echo 'manual' != $post['duplicate_matching'] ? 'checked="checked"': '' ?>/>
 				<label for="auto_matching_<?php echo $entry; ?>"><?php _e('Automatic Record Matching', 'pmxi_plugin' )?></label><br>
@@ -26,7 +26,7 @@
 						<label for="duplicate_indicator_custom_field_<?php echo $entry; ?>"><?php _e('custom field', 'pmxi_plugin' )?></label><br>
 						<span class="switcher-target-duplicate_indicator_custom_field_<?php echo $entry; ?>" style="vertical-align:middle; padding-left:17px;">
 							<?php _e('Name', 'pmxi_plugin') ?>
-							<input type="text" name="custom_duplicate_name" value="<?php echo esc_attr($post['custom_duplicate_name']) ?>" /><br>
+							<input type="text" name="custom_duplicate_name" value="<?php echo esc_attr($post['custom_duplicate_name']) ?>" />
 							<?php _e('Value', 'pmxi_plugin') ?>
 							<input type="text" name="custom_duplicate_value" value="<?php echo esc_attr($post['custom_duplicate_value']) ?>" />
 						</span>
@@ -144,6 +144,12 @@
 						<input type="checkbox" id="keep_custom_fields_<?php echo $entry; ?>" name="keep_custom_fields" value="1" <?php echo $post['keep_custom_fields'] ? 'checked="checked"': '' ?>  class="switcher switcher-reversed"/>
 						<label for="keep_custom_fields_<?php echo $entry; ?>"><?php _e('Keep custom fields', 'pmxi_plugin') ?></label>
 						<a href="#help" class="help" title="<?php _e('If Keep Custom Fields box is checked, it will keep all Custom Fields, and add any new Custom Fields specified in Custom Fields section, as long as they do not overwrite existing fields. If \'Only keep this Custom Fields\' is specified, it will only keep the specified fields.', 'pmxi_plugin') ?>">?</a>
+						<div class="keep_except" style="padding-left:17px; <?php if (!$post['keep_custom_fields'] ):?>display:none;<?php endif;?>" >
+							<div class="input">
+								<label for="keep_custom_fields_except"><?php _e('Keep all Custom Fields, except for the fields specified for update <small>(separate field names with commas)</small>', 'pmxi_plugin') ?></label>
+								<input type="text" id="keep_custom_fields_except" name="keep_custom_fields_except" style="width:100%;" value="<?php echo esc_attr($post['keep_custom_fields_except']) ?>" />
+							</div>
+						</div>
 					</div>
 					<div class="switcher-target-keep_custom_fields_<?php echo $entry; ?>" style="padding-left:17px;">
 						<div class="input">
@@ -152,7 +158,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>				
 		</fieldset>
 	</td>
 </tr>

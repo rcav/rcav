@@ -1,0 +1,169 @@
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+# Register fonts
+AddType application/vnd.ms-fontobject eot
+AddType font/truetype ttf
+AddType application/x-font-woff woff
+
+
+
+#RedirectMatch 301 /(.*)\.aspx /
+Redirect 301 /young_adults /young-adult-ministry-overview
+Redirect 301 /RLO/Serena	/serena
+Redirect 301 /RLO/Respect_Life_Resources_Overview	/respect-life-overview
+Redirect 301 /RLO/Pro-Life_Mass_and_Prayer_Vigil	/pro-life-mass-and-prayer-vigil
+Redirect 301 /RLO/Miscarriage_or_Stillbirth	/miscarriage-or-stillbirth
+Redirect 301 /RLO/Infertility_Resources	/infertility-resources
+Redirect 301 /RLO/Creighton_Model_System_of_Care	/creighton-model-system-of-care
+Redirect 301 /RLO/Carter_vs_Canada	/carter-vs-canada
+Redirect 301 /RLO/Billings_Method	/
+Redirect 301 /projectmanagement/newjp2centre	/new-john-paul-ii-pastoral-centre
+Redirect 301 /jp2 /?p=13597
+Redirect 301 /jp2center	/new-john-paul-ii-pastoral-centre
+Redirect 301 /jp2centre	/new-john-paul-ii-pastoral-centre
+Redirect 301 /projectmanagement/mandate	/project-management-mandate
+Redirect 301 /projectmanagement/infrastructure	/infrastructure-renewal-task-force
+Redirect 301 /projectmanagement/contact	/contact-project-management
+Redirect 301 /projectmanagement/buildingcommission	/project-management-building-commission
+Redirect 301 /projectmanagement	/project-management-overview
+Redirect 301 /projectadvancevideo	/project-advance-appeal-video-poster-and-brochure
+Redirect 301 /project_advance	/project-advance-overview/
+Redirect 301 /pgc	/protecting-gods-children-overview
+Redirect 301 /permanentdiaconate	/permanent-diaconate-overview
+Redirect 301 /pd-faq	/permanent-diaconate-faq
+Redirect 301 (?i)/OYYAM/Young_Adult_Communities	/young-adult-communities
+Redirect 301 (?i)/OYYAM/WYD_2013_Information	/world-youth-day-2011-info
+Redirect 301 (?i)/OYYAM/University_Students_Mass	/?p=16022
+Redirect 301 (?i)/OYYAM/Searching_in_the_Spirit_2013_Team_Info/ /?p=15628
+Redirect 301 (?i)/OYYAM/OYYAM_Scholarships	/oyyam-scholarships
+Redirect 301 (?i)/OYYAM/Contact_OYYAM	/contact-oyyam
+Redirect 301 (?i)/OYYAM/Commission_for_Young_Adult_Ministry	/commission-for-young-adult-ministry
+Redirect 301 /osj/St_Vincent_de_Paul_(SSVP).aspx	/st-vincent-de-paul-ssvp
+Redirect 301 /osj/Service_Justice_Recommended_Resources.aspx	/service-justice-recommended-resources
+Redirect 301 /osj/Service_and_Justice_Metro_Vancouver_Alliance.aspx	/service-and-justice-metro-vancouver-alliance
+Redirect 301 /osj/Service_and_Justice_Events_and_News.aspx	/service-and-justice-events-and-news
+Redirect 301 /osj/Service_and_Justice_Articles.aspx	/service-and-justice-articles
+Redirect 301 /osj/Service_and_Justice_Affiliates.aspx	/service-and-justice-affiliates
+Redirect 301 /osj/Refugee_Sponsorship.aspx	/refugee-sponsorship
+Redirect 301 /osj/Prisons_Chaplains.aspx	/prisons-chaplains
+Redirect 301 /osj/Prison_Ministry.aspx	/prison-ministry
+Redirect 301 /osj/Migrant_Ministry__Farm_Workers.aspx	/migrant-ministry-farm-workers
+Redirect 301 /osj/Migrant_Ministry_-_Latinos.aspx	/migrant-ministry-latinos
+Redirect 301 /osj/Migrant_Ministry.aspx	/migrant-ministry
+Redirect 301 /osj/Fair_Trade_Coffee.aspx	/fair-trade-coffee
+Redirect 301 /osj/Domestic_Abuse_Services_(OLGC).aspx	/domestic-abuse-services-olgc
+Redirect 301 /osj/Development_and_Peace_(CCODP).aspx	/development-and-peace-ccodp
+Redirect 301 /osj/Contact_Service_and_Justice.aspx	/contact-service-and-justice
+Redirect 301 /osj/Catholic_Women_s_League_(CWL).aspx	/catholic-womens-league-cwl
+Redirect 301 /osj/About_Service_and_Justice.aspx	/about-service-and-justice
+Redirect 301 /osj/St_Vincent_de_Paul_(SSVP).aspx /
+Redirect 301 /ore/retreats	/
+Redirect 301 /one/tickets	/one-conference-tickets
+Redirect 301 /one/speakers	/one-conference-workshops-speakers
+Redirect 301 /one/schedule	/one-conference-program-schedule
+Redirect 301 /one/news	/one-conference-additional-info
+Redirect 301 /one/faq	/one-conference-frequently-asked-questions
+Redirect 301 /one/exhibitors	/one-conference-ministry-fair
+Redirect 301 /one/concert	/one-conference-concert
+Redirect 301 /olmf/Office_of_Life_Marriage_and_Family_Counselling	/marriage-overview
+Redirect 301 /olmf	/marriage-overview
+Redirect 301 /oc/triduum	/diocesan-offices-overview
+Redirect 301 /OC/spring	/archdiocesan-spring-institute-2012
+Redirect 301 /oc/catechist	/catechist-evening
+Redirect 301 /oc	/catechetics-overview
+Redirect 301 /NFP	/nfp-fertility-awareness
+Redirect 301 /News_Events/News.aspx?category=communications	/news-and-updates
+Redirect 301 /News_Events/News.aspx?category=archives	/news-and-updates
+Redirect 301 /News_Events/Events.aspx?category=religious	/news-and-updates
+Redirect 301 /News_Events/Events.aspx?category=archives	/news-and-updates
+Redirect 301 /News_Events/Events.aspx?	/news-and-updates
+Redirect 301 /News_Events/Default.aspx?id=38	/news-and-updates
+Redirect 301 /News	/news-and-updates
+Redirect 301 /missionappeals	/mission-appeal-overview
+Redirect 301 /Missal	/revised-roman-missal
+Redirect 301 /media	/portal-for-media-organizations-overview
+Redirect 301 /marchforlife2013	/march-for-life-2013
+Redirect 301 /saleofjp2center /?p=16062
+Redirect 301 /it	/administration-information-technology
+Redirect 301 /fridayreport	/subscribe-to-the-friday-report
+Redirect 301 /followus	/follow-us
+Redirect 301 /Evangelization/What_is_Evangelization_	/what-is-evangelization
+Redirect 301 /Evangelization/Office_of_Evangelization_Mandate_and_Key_Principles	/office-of-evangelization-mandate-and-key-principles
+Redirect 301 /Evangelization/Events	/evangelization-events
+Redirect 301 /Evangelization/Evangelization_Share_What_You_re_Doing	/evangelization-share-what-youre-doing
+Redirect 301 /Evangelization/Evangelization_Office_Recommended_Resources	/evangelization-office-recommended-resources
+Redirect 301 /Evangelization	/evangelization-overview
+Redirect 301 /Endow	/endow
+Redirect 301 /Education_Training/Default.aspx?id=118	/
+Redirect 301 /Diocesan_Offices/youth_home.aspx?id=1842	/
+Redirect 301 (?i)/Diocesan_Offices/respect_life.aspx	/respect-life-overview
+Redirect 301 /development	/development-office-overview
+Redirect 301 /contactwebmaster	/contact-webmaster
+Redirect 301 /contactwebmaster2	/contact-webmaster
+Redirect 301 /commissions/sacred_Art	/sacred-art-commission
+Redirect 301 /Commissions/Contact_Liturgy_Commission	/liturgy-commission
+Redirect 301 /charting	/charting-the-churchs-direction
+Redirect 301 /cfs/Catholic_Family_Services_Family_and_Personal_Formation_Overview	/
+Redirect 301 /centennial/order	/archdiocese-of-vancouver-commemorative-book
+Redirect 301 /CCMH	/mens-hostel
+Redirect 301 /cch/archbishops_speech	/catholics-come-home-archbishops-speech
+Redirect 301 /cch-faq	/catholics-come-home-faq
+Redirect 301 /Catholic_Faith/SeniorResourcesOverview.aspx	/senior-resources-overview
+Redirect 301 /bcfamilyday	/2013-02-11-b-c-family-day
+Redirect 301 /Archives/Research_Requests_Sacramental_Records.aspx	/archives-overview
+Redirect 301 /Archives/Research_Requests_Overview.aspx	/archives-overview
+Redirect 301 /Archives/Research_Requests_Other_Archives.aspx	/archives-overview
+Redirect 301 /Archives/Research_Requests_for_Birth_and_Death_Certificates_Adoption_Records.aspx	/archives-overview
+Redirect 301 /Administration/Administration_Internal_Audit	/administration-overview
+Redirect 301 /Administration/Administration_Governance	/administration-overview
+Redirect 301 /About_Us/Default.aspx?id=812	/about-us-overview
+Redirect 301 /About_Us/Default.aspx?id=795	/about-us-overview
+Redirect 301 /About_Us/Default.aspx?id=635	/about-us-overview
+Redirect 301 /About_Us/Default.aspx?id=633	/about-us-overview
+Redirect 301 /About_Us/Default.aspx?id=632	/about-us-overview
+Redirect 301 /Parishes/MassFinder.aspx /mass-finder
+Redirect 301 /olmf/Office_of_Life_Marriage_and_Family_Counselling/ /counselling
+Redirect 301 /olmf/Counselling_Staff/ /counselling-staff
+Redirect 301 /olmf/Contact_Office_of_Life_Marriage_and_Family /contact-office-of-life-marriage-and-family
+Redirect 301 /Vocations/Vocations_Newsletter/ /?p=13984
+Redirect 301 /yearoffaith/ /?p=16286
+Redirect 301 /archbishopshomilies/ /?p=14003
+Redirect 301 /archbishopscalendar/ /calendar
+Redirect 301 /Commissions/Liturgy_Commission/ /?p=13705
+Redirect 301 /RLO/Post-Abortion_Healing/ /?p=13868
+Redirect 301 /occupy /?p=16061
+Redirect 301 /papalhonours /?p=13586
+Redirect 301 /papalblessings /papal-blessings/
+Redirect 301 /refugees /?p=16060
+Redirect 301 /groupregistration /
+Redirect 301 /IEC2012/ 	/
+Redirect 301 /chanceryappointments /
+Redirect 301 /pastoralappointments /
+Redirect 301 /lifeandfamilyweek /
+Redirect 301 /claiminfaith /?p=16289
+Redirect 301 /statue /john-paul-ii-statue-fundraising-campaign
+Redirect 301 /donate /?p=16245
+Redirect 301 /greatadventure /?p=13819
+Redirect 301 /OYYAM/Youth_Day_2013_Event_Volunteer_Application_Form/ 		/?p=15782
+Redirect 301 /OYYAM/Youth_Day_2013/ /?p=15791
+Redirect 301 /olmf/Family_and_Personal_Formation_Overview/ /?p=13728
+Redirect 301 /lifeandelection /?p=14652
+Redirect 301 /media/bodyworlds /?p=16059
+Redirect 301 /Vocations/Discernment/World_Day_of_Prayer_for_Vocations /?p=13860
+Redirect 301 /ore /catechetics-overview
+Redirect 301 /stewardshipsunday/letter /?p=16182
+Redirect 301 /OYYAM/University_Students_Mass/ /?p=16022
+Redirect 301 /OYYAM/WYD_2013_Information /?p=16033
+Redirect 301 /OYYAM/Youth_and_Young_Adult_Calendar /?p=13911
+Redirect 301 /jp2rezoning /?p=14737
+Redirect 301 /one /one-conference-2013

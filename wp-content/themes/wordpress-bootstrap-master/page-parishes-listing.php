@@ -20,7 +20,12 @@ Template Name: Parishes Listing
 							
 						</header> <!-- end article header -->								
 
-
+<div class="breadcrumbs">
+    <?php if(function_exists('bcn_display'))
+    {
+        bcn_display();
+    }?>
+</div>
 
 							<div class="alert alert-info">
 								 <small><i class="icon-info-sign"></i> Select a Parish name below, or visit these links:<br />

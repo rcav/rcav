@@ -1,4 +1,7 @@
 jQuery(function(){
+	
+
+
 	jQuery( '#wck_cfc_fields #field-type' ).live( 'change', function () {
 		value = jQuery(this).val();
 		
@@ -15,22 +18,36 @@ jQuery(function(){
 		else{
 			jQuery( '#wck_cfc_fields .row-attach-upload-to-post' ).hide();
 		}
-	});
+		
+		if( value == 'cpt select' ){
+			jQuery( '#wck_cfc_fields .row-cpt' ).show();
+		}
+		else{
+			jQuery( '#wck_cfc_fields .row-cpt' ).hide();
+		}	});
 	
 	jQuery( '#container_wck_cfc_fields #field-type' ).live( 'change', function () {
 		value = jQuery(this).val();
 		if( value == 'select' || value == 'checkbox' || value == 'radio' ){
-			jQuery( '.hide-options', jQuery(this).parent().parent().parent() ).show();
+			jQuery(this).parent().parent().parent().children(".row-options").show();
 		}
 		else{
-			jQuery( '.hide-options', jQuery(this).parent().parent().parent() ).hide();
+			jQuery(this).parent().parent().parent().children(".row-options").hide();
 		}
 		
 		if( value == 'upload' ){
-			jQuery( '.hide-attach', jQuery(this).parent().parent().parent() ).show();
+			jQuery(this).parent().parent().parent().children(".row-attach-upload-to-post").show();
 		}
 		else{
-			jQuery( '.hide-attach', jQuery(this).parent().parent().parent() ).hide();
+			jQuery(this).parent().parent().parent().children(".row-attach-upload-to-post").hide();
 		}
+
+		if( value == 'cpt select' ){
+			jQuery(this).parent().parent().parent().children(".row-cpt").show();
+		}
+		else{
+			jQuery(this).parent().parent().parent().children(".row-cpt").hide();
+		}		
+		
 	});
 });

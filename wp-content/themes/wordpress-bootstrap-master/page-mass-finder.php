@@ -20,6 +20,14 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 							
 							<div class="page-header"><h1 class="single-title" itemprop="headline"><?php the_title(); ?></h1></div>
 
+<div class="breadcrumbs">
+    <?php if(function_exists('bcn_display'))
+    {
+        bcn_display();
+    }?>
+</div>
+
+
 								<div class="alert alert-info">
 								 <small><i class="icon-info-sign"></i> Select a city from the list below to find Parishes near you or visit these links:</small><br />
 								 <small><i class="icon-list"></i> <a href="/parishes-list">View all Parishes by name</a> or <i class="icon-map-marker"></i>  <a href="/parishes-map">View All Parishes on a map</a></small> <br />

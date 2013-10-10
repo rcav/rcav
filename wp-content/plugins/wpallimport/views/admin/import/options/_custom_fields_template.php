@@ -1,5 +1,5 @@
 <tr>
-	<td colspan="3" style="border-bottom:1px solid #ccc;">
+	<td colspan="3" style="padding-top:20px;">
 		<fieldset class="optionsset" style="text-align:center;">
 			<legend>Custom Fields</legend>													
 			<table class="form-table custom-params" style="max-width:none; border:none;">
@@ -55,7 +55,6 @@
 				?>
 			</select>
 			<br/>			
-		</fieldset>
-		<br>
+		</fieldset>		
 	</td>
 </tr>

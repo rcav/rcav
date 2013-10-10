@@ -46,7 +46,7 @@
 				<div class="hidden" id="dialog-confirm-category-removing" title="Delete categories?"><?php _e('Remove only current category or current category with subcategories?', 'pmxi_plugin');?></div>
 				<div class="delim">
 					<label><?php _e('Separated by', 'pmxi_plugin'); ?></label>
-					<input type="text" class="small" name="categories_delim" value="<?php echo esc_attr($post['categories_delim']) ?>" />
+					<input type="text" class="small" name="categories_delim" value="<?php echo ( ! empty($post['categories_delim']) ) ? str_replace("&amp;","&", htmlentities(htmlentities($post['categories_delim']))) : ',' ; ?>" />
 					<label for="categories_auto_nested"><?php _e('Enable Auto Nest', 'pmxi_plugin');?></label>
 					<input type="hidden" name="categories_auto_nested" value="0"/>
 					<input type="checkbox" id="categories_auto_nested" name="categories_auto_nested" <?php if ($post['categories_auto_nested']):?>checked="checked"<?php endif; ?>/>

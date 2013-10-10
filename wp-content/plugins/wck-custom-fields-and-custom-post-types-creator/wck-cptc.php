@@ -36,10 +36,12 @@ function wck_cptc_create_box(){
 		$output = 'objects';
 		$taxonomies = get_taxonomies($args,$output);
 		$taxonomie_names = array();
-
-		foreach ($taxonomies  as $taxonomie ) {
-			if ( $taxonomie->name != 'nav_menu' && $taxonomie->name != 'post_format')
-				$taxonomie_names[] = $taxonomie->name;
+		
+		if( !empty( $taxonomies ) ){
+			foreach ($taxonomies  as $taxonomie ) {
+				if ( $taxonomie->name != 'nav_menu' && $taxonomie->name != 'post_format')
+					$taxonomie_names[] = $taxonomie->name;
+			}
 		}
 		
 		/* set up the fields array */
@@ -109,11 +111,11 @@ function wck_cptc_create_cpts(){
 				'edit_item' => __( $cpt['edit-item'] ? $cpt['edit-item'] : "Edit ".$cpt['singular-label'], 'wck' ) ,
 				'new_item' => __( $cpt['new-item'] ? $cpt['new-item'] : "New ".$cpt['singular-label'], 'wck' ),
 				'all_items' => __( $cpt['all-items'] ? $cpt['all-items'] : "All ".$cpt['plural-label'] , 'wck'),
-				'view_item' => __( $cpt['view-item'] ? $cpt['view-item'] : "View ".$cpt['singular-label'] , 'wck'),
+				'view_item' => __( !empty( $cpt['view-item'] ) ? $cpt['view-item'] : "View ".$cpt['singular-label'] , 'wck'),
 				'search_items' => __( $cpt['search-items'] ? $cpt['search-items'] : "Search ".$cpt['plural-label'], 'wck' ),
 				'not_found' =>  __( $cpt['not-found'] ? $cpt['not-found'] : "No ". strtolower( $cpt['plural-label'] ) ." found", 'wck' ),
 				'not_found_in_trash' => __( $cpt['not-found-in-trash'] ? $cpt['not-found-in-trash'] :  "No ". strtolower( $cpt['plural-label'] ) ." found in Trash", 'wck' ), 
-				'parent_item_colon' => __( $cpt['parent-item-colon'] ? $cpt['parent-item-colon'] :  "Parent Page", 'wck' ),
+				'parent_item_colon' => __( !empty( $cpt['parent-item-colon'] ) ? $cpt['parent-item-colon'] :  "Parent Page", 'wck' ),
 				'menu_name' => $cpt['menu-name'] ? $cpt['menu-name'] : $cpt['plural-label']
 			);
 			$args = array(
@@ -122,12 +124,15 @@ function wck_cptc_create_cpts(){
 				'description'	=> $cpt['description'],
 				'publicly_queryable' => true,
 				'show_ui' => $cpt['show-ui'] == 'false' ? false : true,
-				'show_in_nav_menus' => $cpt['show-in-nav-menus'] == 'false' ? false : true,
-				'show_in_menu' => $cpt['show-in-menu'] == 'true' ? true : $cpt['show-in-menu'],			
+				'show_in_nav_menus' => !empty( $cpt['show-in-nav-menus'] ) && $cpt['show-in-nav-menus'] == 'false' ? false : true,	
 				'has_archive' => $cpt['has-archive'] == 'false' ? false : true,
 				'hierarchical' => $cpt['hierarchical'] == 'false' ? false : true,													
 				'supports' => explode( ', ', $cpt['supports'] )				
 			);
+			
+			if( !empty( $cpt['show-in-menu'] ) ){
+				$args['show_in_menu'] = $cpt['show-in-menu'] == 'true' ? true : $cpt['show-in-menu'];
+			}
 			
 			if( !empty( $cpt['menu-position'] ) )
 				$args['menu_position'] = intval( $cpt['menu-position'] );

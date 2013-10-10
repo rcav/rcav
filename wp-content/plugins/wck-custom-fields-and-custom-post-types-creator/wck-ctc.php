@@ -25,9 +25,11 @@ function wck_ctc_create_box(){
 		$output = 'objects'; // or objects
 		$post_types = get_post_types($args,$output);
 		$post_type_names = array(); 
-		foreach ($post_types  as $post_type ) {
-			if ( $post_type->name != 'attachment' && $post_type->name != 'wck-meta-box' && $post_type->name != 'wck-frontend-posting' && $post_type->name != 'wck-option-page' && $post_type->name != 'wck-option-field' ) 
-				$post_type_names[] = $post_type->name;
+		if( !empty( $post_types ) ){
+			foreach ( $post_types  as $post_type ) {
+				if ( $post_type->name != 'attachment' && $post_type->name != 'wck-meta-box' && $post_type->name != 'wck-frontend-posting' && $post_type->name != 'wck-option-page' && $post_type->name != 'wck-option-field' ) 
+					$post_type_names[] = $post_type->name;
+			}
 		}
 		
 		

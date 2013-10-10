@@ -29,7 +29,10 @@ if( !empty( $details['options'] ) ){
 			}
 		}
 				
-		$element .= '<div><label><input type="radio" name="'. esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'" id="'. $frontend_prefix . esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] . '_' . $value_attr ) ) .'" value="'. esc_attr( $value_attr ) .'"  '. checked( $found, true, false ) .'class="mb-radio mb-field" />'. esc_html( $label ) .'</label></div>';
+		$element .= '<div><label><input type="radio" name="'. esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'" id="';
+		if( !empty( $frontend_prefix ) )
+			$element .=	$frontend_prefix; 
+		$element .= esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] . '_' . $value_attr ) ) .'" value="'. esc_attr( $value_attr ) .'"  '. checked( $found, true, false ) .'class="mb-radio mb-field" />'. esc_html( $label ) .'</label></div>';
 	}
 	$element .= '</div>';
 }

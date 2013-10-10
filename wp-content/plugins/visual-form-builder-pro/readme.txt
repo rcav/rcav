@@ -1,12 +1,43 @@
 === Visual Form Builder Pro ===
 Contributors: mmuro
 Requires at least: 3.5
-Tested up to: 3.6
-Stable tag: 2.3.7
+Tested up to: 3.6.1
+Stable tag: 2.3.9
 
 Visual Form Builder Pro is an affordable WordPress plugin that helps you build beautiful, fully functional forms in only a few minutes without writing PHP, CSS, or HTML.
 
 == Release Notes ==
+
+**Version 2.3.9 — Sep 19, 2013**
+
+* Add Current User ID/Name/Email/Username to Hidden field options
+* Add "Spam word sensitivity" setting
+* Add vfb_form_subject and vfb_notify_subject filters
+* Update vfb_notify_message to include new_entry_id
+* Update email and entry detail to wrap textarea, HTML, and post content in wpautop
+* Fix bug where lists were unstyled in descriptions
+* Fix various "selected" output bugs in admin
+* Fix bug where "Show on Screen" would not remember selections
+* Fix a couple screen options calls to use action and not filter
+* Fix bug where the Reply-To name was not properly set when multiple Name fields existed
+* Reduce number of queries on forms list page
+
+**Version 2.3.8 — Aug 21, 2013**
+
+* Add reCAPTCHA
+* Add vfb_recaptcha_theme, and vfb_recaptcha_lang, vfb_recaptcha_opts filters
+* Add settings page with options for popular filters
+* Update Verification fields to allow for Conditional Logic
+* Update number sanitizing to use regular expression instead of floatval
+* Update file input styles
+* Update default view to form list mode
+* Update email to check if mb_encode_mimeheader function exists before using it
+* Update jQuery UI CSS
+* Update Email Design preview layout to two columns
+* Update CSS and JS to use cache busting version numbers
+* Fix edit links in admin toolbar
+* Fix bug where creating a new form did not forward to edit screen immediately
+* Fix bug when uploading an audio or video file in WordPress 3.6
 
 **Version 2.3.7 — Aug 01, 2013**
 

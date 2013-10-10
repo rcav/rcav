@@ -35,9 +35,12 @@ if ( @is_file( vfb_get_wp_root_path() ) )
 else
 	die( 'Error: could not access wp-load.php. This typically happens when the wp-content folder has been moved. Please set the VFB_PRO_ABSPATH constant to manually set the path.' );
 
+if ( !is_user_logged_in() )
+	wp_die( __( 'You need to be logged in to view this document', 'visual-form-builder-pro' ) );
+
 // If you don't have permission, get lost
 if ( !current_user_can( 'vfb_edit_forms' ) )
-	wp_die('<p>'.__('You do not have sufficient permissions to view the preview for this site.').'</p>');
+	wp_die( __('You do not have sufficient permissions to view the preview for this site.') );
 
 // Let's roll.
 @header('Content-Type: ' . get_option('html_type') . '; charset=' . get_option('blog_charset'));

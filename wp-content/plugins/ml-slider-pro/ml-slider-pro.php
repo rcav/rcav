@@ -3,14 +3,29 @@
  * Plugin Name: Meta Slider - Pro Addon Pack
  * Plugin URI: http://www.metaslider.com
  * Description: Supercharge your slideshows!
- * Version: 1.2
+ * Version: 2.0
  * Author: Matcha Labs
  * Author URI: http://www.matchalabs.com
  */
 
 /**
  * Changelog:
+ * 
+ * 2.0
+ * - New Feature: Thumbnail navigation for Flex & Nivo Slider
+ * - Improvement: Pro functionality refactored into 'modules'
+ * - Improvement: Theme editor CSS output tidied up
+ * - Fix: YouTube thumbnail date 
+ * - Fix: YouTube videos on HTTPS
+ * 
+ * 1.2.2
+ * - Fix: Vimeo slideshows not pausing correctly
  *
+ * 1.2.1
+ * - Fix: Vertical slides with HTML Overlay not working
+ * - Fix: YouTube & Vimeo slides not saving on some installations
+ * - Change: Post Feed limit changed to 'number' input type
+ * 
  * 1.2
  * - WYSIWYG Editor Added to HTML Overlay slides
  * - Plugin localized
@@ -42,11 +57,11 @@
  * 1.0
  * - Initial Version
  */
-define('METASLIDERPRO_VERSION', '1.2');
+define('METASLIDERPRO_VERSION', '2.0');
 define('METASLIDERPRO_BASE_URL', plugin_dir_url(__FILE__));
 define('METASLIDERPRO_ASSETS_URL', METASLIDERPRO_BASE_URL . 'assets/');
 define('METASLIDERPRO_BASE_DIR_LONG', dirname(__FILE__));
-define('METASLIDERPRO_INC_DIR', METASLIDERPRO_BASE_DIR_LONG . '/inc/');
+define('METASLIDERPRO_INC_DIR', METASLIDERPRO_BASE_DIR_LONG . '/modules/');
 
 // handle automatic updates
 require_once('wp-updates-plugin.php');
@@ -60,7 +75,7 @@ if (!class_exists('MetaSlide')) {
     require_once(WP_PLUGIN_DIR . '/ml-slider/inc/slide/metaslide.class.php');
 }
 
-// load ml-slider class
+// load image helper class
 if (!file_exists(WP_PLUGIN_DIR . '/ml-slider/inc/metaslider.imagehelper.class.php')) {
     return;
 }
@@ -68,11 +83,12 @@ if (!class_exists('MetaSliderImageHelper')) {
     require_once(WP_PLUGIN_DIR . '/ml-slider/inc/metaslider.imagehelper.class.php');
 }
 
-require_once(METASLIDERPRO_INC_DIR . 'slide/metaslide.htmloverlay.class.php');
-require_once(METASLIDERPRO_INC_DIR . 'slide/metaslide.youtube.class.php');
-require_once(METASLIDERPRO_INC_DIR . 'slide/metaslide.vimeo.class.php');
-require_once(METASLIDERPRO_INC_DIR . 'slide/metaslide.postfeed.class.php');
-require_once(METASLIDERPRO_INC_DIR . 'metaslider.themeEditor.class.php');
+require_once(METASLIDERPRO_INC_DIR . 'youtube/slide.php');
+require_once(METASLIDERPRO_INC_DIR . 'vimeo/slide.php');
+require_once(METASLIDERPRO_INC_DIR . 'layer/slide.php');
+require_once(METASLIDERPRO_INC_DIR . 'post_feed/slide.php');
+require_once(METASLIDERPRO_INC_DIR . 'theme_editor/theme_editor.php');
+require_once(METASLIDERPRO_INC_DIR . 'thumbnails/thumbnails.php');
 
 /**
  * Register the plugin.
@@ -80,28 +96,25 @@ require_once(METASLIDERPRO_INC_DIR . 'metaslider.themeEditor.class.php');
  * Display the administration panel, insert JavaScript etc.
  */
 class MetaSliderPro {
+
     /**
      * Constructor
      */
     public function __construct() {
         add_filter('metaslider_menu_title', array($this, 'menu_title'));
-
         add_action('init', array($this, 'load_plugin_textdomain'));
-
         add_action('metaslider_register_admin_scripts', array($this, 'register_admin_scripts'), 10, 1);
         add_action('metaslider_register_admin_styles', array($this, 'register_admin_styles'), 10, 1);
-
-        // Add Slide Tabs
-        add_filter('media_upload_tabs', array($this,'custom_media_upload_tab_name'), 999, 1);
-        add_filter('media_view_strings', array($this, 'custom_media_uploader_tabs'), 10, 1);
-
         add_action('admin_notices', array($this, 'metaslider_missing'));
-
         add_filter('metaslider_css', array($this, 'get_public_css'), 11, 3);
+        add_filter('media_upload_tabs', array($this,'custom_media_upload_tab_name'), 999, 1);
 
         $themeEditor = new MetaSliderThemeEditor();
-
-        $this->register_slide_types();
+        $thumbnails = new MetaSliderThumbnails();
+        $postFeed = new MetaPostFeedSlide();
+        $vimeo = new MetaVimeoSlide();
+        $youtube = new MetaYouTubeSlide();
+        $htmlOverlay = new MetaLayerSlide();
     }
 
     /**
@@ -121,79 +134,35 @@ class MetaSliderPro {
     }
 
     /**
-     * Register the pro slide types
-     */
-    private function register_slide_types() {
-        $postFeed = new MetaPostFeedSlide();
-        $vimeo = new MetaVimeoSlide();
-        $youtube = new MetaYouTubeSlide();
-        $htmlOverlay = new MetaHtmlOverlaySlide();
-    }
-
-    /**
      * Registers and enqueues admin JavaScript
      */
     public function register_admin_scripts() {
-        wp_enqueue_script('metasliderpro-html-overlay-script', METASLIDERPRO_ASSETS_URL . 'metaslider/html_overlay/html_overlay.js', array('jquery', 'media-views', 'metaslider-admin-script'),METASLIDERPRO_VERSION);
-        wp_enqueue_script('metasliderpro-layer-editor-script', METASLIDERPRO_ASSETS_URL . 'metaslider/html_overlay/layer_editor.js', array('jquery', 'media-views', 'metaslider-admin-script'),METASLIDERPRO_VERSION);
-        wp_enqueue_script('metasliderpro-codemirror-lib', METASLIDERPRO_ASSETS_URL . 'codemirror/lib/codemirror.js', array(), METASLIDERPRO_VERSION);
-        wp_enqueue_script('metasliderpro-codemirror-xml', METASLIDERPRO_ASSETS_URL . 'codemirror/mode/xml/xml.js', array(), METASLIDERPRO_VERSION);
-        wp_enqueue_script('metasliderpro-admin-script', METASLIDERPRO_ASSETS_URL . 'metaslider/admin.js', array('jquery', 'metaslider-admin-script'),METASLIDERPRO_VERSION);
-        wp_enqueue_script('jquery-ui-resizable');
-        wp_enqueue_script('jquery-ui-draggable');
-        wp_enqueue_script('metasliderpro-spectrum', METASLIDERPRO_ASSETS_URL . 'spectrum/spectrum.js',array(),METASLIDERPRO_VERSION);
-        wp_enqueue_script('ckeditor', METASLIDERPRO_ASSETS_URL . 'ckeditor/ckeditor.js', array('jquery'),METASLIDERPRO_VERSION);
-
-        // localise the JS
-        wp_localize_script( 'metasliderpro-layer-editor-script', 'metasliderpro', array( 
-            'newLayer' => __("New Layer", 'metasliderpro'),
-            'addLayer' => __("Add Layer", 'metasliderpro'),
-            'saveChanges' => __("Save changes?", 'metasliderpro'),
-            'animation' => __("Animation", 'metasliderpro'),
-            'styling' => __("Styling", 'metasliderpro'),
-            'px' => __("px", 'metasliderpro'),
-            'animation' => __("Animation", 'metasliderpro'),
-            'wait' => __("Wait", 'metasliderpro'),
-            'thenWait' => __("then wait", 'metasliderpro'),
-            'secondsAnd' => __("seconds and", 'metasliderpro'),
-            'padding' => __("Padding", 'metasliderpro'),
-            'background' => __("Background", 'metasliderpro'),
-            'areYouSure' => __("Are you sure?", 'metasliderpro'),
-            'snapToGrid' => __("Snap to grid", 'metasliderpro'),
-        ));
+        wp_enqueue_script('metasliderpro-admin-script', METASLIDERPRO_ASSETS_URL . 'admin.js', array('jquery', 'metaslider-admin-script'),METASLIDERPRO_VERSION);
     }
 
     /**
      * Registers and enqueues admin CSS
      */
     public function register_admin_styles() {
-        wp_enqueue_style('metasliderpro-spectrum-style', METASLIDERPRO_ASSETS_URL . 'spectrum/spectrum.css', false, METASLIDERPRO_VERSION);
-        wp_enqueue_style('metasliderpro-codemirror-style', METASLIDERPRO_ASSETS_URL . 'codemirror/lib/codemirror.css', false, METASLIDERPRO_VERSION);
-        wp_enqueue_style('metasliderpro-codemirror-theme-style', METASLIDERPRO_ASSETS_URL . 'codemirror/theme/monokai.css', false, METASLIDERPRO_VERSION);
-        wp_enqueue_style('metasliderpro-admin-styles', METASLIDERPRO_ASSETS_URL . 'metaslider/admin.css', false, METASLIDERPRO_VERSION);
+        wp_enqueue_style('metasliderpro-admin-styles', METASLIDERPRO_ASSETS_URL . 'admin.css', false, METASLIDERPRO_VERSION);
     }
 
     /**
      * Registers and enqueues public CSS
+     * 
+     * @param string $css
+     * @param array $settings
+     * @param int $id
+     * @return string
      */
     public function get_public_css($css, $settings, $id) {
-        return $css .= "\n        @import url('" . METASLIDERPRO_ASSETS_URL . "metaslider/public.css?ver=" . METASLIDERPRO_VERSION . "');";
-    }
-
-    /**
-     * Creates a new media manager tab
-     * 
-     * @var array registered media manager tabs
-     */
-    public function custom_media_uploader_tabs( $strings ) {
-        $strings['insertHtmlOverlay'] = __('Layer Slide', 'metasliderpro');
-        return $strings;
+        return $css .= "\n        @import url('" . METASLIDERPRO_ASSETS_URL . "public.css?ver=" . METASLIDERPRO_VERSION . "');";
     }
 
     /**
      * Add "Pro" to the menu title
      * 
-     * @var string Meta Slider menu name
+     * @param string Meta Slider menu name
      * @return string title
      */
     public function menu_title($title) {
@@ -203,23 +172,13 @@ class MetaSliderPro {
     /**
      * Add extra tabs to the default wordpress Media Manager iframe
      * 
-     * @var array existing media manager tabs
+     * @param array existing media manager tabs
      */
     public function custom_media_upload_tab_name( $tabs ) {
         // restrict our tab changes to the meta slider plugin page
-        if ((isset($_GET['page']) && $_GET['page'] == 'metaslider') || 
-            (isset($_GET['tab']) && in_array($_GET['tab'], array('youtube', 'vimeo', 'post_feed')))) {
-
-            $newtabs = array( 
-                'youtube' => __("YouTube", 'metasliderpro'),
-                'vimeo' => __("Vimeo", 'metasliderpro'),
-                'post_feed' => __("Post Feed", 'metasliderpro'),
-            );
-
-            if (isset($tabs['nextgen'])) unset($tabs['nextgen']);
-            if (isset($tabs['metaslider_pro'])) unset($tabs['metaslider_pro']);
-
-            return array_merge( $tabs, $newtabs );
+        if (isset($_GET['page']) && $_GET['page'] == 'metaslider') {
+            if(isset($tabs['nextgen'])) unset($tabs['nextgen']);
+            if(isset($tabs['metaslider_pro'])) unset($tabs['metaslider_pro']);
         }
 
         return $tabs;

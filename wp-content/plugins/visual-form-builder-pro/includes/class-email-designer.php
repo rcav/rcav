@@ -83,7 +83,7 @@ class VisualFormBuilder_Pro_Designer {
         <?php submit_button( __( 'Select', 'visual-form-builder-pro' ), 'secondary', 'submit', false ); ?>
         </form>
 
-
+	<div id="vfb-email-designer">
 		<form id="email-design" method="post" enctype="multipart/form-data">
         	<input name="action" type="hidden" value="email_design" />
 			<input name="form_id" type="hidden" value="<?php echo $form_nav_selected_id; ?>" />
@@ -291,10 +291,12 @@ class VisualFormBuilder_Pro_Designer {
              </table>
 		<?php submit_button( __( 'Save Changes', 'visual-form-builder-pro' ) ); ?>
 		</form>
-
-        <h2><?php _e( 'Preview', 'visual-form-builder-pro' ); ?></h2>
-        <p><?php _e( 'Save options to view your recent changes.', 'visual-form-builder-pro' ); ?></p>
-        <iframe src="<?php echo plugins_url( 'visual-form-builder-pro' ); ?>/email-preview.php?form=<?php echo $form_nav_selected_id; ?>" width="100%" height="600" ></iframe>
+	</div>
+	<div id="vfb-email-design-preview">
+		<h2><?php _e( 'Email Preview', 'visual-form-builder-pro' ); ?></h2>
+		<p><?php _e( 'Save options to view your recent changes.', 'visual-form-builder-pro' ); ?></p>
+		<iframe src="<?php echo plugins_url( 'visual-form-builder-pro' ); ?>/email-preview.php?form=<?php echo $form_nav_selected_id; ?>" width="100%" height="600" ></iframe>
+	</div>
 <?php
 		endif;
 	}

@@ -99,8 +99,7 @@
 									include( 'options/_custom_fields_template.php' );
 									include( 'options/_featured_template.php' );
 									include( 'options/_author_template.php' );
-									include( 'options/_reimport_template.php' );
-									include( 'options/_scheduling_template.php' );
+									include( 'options/_reimport_template.php' );									
 									include( 'options/_settings_template.php' );
 								?>
 							</table>
@@ -146,8 +145,7 @@
 									include( 'options/_taxonomies_template.php' );
 									include( 'options/_featured_template.php' );
 									include( 'options/_author_template.php' );
-									include( 'options/_reimport_template.php' );
-									include( 'options/_scheduling_template.php' );
+									include( 'options/_reimport_template.php' );									
 									include( 'options/_settings_template.php' );
 								?>
 							</table>
@@ -176,8 +174,7 @@
 											include( 'options/_custom_fields_template.php' );
 											include( 'options/_featured_template.php' );
 											include( 'options/_author_template.php' );
-											include( 'options/_reimport_template.php' );
-											include( 'options/_scheduling_template.php' );
+											include( 'options/_reimport_template.php' );											
 											include( 'options/_settings_template.php' );
 										?>
 									</table>
@@ -213,8 +210,7 @@
 											include( 'options/_custom_fields_template.php' );
 											include( 'options/_featured_template.php' );
 											include( 'options/_author_template.php' );
-											include( 'options/_reimport_template.php' );
-											include( 'options/_scheduling_template.php' );
+											include( 'options/_reimport_template.php' );											
 											include( 'options/_settings_template.php' );
 
 										?>

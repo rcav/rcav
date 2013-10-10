@@ -85,7 +85,7 @@ jQuery(document).ready(function($) {
 
 			// generated blocks row			
 			$('.home #generated-blocks .widget').eq(0).addClass('span6');
-			$('.home #generated-blocks .widget').eq(1).addClass('span4 offset2');
+			$('.home #generated-blocks .widget').eq(1).addClass('span5 offset1');
 
 
 	// Input placeholder text fix for IE

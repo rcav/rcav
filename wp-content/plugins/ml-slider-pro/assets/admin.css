@@ -1,0 +1,9 @@
+
+.media-frame.hide-router .media-frame-title {
+  box-shadow: none !important;
+  border-bottom: 0px !important;
+}
+
+.metaslider input[type="number"] {
+    width: 50px;
+}

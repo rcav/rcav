@@ -5,11 +5,11 @@
 	$post_taxonomies = array_diff_key(get_taxonomies_by_object_type(array($post_type), 'object'), array_flip($exclude_taxonomies));
 	if ( ! empty($post_taxonomies)): ?>
 	<tr>
-		<td colspan="3">
+		<td colspan="3" style="padding-bottom:20px;">
 			<fieldset class="optionsset">
 				<legend><?php _e('Custom Taxonomies','pmxi_plugin');?></legend>
-				<?php foreach ($post_taxonomies as $ctx): ?>
-				<table>
+				<?php foreach ($post_taxonomies as $ctx): if ("" == $ctx->labels->name) continue;?>
+				<table style="width:100%;">
 					<tr>
 						<td>
 							<div class="post_taxonomy">
@@ -55,7 +55,7 @@
 									<input type="hidden" class="hierarhy-output" name="post_taxonomies[<?php echo $ctx->name ?>]" value="<?php echo esc_attr($post['post_taxonomies'][$ctx->name]) ?>"/>
 									<div class="delim">
 										<label><?php _e('Separated by', 'pmxi_plugin'); ?></label>										
-										<input type="text" class="small tax_delim" value="<?php echo (!empty($taxonomies_hierarchy) and $taxonomies_hierarchy[0]->delim) ? $taxonomies_hierarchy[0]->delim : ',' ?>" />
+										<input type="text" class="small tax_delim" value="<?php echo (!empty($taxonomies_hierarchy) and $taxonomies_hierarchy[0]->delim) ? str_replace("&amp;","&", htmlentities(htmlentities($taxonomies_hierarchy[0]->delim))) : ',' ?>" />
 										<label for="nested_<?php echo $ctx->name;?>"><?php _e('Enable Auto Nest', 'pmxi_plugin');?></label>
 										<input id="nested_<?php echo $ctx->name;?>" type="checkbox" class="taxonomy_auto_nested" <?php if (!empty($taxonomies_hierarchy) and $taxonomies_hierarchy[0]->auto_nested):?>checked="checked"<?php endif; ?>/>
 										<a href="#help" class="help" title="<?php _e('If this box is checked, a category hierarchy will be created. For example, if your <code>{category}</code> value is <code>Mens > Shoes > Diesel</code>, enter <code>&gt;</code> as the separator and enable <code>Auto Nest</code> to create <code>Diesel</code> as a child category of <code>Shoes</code> and <code>Shoes</code> as a child category of <code>Mens.</code>', 'pmxi_plugin') ?>">?</a>
@@ -66,7 +66,7 @@
 						</td>
 					</tr>
 				</table>
-				<?php endforeach; ?>
+				<?php endforeach; ?>					
 			</fieldset>
 		</td>
 	</tr>

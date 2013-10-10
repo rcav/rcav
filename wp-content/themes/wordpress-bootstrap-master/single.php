@@ -64,6 +64,12 @@ if($selected_template == NULL) {
 					
 						<section class="post_content clearfix" itemprop="articleBody">
 
+<div class="breadcrumbs">
+    <?php if(function_exists('bcn_display'))
+    {
+        bcn_display();
+    }?>
+</div>
 
 							<?php the_post_thumbnail( 'wpbs-featured-post', array('class'=>"img-rounded featured-post-image")); ?>
 

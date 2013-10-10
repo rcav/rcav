@@ -42,7 +42,7 @@ CREATE TABLE {$table_prefix}imports (
 	name VARCHAR(255) NOT NULL DEFAULT '',
 	friendly_name VARCHAR(255) NOT NULL DEFAULT '',
 	type VARCHAR(32) NOT NULL DEFAULT '',
-	feed_type ENUM('xml','csv','zip','gz','') NOT NULL DEFAULT '',
+	feed_type ENUM('xml','csv','zip','gz','') NOT NULL DEFAULT '',	
 	path TEXT,	
 	xpath VARCHAR(255) NOT NULL DEFAULT '',
 	template LONGTEXT,

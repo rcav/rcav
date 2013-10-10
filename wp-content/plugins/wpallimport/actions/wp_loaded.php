@@ -2,40 +2,6 @@
 
 function pmxi_wp_loaded() {				
 	
-	$start = time();
-	// scheduling import executing logic
-	$imports = new PMXI_Import_List();
-	$imports->setColumns('id', 'scheduled', 'registered_on', 'processing', 'triggered', 'large_import', 'queue_chunk_number', 'current_post_ids')->getBy('scheduled !=', '', 'registered_on');
-	if (!$imports->isEmpty()){
-		foreach ($imports->setColumns('id', 'scheduled', 'registered_on', 'processing', 'triggered', 'large_import', 'queue_chunk_number', 'current_post_ids')->getBy('scheduled !=', '', 'registered_on')->convertRecords() as $imp) { /* @var $imp PMXI_Import_Record */		
-			if (strlen($imp->scheduled) > 1 and $imp->isDue()) {
-				$imp->getById($imp->id);
-				if (!$imp->isEmpty()){ 
-					if (empty($imp->large_import) or $imp->large_import == 'No'){
-						$imp->execute(); // repull record from database since list didn't contain all the fileds for performance optimization purposes
-					}
-					elseif($imp->large_import == 'Yes'){ 
-						if ($imp->triggered == 0){
-							$imp->set(array(
-								'triggered' => 1,
-								'imported' => 0,
-								'created' => 0,
-								'updated' => 0,
-								'skipped' => 0								
-							))->save();
-						} elseif($imp->processing == 0) {
-							$imp->execute();
-						} elseif($imp->processing == 1 and time() - strtotime($imp->registered_on) > 300){ // it means processor crashed, so it will reset processing to false, and terminate. Then next run it will work normally.
-							$imp->set(array(
-								'processing' => 0
-							))->save()->execute();						
-						}
-					}
-				}			
-			}
-			if (time() - $start > 4) break; // try not to delay server response for too long (4 secs) skipping scheduled imports if any for the next hit
-		}
-	}
 	@ini_set("max_input_time", PMXI_Plugin::getInstance()->getOption('max_input_time'));
 	@ini_set("max_execution_time", PMXI_Plugin::getInstance()->getOption('max_execution_time'));		
 

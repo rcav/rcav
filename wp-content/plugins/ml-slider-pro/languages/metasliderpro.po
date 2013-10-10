@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: metasliderpro\n"
-"POT-Creation-Date: 2013-07-03 13:09-0000\n"
-"PO-Revision-Date: 2013-07-03 13:09-0000\n"
+"POT-Creation-Date: 2013-09-10 15:24-0000\n"
+"PO-Revision-Date: 2013-09-10 15:24-0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -12,83 +12,6 @@ msgstr ""
 "X-Poedit-KeywordsList: __;gettext;gettext_noop;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
-
-#: ../ml-slider-pro.php:149
-msgid "New Layer"
-msgstr ""
-
-#: ../ml-slider-pro.php:150
-msgid "Add Layer"
-msgstr ""
-
-#: ../ml-slider-pro.php:151
-msgid "Save changes?"
-msgstr ""
-
-#: ../ml-slider-pro.php:152 ../ml-slider-pro.php:155
-msgid "Animation"
-msgstr ""
-
-#: ../ml-slider-pro.php:153
-msgid "Styling"
-msgstr ""
-
-#: ../ml-slider-pro.php:154 ../inc/metaslider.themeEditor.class.php:373
-#: ../inc/metaslider.themeEditor.class.php:423
-#: ../inc/metaslider.themeEditor.class.php:427
-#: ../inc/metaslider.themeEditor.class.php:445
-#: ../inc/metaslider.themeEditor.class.php:466
-#: ../inc/metaslider.themeEditor.class.php:470
-#: ../inc/metaslider.themeEditor.class.php:503
-#: ../inc/metaslider.themeEditor.class.php:507
-#: ../inc/metaslider.themeEditor.class.php:511
-#: ../inc/metaslider.themeEditor.class.php:515
-msgid "px"
-msgstr ""
-
-#: ../ml-slider-pro.php:156
-msgid "Wait"
-msgstr ""
-
-#: ../ml-slider-pro.php:157
-msgid "then wait"
-msgstr ""
-
-#: ../ml-slider-pro.php:158
-msgid "seconds and"
-msgstr ""
-
-#: ../ml-slider-pro.php:159
-msgid "Padding"
-msgstr ""
-
-#: ../ml-slider-pro.php:160
-msgid "Background"
-msgstr ""
-
-#: ../ml-slider-pro.php:161
-msgid "Are you sure?"
-msgstr ""
-
-#: ../ml-slider-pro.php:162
-msgid "Snap to grid"
-msgstr ""
-
-#: ../ml-slider-pro.php:189 ../inc/slide/metaslide.htmloverlay.class.php:86
-msgid "Layer Slide"
-msgstr ""
-
-#: ../ml-slider-pro.php:214 ../inc/slide/metaslide.youtube.class.php:95
-msgid "YouTube"
-msgstr ""
-
-#: ../ml-slider-pro.php:215 ../inc/slide/metaslide.vimeo.class.php:117
-msgid "Vimeo"
-msgstr ""
-
-#: ../ml-slider-pro.php:216
-msgid "Post Feed"
-msgstr ""
 
 #: ../wp-updates-plugin.php:73
 msgid ""
@@ -100,159 +23,232 @@ msgstr ""
 msgid "An unknown error occurred"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:359
+#: ../modules/layer/slide.php:32 ../modules/layer/slide.php:148
+msgid "Layer Slide"
+msgstr ""
+
+#: ../modules/layer/slide.php:63
+msgid "New Layer"
+msgstr ""
+
+#: ../modules/layer/slide.php:64
+msgid "Add Layer"
+msgstr ""
+
+#: ../modules/layer/slide.php:65
+msgid "Save changes?"
+msgstr ""
+
+#: ../modules/layer/slide.php:66 ../modules/layer/slide.php:69
+msgid "Animation"
+msgstr ""
+
+#: ../modules/layer/slide.php:67
+msgid "Styling"
+msgstr ""
+
+#: ../modules/layer/slide.php:68 ../modules/theme_editor/theme_editor.php:375
+#: ../modules/theme_editor/theme_editor.php:425
+#: ../modules/theme_editor/theme_editor.php:429
+#: ../modules/theme_editor/theme_editor.php:447
+#: ../modules/theme_editor/theme_editor.php:468
+#: ../modules/theme_editor/theme_editor.php:472
+#: ../modules/theme_editor/theme_editor.php:505
+#: ../modules/theme_editor/theme_editor.php:509
+#: ../modules/theme_editor/theme_editor.php:513
+#: ../modules/theme_editor/theme_editor.php:517
+msgid "px"
+msgstr ""
+
+#: ../modules/layer/slide.php:70
+msgid "Wait"
+msgstr ""
+
+#: ../modules/layer/slide.php:71
+msgid "then wait"
+msgstr ""
+
+#: ../modules/layer/slide.php:72
+msgid "seconds and"
+msgstr ""
+
+#: ../modules/layer/slide.php:73
+msgid "Padding"
+msgstr ""
+
+#: ../modules/layer/slide.php:74
+msgid "Background"
+msgstr ""
+
+#: ../modules/layer/slide.php:75
+msgid "Are you sure?"
+msgstr ""
+
+#: ../modules/layer/slide.php:76
+msgid "Snap to grid"
+msgstr ""
+
+#: ../modules/theme_editor/theme_editor.php:361
 msgid "Theme Settings"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:365
+#: ../modules/theme_editor/theme_editor.php:367
 msgid "Theme Name"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:368
+#: ../modules/theme_editor/theme_editor.php:370
 msgid "Slideshow"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:371
+#: ../modules/theme_editor/theme_editor.php:373
 msgid "Outer Border Radius"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:377
+#: ../modules/theme_editor/theme_editor.php:379
 msgid "CSS3 Shadow"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:391
+#: ../modules/theme_editor/theme_editor.php:393
 msgid "Caption"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:394
-#: ../inc/metaslider.themeEditor.class.php:451
+#: ../modules/theme_editor/theme_editor.php:396
+#: ../modules/theme_editor/theme_editor.php:453
 msgid "Position"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:397
-#: ../inc/metaslider.themeEditor.class.php:458
+#: ../modules/theme_editor/theme_editor.php:399
+#: ../modules/theme_editor/theme_editor.php:460
 msgid "Bottom Left"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:398
-#: ../inc/metaslider.themeEditor.class.php:460
+#: ../modules/theme_editor/theme_editor.php:400
+#: ../modules/theme_editor/theme_editor.php:462
 msgid "Bottom Right"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:399
-#: ../inc/metaslider.themeEditor.class.php:455
+#: ../modules/theme_editor/theme_editor.php:401
+#: ../modules/theme_editor/theme_editor.php:457
 msgid "Top Left"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:400
-#: ../inc/metaslider.themeEditor.class.php:457
+#: ../modules/theme_editor/theme_editor.php:402
+#: ../modules/theme_editor/theme_editor.php:459
 msgid "Top Right"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:401
+#: ../modules/theme_editor/theme_editor.php:403
 msgid "Underneath"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:406
+#: ../modules/theme_editor/theme_editor.php:408
 msgid "Width"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:410
+#: ../modules/theme_editor/theme_editor.php:412
 msgid "Text Color"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:416
+#: ../modules/theme_editor/theme_editor.php:418
 msgid "Background Color"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:422
-#: ../inc/metaslider.themeEditor.class.php:465
+#: ../modules/theme_editor/theme_editor.php:424
+#: ../modules/theme_editor/theme_editor.php:467
 msgid "Vertical Margin"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:426
-#: ../inc/metaslider.themeEditor.class.php:469
+#: ../modules/theme_editor/theme_editor.php:428
+#: ../modules/theme_editor/theme_editor.php:471
 msgid "Horizontal Margin"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:430
+#: ../modules/theme_editor/theme_editor.php:432
 msgid "Arrows"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:433
+#: ../modules/theme_editor/theme_editor.php:435
 msgid "Style"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:440
+#: ../modules/theme_editor/theme_editor.php:442
 msgid "Opacity"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:444
+#: ../modules/theme_editor/theme_editor.php:446
 msgid "Distance from edge"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:448
+#: ../modules/theme_editor/theme_editor.php:450
 msgid "Navigation"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:454
+#: ../modules/theme_editor/theme_editor.php:456
 msgid "Default"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:456
+#: ../modules/theme_editor/theme_editor.php:458
 msgid "Top Center"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:459
+#: ../modules/theme_editor/theme_editor.php:461
 msgid "Bottom Center"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:473
+#: ../modules/theme_editor/theme_editor.php:475
 msgid "Bullets"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:476
+#: ../modules/theme_editor/theme_editor.php:478
 msgid "Fill Color"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:483
+#: ../modules/theme_editor/theme_editor.php:485
 msgid "Fill Color (Active)"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:490
+#: ../modules/theme_editor/theme_editor.php:492
 msgid "Border Color"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:496
+#: ../modules/theme_editor/theme_editor.php:498
 msgid "Border Color (Active)"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:502
+#: ../modules/theme_editor/theme_editor.php:504
 msgid "Size"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:506
+#: ../modules/theme_editor/theme_editor.php:508
 msgid "Spacing"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:510
+#: ../modules/theme_editor/theme_editor.php:512
 msgid "Border Width"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:514
+#: ../modules/theme_editor/theme_editor.php:516
 msgid "Border Radius"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:524
+#: ../modules/theme_editor/theme_editor.php:526
 msgid "Live Preview"
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:542
+#: ../modules/theme_editor/theme_editor.php:544
 msgid ""
 "This is a preview only. To apply the theme to a slideshow, edit the "
 "slideshow and select this theme from the theme dropdown menu."
 msgstr ""
 
-#: ../inc/metaslider.themeEditor.class.php:899
+#: ../modules/theme_editor/theme_editor.php:904
 msgid "Type"
+msgstr ""
+
+#: ../modules/vimeo/slide.php:147
+msgid "Vimeo"
+msgstr ""
+
+#: ../modules/youtube/slide.php:125
+msgid "YouTube"
 msgstr ""

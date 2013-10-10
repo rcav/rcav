@@ -170,6 +170,14 @@ Template Name: Parishes Map
               
               <div class="page-header"><h1 class="single-title" itemprop="headline"><?php the_title(); ?></h1></div>
 
+<div class="breadcrumbs">
+    <?php if(function_exists('bcn_display'))
+    {
+        bcn_display();
+    }?>
+</div>
+
+
               <div class="alert alert-info">
                  <small><i class="icon-info-sign"></i> Find Parishes, Organizations, Young Adult groups and Schools across B.C.<br />
                  <i class="icon-search"></i> <a href="/mass-finder"> Mass Finder</a>

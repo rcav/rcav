@@ -5,11 +5,11 @@ Plugin URI: http://vfb.matthewmuro.com
 Description: Dynamically build forms using a simple interface. Forms include jQuery validation, a basic logic-based verification system, and entry tracking.
 Author: Matthew Muro
 Author URI: http://matthewmuro.com
-Version: 2.3.7
+Version: 2.3.9
 */
 
 // Version number to output as meta tag
-define( 'VFB_PRO_VERSION', '2.3.7' );
+define( 'VFB_PRO_VERSION', '2.3.9' );
 
 /**
  * Template tag function
@@ -49,7 +49,7 @@ class Visual_Form_Builder_Pro{
 	 * @var string
 	 * @access protected
 	 */
-	protected $vfb_db_version = '2.4';
+	protected $vfb_db_version = '2.5';
 
 	/**
 	 * The plugin API
@@ -208,6 +208,8 @@ class Visual_Form_Builder_Pro{
 		add_action( 'wp_ajax_nopriv_visual_form_builder_autocomplete', array( &$this, 'ajax_autocomplete' ) );
 		add_action( 'wp_ajax_visual_form_builder_check_username', array( &$this, 'ajax_check_username' ) );
 		add_action( 'wp_ajax_nopriv_visual_form_builder_check_username', array( &$this, 'ajax_check_username' ) );
+		/*add_action( 'wp_ajax_visual_form_builder_check_recaptcha', array( &$this, 'ajax_check_recaptcha' ) );
+		add_action( 'wp_ajax_nopriv_visual_form_builder_check_recaptcha', array( &$this, 'ajax_check_recaptcha' ) );*/
 	}
 
 	/**
@@ -241,7 +243,13 @@ class Visual_Form_Builder_Pro{
 	 * @since 2.3.3
 	 */
 	public function add_meta_keyword() {
-		echo apply_filters( 'vfb_show_version', '<!-- <meta name="vfbPro" version="'. VFB_PRO_VERSION . '" /> -->' . "\n" );
+		// Get global settings
+		$vfb_settings 	= get_option( 'vfb-settings' );
+
+		// Settings - Disable meta tag version
+		$settings_meta	= isset( $vfb_settings['show-version'] ) ? '' : '<!-- <meta name="vfbPro" version="'. VFB_PRO_VERSION . '" /> -->' . "\n";
+
+		echo apply_filters( 'vfb_show_version', $settings_meta );
 	}
 
 	/**
@@ -543,55 +551,98 @@ class Visual_Form_Builder_Pro{
 	public function help(){
 		$screen = get_current_screen();
 
-		$screen->add_help_tab( array(
-			'id' => 'vfb-help-tab-general-info',
-			'title' => 'General Info',
-			'content' => '<ul>
-						<li><a href="http://vfb.matthewmuro.com/documentation/installing" target="_blank">Installing the Plugin</a></li>
-						<li><a href="http://vfb.matthewmuro.com/documentation/staying-updated" target="_blank">Staying Updated</a></li>
-						<li><a href="http://vfb.matthewmuro.com/documentation/glossary" target="_blank">Glossary</a></li>
-					</ul>'
-		) );
+		$help = '<ul>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/installing" target="_blank">' . __( 'Installing the Plugin', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/staying-updated" target="_blank">' . __( 'Staying Updated', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/glossary" target="_blank">' . __( 'Glossary', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '</ul>';
 
 		$screen->add_help_tab( array(
-			'id' => 'vfb-help-tab-forms',
-			'title' => 'Forms',
-			'content' => '<ul>
-						<li><a href="http://vfb.matthewmuro.com/documentation/forms-interface" target="_blank">Interface Overview</a></li>
-						<li><a href="http://vfb.matthewmuro.com/documentation/forms-creating" target="_blank">Creating a New Form</a></li>
-						<li><a href="http://vfb.matthewmuro.com/documentation/forms-sorting" target="_blank">Sorting Your Forms</a></li>
-						<li><a href="http://vfb.matthewmuro.com/documentation/forms-building" target="_blank">Building Your Forms</a></li>
-					</ul>'
+			'id'         => 'vfb-help-tab-general-info',
+			'title'      => __( 'General Info', 'visual-form-builder-pro' ),
+			'content'    => $help,
 		) );
 
-		$screen->add_help_tab( array(
-			'id' => 'vfb-help-tab-entries',
-			'title' => 'Entries',
-			'content' => '<ul>
-						<li><a href="http://vfb.matthewmuro.com/documentation/entries-interface" target="_blank">Interface Overview</a></li>
-						<li><a href="http://vfb.matthewmuro.com/documentation/entries-managing" target="_blank">Managing Your Entries</a></li>
-						<li><a href="http://vfb.matthewmuro.com/documentation/entries-searching-filtering" target="_blank">Searching and Filtering Your Entries</a></li>
-					</ul>'
-		) );
+		$help = '<ul>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/forms-interface" target="_blank">' . __( 'Interface Overview', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/forms-creating" target="_blank">' . __( 'Creating a New Form', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/forms-sorting" target="_blank">' . __( 'Sorting Your Forms', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/forms-building" target="_blank">' . __( 'Building Your Forms', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '</ul>';
 
 		$screen->add_help_tab( array(
-			'id' => 'vfb-help-tab-email-analytics',
-			'title' => 'Email Design &amp; Analytics',
-			'content' => '<ul>
-						<li><a href="http://vfb.matthewmuro.com/documentation/email-design" target="_blank">Import Interface Overview</a></li>
-						<li><a href="http://vfb.matthewmuro.com/documentation/analytics" target="_blank">Export Interface Overview</a></li>
-					</ul>'
+			'id'         => 'vfb-help-tab-forms',
+			'title'      => __( 'Forms', 'visual-form-builder-pro' ),
+			'content'    => $help,
 		) );
 
+		$help = '<ul>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/entries-interface" target="_blank">' . __( 'Interface Overview', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/entries-managing" target="_blank">' . __( 'Managing Your Entries', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/entries-searching-filtering" target="_blank">' . __( 'Searching and Filtering Your Entries', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '</ul>';
+
 		$screen->add_help_tab( array(
-			'id' => 'vfb-help-tab-advanced',
-			'title' => 'Advanced Topics',
-			'content' => '<ul>
-						<li><a href="http://vfb.matthewmuro.com/documentation/conditional-logic" target="_blank">Conditional Logic</a></li>
-						<li><a href="http://vfb.matthewmuro.com/documentation/templating" target="_blank">Templating</a></li>
-						<li><a href="http://vfb.matthewmuro.com/documentation/custom-capabilities" target="_blank">Custom Capabilities</a></li>
-						<li><a href="http://vfb.matthewmuro.com/hooks" target="_blank">Filters and Actions</a></li>
-					</ul>'
+			'id'         => 'vfb-help-tab-entries',
+			'title'      => __( 'Entries', 'visual-form-builder-pro' ),
+			'content'    => $help,
+		) );
+
+		$help = '<ul>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/email-design" target="_blank">' . __( 'Email Design Interface Overview', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/analytics" target="_blank">' . __( 'Analytics Interface Overview', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '</ul>';
+
+		$screen->add_help_tab( array(
+			'id'         => 'vfb-help-tab-email-analytics',
+			'title'      => __( 'Email Design &amp; Analytics', 'visual-form-builder-pro' ),
+			'content'    => $help,
+		) );
+
+		$help = '<ul>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/import" target="_blank">' . __( 'Import Interface Overview', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/export" target="_blank">' . __( 'Export Interface Overview', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '</ul>';
+
+		$screen->add_help_tab( array(
+			'id'         => 'vfb-help-tab-import-export',
+			'title'      => __( 'Import &amp; Export', 'visual-form-builder-pro' ),
+			'content'    => $help,
+		) );
+
+		$help = '<ul>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/conditional-logic" target="_blank">' . __( 'Conditional Logic', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/templating" target="_blank">' . __( 'Templating', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/documentation/custom-capabilities" target="_blank">' . __( 'Custom Capabilities', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '<li><a href="http://vfb.matthewmuro.com/hooks" target="_blank">' . __( 'Filters and Actions', 'visual-form-builder-pro' ) . '</a></li>';
+		$help .= '</ul>';
+
+		$screen->add_help_tab( array(
+			'id'         => 'vfb-help-tab-advanced',
+			'title'      => __( 'Advanced Topics', 'visual-form-builder-pro' ),
+			'content'    => $help,
+		) );
+
+		$help = '<p>' . __( '<strong>Always load CSS</strong> - Force Visual Form Builder Pro CSS to load on every page. Will override "Disable CSS" option, if selected.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>Disable CSS</strong> - Disable CSS output for all forms.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>Disable Email</strong> - Disable emails from sending for all forms.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>Skip Empty Fields in Email</strong> - Fields that have no data will not be displayed in the email.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>Disable saving new entry</strong> - Disable new entries from being saved.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>Disable saving entry IP address</strong> - An entry will be saved, but the IP address will be removed.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>Place Address labels above fields</strong> - The Address field labels will be placed above the inputs instead of below.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>Remove default SPAM Verification</strong> - The default SPAM Verification question will be removed and only a submit button will be visible.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>Disable meta tag version</strong> - Prevent the hidden Visual Form Builder Pro version number from printing in the source code.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>Skip PayPal redirect if total is zero</strong> - If PayPal is configured, do not redirect if the total is zero.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>Prepend Confirmation</strong> - Always display the form beneath the text confirmation after the form has been submitted.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>Max Upload Size</strong> - Restrict the file upload size for all forms.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>Sender Mail Header</strong> - Control the Sender attribute in the mail header. This is useful for certain server configurations that require an existing email on the domain to be used.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>reCAPTCHA Public Key</strong> - Required if "Use reCAPTCHA" option is selected in the Secret field.', 'visual-form-builder-pro' ) . '</p>';
+		$help .= '<p>' . __( '<strong>reCAPTCHA Private Key</strong> - Required if "Use reCAPTCHA" option is selected in the Secret field.', 'visual-form-builder-pro' ) . '</p>';
+
+		$screen->add_help_tab( array(
+			'id'         => 'vfb-help-tab-settings',
+			'title'      => __( 'Settings', 'visual-form-builder-pro' ),
+			'content'    => $help,
 		) );
 
 	}
@@ -953,7 +1004,7 @@ class Visual_Form_Builder_Pro{
 		$role = get_role( 'administrator' );
 
 		// If the capabilities have not been added, do so here
-		if ( !empty( $role ) && !$role->has_cap( 'vfb_import_forms' ) ) {
+		if ( !empty( $role ) && !$role->has_cap( 'vfb_edit_settings' ) ) {
 			// Setup the capabilities for each role that gets access
 			$caps = array(
 				'administrator' => array(
@@ -967,13 +1018,14 @@ class Visual_Form_Builder_Pro{
 					'vfb_edit_entries',
 					'vfb_delete_entries',
 					'vfb_edit_email_design',
-					'vfb_view_analytics'
+					'vfb_view_analytics',
+					'vfb_edit_settings',
 				),
 				'editor' => array(
 					'vfb_view_entries',
 					'vfb_edit_entries',
 					'vfb_delete_entries',
-					'vfb_view_analytics'
+					'vfb_view_analytics',
 				)
 			);
 
@@ -1001,8 +1053,8 @@ class Visual_Form_Builder_Pro{
 	 * @since 1.0
 	 */
 	public function admin_scripts() {
-		wp_enqueue_style( 'jquery-ui-datepicker', plugins_url( '/css/smoothness/jquery-ui-1.9.2.min.css', __FILE__ ) );
-		wp_enqueue_style( 'visual-form-builder-style', plugins_url( "/css/visual-form-builder-admin$this->load_dev_files.css", __FILE__ ), array(), '20130716' );
+		wp_enqueue_style( 'jquery-ui-datepicker', plugins_url( "/css/smoothness/jquery-ui-1.10.3$this->load_dev_files.css", __FILE__ ), array(), '1.10.3' );
+		wp_enqueue_style( 'visual-form-builder-style', plugins_url( "/css/visual-form-builder-admin$this->load_dev_files.css", __FILE__ ), array(), '20130916' );
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_style( 'thickbox' );
 
@@ -1013,20 +1065,20 @@ class Visual_Form_Builder_Pro{
 		wp_enqueue_script( 'thickbox' );
 		wp_enqueue_script( 'postbox' );
 		wp_enqueue_script( 'jquery-form-validation', plugins_url( '/js/jquery.validate.min.js', __FILE__ ), array( 'jquery' ), '1.9.0', true );
-		wp_enqueue_script( 'vfb-admin', plugins_url( "/js/vfb-admin$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-form-validation' ), '', true );
+		wp_enqueue_script( 'vfb-admin', plugins_url( "/js/vfb-admin$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-form-validation' ), '20130916', true );
 		wp_enqueue_script( 'nested-sortable', plugins_url( "/js/jquery.ui.nestedSortable$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-ui-sortable' ), '1.3.6', true );
 		wp_enqueue_script( 'jquery-ui-timepicker', plugins_url( "/js/jquery.ui.timepicker$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-ui-datepicker' ), '1.1.1', true );
 
 		// Only load Google Charts if viewing Analytics to prevent errors
 		if ( isset( $_REQUEST['page'] ) && in_array( $_REQUEST['page'], array( 'vfb-reports' ) ) ) {
 			wp_enqueue_script( 'raphael-js', plugins_url( '/js/raphael.min.js', __FILE__ ), array(), '2.1.0', false );
-			wp_enqueue_script( 'morris-js', plugins_url( '/js/morris.min.js', __FILE__ ), array( 'raphael-js' ), '0.4.2', false );
-			wp_enqueue_script( 'vfb-charts', plugins_url( "/js/vfb-charts$this->load_dev_files.js", __FILE__ ), array( 'morris-js' ), '', false );
+			wp_enqueue_script( 'morris-js', plugins_url( '/js/morris.min.js', __FILE__ ), array( 'raphael-js' ), '0.4.3', false );
+			wp_enqueue_script( 'vfb-charts', plugins_url( "/js/vfb-charts$this->load_dev_files.js", __FILE__ ), array( 'morris-js' ), '20130916', false );
 		}
 
 		// Load CSS for Create Post add-on
 		if ( class_exists( 'VFB_Pro_Create_Post' ) )
-			wp_enqueue_style( 'vfb-pro-create-post', plugins_url( '/vfb-pro-create-post/css/vfb-pro-create-post.css' ), array( 'jquery-ui-datepicker', 'visual-form-builder-style' ) );
+			wp_enqueue_style( 'vfb-pro-create-post', plugins_url( '/vfb-pro-create-post/css/vfb-pro-create-post.css' ), array( 'jquery-ui-datepicker', 'visual-form-builder-style' ), '20130916' );
 
 		wp_localize_script( 'vfb-admin', 'VfbAdminPages', array( 'vfb_pages' => $this->_admin_pages ) );
 	}
@@ -1041,8 +1093,8 @@ class Visual_Form_Builder_Pro{
 		$this->add_scripts = true;
 
 		wp_register_script( 'jquery-form-validation', plugins_url( '/js/jquery.validate.min.js', __FILE__ ), array( 'jquery' ), '1.9.0', true );
-		wp_register_script( 'visual-form-builder-validation', plugins_url( "/js/vfb-validation$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-form-validation' ), '', true );
-		wp_register_script( 'visual-form-builder-metadata', plugins_url( "/js/jquery.metadata$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-form-validation' ), '', true );
+		wp_register_script( 'visual-form-builder-validation', plugins_url( "/js/vfb-validation$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-form-validation' ), '20130916', true );
+		wp_register_script( 'visual-form-builder-metadata', plugins_url( "/js/jquery.metadata$this->load_dev_files.js", __FILE__ ) , array( 'jquery', 'jquery-form-validation' ), '2.0', true );
 		wp_register_script( 'farbtastic-js', plugins_url( "/js/farbtastic$this->load_dev_files.js", __FILE__ ), array( 'jquery' ), '1.3', true );
 		wp_register_script( 'vfb-ckeditor', plugins_url( '/js/ckeditor/ckeditor.js', __FILE__ ), array( 'jquery' ), '4.1', true );
 
@@ -1064,14 +1116,29 @@ class Visual_Form_Builder_Pro{
 	 */
 	public function css() {
 
-		wp_register_style( 'vfb-jqueryui-css', apply_filters( 'vfb-date-picker-css', plugins_url( '/css/smoothness/jquery-ui-1.9.2.min.css', __FILE__ ) ) );
-		wp_register_style( 'visual-form-builder-css', apply_filters( 'visual-form-builder-css', plugins_url( "/css/visual-form-builder$this->load_dev_files.css", __FILE__ ) ) );
+		$vfb_settings = get_option( 'vfb-settings' );
+
+		wp_register_style( 'vfb-jqueryui-css', apply_filters( 'vfb-date-picker-css', plugins_url( '/css/smoothness/jquery-ui-1.10.3.min.css', __FILE__ ) ), array(), '20130916' );
+		wp_register_style( 'visual-form-builder-css', apply_filters( 'visual-form-builder-css', plugins_url( "/css/visual-form-builder$this->load_dev_files.css", __FILE__ ) ), array(), '20130916' );
+
+		// Settings - Always load CSS
+		if ( isset( $vfb_settings['always-load-css'] ) ) {
+			wp_enqueue_style( 'visual-form-builder-css' );
+			wp_enqueue_style( 'vfb-jqueryui-css' );
+			wp_enqueue_style( 'farbtastic' );
+
+			return;
+		}
 
 		// Get active widgets
 		$widget = is_active_widget( false, false, 'vfb_widget' );
 
 		// If in admin Preview, always enqueue
 		if ( !defined( 'VFB_PRO_PREVIEW' ) ) {
+			// Settings - Disable CSS
+			if ( isset( $vfb_settings['disable-css'] ) )
+				return;
+
 			// If no widget is found, test for shortcode
 			if ( empty( $widget ) ) {
 				// If WordPress 3.6, use internal function. Otherwise, my own
@@ -1106,7 +1173,7 @@ class Visual_Form_Builder_Pro{
 		if ( !isset( $_REQUEST['action'] ) )
 			return;
 
-		if ( !in_array( $_REQUEST['page'], array( 'visual-form-builder-pro', 'vfb-add-new', 'vfb-entries', 'vfb-email-design', 'vfb-reports' ) ) )
+		if ( !in_array( $_REQUEST['page'], array( 'visual-form-builder-pro', 'vfb-add-new', 'vfb-entries', 'vfb-email-design', 'vfb-reports', 'vfb-settings' ) ) )
 			return;
 
 		switch ( $_REQUEST['action'] ) :
@@ -1221,7 +1288,7 @@ class Visual_Form_Builder_Pro{
 				$wpdb->insert( $this->field_table_name, $submit );
 
 				// Redirect to keep the URL clean (use AJAX in the future?)
-				wp_redirect( 'admin.php?page=visual-form-builder-pro&form=' . $new_form_selected );
+				wp_redirect( 'admin.php?page=visual-form-builder-pro&action=edit&form=' . $new_form_selected );
 				exit();
 
 				break;
@@ -1831,6 +1898,20 @@ class Visual_Form_Builder_Pro{
 				$where = array( 'entries_id' => $entry_id );
 				// Update entry data
 				$wpdb->update( $this->entries_table_name, array( 'data' => serialize( $data ), 'notes' => $_REQUEST['entries-notes'] ), $where );
+
+				break;
+
+			case 'vfb_settings' :
+
+				check_admin_referer( 'vfb-update-settings' );
+
+				$data = array();
+
+				foreach ( $_POST['vfb-settings'] as $key => $val ) {
+					$data[ $key ] = esc_html( $val );
+				}
+
+				update_option( 'vfb-settings', $data );
 
 				break;
 		endswitch;
@@ -2653,7 +2734,7 @@ class Visual_Form_Builder_Pro{
 						$price_field_amount = ( isset( $paypal_price_field['prices'] ) ) ? stripslashes( $paypal_price_field['prices'][$option]['amount'] ) : '';
 
 						$price_option .= sprintf(
-							'<p class="description description-wide"><label>%1$s<input class="widefat" type="text" value="%2$s" name="form_paypal_field_price[prices][%3$d][amount]" /></label><br></p>',
+							'<p class="description description-wide"><label>%1$s<input class="widefat required" type="text" value="%2$s" name="form_paypal_field_price[prices][%3$d][amount]" /></label><br></p>',
 							esc_attr( stripslashes( $value ) ),
 							$price_field_amount,
 							$option
@@ -2929,6 +3010,42 @@ class Visual_Form_Builder_Pro{
 	}
 
 	/**
+	 * The jQuery unique username callback
+	 *
+	 * @since 1.0
+	 */
+	public function ajax_check_recaptcha() {
+		global $wpdb;
+
+		if ( !isset( $_REQUEST['action'] ) )
+			return;
+
+		if ( $_REQUEST['action'] !== 'visual_form_builder_check_recaptcha' )
+			return;
+
+		$vfb_settings   = get_option( 'vfb-settings' );
+		$private_key    = $vfb_settings['recaptcha-private-key'];
+
+		if ( !function_exists( 'recaptcha_get_html' ) )
+	    	require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'includes/recaptchalib.php' );
+
+		$resp = recaptcha_check_answer( $private_key,
+	        $_SERVER['REMOTE_ADDR'],
+	        $_POST['recaptcha_challenge_field'],
+	        $_POST['recaptcha_response_field']
+	    );
+
+		$valid = 'true';
+
+	    if ( !$resp->is_valid )
+	    	$valid = 'false';
+
+	    echo $valid;
+
+		die(1);
+	}
+
+	/**
 	 * Form order type callback
 	 *
 	 * @since 1.8
@@ -2979,11 +3096,12 @@ class Visual_Form_Builder_Pro{
 			$form_order = implode( ',', $form_order );
 		}
 
-		// Query to get all forms
-		if ( in_array( $user_form_order_type, array( 'order', '' ) ) )
+		// List view is default sorting
+		$order = sanitize_sql_orderby( 'form_title ASC' );
+
+		// Sort based on custom order, if mode is selected
+		if ( in_array( $user_form_order_type, array( 'order' ) ) )
 			$order = ( isset( $form_order ) ) ? "FIELD( form_id, $form_order )" : sanitize_sql_orderby( 'form_id DESC' );
-		else
-			$order = sanitize_sql_orderby( 'form_title ASC' );
 
 		$where = apply_filters( 'vfb_pre_get_forms', '' );
 		$forms = $wpdb->get_results( "SELECT form_id, form_title, form_paypal_setting FROM {$this->form_table_name} WHERE 1=1 $where ORDER BY $order" );
@@ -2995,21 +3113,20 @@ class Visual_Form_Builder_Pro{
 
 		echo '<form id="forms-filter" method="post" action="">';
 
-		// Ordered view
-		if ( in_array( $user_form_order_type, array( 'order', '' ) ) ) :
-			$forms_order->views();
-			$forms_order->prepare_items();
-
-			$forms_order->search_box( 'search', 'search_id' );
-			$forms_order->display();
-
 		// List view
-		else :
+		if ( in_array( $user_form_order_type, array( 'list', '' ) ) ) :
 			$forms_list->views();
 			$forms_list->prepare_items();
 
         	$forms_list->search_box( 'search', 'search_id' );
         	$forms_list->display();
+		// Ordered view
+		else :
+			$forms_order->views();
+			$forms_order->prepare_items();
+
+			$forms_order->search_box( 'search', 'search_id' );
+			$forms_order->display();
 
 		endif;
 
@@ -3059,18 +3176,17 @@ class Visual_Form_Builder_Pro{
 							'id' 		=> 'vfb_admin_toolbar_edit_' . $form_id,
 							'title'		=> 'Edit ' . stripslashes( $name ),
 							'parent'	=> 'vfb_admin_toolbar_edit_main',
-							'href'		=> admin_url( 'admin.php?page=visual-form-builder-pro&amp;form=' . $form_id )
+							'href'		=> admin_url( 'admin.php?page=visual-form-builder-pro&amp;action=edit&amp;form=' . $form_id )
 							)
 						);
 					}
-				}
-				else {
+				} else {
 					// A new toolbar item
 					$wp_admin_bar->add_node( array(
 						'id' 		=> 'vfb_admin_toolbar_edit_main',
 						'title'		=> 'Edit Form',
 						'parent'	=> false,
-						'href'		=> admin_url( 'admin.php?page=visual-form-builder-pro&amp;form=' . $matches[1][0] )
+						'href'		=> admin_url( 'admin.php?page=visual-form-builder-pro&amp;action=edit&amp;form=' . $matches[1][0] )
 						)
 					);
 					// An item added to the main VFB Pro menu
@@ -3078,7 +3194,7 @@ class Visual_Form_Builder_Pro{
 						'id' 		=> 'vfb_admin_toolbar_edit',
 						'title'		=> 'Edit Form',
 						'parent'	=> 'vfb_admin_toolbar',
-						'href'		=> admin_url( 'admin.php?page=visual-form-builder-pro&amp;form=' . $matches[1][0] )
+						'href'		=> admin_url( 'admin.php?page=visual-form-builder-pro&amp;action=edit&amp;form=' . $matches[1][0] )
 						)
 					);
 				}
@@ -3170,6 +3286,17 @@ class Visual_Form_Builder_Pro{
 				'title'		=> __( 'Export', 'visual-form-builder-pro' ),
 				'parent'	=> 'vfb_admin_toolbar',
 				'href'		=> admin_url( 'admin.php?page=vfb-export' )
+				)
+			);
+		}
+
+		// Settings
+		if ( current_user_can( 'vfb_edit_settings' ) ) {
+			$wp_admin_bar->add_node( array(
+				'id' 		=> 'vfb_admin_toolbar_settings',
+				'title'		=> __( 'Settings', 'visual-form-builder-pro' ),
+				'parent'	=> 'vfb_admin_toolbar',
+				'href'		=> admin_url( 'admin.php?page=vfb-settings' )
 				)
 			);
 		}
@@ -3267,6 +3394,10 @@ class Visual_Form_Builder_Pro{
 			case 'update_entry' :
 				echo sprintf( '<div id="message" class="updated"><p>%s</p></div>', __( 'Entry updated.' , 'visual-form-builder-pro' ) );
 				break;
+
+			case 'vfb_settings' :
+				echo sprintf( '<div id="message" class="updated"><p>%s</p></div>', __( 'Settings saved.' , 'visual-form-builder-pro' ) );
+				break;
 		endswitch;
 	}
 
@@ -3294,6 +3425,7 @@ class Visual_Form_Builder_Pro{
 		$current_pages[ 'vfb-analytics' ] = add_submenu_page( 'visual-form-builder-pro', __( 'Analytics', 'visual-form-builder-pro' ), __( 'Analytics', 'visual-form-builder-pro' ), 'vfb_view_analytics', 'vfb-reports', array( &$this, 'admin_analytics' ) );
 		$current_pages[ 'vfb-import' ] = add_submenu_page( 'visual-form-builder-pro', __( 'Import', 'visual-form-builder-pro' ), __( 'Import', 'visual-form-builder-pro' ), 'vfb_import_forms', 'vfb-import', array( &$this, 'admin_import' ) );
 		$current_pages[ 'vfb-export' ] = add_submenu_page( 'visual-form-builder-pro', __( 'Export', 'visual-form-builder-pro' ), __( 'Export', 'visual-form-builder-pro' ), 'vfb_export_forms', 'vfb-export', array( &$this, 'admin_export' ) );
+		$current_pages[ 'vfb-settings' ] = add_submenu_page( 'visual-form-builder-pro', __( 'Settings', 'visual-form-builder-pro' ), __( 'Settings', 'visual-form-builder-pro' ), 'vfb_edit_settings', 'vfb-settings', array( &$this, 'admin_settings' ) );
 
 		// All plugin page load hooks
 		foreach ( $current_pages as $key => $page ) :
@@ -3308,8 +3440,8 @@ class Visual_Form_Builder_Pro{
 		$this->_admin_pages = $current_pages;
 
 		// Adds a Screen Options tab to the Entries screen
-		add_filter( 'load-' . $current_pages['vfb-pro'], array( &$this, 'screen_options' ) );
-		add_filter( 'load-' . $current_pages['vfb-entries'], array( &$this, 'screen_options' ) );
+		add_action( 'load-' . $current_pages['vfb-pro'], array( &$this, 'screen_options' ) );
+		add_action( 'load-' . $current_pages['vfb-entries'], array( &$this, 'screen_options' ) );
 
 		// Add an Advanced Properties section to the Screen Options tab
 		add_filter( 'manage_' . $current_pages['vfb-pro'] . '_columns', array( &$this, 'screen_advanced_options' ) );
@@ -3457,6 +3589,122 @@ class Visual_Form_Builder_Pro{
 	}
 
 	/**
+	 * admin_settings function.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function admin_settings() {
+
+		$vfb_settings = get_option( 'vfb-settings' );
+?>
+	<div class="wrap">
+		<?php screen_icon( 'themes' ); ?>
+		<h2><?php _e( 'Settings', 'visual-form-builder-pro' ); ?></h2>
+		<form id="vfb-settings" method="post">
+			<input name="action" type="hidden" value="vfb_settings" />
+			<?php wp_nonce_field( 'vfb-update-settings' ); ?>
+			<h3><?php _e( 'Global Settings', 'visual-form-builder-pro' ); ?></h3>
+			<p><?php _e( 'These settings will affect all forms on your site.', 'visual-form-builder-pro' ); ?></p>
+			<table class="form-table">
+				<?php
+					$disable = array(
+						'always-load-css'     => __( 'Always load CSS', 'visual-form-builder-pro' ),
+						'disable-css'         => __( 'Disable CSS', 'visual-form-builder-pro' ),	// visual-form-builder-css
+						'disable-email'       => __( 'Disable Email', 'visual-form-builder-pro' ),	// vfb_send_email
+						'skip-empties'        => __( 'Skip Empty Fields in Email', 'visual-form-builder-pro' ),	// vfb_skip_empty_fields
+						'save-entry'          => __( 'Disable saving new entry', 'visual-form-builder-pro' ),	// vfb_entries_save_new
+						'save-ip'             => __( "Disable saving entry's IP address", 'visual-form-builder-pro' ),	// vfb_entries_save_ip
+						'address-labels'      => __( 'Place Address labels above fields', 'visual-form-builder-pro' ),	// vfb_address_labels_placement
+						'spam-verification'   => __( 'Remove default SPAM Verification', 'visual-form-builder-pro' ),	// vfb_display_verification
+						'show-version'        => __( 'Disable meta tag version', 'visual-form-builder-pro' ),	// vfb_show_version
+						'skip-total-zero'     => __( 'Skip PayPal redirect if total is zero', 'visual-form-builder-pro' ),	// vfb_skip_total_zero
+						'prepend-confirm'     => __( 'Prepend Confirmation', 'visual-form-builder-pro' ),	// vfb_prepend_confirmation
+					);
+
+					foreach ( $disable as $key => $title ) :
+
+						$vfb_settings[ $key ] = isset( $vfb_settings[ $key ] ) ? $vfb_settings[ $key ] : '';
+				?>
+				<tr valign="top">
+					<th scope="row"><label for="vfb-settings-<?php echo $key; ?>"><?php echo $title; ?></label></th>
+					<td>
+						<?php $vfb_settings[ $key ] = isset( $vfb_settings[ $key ] ) ? $vfb_settings[ $key ] : 0; ?>
+						<input type="checkbox" name="vfb-settings[<?php echo $key; ?>]" id="vfb-settings-<?php echo $key; ?>" value="1" <?php checked( $vfb_settings[ $key ], 1 ); ?> />
+					</td>
+				</tr>
+				<?php endforeach; ?>
+
+				<tr valign="top">
+					<th scope="row"><label for="vfb-settings-spam-points"><?php _e( 'Spam word sensitivity', 'visual-form-builder-pro' ); ?></label></th>
+					<td>
+						<?php $vfb_settings['spam-points'] = isset( $vfb_settings['spam-points'] ) ? $vfb_settings['spam-points'] : '4'; ?>
+						<input type="number" min="1" name="vfb-settings[spam-points]" id="vfb-settings-spam-points" value="<?php echo $vfb_settings['spam-points']; ?>" class="small-text" />
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<th scope="row"><label for="vfb-settings-max-upload-size"><?php _e( 'Max Upload Size', 'visual-form-builder-pro' ); ?></label></th>
+					<td>
+						<?php $vfb_settings['max-upload-size'] = isset( $vfb_settings['max-upload-size'] ) ? $vfb_settings['max-upload-size'] : '25'; ?>
+						<input type="number" name="vfb-settings[max-upload-size]" id="vfb-settings-max-upload-size" value="<?php echo $vfb_settings['max-upload-size']; ?>" class="small-text" /> MB
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<th scope="row"><label for="vfb-settings-sender-mail-header"><?php _e( 'Sender Mail Header', 'visual-form-builder-pro' ); ?></label></th>
+					<td>
+						<?php
+						// Use the admin_email as the From email
+						$from_email = get_site_option( 'admin_email' );
+
+						// Get the site domain and get rid of www.
+						$sitename = strtolower( $_SERVER['SERVER_NAME'] );
+						if ( substr( $sitename, 0, 4 ) == 'www.' )
+							$sitename = substr( $sitename, 4 );
+
+						// Get the domain from the admin_email
+						list( $user, $domain ) = explode( '@', $from_email );
+
+						// If site domain and admin_email domain match, use admin_email, otherwise a same domain email must be created
+						$from_email = ( $sitename == $domain ) ? $from_email : "wordpress@$sitename";
+
+						$vfb_settings['sender-mail-header'] = isset( $vfb_settings['sender-mail-header'] ) ? $vfb_settings['sender-mail-header'] : $from_email;
+						?>
+						<input type="text" name="vfb-settings[sender-mail-header]" id="vfb-settings-sender-mail-header" value="<?php echo $vfb_settings['sender-mail-header']; ?>" class="regular-text" />
+					</td>
+				</tr>
+			</table>
+
+			<h3><?php _e( 'reCAPTCHA Settings', 'visual-form-builder-pro' ); ?></h3>
+
+			<p><?php _e( 'Using <a href="http://www.google.com/recaptcha/" target="blank">reCAPTCHA</a> in Visual Form Builder Pro will replace the standard Text Captcha. Note: only one form with reCAPTCHA is allowed per page.', 'visual-form-builder-pro' ); ?></p>
+			<table class="form-table">
+				<?php
+					$recap = array(
+						'recaptcha-public-key' => __( 'reCAPTCHA Public Key', 'visual-form-builder-pro' ),
+						'recaptcha-private-key' => __( 'reCAPTCHA Private Key', 'visual-form-builder-pro' ),
+					);
+
+					foreach ( $recap as $key => $title ) :
+						$vfb_settings[ $key ] = isset( $vfb_settings[ $key ] ) ? $vfb_settings[ $key ] : '';
+				?>
+				<tr valign="top">
+					<th scope="row"><label for="vfb-<?php echo $key; ?>"><?php echo $title; ?></label></th>
+					<td>
+						<input type="text" name="vfb-settings[<?php echo $key; ?>]" id="vfb-<?php echo $key; ?>" value="<?php echo $vfb_settings[ $key ]; ?>" class="regular-text" />
+						<p class="description"><?php _e( 'Required if "Use reCAPTCHA" option is selected in the Secret field.', 'visual-form-builder-pro' ); ?></p>
+					</td>
+				</tr>
+				<?php endforeach; ?>
+			</table>
+			<?php submit_button( __( 'Save', 'visual-form-builder-pro' ), 'primary', 'submit', false ); ?>
+		</form>
+	</div>
+<?php
+	}
+
+	/**
 	 * Builds the options settings page
 	 *
 	 * @since 1.0
@@ -3591,6 +3839,12 @@ class Visual_Form_Builder_Pro{
 	 */
 	public function paypal_redirect( $data, $form_id ) {
 
+		// Get global settings
+		$vfb_settings 	= get_option( 'vfb-settings' );
+
+		// Settings - Disable meta tag version
+		$settings_skip_total_zero	= isset( $vfb_settings['skip-total-zero'] ) ? true : false;
+
 		extract( $data );
 
 		$output = $query_string = '';
@@ -3630,7 +3884,7 @@ class Visual_Form_Builder_Pro{
 
 		$data['amount'] = $amount;
 
-		$skip_total_zero = apply_filters( 'vfb_skip_total_zero', false, $form_id );
+		$skip_total_zero = apply_filters( 'vfb_skip_total_zero', $settings_skip_total_zero, $form_id );
 
 		if ( $skip_total_zero && empty( $data['amount'] ) )
 			return;
@@ -3762,7 +4016,7 @@ class Visual_Form_Builder_Pro{
 					break;
 
 				case 'textarea' :
-					return wp_strip_all_tags( $data );
+					return wpautop( wp_strip_all_tags( $data ) );
 					break;
 
 				case 'email' :
@@ -3774,13 +4028,13 @@ class Visual_Form_Builder_Pro{
 					break;
 
 				case 'html' :
-					return wp_kses_data( force_balance_tags( $data ) );
+					return wpautop( wp_kses_data( force_balance_tags( $data ) ) );
 					break;
 
 				case 'min' :
 				case 'max' :
 				case 'number' :
-					return floatval( $data );
+					return preg_replace( '/\D/i', '', $data );
 					break;
 
 				case 'address' :

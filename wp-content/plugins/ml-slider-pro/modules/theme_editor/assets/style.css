@@ -1,0 +1,40 @@
+.metaslider.metaslider_themeEditor {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+}
+.metaslider.metaslider_themeEditor .confirm {
+  margin-top: 10px;
+}
+.metaslider.metaslider_themeEditor .wrap {
+  position: fixed;
+}
+html[dir='rtl'] .metaslider.metaslider_themeEditor .wrap {
+  position: inherit;
+}
+.metaslider.metaslider_themeEditor table td {
+  border-top: 0;
+  height: 28px;
+  font-size: 0.9em;
+  vertical-align: middle;
+  padding: 0 6px;
+  border-bottom: 0;
+}
+.metaslider.metaslider_themeEditor table td input[type='checkbox'] {
+  margin-left: 2px;
+}
+.metaslider.metaslider_themeEditor table .highlight {
+  background: #f1f1f1;
+  border-top: 3px solid #f9f9f9;
+  border-bottom: 3px solid #f9f9f9;
+}
+.metaslider.metaslider_themeEditor .left {
+  width: 40%;
+  margin-right: 5%;
+  float: left;
+}
+.metaslider.metaslider_themeEditor .right {
+  width: 55%;
+  float: right;
+}

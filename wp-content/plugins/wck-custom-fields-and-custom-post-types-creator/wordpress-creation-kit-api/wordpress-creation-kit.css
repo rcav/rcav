@@ -205,3 +205,18 @@ td.wck-number{
     border-width: 1px;
 	background-color:#fff;
 }
+
+/* nested repeater */
+.mb-table-container .wck-nested{
+	background:#F5F5F5;
+	border:1px solid #DFDFDF;	
+	box-shadow: 0 1px 0 #FFFFFF;
+}
+
+.mb-table-container .wck-nested > div{	
+	padding:10px;
+}
+
+.mb-table-container li[data-type="nested-repeater"]{
+	display:none;
+}

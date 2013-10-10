@@ -101,8 +101,11 @@ class VisualFormBuilder_Pro_Entries_Detail{
 							<?php endif; ?>
 
 							<div id="publishing-action">
-							<?php submit_button( __( 'Print', 'visual-form-builder-pro' ), 'secondary', 'submit', false, array( 'onclick' => 'window.print();return false;' ) ); ?>
-                            <?php
+							<?php
+								do_action( 'vfb_entries_detail_metabox' );
+								submit_button( __( 'Print', 'visual-form-builder-pro' ), 'secondary', 'submit', false, array( 'onclick' => 'window.print();return false;' ) );
+							?>
+							<?php
                             	if ( current_user_can( 'vfb_edit_entries' ) ) :
                                 	if ( is_array( $data[0] ) && 'edit' == $_GET['action'] )
                                 		submit_button( __( 'Update', 'visual-form-builder-pro' ), 'primary', 'submit', false );
@@ -156,7 +159,7 @@ class VisualFormBuilder_Pro_Entries_Detail{
 					case 'page-break' :
 					case 'verification' :
 					case 'secret' :
-					break;
+						break;
 
 					case 'file-upload' :
 						?>
@@ -165,7 +168,18 @@ class VisualFormBuilder_Pro_Entries_Detail{
 							<td style="background:#eee;border:1px solid #ddd"><a href="<?php esc_attr_e( $obj->value ); ?>" target="_blank"><?php echo stripslashes( esc_html( $obj->value ) ); ?></a></td>
 						</tr>
                     	<?php
-					break;
+						break;
+
+					case 'textarea' :
+					case 'html' :
+					case 'post-content' :
+						?>
+						<tr valign="top">
+							<th scope="row"><label for="field[<?php echo $obj->id; ?>]"><?php echo stripslashes( $obj->name ); ?></label></th>
+							<td style="background:#eee;border:1px solid #ddd"><?php echo wpautop( stripslashes( wp_specialchars_decode( esc_html( $obj->value ) ) ) ); ?></td>
+						</tr>
+                    	<?php
+						break;
 
 					default :
 						?>
@@ -174,7 +188,7 @@ class VisualFormBuilder_Pro_Entries_Detail{
 							<td style="background:#eee;border:1px solid #ddd"><?php echo stripslashes( wp_specialchars_decode( esc_html( $obj->value ) ) ); ?></td>
 						</tr>
                     	<?php
-					break;
+						break;
 				endswitch;
 			endif;
 		endforeach;

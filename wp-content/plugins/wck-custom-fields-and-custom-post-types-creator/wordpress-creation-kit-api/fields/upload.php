@@ -12,6 +12,9 @@ $upload_info_div_id = str_replace( '-', '_', Wordpress_Creation_Kit::wck_generat
 /* hidden input that will hold the attachment id */
 $element .= '<input id="'. esc_attr( $upload_input_id ) .'" type="hidden" size="36" name="'. esc_attr( Wordpress_Creation_Kit::wck_generate_slug( $details['title'] ) ) .'" value="'. $value .'" class="mb-text-input mb-field"/>';
 
+$thumbnail = '';
+$file_name = '';
+$file_type = '';
 /* container for the image preview (or file ico) and name and file type */
 if( !empty ( $value ) ){
 	$file_src = wp_get_attachment_url($value);
@@ -28,10 +31,15 @@ if( !empty ( $value ) )
 	$element .= '<span class="wck-remove-upload">'.__( 'Remove', 'wck' ).'</span>';
 $element .= '</p></div>';
 /* the upload link. we send through get the hidden input id, details div id and meta name */
-if( $details['attach_to_post'] )
+if( !empty( $details['attach_to_post'] ) )
 	$attach_to_post = 'post_id='. get_the_id() .'&amp;';
 else
 	$attach_to_post = '';
+
+if( empty( $var_prefix ) )
+	$var_prefix = '';
+if( empty( $edit_class ) )	
+	$edit_class = '';
 	
 $media_upload_url = 'media-upload.php?'.$attach_to_post.'type=file&amp;mb_type='. $var_prefix  . esc_js(strtolower( $upload_input_id ) ).'&amp;mb_info_div='.$var_prefix  . esc_js(strtolower( $upload_info_div_id ) ).'&amp;meta_name='.$meta.'&amp;TB_iframe=1';			
 

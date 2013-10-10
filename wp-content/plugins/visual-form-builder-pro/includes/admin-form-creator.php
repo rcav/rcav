@@ -46,13 +46,13 @@ $form_email_rule			= maybe_unserialize( $form->form_email_rule );
 $form_status				= $form->form_status;
 
 // Only show required text fields for the sender name override
-$senders = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->field_table_name WHERE form_id = %d AND field_type IN( 'text', 'name' ) AND field_validation = '' AND field_required = 'yes'", $form_nav_selected_id ) );
+$senders = $wpdb->get_results( $wpdb->prepare( "SELECT field_id, field_name FROM $this->field_table_name WHERE form_id = %d AND field_type IN( 'text', 'name' ) AND field_validation = '' AND field_required = 'yes'", $form_nav_selected_id ) );
 
 // Only show required email fields for the email override
-$emails = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->field_table_name WHERE (form_id = %d AND field_type='text' AND field_validation = 'email' AND field_required = 'yes') OR (form_id = %d AND field_type='email' AND field_validation = 'email' AND field_required = 'yes')", $form_nav_selected_id, $form_nav_selected_id ) );
+$emails = $wpdb->get_results( $wpdb->prepare( "SELECT field_id, field_name FROM $this->field_table_name WHERE (form_id = %d AND field_type='text' AND field_validation = 'email' AND field_required = 'yes') OR (form_id = %d AND field_type='email' AND field_validation = 'email' AND field_required = 'yes')", $form_nav_selected_id, $form_nav_selected_id ) );
 
 // Only show required email fields for the email override
-$paypal_fields = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->field_table_name WHERE (form_id = %d AND (field_type='text' OR field_type='currency' OR field_type='select' OR field_type='radio' OR field_type='checkbox')) ORDER BY field_sequence ASC", $form_nav_selected_id ) );
+$paypal_fields = $wpdb->get_results( $wpdb->prepare( "SELECT field_id, field_name FROM $this->field_table_name WHERE form_id = %d AND field_type IN( 'text', 'currency', 'select', 'radio', 'checkbox' ) ORDER BY field_sequence ASC", $form_nav_selected_id ) );
 
 
 $screen = get_current_screen();
@@ -263,7 +263,11 @@ $page_main = $this->_admin_pages[ 'vfb-pro' ];
                                 <option value="" <?php selected( $form_email_from_name_override, '' ); ?>></option>
                                 <?php
                                 foreach( $senders as $sender ) {
-                                    echo '<option value="' . $sender->field_id . '"' . selected( $form_email_from_name_override, $sender->field_id ) . '>' . stripslashes( $sender->field_name ) . '</option>';
+                                    echo sprintf( '<option value="%1$d"%2$s>%3$s</option>',
+	                                    $sender->field_id,
+	                                    selected( $form_email_from_name_override, $sender->field_id, 0 ),
+	                                    stripslashes( $sender->field_name )
+                                    );
                                 }
                                 ?>
                             </select>
@@ -293,7 +297,11 @@ $page_main = $this->_admin_pages[ 'vfb-pro' ];
                                 <option value="" <?php selected( $form_email_from_override, '' ); ?>></option>
                                 <?php
                                 foreach( $emails as $email ) {
-                                    echo '<option value="' . $email->field_id . '"' . selected( $form_email_from_override, $email->field_id ) . '>' . stripslashes( $email->field_name ) . '</option>';
+                                	echo sprintf( '<option value="%1$d"%2$s>%3$s</option>',
+	                                    $email->field_id,
+	                                    selected( $form_email_from_override, $email->field_id, 0 ),
+	                                    stripslashes( $email->field_name )
+                                    );
                                 }
                                 ?>
                             </select>
@@ -430,8 +438,12 @@ $page_main = $this->_admin_pages[ 'vfb-pro' ];
                                         <option value="" <?php selected( $form_notification_email, '' ); ?>></option>
                                         <?php
                                         foreach( $emails as $email ) {
-                                            echo '<option value="' . $email->field_id . '"' . selected( $form_notification_email, $email->field_id ) . '>' . $email->field_name . '</option>';
-                                        }
+		                                	echo sprintf( '<option value="%1$d"%2$s>%3$s</option>',
+			                                    $email->field_id,
+			                                    selected( $form_notification_email, $email->field_id, 0 ),
+			                                    stripslashes( $email->field_name )
+		                                    );
+		                                }
                                         ?>
                                     </select>
                                     <?php endif; ?>
@@ -567,7 +579,7 @@ $page_main = $this->_admin_pages[ 'vfb-pro' ];
                                         echo sprintf(
                                         	'<option value="%1$d"%2$s>%3$s</option>',
                                         	$paypal->field_id,
-                                        	selected( $form_paypal_field_price['id'], $paypal->field_id ),
+                                        	selected( $form_paypal_field_price['id'], $paypal->field_id, 0 ),
                                         	stripslashes( $paypal->field_name )
                                         );
                                     }
@@ -597,7 +609,7 @@ $page_main = $this->_admin_pages[ 'vfb-pro' ];
                                                 // Loop through each option and output
                                                 foreach ( $options as $option => $value ) :
                                                     $paypal_prices .= sprintf(
-                                                    	'<p class="description description-wide"><label>%1$s<input type="text" value="%2$s" name="form_paypal_field_price[prices][%3$d][amount]" class="widefat" /></label></p><br>',
+                                                    	'<p class="description description-wide"><label>%1$s<input class="widefat required" type="text" value="%2$s" name="form_paypal_field_price[prices][%3$d][amount]" class="widefat" /></label></p><br>',
                                                     	stripslashes( $value ),
                                                     	esc_attr( stripslashes( $paypal_price_field['prices'][$option]['amount'] ) ),
                                                     	$option

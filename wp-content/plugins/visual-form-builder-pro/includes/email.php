@@ -14,13 +14,52 @@ if ( true == $required && !empty( $secret_field ) ) :
 
 	if ( !empty( $honeypot ) )
 		wp_die( apply_filters( 'vfb_str_security_honeypot', __( 'Security check: hidden spam field should be blank.' , 'visual-form-builder-pro' ) ), '', array( 'back_link' => true ) );
-	if ( !is_numeric( $_POST[ $secret_field ] ) || strlen( $_POST[ $secret_field ] ) !== 2 )
-		wp_die( apply_filters( 'vfb_str_security_secret', __( 'Security check: failed secret question. Please try again!' , 'visual-form-builder-pro' ) ), '', array( 'back_link' => true ) );
+
+	if ( !isset( $_POST[ $secret_field ] ) && isset( $_POST['recaptcha_challenge_field'] ) ) {
+		if ( !function_exists( 'recaptcha_get_html' ) )
+	    	require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'recaptchalib.php' );
+
+		$vfb_settings  = get_option( 'vfb-settings' );
+        $private_key   = $vfb_settings['recaptcha-private-key'];
+
+		$resp = recaptcha_check_answer( $private_key,
+	        $_SERVER['REMOTE_ADDR'],
+	        $_POST['recaptcha_challenge_field'],
+	        $_POST['recaptcha_response_field']
+	    );
+
+	    if ( !$resp->is_valid )
+	    	wp_die( apply_filters( 'vfb_str_security_recaptcha', __( 'Security check: the reCAPTCHA answer was entered incorrectly. Please try again!' , 'visual-form-builder-pro' ) ), '', array( 'back_link' => true ) );
+	} else {
+		if ( !is_numeric( $_POST[ $secret_field ] ) || strlen( $_POST[ $secret_field ] ) !== 2 )
+			wp_die( apply_filters( 'vfb_str_security_secret', __( 'Security check: failed secret question. Please try again!' , 'visual-form-builder-pro' ) ), '', array( 'back_link' => true ) );
+	}
 endif;
 
 // Basic security check before moving any further
 if ( !isset( $_POST['vfb-submit'] ) )
 	return;
+
+// Get global settings
+$vfb_settings 	= get_option( 'vfb-settings' );
+
+// Settings - Disable Email
+$settings_send_email	= isset( $vfb_settings['disable-email'] ) ? true : false;
+
+// Settings - Skip Empty Fields in Email
+$settings_skip_empty    = isset( $vfb_settings['skip-empties'] ) ? true : false;
+
+// Settings - Disable saving new entry
+$settings_save_entry    = isset( $vfb_settings['save-entry'] ) ? false : true;
+
+// Settings - Disable saving entry's IP address
+$settings_save_ip       = isset( $vfb_settings['save-ip'] ) ? '' : esc_html( $_SERVER['REMOTE_ADDR'] );
+
+// Settings - Max Upload Size
+$settings_max_upload    = isset( $vfb_settings['max-upload-size'] ) ? $vfb_settings['max-upload-size'] : 25;
+
+// Settings - Spam word sensitivity
+$settings_spam_points    = isset( $vfb_settings['spam-points'] ) ? $vfb_settings['spam-points'] : 4;
 
 // Set submitted action to display success message
 $this->submitted = true;
@@ -52,7 +91,7 @@ $form = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $this->form_table_name WH
 $form_settings = (object) array(
 	'form_title' 					=> stripslashes( html_entity_decode( $form->form_title, ENT_QUOTES, 'UTF-8' ) ),
 	'form_subject' 					=> stripslashes( html_entity_decode( $form->form_email_subject, ENT_QUOTES, 'UTF-8' ) ),
-	'form_to' 						=> ( is_array( unserialize( $form->form_email_to ) ) ) ? unserialize( $form->form_email_to ) : explode( ',', unserialize( $form->form_email_to ) ),
+	'form_to' 						=> is_array( unserialize( $form->form_email_to ) ) ? unserialize( $form->form_email_to ) : explode( ',', unserialize( $form->form_email_to ) ),
 	'form_from' 					=> stripslashes( $form->form_email_from ),
 	'form_from_name' 				=> stripslashes( $form->form_email_from_name ),
 	'form_notification_setting' 	=> stripslashes( $form->form_notification_setting ),
@@ -70,31 +109,31 @@ $email_design = unserialize( $form->form_email_design );
 
 // Set email design variables
 $email_settings = (object) array(
-	'color_scheme' 			=> ( !empty( $email_design['color_scheme'] ) ) ? stripslashes( $email_design['color_scheme'] ) : '',
-	'format' 				=> ( !empty( $email_design['format'] ) ) ? stripslashes( $email_design['format'] ) : 'html',
-	'link_love' 			=> ( !empty( $email_design['link_love'] ) ) ? stripslashes( $email_design['link_love'] ) : 'yes',
-	'footer_text' 			=> ( !empty( $email_design['footer_text'] ) ) ? stripslashes( $email_design['footer_text'] ) : '',
-	'background_color' 		=> ( !empty( $email_design['background_color'] ) ) ? stripslashes( $email_design['background_color'] ) : '#eeeeee',
-	'header_text' 			=> ( !empty( $email_design['header_text'] ) ) ? stripslashes( $email_design['header_text'] ) : $form_settings->form_subject,
-	'header_image' 			=> ( !empty( $email_design['header_image'] ) ) ? stripslashes( $email_design['header_image'] ) : '',
-	'header_color' 			=> ( !empty( $email_design['header_color'] ) ) ? stripslashes( $email_design['header_color'] ) : '#810202',
-	'header_text_color' 	=> ( !empty( $email_design['header_text_color'] ) ) ? stripslashes( $email_design['header_text_color'] ) : '#ffffff',
-	'fieldset_color' 		=> ( !empty( $email_design['fieldset_color'] ) ) ? stripslashes( $email_design['fieldset_color'] ) : '#680606',
-	'section_color' 		=> ( !empty( $email_design['section_color'] ) ) ? stripslashes( $email_design['section_color'] ) : '#5C6266',
-	'section_text_color' 	=> ( !empty( $email_design['section_text_color'] ) ) ? stripslashes( $email_design['section_text_color'] ) : '#ffffff',
-	'text_color' 			=> ( !empty( $email_design['text_color'] ) ) ? stripslashes( $email_design['text_color'] ) : '#333333',
-	'link_color' 			=> ( !empty( $email_design['link_color'] ) ) ? stripslashes( $email_design['link_color'] ) : '#1b8be0',
-	'row_color' 			=> ( !empty( $email_design['row_color'] ) ) ? stripslashes( $email_design['row_color'] ) : '#ffffff',
-	'row_alt_color' 		=> ( !empty( $email_design['row_alt_color'] ) ) ? stripslashes( $email_design['row_alt_color'] ) : '#eeeeee',
-	'border_color' 			=> ( !empty( $email_design['border_color'] ) ) ? stripslashes( $email_design['border_color'] ) : '#cccccc',
-	'footer_color' 			=> ( !empty( $email_design['footer_color'] ) ) ? stripslashes( $email_design['footer_color'] ) : '#333333',
-	'footer_text_color' 	=> ( !empty( $email_design['footer_text_color'] ) ) ? stripslashes( $email_design['footer_text_color'] ) : '#ffffff',
-	'font_family' 			=> ( !empty( $email_design['font_family'] ) ) ? stripslashes( $email_design['font_family'] ) : 'Arial',
-	'header_font_size' 		=> ( !empty( $email_design['header_font_size'] ) ) ? stripslashes( $email_design['header_font_size'] ) : 32,
-	'fieldset_font_size' 	=> ( !empty( $email_design['fieldset_font_size'] ) ) ? stripslashes( $email_design['fieldset_font_size'] ) : 20,
-	'section_font_size' 	=> ( !empty( $email_design['section_font_size'] ) ) ? stripslashes( $email_design['section_font_size'] ) : 15,
-	'text_font_size' 		=> ( !empty( $email_design['text_font_size'] ) ) ? stripslashes( $email_design['text_font_size'] ) : 13,
-	'footer_font_size' 		=> ( !empty( $email_design['footer_font_size'] ) ) ? stripslashes( $email_design['footer_font_size'] ) : 11
+	'color_scheme' 			=> !empty( $email_design['color_scheme'] ) ? stripslashes( $email_design['color_scheme'] ) : '',
+	'format' 				=> !empty( $email_design['format'] ) ? stripslashes( $email_design['format'] ) : 'html',
+	'link_love' 			=> !empty( $email_design['link_love'] ) ? stripslashes( $email_design['link_love'] ) : 'yes',
+	'footer_text' 			=> !empty( $email_design['footer_text'] ) ? stripslashes( $email_design['footer_text'] ) : '',
+	'background_color' 		=> !empty( $email_design['background_color'] ) ? stripslashes( $email_design['background_color'] ) : '#eeeeee',
+	'header_text' 			=> !empty( $email_design['header_text'] ) ? stripslashes( $email_design['header_text'] ) : $form_settings->form_subject,
+	'header_image' 			=> !empty( $email_design['header_image'] ) ? stripslashes( $email_design['header_image'] ) : '',
+	'header_color' 			=> !empty( $email_design['header_color'] ) ? stripslashes( $email_design['header_color'] ) : '#810202',
+	'header_text_color' 	=> !empty( $email_design['header_text_color'] ) ? stripslashes( $email_design['header_text_color'] ) : '#ffffff',
+	'fieldset_color' 		=> !empty( $email_design['fieldset_color'] ) ? stripslashes( $email_design['fieldset_color'] ) : '#680606',
+	'section_color' 		=> !empty( $email_design['section_color'] ) ? stripslashes( $email_design['section_color'] ) : '#5C6266',
+	'section_text_color' 	=> !empty( $email_design['section_text_color'] ) ? stripslashes( $email_design['section_text_color'] ) : '#ffffff',
+	'text_color' 			=> !empty( $email_design['text_color'] ) ? stripslashes( $email_design['text_color'] ) : '#333333',
+	'link_color' 			=> !empty( $email_design['link_color'] ) ? stripslashes( $email_design['link_color'] ) : '#1b8be0',
+	'row_color' 			=> !empty( $email_design['row_color'] ) ? stripslashes( $email_design['row_color'] ) : '#ffffff',
+	'row_alt_color' 		=> !empty( $email_design['row_alt_color'] ) ? stripslashes( $email_design['row_alt_color'] ) : '#eeeeee',
+	'border_color' 			=> !empty( $email_design['border_color'] ) ? stripslashes( $email_design['border_color'] ) : '#cccccc',
+	'footer_color' 			=> !empty( $email_design['footer_color'] ) ? stripslashes( $email_design['footer_color'] ) : '#333333',
+	'footer_text_color' 	=> !empty( $email_design['footer_text_color'] ) ? stripslashes( $email_design['footer_text_color'] ) : '#ffffff',
+	'font_family' 			=> !empty( $email_design['font_family'] ) ? stripslashes( $email_design['font_family'] ) : 'Arial',
+	'header_font_size' 		=> !empty( $email_design['header_font_size'] ) ? stripslashes( $email_design['header_font_size'] ) : 32,
+	'fieldset_font_size' 	=> !empty( $email_design['fieldset_font_size'] ) ? stripslashes( $email_design['fieldset_font_size'] ) : 20,
+	'section_font_size' 	=> !empty( $email_design['section_font_size'] ) ? stripslashes( $email_design['section_font_size'] ) : 15,
+	'text_font_size' 		=> !empty( $email_design['text_font_size'] ) ? stripslashes( $email_design['text_font_size'] ) : 13,
+	'footer_font_size' 		=> !empty( $email_design['footer_font_size'] ) ? stripslashes( $email_design['footer_font_size'] ) : 11
 );
 
 // Allow the email design to be filtered (ex: return $email_settings->'format' = 'html';)
@@ -223,7 +262,7 @@ $header .= sprintf(
 $plain_text .= "============ {$email_settings->header_text} =============\n";
 
 // Allow empty fields to be skipped
-$skip_empties = apply_filters( 'vfb_skip_empty_fields', false, $form_id );
+$skip_empties = apply_filters( 'vfb_skip_empty_fields', $settings_skip_empty, $form_id );
 
 // Loop through each form field and build the body of the message
 foreach ( $fields as $field ) :
@@ -261,21 +300,18 @@ foreach ( $fields as $field ) :
 
 		if ( $value['size'] > 0 ) :
 			// 25MB is the max size allowed
-			$size = apply_filters( 'vfb_max_file_size', 25 );
+			$size = apply_filters( 'vfb_max_file_size', $settings_max_upload );
 			$max_attach_size = $size * 1048576;
 
 			// Display error if file size has been exceeded
 			if ( $value['size'] > $max_attach_size )
 				wp_die( sprintf( apply_filters( 'vfb_str_max_file_size', __( "File size exceeds %dMB. Please decrease the file size and try again.", 'visual-form-builder-pro' ) ), $size ), '', array( 'back_link' => true ) );
 
-			// Options array for the wp_handle_upload function. 'test_form' => false
-			$upload_overrides = array( 'test_form' => false );
-
 			// We need to include the file that runs the wp_handle_upload function
 			require_once( ABSPATH . 'wp-admin/includes/file.php' );
 
 			// Handle the upload using WP's wp_handle_upload function. Takes the posted file and an options array
-			$uploaded_file = wp_handle_upload( $value, $upload_overrides );
+			$uploaded_file = wp_handle_upload( $value, array( 'test_form' => false ) );
 
 			// If the wp_handle_upload call returned a local path for the image
 			if ( isset( $uploaded_file['file'] ) ) :
@@ -283,7 +319,7 @@ foreach ( $fields as $field ) :
 				$wp_filetype = wp_check_filetype( basename( $uploaded_file['file'] ), null );
 
 				// Return the current upload directory location
-					$wp_upload_dir = wp_upload_dir();
+				$wp_upload_dir = wp_upload_dir();
 
 				$media_upload = array(
 					'guid' 				=> $wp_upload_dir['baseurl'] . _wp_relative_upload_path( $uploaded_file['file'] ),
@@ -301,6 +337,7 @@ foreach ( $fields as $field ) :
 
 				// Include the file that runs wp_generate_attachment_metadata()
 				require_once( ABSPATH . 'wp-admin/includes/image.php' );
+				require_once( ABSPATH . 'wp-admin/includes/media.php' );
 
 				// Setup attachment metadata
 				$attach_data = wp_generate_attachment_metadata( $attach_id, $uploaded_file['file'] );
@@ -342,6 +379,8 @@ foreach ( $fields as $field ) :
 				);
 
 				$plain_text .= stripslashes( $field->field_name ) . ": {$uploaded_file['url']}\n";
+
+				do_action( 'vfb_after_uploads', $attach_id, $uploaded_file, $field->field_id, $form_id );
 			endif;
 		else :
 			$value = ( isset( $_POST[ 'vfb-' . $field->field_id ] ) ) ? $_POST[ 'vfb-' . $field->field_id ] : '';
@@ -395,7 +434,7 @@ foreach ( $fields as $field ) :
 		elseif ( is_array( $value ) && $field->field_type == 'name' ) {
 			$value = $this->build_array_form_item( $value, $field->field_type );
 
-			if ( !empty( $sender ) ) {
+			if ( !empty( $sender ) && isset( $_POST[ 'vfb-' . $sender ] ) && $sender == $field->field_id ) {
 				$form_settings->form_from_name = wp_kses_data( $value );
 				$reply_to_name = $form_settings->form_from_name;
 			}
@@ -509,7 +548,7 @@ foreach ( $fields as $field ) :
 						$email_settings->font_family,
 						$email_settings->text_color,
 						stripslashes( $field->field_name ),
-						nl2br( $display_value )
+						wpautop( $display_value )
 					);
 
 					$plain_text .= stripslashes( $field->field_name ) . ": $display_value\n";
@@ -519,8 +558,7 @@ foreach ( $fields as $field ) :
 				break;
 
 				default :
-					// Convert new lines to break tags for textarea in html
-					$display_value = ( 'textarea' == $field->field_type && 'html' == $email_settings->format ) ? nl2br( $value ) : $value;
+					$display_value = $value;
 
 					// If Create Post addon installed, use category name not ID in email
 					if ( class_exists( 'VFB_Pro_Create_Post' ) && 'post-category' == $field->field_type )
@@ -544,7 +582,15 @@ foreach ( $fields as $field ) :
 						$display_value
 					);
 
-					$plain_text .= stripslashes( $field->field_name ) . ": $value\n";
+					// Undo wpautop for Textarea in Plain Text email
+					if ( 'textarea' == $field->field_type ) {
+						$pt_textarea = preg_replace( '/<p[^>]*?>/', '', $value );
+						$pt_textarea = str_replace( '</p>', "\n", $pt_textarea );
+
+						$plain_text .= stripslashes( $field->field_name ) . ": $pt_textarea\n";
+					}
+					else
+						$plain_text .=  stripslashes( $field->field_name ) . ": $value\n";
 
 					// Increment our alt row counter
 					$i++;
@@ -598,7 +644,7 @@ foreach ( $fields as $field ) :
 		$comment_content = $value;
 
 	// If the user accumulates more than 4 points, it might be spam
-	if ( $points > 4 )
+	if ( $points > $settings_spam_points )
 		wp_die( apply_filters( 'vfb_str_security_points', __( 'Your responses look too much like spam and could not be sent at this time.', 'visual-form-builder-pro' ) ), '', array( 'back_link' => true ) );
 endforeach;
 
@@ -650,13 +696,13 @@ $entry = array(
 	'sender_email' 		=> $form_settings->form_from,
 	'emails_to' 		=> serialize( $form_settings->form_to ),
 	'date_submitted' 	=> date_i18n( 'Y-m-d G:i:s' ),
-	'ip_address' 		=> apply_filters( 'vfb_entries_save_ip', esc_html( $_SERVER['REMOTE_ADDR'] ) ),
+	'ip_address' 		=> apply_filters( 'vfb_entries_save_ip', $settings_save_ip ),
 	'akismet'			=> maybe_serialize( $akismet_data ),
 	'entry_approved'	=> $is_spam
 );
 
 // Insert this data into the entries table
-if ( apply_filters( 'vfb_entries_save_new', true, $form_id ) ) :
+if ( apply_filters( 'vfb_entries_save_new', $settings_save_entry, $form_id ) ) :
 	$wpdb->insert( $this->entries_table_name, $entry );
 
 	// Save new entry ID
@@ -664,7 +710,7 @@ if ( apply_filters( 'vfb_entries_save_new', true, $form_id ) ) :
 endif;
 
 // Allow email to be skipped
-if ( apply_filters( 'vfb_send_email', false, $form_id ) )
+if ( apply_filters( 'vfb_send_email', $settings_send_email, $form_id ) )
 	return false;
 
 // Setup the link love
@@ -718,10 +764,11 @@ $html_email = $header . $body . $footer;
 // Decode HTML for message so it outputs properly
 $notify_message = ( !empty( $form_settings->form_notification_message ) ) ? wp_specialchars_decode( $form_settings->form_notification_message, ENT_QUOTES ) : '';
 
-$notify_message = apply_filters( 'vfb_notify_message', $notify_message, $form_id );
+// Allow notify message to be filtered
+$notify_message = apply_filters( 'vfb_notify_message', $notify_message, $form_id, $this->new_entry_id );
 
 // Initialize header filter vars
-$header_from_name  = mb_encode_mimeheader( stripslashes( $reply_to_name ) );
+$header_from_name  = function_exists( 'mb_encode_mimeheader' ) ? mb_encode_mimeheader( stripslashes( $reply_to_name ) ) : stripslashes( $reply_to_name );
 $header_from       = $reply_to_email;
 
 // Set message format and header contenty type
@@ -779,14 +826,22 @@ list( $user, $domain ) = explode( '@', $from_email );
 // If site domain and admin_email domain match, use admin_email, otherwise a same domain email must be created
 $from_email = ( $sitename == $domain ) ? $from_email : "wordpress@$sitename";
 
+// Settings - Sender Mail Header
+$settings_sender_header = isset( $vfb_settings['sender-mail-header'] ) ? $vfb_settings['sender-mail-header'] : $from_email;
+
 // Allow Sender email to be filtered
-$from_email = apply_filters( 'vfb_sender_mail_header', $from_email, $form_id );
+$from_email = apply_filters( 'vfb_sender_mail_header', $settings_sender_header, $form_id );
 
 $reply_to  = "\"$from_name\" <$header_from>";
 $headers   = "Sender: $from_email\r\n" . "From: $reply_to\r\n" . "Reply-To: $reply_to\r\n" . "Content-Type: $header_content_type; charset=\"" . get_option('blog_charset') . "\"\r\n";
 
-$form_subject 	= wp_specialchars_decode( $form_settings->form_subject, ENT_QUOTES );
-$notify_subject = wp_specialchars_decode( $form_settings->form_notification_subject, ENT_QUOTES );
+// Allow form subject to be filtered
+$form_subject   = apply_filters( 'vfb_form_subject', $form_settings->form_subject, $form_id, $this->new_entry_id );
+$form_subject 	= wp_specialchars_decode( $form_subject, ENT_QUOTES );
+
+// Allow notify subject to be filtered
+$notify_subject = apply_filters( 'vfb_notify_subject', $form_settings->form_notification_subject, $form_id, $this->new_entry_id );
+$notify_subject = wp_specialchars_decode( $notify_subject, ENT_QUOTES );
 
 // Allow attachments to be unattached in main email
 $attachments = apply_filters( 'vfb_attachments_email', $attachments, $form_id );
@@ -833,7 +888,7 @@ if ( !has_action( 'vfb_override_email_' . $form_id ) ) :
 endif;
 
 // Send auto-responder email
-if ( $form_settings->form_notification_setting !== '' ) :
+if ( !empty( $form_settings->form_notification_setting ) ) :
 
 	$attachments = ( $form_settings->form_notification_entry !== '' ) ? $attachments : '';
 
@@ -841,7 +896,7 @@ if ( $form_settings->form_notification_setting !== '' ) :
 	$attachments = apply_filters( 'vfb_attachments_email_notify', $attachments, $form_id );
 
 	// Reset headers for notification email
-	$reply_name   = mb_encode_mimeheader( stripslashes( $form_settings->form_notification_email_name ) );
+	$reply_name	  = function_exists( 'mb_encode_mimeheader' ) ? mb_encode_mimeheader( stripslashes( $form_settings->form_notification_email_name ) ) : stripslashes( $form_settings->form_notification_email_name );
 	$reply_email  = $form_settings->form_notification_email_from;
 	$reply_to     = "\"$reply_name\" <$reply_email>";
 	$headers      = "Sender: $from_email\r\n" . "From: $reply_to\r\n" . "Reply-To: $reply_to\r\n" . "Content-Type: $header_content_type; charset=\"" . get_option('blog_charset') . "\"\r\n";

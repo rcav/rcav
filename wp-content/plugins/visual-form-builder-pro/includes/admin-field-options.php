@@ -1,7 +1,7 @@
 <?php
 global $wpdb;
 
-$field_where = ( isset( $field_id ) && !is_null( $field_id ) ) ? "AND field_id = $field_id" : '';
+$field_where = isset( $field_id ) && !is_null( $field_id ) ? "AND field_id = $field_id" : '';
 $fields = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->field_table_name WHERE form_id = %d $field_where ORDER BY field_sequence ASC", $form_nav_selected_id ) );
 
 $depth = 1;
@@ -40,7 +40,7 @@ foreach ( $fields as $field ) :
 	$last = $field->field_id;
 	$parent = $field->field_parent;
 ?>
-<li id="form_item_<?php echo $field->field_id; ?>" class="form-item<?php echo ( in_array( $field->field_type, array( 'submit', 'secret', 'verification' ) ) ) ? ' ui-state-disabled' : ''; ?><?php echo ( !in_array( $field->field_type, array( 'fieldset', 'section', 'verification' ) ) ) ? ' mjs-nestedSortable-no-nesting' : ''; ?>">
+<li id="form_item_<?php echo $field->field_id; ?>" class="form-item<?php echo in_array( $field->field_type, array( 'submit', 'secret', 'verification' ) ) ? ' ui-state-disabled' : ''; ?><?php echo !in_array( $field->field_type, array( 'fieldset', 'section', 'verification' ) ) ? ' mjs-nestedSortable-no-nesting' : ''; ?>">
 <dl class="menu-item-bar vfb-menu-item-inactive">
 <dt class="vfb-menu-item-handle vfb-menu-item-type-<?php echo esc_attr( $field->field_type ); ?>">
 	<span class="item-title"><?php echo stripslashes( esc_attr( $field->field_name ) ); ?><?php echo ( $field->field_required == 'yes' ) ? ' <span class="is-field-required">*</span>' : ''; ?></span>
@@ -166,6 +166,10 @@ foreach ( $fields as $field ) :
                 <option value="post_id" <?php selected( $opts_vals[0], 'post_id' ); ?>><?php _e( 'Post/Page ID' , 'visual-form-builder-pro'); ?></option>
                 <option value="post_title" <?php selected( $opts_vals[0], 'post_title' ); ?>><?php _e( 'Post/Page Title' , 'visual-form-builder-pro'); ?></option>
                 <option value="post_url" <?php selected( $opts_vals[0], 'post_url' ); ?>><?php _e( 'Post/Page URL' , 'visual-form-builder-pro'); ?></option>
+                <option value="current_user_id" <?php selected( $opts_vals[0], 'current_user_id' ); ?>><?php _e( 'Current User - ID' , 'visual-form-builder-pro'); ?></option>
+                <option value="current_user_name" <?php selected( $opts_vals[0], 'current_user_name' ); ?>><?php _e( 'Current User - Display Name' , 'visual-form-builder-pro'); ?></option>
+                <option value="current_user_username" <?php selected( $opts_vals[0], 'current_user_username' ); ?>><?php _e( 'Current User - Username' , 'visual-form-builder-pro'); ?></option>
+                <option value="current_user_email" <?php selected( $opts_vals[0], 'current_user_email' ); ?>><?php _e( 'Current User - Email' , 'visual-form-builder-pro'); ?></option>
                 <option value="custom" <?php selected( $opts_vals[0], 'custom' ); ?>><?php _e( 'Custom' , 'visual-form-builder-pro'); ?></option>
             </select>
         </label>
@@ -627,6 +631,18 @@ foreach ( $fields as $field ) :
             </label>
 		</p>
 	<?php endif; ?>
+
+	<?php if ( in_array( $field->field_type, array( 'secret' ) ) ) : ?>
+			<!-- Use reCAPTCHA -->
+			<p class="description description-wide">
+			<?php $field_options = maybe_unserialize( $field->field_options ); ?>
+				<label for="edit-form-item-options-<?php echo $field->field_id; ?>">
+					<span class="vfb-tooltip" title="<?php esc_attr_e( 'About Use reCAPTCHA', 'visual-form-builder-pro' ); ?>" rel="<?php esc_attr_e( 'Select this option if you want to replace the text CAPTCHA with reCAPTCHA.', 'visual-form-builder-pro' ); ?>">(?)</span>
+
+					<input type="checkbox" value="1" name="field_options-<?php echo $field->field_id; ?>[setting]" class="vfb-options-other" id="edit-form-item-options-<?php echo $field->field_id; ?>"<?php echo ( isset( $field_options['setting'] ) && 1 == $field_options['setting'] ) ? 'checked="checked"' : ''; ?> /> <?php _e( 'Use reCAPTCHA', 'visual-form-builder-pro' ); ?>
+				</label>
+			</p>
+		<?php endif; ?>
 <?php endif; ?>
 
 <?php if ( !in_array( $field->field_type, array( 'fieldset', 'section', 'page-break', 'verification' ) ) ) : ?>
@@ -636,8 +652,8 @@ foreach ( $fields as $field ) :
 	</div>
 <?php endif; ?>
 
-<?php if ( !in_array( $field->field_type, array( 'verification', 'secret', 'submit' ) ) ) : ?>
 	<div class="vfb-item-actions">
+<?php if ( !in_array( $field->field_type, array( 'verification', 'secret', 'submit' ) ) ) : ?>
 		<!-- Delete link -->
 		<a href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=visual-form-builder-pro&amp;action=delete_field&amp;form=' . $form_nav_selected_id . '&amp;field=' . $field->field_id ), 'delete-field-' . $form_nav_selected_id ) ); ?>" class="vfb-button vfb-delete item-delete submitdelete deletion">
 			<?php _e( 'Delete' , 'visual-form-builder-pro'); ?>
@@ -651,6 +667,7 @@ foreach ( $fields as $field ) :
 			<span class="vfb-interface-icon vfb-interface-duplicate"></span>
 		</a>
 		<?php endif; ?>
+<?php endif; ?>
 
 		<!-- Conditional Logic link -->
 		<a href="<?php echo add_query_arg( array( 'action' => 'visual_form_builder_conditional_fields', 'field_id' => $field->field_id, 'form_id' => $form_nav_selected_id, 'width' => '640' ), admin_url( 'admin-ajax.php' ) ); ?>" class="vfb-button thickbox vfb-conditional-fields" title="Add Conditions">
@@ -658,7 +675,6 @@ foreach ( $fields as $field ) :
 			<span class="vfb-interface-icon vfb-interface-conditional"></span>
 		</a>
 	</div>
-<?php endif; ?>
 
 <input type="hidden" name="field_id[<?php echo $field->field_id; ?>]" value="<?php echo $field->field_id; ?>" />
 </div>

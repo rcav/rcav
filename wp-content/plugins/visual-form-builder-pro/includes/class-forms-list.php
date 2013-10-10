@@ -37,7 +37,6 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 		switch ( $column_name ) {
 			case 'id':
 			case 'form_id' :
-			case 'entries' :
 				return $item[ $column_name ];
 		}
 	}
@@ -109,10 +108,25 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 		return sprintf( '%1$s %2$s', $form_title, $this->row_actions( $actions ) );
 	}
 
+	/**
+	 * column_entries function.
+	 *
+	 * @access public
+	 * @param mixed $item
+	 * @return void
+	 */
 	function column_entries( $item ) {
 		$this->comments_bubble( $item['form_id'], $item['entries'] );
 	}
 
+	/**
+	 * comments_bubble function.
+	 *
+	 * @access public
+	 * @param mixed $form_id
+	 * @param mixed $count
+	 * @return void
+	 */
 	function comments_bubble( $form_id, $count ) {
 
 		echo sprintf(
@@ -251,12 +265,21 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 	 * @since 2.1
 	 * @returns array $stats Counts of different entry types
 	 */
-	function get_entries_count( $form_id ) {
+	function get_entries_count() {
 		global $wpdb;
 
-		$entries = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT( * ) FROM $this->entries_table_name AS entries WHERE entries.entry_approved = 1 AND form_id = %d", $form_id ) );
+		$total_entries = array();
 
-		return $entries;
+		$entries = $wpdb->get_results( "SELECT form_id, COUNT(form_id) as num_entries FROM $this->entries_table_name AS entries WHERE entries.entry_approved = 1 GROUP BY form_id", ARRAY_A );
+
+		if ( $entries ) {
+			foreach ( $entries as $entry )
+				$total_entries[ $entry['form_id'] ] = absint( $entry['num_entries'] );
+
+			return $total_entries;
+		}
+
+		return $total_entries;
 	}
 
 	/**
@@ -265,12 +288,21 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 	 * @since 2.1
 	 * @returns array $stats Counts of different entry types
 	 */
-	function get_entries_today_count( $form_id ) {
+	function get_entries_today_count() {
 		global $wpdb;
 
-		$entries = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT( * ) FROM $this->entries_table_name AS entries WHERE entries.entry_approved = 1 AND form_id = %d AND date_submitted >= curdate()", $form_id ) );
+		$total_entries = array();
 
-		return $entries;
+		$entries = $wpdb->get_results( "SELECT form_id, COUNT(form_id) as num_entries FROM $this->entries_table_name AS entries WHERE entries.entry_approved = 1 AND date_submitted >= curdate() GROUP BY form_id", ARRAY_A );
+
+		if ( $entries ) {
+			foreach ( $entries as $entry )
+				$total_entries[ $entry['form_id'] ] = absint( $entry['num_entries'] );
+
+			return $total_entries;
+		}
+
+		return $total_entries;
 	}
 
 	/**
@@ -316,9 +348,9 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 	function get_sortable_columns() {
 		$sortable_columns = array(
 			'id' 			=> array( 'id', false ),
-			'form_id'		=> array( 'form_id', false ),
+			'form_id'		=> array( 'form_id', true ),
 			'form_title'	=> array( 'form_title', true ),
-			'entries'		=> array( 'entries_count', false ),
+			'entries'		=> array( 'entries', false ),
 		);
 
 		return $sortable_columns;
@@ -451,7 +483,7 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 
 		// Get column headers
 		$columns  = $this->get_columns();
-		$hidden   = array();
+		$hidden   = get_hidden_columns( $this->screen );
 
 		// Get sortable columns
 		$sortable = $this->get_sortable_columns();
@@ -480,14 +512,24 @@ class VisualFormBuilder_Pro_Forms_List extends WP_List_Table {
 		// Get the sorted entries
 		$forms = $this->get_forms( $orderby, $order, $per_page, $offset, $search );
 
+		// Get entries totals
+		$entries_total = $this->get_entries_count();
+		$entries_today = $this->get_entries_today_count();
+
 		$data = array();
 
 		// Loop trough the entries and setup the data to be displayed for each row
 		foreach ( $forms as $form ) :
 
+			// Check if index exists first, not every form has entries
+			$entries_total[ $form->form_id ] = isset( $entries_total[ $form->form_id ] ) ? $entries_total[ $form->form_id ] : 0;
+
+			// Check if index exists first, not every form has entries today
+			$entries_today[ $form->form_id ] = isset( $entries_today[ $form->form_id ] ) ? $entries_today[ $form->form_id ] : 0;
+
 			$entries_counts = array(
-				'total' => $this->get_entries_count( $form->form_id ),
-				'today' => $this->get_entries_today_count( $form->form_id ),
+				'total' => $entries_total[ $form->form_id ],
+				'today' => $entries_today[ $form->form_id ],
 			);
 
 			$data[] = array(
