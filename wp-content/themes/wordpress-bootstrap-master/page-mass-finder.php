@@ -179,7 +179,7 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 
 										 	<?php if(get_field('primarylanguage')) 
 										 		{ 
-										 			echo '<div> Language:' . get_field('primarylanguage') . '</div>';
+										 			echo '<div> Language: English' . ', ' . get_field('primarylanguage') . '</div>';
 										 		}
 										 	?>
 
@@ -197,11 +197,13 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 													}
 												endforeach; ?>	
 
+											<div style="margin-top:15px;">
 										 	<?php if(get_field('gmap_link')) 
 												echo '<i class="icon-map-marker"></i> <a href="' . get_field('gmap_link') . '" target="_blank">View Map</a> |';
-											?> <i class="icon-time"></i>  <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>">Mass and Devotion Times</a>
+											?> <i class="icon-time"></i>  <a href="<?php the_permalink() ?>#mass-times" rel="bookmark" title="Permanent Link to <?php the_title(); ?>">Mass and Devotion Times</a>
+											</div>
 
-											<br />
+
 
 
 											</div>

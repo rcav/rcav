@@ -145,6 +145,7 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 
 										<section class="span12">
 
+									<a id="mass-times"></a>
 									<div class="tabbable" id="parish-times"> <!-- Only required for left/right tabs -->
 									  <ul class="nav nav-pills">
 									    <li class="active"><a href="#tab1" data-toggle="tab"><i class="icon-time"></i> Mass Times</a></li>
