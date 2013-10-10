@@ -1401,6 +1401,16 @@ body {
 		background-position: top right;
 	}
 
+	/* OYYAM header background */
+	.term-news-oyyam-blog #main-header { 
+		background:url('images/assets/backgrounds/parishes.png') no-repeat;
+		background-position: top right;
+	}
+
+
+
+
+
 /*  ===== MAIN CONTAINER LAYOUT =====  */
 
 	#content { 
