@@ -192,20 +192,6 @@
 <RECORD>
 <pid>20</pid>
 <parish_name>Holy Family</parish_name>
-<dtype>Adoration &amp; Benediction</dtype>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>7:45</time>
-</RECORD>
-<RECORD>
-<pid>20</pid>
-<parish_name>Holy Family</parish_name>
-<dtype>Adoration &amp; Benediction</dtype>
-<days>1st Friday</days>
-<time>20:30</time>
-</RECORD>
-<RECORD>
-<pid>20</pid>
-<parish_name>Holy Family</parish_name>
 <dtype>Sacred Heart Devotions</dtype>
 <days>1st Friday</days>
 <time></time>
@@ -458,13 +444,6 @@
 <RECORD>
 <pid>44</pid>
 <parish_name>St. Ann</parish_name>
-<dtype>Rosary</dtype>
-<days>1st Sat</days>
-<time>9:30</time>
-</RECORD>
-<RECORD>
-<pid>44</pid>
-<parish_name>St. Ann</parish_name>
 <dtype>Novenas</dtype>
 <days>Tuesday</days>
 <time>19:0</time>
@@ -474,14 +453,14 @@
 <parish_name>St. Ann</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Friday</days>
-<time>18:45</time>
+<time>8:0</time>
 </RECORD>
 <RECORD>
 <pid>44</pid>
 <parish_name>St. Ann</parish_name>
 <dtype>Rosary</dtype>
 <days>13th of each month</days>
-<time>18:0</time>
+<time>19:0</time>
 </RECORD>
 <RECORD>
 <pid>45</pid>
@@ -829,9 +808,9 @@
 <RECORD>
 <pid>75</pid>
 <parish_name>St. Patrick</parish_name>
-<dtype>First Friday Adoration</dtype>
-<days></days>
-<time></time>
+<dtype>Adoration of the Eucharist</dtype>
+<days>24hrs during Olympics (Feb 12 - 28)</days>
+<time>0:0</time>
 </RECORD>
 <RECORD>
 <pid>77</pid>

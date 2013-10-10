@@ -87,30 +87,16 @@
 <RECORD>
 <pid>13</pid>
 <parish_name>Christ the Redeemer</parish_name>
-<days>Sunday</days>
-<time>16:30</time>
-<endtime>16:55</endtime>
-</RECORD>
-<RECORD>
-<pid>13</pid>
-<parish_name>Christ the Redeemer</parish_name>
 <days>Saturday</days>
 <time>9:30</time>
 <endtime>10:0</endtime>
 </RECORD>
 <RECORD>
-<pid>14</pid>
-<parish_name>Church of the Assumption</parish_name>
-<days>Saturday</days>
-<time>8:50</time>
-<endtime>9:0</endtime>
-</RECORD>
-<RECORD>
-<pid>14</pid>
-<parish_name>Church of the Assumption</parish_name>
-<days>Saturday</days>
-<time>11:0</time>
-<endtime>12:0</endtime>
+<pid>13</pid>
+<parish_name>Christ the Redeemer</parish_name>
+<days>Sunday</days>
+<time>16:30</time>
+<endtime>16:55</endtime>
 </RECORD>
 <RECORD>
 <pid>14</pid>
@@ -125,6 +111,20 @@
 <days>Friday</days>
 <time>8:50</time>
 <endtime>9:0</endtime>
+</RECORD>
+<RECORD>
+<pid>14</pid>
+<parish_name>Church of the Assumption</parish_name>
+<days>Saturday</days>
+<time>8:50</time>
+<endtime>9:0</endtime>
+</RECORD>
+<RECORD>
+<pid>14</pid>
+<parish_name>Church of the Assumption</parish_name>
+<days>Saturday</days>
+<time>11:0</time>
+<endtime>12:0</endtime>
 </RECORD>
 <RECORD>
 <pid>15</pid>
@@ -220,37 +220,9 @@
 <RECORD>
 <pid>20</pid>
 <parish_name>Holy Family</parish_name>
-<days>Sunday</days>
-<time>7:30</time>
-<endtime>8:0</endtime>
-</RECORD>
-<RECORD>
-<pid>20</pid>
-<parish_name>Holy Family</parish_name>
-<days>Sunday</days>
-<time>10:0</time>
-<endtime>12:0</endtime>
-</RECORD>
-<RECORD>
-<pid>20</pid>
-<parish_name>Holy Family</parish_name>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>6:30</time>
-<endtime>7:0</endtime>
-</RECORD>
-<RECORD>
-<pid>20</pid>
-<parish_name>Holy Family</parish_name>
-<days>Wednesday (with Adoration &amp; Benediction)</days>
-<time>18:0</time>
-<endtime>20:0</endtime>
-</RECORD>
-<RECORD>
-<pid>20</pid>
-<parish_name>Holy Family</parish_name>
-<days>Saturday</days>
-<time>16:30</time>
-<endtime>18:30</endtime>
+<days>30 Minutes Before Every Mass</days>
+<time></time>
+<endtime></endtime>
 </RECORD>
 <RECORD>
 <pid>21</pid>
@@ -263,15 +235,15 @@
 <pid>21</pid>
 <parish_name>Holy Name of Jesus</parish_name>
 <days>Saturday</days>
-<time>16:15</time>
-<endtime>16:45</endtime>
+<time>9:30</time>
+<endtime></endtime>
 </RECORD>
 <RECORD>
 <pid>21</pid>
 <parish_name>Holy Name of Jesus</parish_name>
 <days>Saturday</days>
-<time>9:30</time>
-<endtime></endtime>
+<time>16:15</time>
+<endtime>16:45</endtime>
 </RECORD>
 <RECORD>
 <pid>22</pid>
@@ -423,13 +395,6 @@
 <RECORD>
 <pid>27</pid>
 <parish_name>Immaculate Heart of Mary</parish_name>
-<days>By Appointment</days>
-<time>0:0</time>
-<endtime>0:0</endtime>
-</RECORD>
-<RECORD>
-<pid>27</pid>
-<parish_name>Immaculate Heart of Mary</parish_name>
 <days>Saturday</days>
 <time>7:30</time>
 <endtime>8:0</endtime>
@@ -447,6 +412,13 @@
 <days>Sunday</days>
 <time>8:30</time>
 <endtime>11:0</endtime>
+</RECORD>
+<RECORD>
+<pid>27</pid>
+<parish_name>Immaculate Heart of Mary</parish_name>
+<days>By Appointment</days>
+<time>0:0</time>
+<endtime>0:0</endtime>
 </RECORD>
 <RECORD>
 <pid>27</pid>
@@ -542,6 +514,13 @@
 <RECORD>
 <pid>34</pid>
 <parish_name>Our Lady of Lourdes</parish_name>
+<days>Saturday</days>
+<time>16:0</time>
+<endtime>16:45</endtime>
+</RECORD>
+<RECORD>
+<pid>34</pid>
+<parish_name>Our Lady of Lourdes</parish_name>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
 <time>8:20</time>
 <endtime>8:30</endtime>
@@ -554,11 +533,11 @@
 <endtime></endtime>
 </RECORD>
 <RECORD>
-<pid>34</pid>
-<parish_name>Our Lady of Lourdes</parish_name>
-<days>Saturday</days>
-<time>16:0</time>
-<endtime>16:45</endtime>
+<pid>35</pid>
+<parish_name>Our Lady of Mercy</parish_name>
+<days>By Appointment</days>
+<time></time>
+<endtime></endtime>
 </RECORD>
 <RECORD>
 <pid>35</pid>
@@ -580,13 +559,6 @@
 <days>Tuesday, Wednesday, Thursday, Friday</days>
 <time>8:0</time>
 <endtime>8:15</endtime>
-</RECORD>
-<RECORD>
-<pid>35</pid>
-<parish_name>Our Lady of Mercy</parish_name>
-<days>By Appointment</days>
-<time></time>
-<endtime></endtime>
 </RECORD>
 <RECORD>
 <pid>36</pid>
@@ -759,6 +731,13 @@
 <RECORD>
 <pid>44</pid>
 <parish_name>St. Ann</parish_name>
+<days>Tuesday</days>
+<time>18:40</time>
+<endtime>18:55</endtime>
+</RECORD>
+<RECORD>
+<pid>44</pid>
+<parish_name>St. Ann</parish_name>
 <days>Saturday</days>
 <time>10:0</time>
 <endtime>11:0</endtime>
@@ -773,16 +752,30 @@
 <RECORD>
 <pid>44</pid>
 <parish_name>St. Ann</parish_name>
-<days>By Appointment</days>
-<time></time>
-<endtime></endtime>
+<days>Public Holidays</days>
+<time>8:40</time>
+<endtime>8:55</endtime>
 </RECORD>
 <RECORD>
 <pid>44</pid>
 <parish_name>St. Ann</parish_name>
-<days>Tuesday</days>
+<days>1st Friday</days>
+<time>7:40</time>
+<endtime>7:55</endtime>
+</RECORD>
+<RECORD>
+<pid>44</pid>
+<parish_name>St. Ann</parish_name>
+<days>1st Friday</days>
 <time>18:40</time>
 <endtime>18:55</endtime>
+</RECORD>
+<RECORD>
+<pid>44</pid>
+<parish_name>St. Ann</parish_name>
+<days>By Appointment</days>
+<time></time>
+<endtime></endtime>
 </RECORD>
 <RECORD>
 <pid>45</pid>
@@ -824,14 +817,14 @@
 <parish_name>St. Anthony</parish_name>
 <days>Saturday</days>
 <time>9:30</time>
-<endtime></endtime>
+<endtime>10:30</endtime>
 </RECORD>
 <RECORD>
 <pid>47</pid>
 <parish_name>St. Anthony</parish_name>
-<days>Saturday</days>
-<time>16:15</time>
-<endtime>16:45</endtime>
+<days>Saturday (following 5 pm Mass)</days>
+<time></time>
+<endtime></endtime>
 </RECORD>
 <RECORD>
 <pid>48</pid>
@@ -864,13 +857,6 @@
 <RECORD>
 <pid>50</pid>
 <parish_name>St. Casimir</parish_name>
-<days>1st Friday</days>
-<time>18:0</time>
-<endtime>19:0</endtime>
-</RECORD>
-<RECORD>
-<pid>50</pid>
-<parish_name>St. Casimir</parish_name>
 <days>By Appointment</days>
 <time>0:0</time>
 <endtime>0:0</endtime>
@@ -895,6 +881,13 @@
 <days>Saturday</days>
 <time>8:15</time>
 <endtime>8:45</endtime>
+</RECORD>
+<RECORD>
+<pid>50</pid>
+<parish_name>St. Casimir</parish_name>
+<days>1st Friday</days>
+<time>18:0</time>
+<endtime>19:0</endtime>
 </RECORD>
 <RECORD>
 <pid>51</pid>
@@ -983,6 +976,13 @@
 <RECORD>
 <pid>55</pid>
 <parish_name>St. Francis Xavier</parish_name>
+<days>Saturday</days>
+<time>17:0</time>
+<endtime>17:30</endtime>
+</RECORD>
+<RECORD>
+<pid>55</pid>
+<parish_name>St. Francis Xavier</parish_name>
 <days>Friday</days>
 <time>19:0</time>
 <endtime>19:30</endtime>
@@ -995,11 +995,11 @@
 <endtime>20:45</endtime>
 </RECORD>
 <RECORD>
-<pid>55</pid>
-<parish_name>St. Francis Xavier</parish_name>
-<days>Saturday</days>
-<time>17:0</time>
-<endtime>17:30</endtime>
+<pid>56</pid>
+<parish_name>St. Helen</parish_name>
+<days>By Appointment</days>
+<time></time>
+<endtime></endtime>
 </RECORD>
 <RECORD>
 <pid>56</pid>
@@ -1009,13 +1009,6 @@
 <endtime>15:50</endtime>
 </RECORD>
 <RECORD>
-<pid>56</pid>
-<parish_name>St. Helen</parish_name>
-<days>By Appointment</days>
-<time></time>
-<endtime></endtime>
-</RECORD>
-<RECORD>
 <pid>57</pid>
 <parish_name>St. Mark</parish_name>
 <days>By Appointment</days>
@@ -1025,14 +1018,14 @@
 <RECORD>
 <pid>57</pid>
 <parish_name>St. Mark</parish_name>
-<days>Friday</days>
+<days>Wednesday</days>
 <time>11:30</time>
 <endtime>12:0</endtime>
 </RECORD>
 <RECORD>
 <pid>57</pid>
 <parish_name>St. Mark</parish_name>
-<days>Wednesday</days>
+<days>Friday</days>
 <time>11:30</time>
 <endtime>12:0</endtime>
 </RECORD>
@@ -1088,14 +1081,14 @@
 <RECORD>
 <pid>61</pid>
 <parish_name>St. Joseph</parish_name>
-<days>By Appointment</days>
+<days>Before all Masses</days>
 <time></time>
 <endtime></endtime>
 </RECORD>
 <RECORD>
 <pid>61</pid>
 <parish_name>St. Joseph</parish_name>
-<days>Before all Masses</days>
+<days>By Appointment</days>
 <time></time>
 <endtime></endtime>
 </RECORD>
@@ -1488,43 +1481,36 @@
 <pid>75</pid>
 <parish_name>St. Patrick</parish_name>
 <days>Saturday</days>
-<time>15:45</time>
+<time>16:0</time>
 <endtime>16:20</endtime>
 </RECORD>
 <RECORD>
 <pid>75</pid>
 <parish_name>St. Patrick</parish_name>
-<days>Monday to Thursday</days>
-<time>7:55</time>
-<endtime>8:10</endtime>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+<endtime>8:15</endtime>
 </RECORD>
 <RECORD>
 <pid>75</pid>
 <parish_name>St. Patrick</parish_name>
-<days>Friday</days>
-<time>7:55</time>
-<endtime>8:10</endtime>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:45</time>
+<endtime>9:0</endtime>
+</RECORD>
+<RECORD>
+<pid>75</pid>
+<parish_name>St. Patrick</parish_name>
+<days>Saturday</days>
+<time>8:30</time>
+<endtime>9:0</endtime>
 </RECORD>
 <RECORD>
 <pid>75</pid>
 <parish_name>St. Patrick</parish_name>
 <days>Saturday</days>
 <time>9:30</time>
-<endtime>10:30</endtime>
-</RECORD>
-<RECORD>
-<pid>75</pid>
-<parish_name>St. Patrick</parish_name>
-<days>Friday</days>
-<time>18:40</time>
-<endtime>18:55</endtime>
-</RECORD>
-<RECORD>
-<pid>76</pid>
-<parish_name>St. Paul</parish_name>
-<days>By Appointment</days>
-<time></time>
-<endtime></endtime>
+<endtime>10:0</endtime>
 </RECORD>
 <RECORD>
 <pid>76</pid>
@@ -1539,6 +1525,13 @@
 <days>Saturday</days>
 <time>15:30</time>
 <endtime>16:45</endtime>
+</RECORD>
+<RECORD>
+<pid>76</pid>
+<parish_name>St. Paul</parish_name>
+<days>By Appointment</days>
+<time></time>
+<endtime></endtime>
 </RECORD>
 <RECORD>
 <pid>77</pid>

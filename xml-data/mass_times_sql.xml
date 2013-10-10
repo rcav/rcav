@@ -1,543 +1,263 @@
 <?xml version="1.0" standalone="yes"?>
 <RECORDS>
 <RECORD>
-<pid>10</pid>
-<parish_name>All Saints</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>10</pid>
-<parish_name>All Saints</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:45</time>
-</RECORD>
-<RECORD>
-<pid>10</pid>
-<parish_name>All Saints</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>12:30</time>
-</RECORD>
-<RECORD>
-<pid>10</pid>
-<parish_name>All Saints</parish_name>
+<pid>69</pid>
+<parish_name>St. Mary</parish_name>
 <language>English</language>
 <days>Saturday</days>
 <time>17:0</time>
 </RECORD>
 <RECORD>
-<pid>10</pid>
-<parish_name>All Saints</parish_name>
-<language>English</language>
-<days>Monday, Wednesday, Thursday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>10</pid>
-<parish_name>All Saints</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>10</pid>
-<parish_name>All Saints</parish_name>
-<language>English</language>
-<days>Friday, Saturday &amp; Public Holidays</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>11</pid>
-<parish_name>Blessed Sacrament</parish_name>
+<pid>23</pid>
+<parish_name>Holy Spirit</parish_name>
 <language>English</language>
 <days>Saturday</days>
-<time>17:15</time>
+<time>17:0</time>
 </RECORD>
 <RECORD>
-<pid>11</pid>
-<parish_name>Blessed Sacrament</parish_name>
-<language>French</language>
+<pid>23</pid>
+<parish_name>Holy Spirit</parish_name>
+<language>English</language>
 <days>Sunday</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>11</pid>
-<parish_name>Blessed Sacrament</parish_name>
-<language>French</language>
+<pid>69</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>23</pid>
+<parish_name>Holy Spirit</parish_name>
+<language>English</language>
 <days>Sunday</days>
 <time>11:0</time>
 </RECORD>
 <RECORD>
-<pid>11</pid>
-<parish_name>Blessed Sacrament</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>11</pid>
-<parish_name>Blessed Sacrament</parish_name>
-<language>French</language>
-<days>Friday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>12</pid>
-<parish_name>Canadian Martyrs</parish_name>
-<language>Chinese – Cantonese</language>
-<days>Sunday</days>
-<time>8:15</time>
-</RECORD>
-<RECORD>
-<pid>12</pid>
-<parish_name>Canadian Martyrs</parish_name>
-<language>Chinese – Cantonese</language>
-<days>Sunday</days>
-<time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>12</pid>
-<parish_name>Canadian Martyrs</parish_name>
-<language>Chinese – Mandarin</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>12</pid>
-<parish_name>Canadian Martyrs</parish_name>
+<pid>69</pid>
+<parish_name>St. Mary</parish_name>
 <language>English</language>
 <days>Sunday</days>
-<time>11:45</time>
-</RECORD>
-<RECORD>
-<pid>12</pid>
-<parish_name>Canadian Martyrs</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>12</pid>
-<parish_name>Canadian Martyrs</parish_name>
-<language>English</language>
-<days>Saturday</days>
 <time>9:30</time>
 </RECORD>
 <RECORD>
-<pid>13</pid>
-<parish_name>Christ the Redeemer</parish_name>
+<pid>23</pid>
+<parish_name>Holy Spirit</parish_name>
+<language>English</language>
+<days>Tuesday, Friday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>48</pid>
+<parish_name>St. Augustine</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>48</pid>
+<parish_name>St. Augustine</parish_name>
 <language>English</language>
 <days>Sunday</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>13</pid>
-<parish_name>Christ the Redeemer</parish_name>
+<pid>48</pid>
+<parish_name>St. Augustine</parish_name>
 <language>English</language>
 <days>Sunday</days>
 <time>11:0</time>
 </RECORD>
 <RECORD>
-<pid>13</pid>
-<parish_name>Christ the Redeemer</parish_name>
+<pid>48</pid>
+<parish_name>St. Augustine</parish_name>
 <language>English</language>
 <days>Sunday</days>
 <time>17:0</time>
 </RECORD>
 <RECORD>
-<pid>13</pid>
-<parish_name>Christ the Redeemer</parish_name>
+<pid>48</pid>
+<parish_name>St. Augustine</parish_name>
 <language>English</language>
-<days>Monday, Tuesday, Thursday, Friday</days>
-<time>8:15</time>
-</RECORD>
-<RECORD>
-<pid>13</pid>
-<parish_name>Christ the Redeemer</parish_name>
-<language>English</language>
-<days>Wednesday</days>
-<time>9:15</time>
-</RECORD>
-<RECORD>
-<pid>13</pid>
-<parish_name>Christ the Redeemer</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>14</pid>
-<parish_name>Church of the Assumption</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>14</pid>
-<parish_name>Church of the Assumption</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>14</pid>
-<parish_name>Church of the Assumption</parish_name>
-<language>English</language>
-<days>Sunday</days>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>14</pid>
-<parish_name>Church of the Assumption</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>14</pid>
-<parish_name>Church of the Assumption</parish_name>
-<language>English</language>
-<days>Friday, Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>15</pid>
-<parish_name>Corpus Christi</parish_name>
+<pid>56</pid>
+<parish_name>St. Helen</parish_name>
 <language>English</language>
 <days>Saturday</days>
-<time>19:0</time>
+<time>16:0</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
-<parish_name>Corpus Christi</parish_name>
+<pid>56</pid>
+<parish_name>St. Helen</parish_name>
 <language>English</language>
 <days>Sunday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
-<parish_name>Corpus Christi</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>15</pid>
-<parish_name>Corpus Christi</parish_name>
+<pid>56</pid>
+<parish_name>St. Helen</parish_name>
 <language>English</language>
 <days>Sunday</days>
 <time>11:30</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
-<parish_name>Corpus Christi</parish_name>
-<language>Chinese – Cantonese</language>
-<days>Sunday</days>
-<time>15:0</time>
-</RECORD>
-<RECORD>
-<pid>15</pid>
-<parish_name>Corpus Christi</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>15</pid>
-<parish_name>Corpus Christi</parish_name>
-<language>English</language>
-<days>Friday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>15</pid>
-<parish_name>Corpus Christi</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>16</pid>
-<parish_name>Good Shepherd</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>16</pid>
-<parish_name>Good Shepherd</parish_name>
+<pid>56</pid>
+<parish_name>St. Helen</parish_name>
 <language>English</language>
 <days>Sunday</days>
-<time>9:0</time>
+<time>19:30</time>
 </RECORD>
 <RECORD>
-<pid>16</pid>
-<parish_name>Good Shepherd</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>16</pid>
-<parish_name>Good Shepherd</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>16</pid>
-<parish_name>Good Shepherd</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>16</pid>
-<parish_name>Good Shepherd</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>17</pid>
-<parish_name>Guardian Angels</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>16:0</time>
-</RECORD>
-<RECORD>
-<pid>17</pid>
-<parish_name>Guardian Angels</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>17</pid>
-<parish_name>Guardian Angels</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>17</pid>
-<parish_name>Guardian Angels</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>12:30</time>
-</RECORD>
-<RECORD>
-<pid>17</pid>
-<parish_name>Guardian Angels</parish_name>
-<language>English</language>
-<days>Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>17</pid>
-<parish_name>Guardian Angels</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>17</pid>
-<parish_name>Guardian Angels</parish_name>
-<language>English</language>
-<days>Monday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>18</pid>
-<parish_name>Holy Cross</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>18</pid>
-<parish_name>Holy Cross</parish_name>
+<pid>46</pid>
+<parish_name>St. Anthony of Padua</parish_name>
 <language>English</language>
 <days>Sunday</days>
 <time>10:0</time>
 </RECORD>
 <RECORD>
-<pid>18</pid>
-<parish_name>Holy Cross</parish_name>
+<pid>46</pid>
+<parish_name>St. Anthony of Padua</parish_name>
 <language>English</language>
 <days>Sunday</days>
-<time>12:0</time>
+<time>11:30</time>
 </RECORD>
 <RECORD>
-<pid>18</pid>
-<parish_name>Holy Cross</parish_name>
+<pid>46</pid>
+<parish_name>St. Anthony of Padua</parish_name>
 <language>English</language>
-<days>Sunday</days>
+<days>Monday, Wednesday, Thursday, Friday</days>
+<time>8:15</time>
+</RECORD>
+<RECORD>
+<pid>46</pid>
+<parish_name>St. Anthony of Padua</parish_name>
+<language>English</language>
+<days>Tuesday</days>
 <time>19:30</time>
 </RECORD>
 <RECORD>
-<pid>18</pid>
-<parish_name>Holy Cross</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>18</pid>
-<parish_name>Holy Cross</parish_name>
+<pid>46</pid>
+<parish_name>St. Anthony of Padua</parish_name>
 <language>English</language>
 <days>Saturday</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>93</pid>
-<parish_name>Holy Cross</parish_name>
+<pid>16</pid>
+<parish_name>Good Shepherd</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>63</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>63</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>63</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>16</pid>
+<parish_name>Good Shepherd</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>63</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Monday, Wednesday, Thursday, Friday, Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>16</pid>
+<parish_name>Good Shepherd</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>63</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>16</pid>
+<parish_name>Good Shepherd</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>16</pid>
+<parish_name>Good Shepherd</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>16</pid>
+<parish_name>Good Shepherd</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>21</pid>
+<parish_name>Holy Name of Jesus</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>24</pid>
+<parish_name>Holy Trinity</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>21</pid>
+<parish_name>Holy Name of Jesus</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>24</pid>
+<parish_name>Holy Trinity</parish_name>
 <language>English</language>
 <days>Sunday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>18</pid>
-<parish_name>Holy Cross</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>8:15</time>
-</RECORD>
-<RECORD>
-<pid>18</pid>
-<parish_name>Holy Cross</parish_name>
-<language>English</language>
-<days>Friday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>19</pid>
-<parish_name>Holy Family</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>19</pid>
-<parish_name>Holy Family</parish_name>
-<language>English</language>
-<days>Thursday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>20</pid>
-<parish_name>Holy Family</parish_name>
-<language>Latin</language>
-<days>Sunday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>20</pid>
-<parish_name>Holy Family</parish_name>
-<language>Latin</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>20</pid>
-<parish_name>Holy Family</parish_name>
-<language>Latin</language>
-<days>Monday, Wednesday, Friday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>20</pid>
-<parish_name>Holy Family</parish_name>
-<language>Latin</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>20</pid>
-<parish_name>Holy Family</parish_name>
-<language>Latin</language>
-<days>Tuesday, Thursday, Saturday</days>
-<time>7:30</time>
-</RECORD>
-<RECORD>
-<pid>19</pid>
-<parish_name>Holy Family</parish_name>
+<pid>24</pid>
+<parish_name>Holy Trinity</parish_name>
 <language>English</language>
 <days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>19</pid>
-<parish_name>Holy Family</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>16:0</time>
-</RECORD>
-<RECORD>
-<pid>20</pid>
-<parish_name>Holy Family</parish_name>
-<language>Latin</language>
-<days>Monday, Wednesday, Friday</days>
-<time>7:30</time>
-</RECORD>
-<RECORD>
-<pid>21</pid>
-<parish_name>Holy Name of Jesus</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>21</pid>
-<parish_name>Holy Name of Jesus</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>21</pid>
-<parish_name>Holy Name of Jesus</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>21</pid>
-<parish_name>Holy Name of Jesus</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>88</pid>
-<parish_name>Holy Name of Mary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>88</pid>
-<parish_name>Holy Name of Mary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>22</pid>
-<parish_name>Holy Rosary Cathedral</parish_name>
-<language>Spanish</language>
-<days>Sunday</days>
-<time>18:30</time>
-</RECORD>
-<RECORD>
-<pid>22</pid>
-<parish_name>Holy Rosary Cathedral</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:10</time>
+<time>10:0</time>
 </RECORD>
 <RECORD>
 <pid>22</pid>
@@ -610,32 +330,641 @@
 <time>17:10</time>
 </RECORD>
 <RECORD>
-<pid>23</pid>
-<parish_name>Holy Spirit</parish_name>
+<pid>11</pid>
+<parish_name>Blessed Sacrament</parish_name>
 <language>English</language>
-<days>Tuesday, Friday</days>
+<days>Saturday</days>
+<time>17:15</time>
+</RECORD>
+<RECORD>
+<pid>11</pid>
+<parish_name>Blessed Sacrament</parish_name>
+<language>French</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>11</pid>
+<parish_name>Blessed Sacrament</parish_name>
+<language>French</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>11</pid>
+<parish_name>Blessed Sacrament</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>11</pid>
+<parish_name>Blessed Sacrament</parish_name>
+<language>French</language>
+<days>Friday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>15</pid>
+<parish_name>Corpus Christi</parish_name>
+<language>English</language>
+<days>Saturday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>23</pid>
-<parish_name>Holy Spirit</parish_name>
+<pid>15</pid>
+<parish_name>Corpus Christi</parish_name>
 <language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
+<days>Sunday</days>
+<time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>23</pid>
-<parish_name>Holy Spirit</parish_name>
+<pid>15</pid>
+<parish_name>Corpus Christi</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>15</pid>
+<parish_name>Corpus Christi</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:30</time>
+</RECORD>
+<RECORD>
+<pid>15</pid>
+<parish_name>Corpus Christi</parish_name>
+<language>Chinese – Cantonese</language>
+<days>Sunday</days>
+<time>15:0</time>
+</RECORD>
+<RECORD>
+<pid>15</pid>
+<parish_name>Corpus Christi</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>15</pid>
+<parish_name>Corpus Christi</parish_name>
+<language>English</language>
+<days>Friday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>15</pid>
+<parish_name>Corpus Christi</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>17</pid>
+<parish_name>Guardian Angels</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>16:0</time>
+</RECORD>
+<RECORD>
+<pid>17</pid>
+<parish_name>Guardian Angels</parish_name>
 <language>English</language>
 <days>Sunday</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>23</pid>
-<parish_name>Holy Spirit</parish_name>
+<pid>17</pid>
+<parish_name>Guardian Angels</parish_name>
 <language>English</language>
 <days>Sunday</days>
 <time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>17</pid>
+<parish_name>Guardian Angels</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>12:30</time>
+</RECORD>
+<RECORD>
+<pid>17</pid>
+<parish_name>Guardian Angels</parish_name>
+<language>English</language>
+<days>Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>20</pid>
+<parish_name>Holy Family</parish_name>
+<language>Latin</language>
+<days>Sunday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>20</pid>
+<parish_name>Holy Family</parish_name>
+<language>Latin</language>
+<days>Sunday</days>
+<time>10:30</time>
+</RECORD>
+<RECORD>
+<pid>10</pid>
+<parish_name>All Saints</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>10</pid>
+<parish_name>All Saints</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:45</time>
+</RECORD>
+<RECORD>
+<pid>10</pid>
+<parish_name>All Saints</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>12:30</time>
+</RECORD>
+<RECORD>
+<pid>10</pid>
+<parish_name>All Saints</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>10</pid>
+<parish_name>All Saints</parish_name>
+<language>English</language>
+<days>Monday, Wednesday, Thursday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>10</pid>
+<parish_name>All Saints</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>10</pid>
+<parish_name>All Saints</parish_name>
+<language>English</language>
+<days>Friday, Saturday &amp; Public Holidays</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>12</pid>
+<parish_name>Canadian Martyrs</parish_name>
+<language>Chinese – Cantonese</language>
+<days>Sunday</days>
+<time>8:15</time>
+</RECORD>
+<RECORD>
+<pid>12</pid>
+<parish_name>Canadian Martyrs</parish_name>
+<language>Chinese – Cantonese</language>
+<days>Sunday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>12</pid>
+<parish_name>Canadian Martyrs</parish_name>
+<language>Chinese – Mandarin</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>13</pid>
+<parish_name>Christ the Redeemer</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>13</pid>
+<parish_name>Christ the Redeemer</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>13</pid>
+<parish_name>Christ the Redeemer</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>13</pid>
+<parish_name>Christ the Redeemer</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Thursday, Friday</days>
+<time>8:15</time>
+</RECORD>
+<RECORD>
+<pid>13</pid>
+<parish_name>Christ the Redeemer</parish_name>
+<language>English</language>
+<days>Wednesday</days>
+<time>9:15</time>
+</RECORD>
+<RECORD>
+<pid>13</pid>
+<parish_name>Christ the Redeemer</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>60</pid>
+<parish_name>St. Joseph the Worker</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>18:30</time>
+</RECORD>
+<RECORD>
+<pid>60</pid>
+<parish_name>St. Joseph the Worker</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>60</pid>
+<parish_name>St. Joseph the Worker</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:30</time>
+</RECORD>
+<RECORD>
+<pid>60</pid>
+<parish_name>St. Joseph the Worker</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:15</time>
+</RECORD>
+<RECORD>
+<pid>60</pid>
+<parish_name>St. Joseph the Worker</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>13:0</time>
+</RECORD>
+<RECORD>
+<pid>60</pid>
+<parish_name>St. Joseph the Worker</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>14</pid>
+<parish_name>Church of the Assumption</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>14</pid>
+<parish_name>Church of the Assumption</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>14</pid>
+<parish_name>Church of the Assumption</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>14</pid>
+<parish_name>Church of the Assumption</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>14</pid>
+<parish_name>Church of the Assumption</parish_name>
+<language>English</language>
+<days>Friday, Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>94</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:30</time>
+</RECORD>
+<RECORD>
+<pid>94</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>16:0</time>
+</RECORD>
+<RECORD>
+<pid>94</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Wednesday</days>
+<time>12:0</time>
+</RECORD>
+<RECORD>
+<pid>94</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Friday</days>
+<time>12:0</time>
+</RECORD>
+<RECORD>
+<pid>59</pid>
+<parish_name>St. John the Apostle</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>59</pid>
+<parish_name>St. John the Apostle</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>59</pid>
+<parish_name>St. John the Apostle</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>59</pid>
+<parish_name>St. John the Apostle</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>18:0</time>
+</RECORD>
+<RECORD>
+<pid>59</pid>
+<parish_name>St. John the Apostle</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>64</pid>
+<parish_name>St. Joseph</parish_name>
+<language>Vietnamese</language>
+<days>Saturday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>64</pid>
+<parish_name>St. Joseph</parish_name>
+<language>Vietnamese</language>
+<days>Sunday</days>
+<time>9:30</time>
+</RECORD>
+<RECORD>
+<pid>64</pid>
+<parish_name>St. Joseph</parish_name>
+<language>Vietnamese</language>
+<days>Sunday</days>
+<time>14:0</time>
+</RECORD>
+<RECORD>
+<pid>64</pid>
+<parish_name>St. Joseph</parish_name>
+<language>Vietnamese</language>
+<days>Tuesday, Wednesday, Thursday</days>
+<time>11:30</time>
+</RECORD>
+<RECORD>
+<pid>64</pid>
+<parish_name>St. Joseph</parish_name>
+<language>Vietnamese</language>
+<days>Friday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>93</pid>
+<parish_name>Holy Cross</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>80</pid>
+<parish_name>St. Pius X</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>80</pid>
+<parish_name>St. Pius X</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>80</pid>
+<parish_name>St. Pius X</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>80</pid>
+<parish_name>St. Pius X</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>80</pid>
+<parish_name>St. Pius X</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>80</pid>
+<parish_name>St. Pius X</parish_name>
+<language>Korean</language>
+<days>Sunday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>80</pid>
+<parish_name>St. Pius X</parish_name>
+<language>Korean</language>
+<days>Wednesday</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>81</pid>
+<parish_name>St. Stephen</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>16:30</time>
+</RECORD>
+<RECORD>
+<pid>81</pid>
+<parish_name>St. Stephen</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>81</pid>
+<parish_name>St. Stephen</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:30</time>
+</RECORD>
+<RECORD>
+<pid>81</pid>
+<parish_name>St. Stephen</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>18:30</time>
+</RECORD>
+<RECORD>
+<pid>81</pid>
+<parish_name>St. Stephen</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>81</pid>
+<parish_name>St. Stephen</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>82</pid>
+<parish_name>St. Theresa</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>82</pid>
+<parish_name>St. Theresa</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>82</pid>
+<parish_name>St. Theresa</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:30</time>
+</RECORD>
+<RECORD>
+<pid>82</pid>
+<parish_name>St. Theresa</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>83</pid>
+<parish_name>Sts. Cyril &amp; Methodius</parish_name>
+<language>Slovakian</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>83</pid>
+<parish_name>Sts. Cyril &amp; Methodius</parish_name>
+<language>English</language>
+<days>Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>83</pid>
+<parish_name>Sts. Cyril &amp; Methodius</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>85</pid>
+<parish_name>Sts. Peter &amp; Paul</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>85</pid>
+<parish_name>Sts. Peter &amp; Paul</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>85</pid>
+<parish_name>Sts. Peter &amp; Paul</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>85</pid>
+<parish_name>Sts. Peter &amp; Paul</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>16:30</time>
+</RECORD>
+<RECORD>
+<pid>85</pid>
+<parish_name>Sts. Peter &amp; Paul</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>7:0</time>
+</RECORD>
+<RECORD>
+<pid>18</pid>
+<parish_name>Holy Cross</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>8:15</time>
+</RECORD>
+<RECORD>
+<pid>18</pid>
+<parish_name>Holy Cross</parish_name>
+<language>English</language>
+<days>Friday</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>19</pid>
+<parish_name>Holy Family</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>19</pid>
+<parish_name>Holy Family</parish_name>
+<language>English</language>
+<days>Thursday</days>
+<time>9:0</time>
 </RECORD>
 <RECORD>
 <pid>23</pid>
@@ -645,39 +974,627 @@
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>23</pid>
-<parish_name>Holy Spirit</parish_name>
+<pid>44</pid>
+<parish_name>St. Ann</parish_name>
 <language>English</language>
-<days>Monday</days>
-<time>9:0</time>
+<days>Saturday</days>
+<time>17:0</time>
 </RECORD>
 <RECORD>
-<pid>24</pid>
-<parish_name>Holy Trinity</parish_name>
-<language>Tagalog</language>
-<days>Sunday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>24</pid>
-<parish_name>Holy Trinity</parish_name>
+<pid>44</pid>
+<parish_name>St. Ann</parish_name>
 <language>English</language>
 <days>Sunday</days>
-<time>8:30</time>
+<time>8:0</time>
 </RECORD>
 <RECORD>
-<pid>24</pid>
-<parish_name>Holy Trinity</parish_name>
+<pid>44</pid>
+<parish_name>St. Ann</parish_name>
 <language>English</language>
 <days>Sunday</days>
 <time>10:0</time>
 </RECORD>
 <RECORD>
-<pid>24</pid>
-<parish_name>Holy Trinity</parish_name>
+<pid>44</pid>
+<parish_name>St. Ann</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>12:0</time>
+</RECORD>
+<RECORD>
+<pid>44</pid>
+<parish_name>St. Ann</parish_name>
+<language>Korean</language>
+<days>Saturday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>44</pid>
+<parish_name>St. Ann</parish_name>
+<language>English</language>
+<days>Monday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>44</pid>
+<parish_name>St. Ann</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>44</pid>
+<parish_name>St. Ann</parish_name>
+<language>English</language>
+<days>Saturday &amp; Public Holidays</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>44</pid>
+<parish_name>St. Ann</parish_name>
+<language>Spanish</language>
+<days>Saturday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>46</pid>
+<parish_name>St. Anthony of Padua</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>46</pid>
+<parish_name>St. Anthony of Padua</parish_name>
 <language>English</language>
 <days>Saturday</days>
 <time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>43</pid>
+<parish_name>St. Andrew</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>43</pid>
+<parish_name>St. Andrew</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>43</pid>
+<parish_name>St. Andrew</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>43</pid>
+<parish_name>St. Andrew</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>12:0</time>
+</RECORD>
+<RECORD>
+<pid>43</pid>
+<parish_name>St. Andrew</parish_name>
+<language>English</language>
+<days>Monday, Wednesday, Thursday, Friday</days>
+<time>8:15</time>
+</RECORD>
+<RECORD>
+<pid>43</pid>
+<parish_name>St. Andrew</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>43</pid>
+<parish_name>St. Andrew</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>79</pid>
+<parish_name>St. Peter</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>79</pid>
+<parish_name>St. Peter</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>79</pid>
+<parish_name>St. Peter</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>79</pid>
+<parish_name>St. Peter</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>79</pid>
+<parish_name>St. Peter</parish_name>
+<language>English</language>
+<days>Tuesday, Wednesday, Thursday, Friday</days>
+<time>12:0</time>
+</RECORD>
+<RECORD>
+<pid>78</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>78</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Tuesday, Thursday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>76</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>76</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>7:30</time>
+</RECORD>
+<RECORD>
+<pid>76</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>76</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:30</time>
+</RECORD>
+<RECORD>
+<pid>76</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>12:0</time>
+</RECORD>
+<RECORD>
+<pid>76</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>18:30</time>
+</RECORD>
+<RECORD>
+<pid>76</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>76</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Friday</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>76</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>75</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>16:30</time>
+</RECORD>
+<RECORD>
+<pid>75</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:15</time>
+</RECORD>
+<RECORD>
+<pid>75</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>74</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:30</time>
+</RECORD>
+<RECORD>
+<pid>74</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>74</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>74</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>16:30</time>
+</RECORD>
+<RECORD>
+<pid>74</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Monday</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>74</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>74</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Wednesday</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>74</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>73</pid>
+<parish_name>St. Nicholas</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>73</pid>
+<parish_name>St. Nicholas</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>73</pid>
+<parish_name>St. Nicholas</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:30</time>
+</RECORD>
+<RECORD>
+<pid>73</pid>
+<parish_name>St. Nicholas</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>73</pid>
+<parish_name>St. Nicholas</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Thursday, Friday</days>
+<time>8:15</time>
+</RECORD>
+<RECORD>
+<pid>73</pid>
+<parish_name>St. Nicholas</parish_name>
+<language>English</language>
+<days>Wednesday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>73</pid>
+<parish_name>St. Nicholas</parish_name>
+<language>English</language>
+<days>Saturday </days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>21</pid>
+<parish_name>Holy Name of Jesus</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>21</pid>
+<parish_name>Holy Name of Jesus</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>72</pid>
+<parish_name>St. Monica</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>72</pid>
+<parish_name>St. Monica</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>72</pid>
+<parish_name>St. Monica</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>72</pid>
+<parish_name>St. Monica</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>72</pid>
+<parish_name>St. Monica</parish_name>
+<language>English</language>
+<days>Wednesday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>72</pid>
+<parish_name>St. Monica</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:30</time>
+</RECORD>
+<RECORD>
+<pid>71</pid>
+<parish_name>St. Michael</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>71</pid>
+<parish_name>St. Michael</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>71</pid>
+<parish_name>St. Michael</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>71</pid>
+<parish_name>St. Michael</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>12:0</time>
+</RECORD>
+<RECORD>
+<pid>71</pid>
+<parish_name>St. Michael</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>71</pid>
+<parish_name>St. Michael</parish_name>
+<language>English</language>
+<days>Monday, Wednesday, Thursday, Friday</days>
+<time>7:15</time>
+</RECORD>
+<RECORD>
+<pid>71</pid>
+<parish_name>St. Michael</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>71</pid>
+<parish_name>St. Michael</parish_name>
+<language>English</language>
+<days>Saturday and public holidays</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>70</pid>
+<parish_name>St. Matthew</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:30</time>
+</RECORD>
+<RECORD>
+<pid>70</pid>
+<parish_name>St. Matthew</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>70</pid>
+<parish_name>St. Matthew</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:30</time>
+</RECORD>
+<RECORD>
+<pid>70</pid>
+<parish_name>St. Matthew</parish_name>
+<language>Vietnamese</language>
+<days>Sunday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>70</pid>
+<parish_name>St. Matthew</parish_name>
+<language>English</language>
+<days>Monday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>70</pid>
+<parish_name>St. Matthew</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>70</pid>
+<parish_name>St. Matthew</parish_name>
+<language>Vietnamese</language>
+<days>Friday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>70</pid>
+<parish_name>St. Matthew</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>68</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>68</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>68</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:30</time>
+</RECORD>
+<RECORD>
+<pid>68</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:30</time>
+</RECORD>
+<RECORD>
+<pid>68</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>68</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>66</pid>
+<parish_name>St. Jude</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>66</pid>
+<parish_name>St. Jude</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>66</pid>
+<parish_name>St. Jude</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>66</pid>
+<parish_name>St. Jude</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>66</pid>
+<parish_name>St. Jude</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>66</pid>
+<parish_name>St. Jude</parish_name>
+<language>English</language>
+<days>Wednesday</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>66</pid>
+<parish_name>St. Jude</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
 </RECORD>
 <RECORD>
 <pid>24</pid>
@@ -727,6 +1644,545 @@
 <language>English</language>
 <days>Sunday</days>
 <time>11:30</time>
+</RECORD>
+<RECORD>
+<pid>47</pid>
+<parish_name>St. Anthony</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>47</pid>
+<parish_name>St. Anthony</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>47</pid>
+<parish_name>St. Anthony</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>47</pid>
+<parish_name>St. Anthony</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>47</pid>
+<parish_name>St. Anthony</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>49</pid>
+<parish_name>St. Bernadette</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>49</pid>
+<parish_name>St. Bernadette</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>49</pid>
+<parish_name>St. Bernadette</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>49</pid>
+<parish_name>St. Bernadette</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:30</time>
+</RECORD>
+<RECORD>
+<pid>49</pid>
+<parish_name>St. Bernadette</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>65</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>65</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>65</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>65</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>20:0</time>
+</RECORD>
+<RECORD>
+<pid>65</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Monday to Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>90</pid>
+<parish_name>St. Gerard Mission</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:30</time>
+</RECORD>
+<RECORD>
+<pid>67</pid>
+<parish_name>St. Luke</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>16:30</time>
+</RECORD>
+<RECORD>
+<pid>67</pid>
+<parish_name>St. Luke</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>67</pid>
+<parish_name>St. Luke</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:30</time>
+</RECORD>
+<RECORD>
+<pid>67</pid>
+<parish_name>St. Luke</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>67</pid>
+<parish_name>St. Luke</parish_name>
+<language>Polish</language>
+<days>3rd Sunday (call to confirm)</days>
+<time>13:0</time>
+</RECORD>
+<RECORD>
+<pid>67</pid>
+<parish_name>St. Luke</parish_name>
+<language>English</language>
+<days>Monday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>67</pid>
+<parish_name>St. Luke</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>67</pid>
+<parish_name>St. Luke</parish_name>
+<language>English</language>
+<days>Friday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>67</pid>
+<parish_name>St. Luke</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>62</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:30</time>
+</RECORD>
+<RECORD>
+<pid>62</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>62</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>62</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>12:0</time>
+</RECORD>
+<RECORD>
+<pid>62</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Monday, Friday, Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>62</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>62</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Wednesday, Thursday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>61</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:30</time>
+</RECORD>
+<RECORD>
+<pid>61</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>61</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>61</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Thursday, Friday, Saturday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>61</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Wednesday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>58</pid>
+<parish_name>St. James</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>58</pid>
+<parish_name>St. James</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>58</pid>
+<parish_name>St. James</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>18:30</time>
+</RECORD>
+<RECORD>
+<pid>58</pid>
+<parish_name>St. James</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>58</pid>
+<parish_name>St. James</parish_name>
+<language>English</language>
+<days>Saturday and public holidays</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>85</pid>
+<parish_name>Sts. Peter &amp; Paul</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>51</pid>
+<parish_name>St. Clare of Assisi</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>51</pid>
+<parish_name>St. Clare of Assisi</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>51</pid>
+<parish_name>St. Clare of Assisi</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:30</time>
+</RECORD>
+<RECORD>
+<pid>51</pid>
+<parish_name>St. Clare of Assisi</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>51</pid>
+<parish_name>St. Clare of Assisi</parish_name>
+<language>Spanish</language>
+<days>Sunday</days>
+<time>18:30</time>
+</RECORD>
+<RECORD>
+<pid>51</pid>
+<parish_name>St. Clare of Assisi</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>51</pid>
+<parish_name>St. Clare of Assisi</parish_name>
+<language>English</language>
+<days>Friday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>53</pid>
+<parish_name>St. Francis de Sales</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>53</pid>
+<parish_name>St. Francis de Sales</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>53</pid>
+<parish_name>St. Francis de Sales</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>53</pid>
+<parish_name>St. Francis de Sales</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>53</pid>
+<parish_name>St. Francis de Sales</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:15</time>
+</RECORD>
+<RECORD>
+<pid>53</pid>
+<parish_name>St. Francis de Sales</parish_name>
+<language>English</language>
+<days>Friday</days>
+<time>9:15</time>
+</RECORD>
+<RECORD>
+<pid>53</pid>
+<parish_name>St. Francis de Sales</parish_name>
+<language>English</language>
+<days>Saturday and public holidays</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>42</pid>
+<parish_name>St. Andrew Kim</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>12:30</time>
+</RECORD>
+<RECORD>
+<pid>42</pid>
+<parish_name>St. Andrew Kim</parish_name>
+<language>Korean</language>
+<days>Saturday</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>42</pid>
+<parish_name>St. Andrew Kim</parish_name>
+<language>Korean</language>
+<days>Sunday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>42</pid>
+<parish_name>St. Andrew Kim</parish_name>
+<language>Korean</language>
+<days>Sunday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>42</pid>
+<parish_name>St. Andrew Kim</parish_name>
+<language>Korean</language>
+<days>Tuesday, Wednesday, Thursday</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>42</pid>
+<parish_name>St. Andrew Kim</parish_name>
+<language>Korean</language>
+<days>Monday, Wednesday, Friday, Saturday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>41</pid>
+<parish_name>Sacred Heart</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>41</pid>
+<parish_name>Sacred Heart</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>41</pid>
+<parish_name>Sacred Heart</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>41</pid>
+<parish_name>Sacred Heart</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>41</pid>
+<parish_name>Sacred Heart</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>40</pid>
+<parish_name>Sacred Heart</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:30</time>
+</RECORD>
+<RECORD>
+<pid>40</pid>
+<parish_name>Sacred Heart</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>40</pid>
+<parish_name>Sacred Heart</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>40</pid>
+<parish_name>Sacred Heart</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:30</time>
+</RECORD>
+<RECORD>
+<pid>39</pid>
+<parish_name>Precious Blood</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>16:30</time>
+</RECORD>
+<RECORD>
+<pid>39</pid>
+<parish_name>Precious Blood</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>39</pid>
+<parish_name>Precious Blood</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>39</pid>
+<parish_name>Precious Blood</parish_name>
+<language>English</language>
+<days>Monday, Wednesday, Thursday, Friday, Saturday &amp; Public Holidays</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>39</pid>
+<parish_name>Precious Blood</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>18:30</time>
 </RECORD>
 <RECORD>
 <pid>26</pid>
@@ -778,27 +2234,6 @@
 <time>19:30</time>
 </RECORD>
 <RECORD>
-<pid>25</pid>
-<parish_name>Immaculate Conception</parish_name>
-<language>English</language>
-<days>Tuesday, Wednesday, Thursday, Friday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>26</pid>
-<parish_name>Immaculate Conception</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>27</pid>
-<parish_name>Immaculate Heart of Mary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
 <pid>27</pid>
 <parish_name>Immaculate Heart of Mary</parish_name>
 <language>Croatian</language>
@@ -825,6 +2260,20 @@
 <language>Croatian</language>
 <days>Tuesday, Wednesday, Thursday, Friday, Saturday</days>
 <time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>28</pid>
+<parish_name>Our Lady of Lourdes Church</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>28</pid>
+<parish_name>Our Lady of Lourdes Church</parish_name>
+<language>English</language>
+<days>Monday</days>
+<time>10:0</time>
 </RECORD>
 <RECORD>
 <pid>29</pid>
@@ -869,18 +2318,263 @@
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>30</pid>
-<parish_name>Our Lady of Fatima</parish_name>
+<pid>38</pid>
+<parish_name>Our Lady of the Assumption</parish_name>
 <language>English</language>
-<days>Sunday</days>
-<time>10:0</time>
+<days>Saturday</days>
+<time>17:0</time>
 </RECORD>
 <RECORD>
-<pid>29</pid>
-<parish_name>Our Lady of Fatima</parish_name>
-<language>Chinese – Cantonese</language>
+<pid>38</pid>
+<parish_name>Our Lady of the Assumption</parish_name>
+<language>English</language>
 <days>Sunday</days>
-<time>14:30</time>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>38</pid>
+<parish_name>Our Lady of the Assumption</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>38</pid>
+<parish_name>Our Lady of the Assumption</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>16:0</time>
+</RECORD>
+<RECORD>
+<pid>38</pid>
+<parish_name>Our Lady of the Assumption</parish_name>
+<language>English</language>
+<days>Monday, Wednesday, Thursday, Friday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>38</pid>
+<parish_name>Our Lady of the Assumption</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>37</pid>
+<parish_name>Our Lady of Sorrows</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>37</pid>
+<parish_name>Our Lady of Sorrows</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>37</pid>
+<parish_name>Our Lady of Sorrows</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:30</time>
+</RECORD>
+<RECORD>
+<pid>37</pid>
+<parish_name>Our Lady of Sorrows</parish_name>
+<language>Spanish</language>
+<days>Sunday</days>
+<time>13:0</time>
+</RECORD>
+<RECORD>
+<pid>37</pid>
+<parish_name>Our Lady of Sorrows</parish_name>
+<language>Spanish</language>
+<days>Sunday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>37</pid>
+<parish_name>Our Lady of Sorrows</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>37</pid>
+<parish_name>Our Lady of Sorrows</parish_name>
+<language>Italian</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>37</pid>
+<parish_name>Our Lady of Sorrows</parish_name>
+<language>English</language>
+<days>Monday, Wednesday, Thursday</days>
+<time>18:30</time>
+</RECORD>
+<RECORD>
+<pid>37</pid>
+<parish_name>Our Lady of Sorrows</parish_name>
+<language>Spanish</language>
+<days>Tuesday, Friday</days>
+<time>18:30</time>
+</RECORD>
+<RECORD>
+<pid>37</pid>
+<parish_name>Our Lady of Sorrows</parish_name>
+<language>English</language>
+<days>Saturday &amp; Public Holidays</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>36</pid>
+<parish_name>Our Lady of Perpetual Help</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>36</pid>
+<parish_name>Our Lady of Perpetual Help</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>36</pid>
+<parish_name>Our Lady of Perpetual Help</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>36</pid>
+<parish_name>Our Lady of Perpetual Help</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>36</pid>
+<parish_name>Our Lady of Perpetual Help</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>36</pid>
+<parish_name>Our Lady of Perpetual Help</parish_name>
+<language>English</language>
+<days>Friday, Saturday &amp; Holidays</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>36</pid>
+<parish_name>Our Lady of Perpetual Help</parish_name>
+<language>English</language>
+<days>Thursday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>32</pid>
+<parish_name>Our Lady of Good Hope</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>16:30</time>
+</RECORD>
+<RECORD>
+<pid>32</pid>
+<parish_name>Our Lady of Good Hope</parish_name>
+<language>English</language>
+<days>Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>82</pid>
+<parish_name>St. Theresa</parish_name>
+<language>Chinese – Mandarin</language>
+<days>Sunday</days>
+<time>12:0</time>
+</RECORD>
+<RECORD>
+<pid>35</pid>
+<parish_name>Our Lady of Mercy</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>35</pid>
+<parish_name>Our Lady of Mercy</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>35</pid>
+<parish_name>Our Lady of Mercy</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>35</pid>
+<parish_name>Our Lady of Mercy</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday</days>
+<time>8:15</time>
+</RECORD>
+<RECORD>
+<pid>35</pid>
+<parish_name>Our Lady of Mercy</parish_name>
+<language>English</language>
+<days>Friday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>35</pid>
+<parish_name>Our Lady of Mercy</parish_name>
+<language>English</language>
+<days>Friday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>34</pid>
+<parish_name>Our Lady of Lourdes</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>34</pid>
+<parish_name>Our Lady of Lourdes</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>34</pid>
+<parish_name>Our Lady of Lourdes</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>34</pid>
+<parish_name>Our Lady of Lourdes</parish_name>
+<language>French</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>33</pid>
+<parish_name>Our Lady of Hungary</parish_name>
+<language>Hungarian</language>
+<days>Sunday</days>
+<time>11:0</time>
 </RECORD>
 <RECORD>
 <pid>30</pid>
@@ -1009,830 +2703,95 @@
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>31</pid>
-<parish_name>Our Lady of Good Counsel</parish_name>
-<language>Laotian</language>
-<days>Saturday</days>
-<time>16:0</time>
-</RECORD>
-<RECORD>
-<pid>31</pid>
-<parish_name>Our Lady of Good Counsel</parish_name>
-<language>Indo-Canadian</language>
+<pid>55</pid>
+<parish_name>St. Francis Xavier</parish_name>
+<language>Chinese – Mandarin</language>
 <days>Saturday</days>
 <time>17:30</time>
 </RECORD>
 <RECORD>
-<pid>32</pid>
-<parish_name>Our Lady of Good Hope</parish_name>
-<language>English</language>
+<pid>55</pid>
+<parish_name>St. Francis Xavier</parish_name>
+<language>Chinese – Cantonese</language>
 <days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>32</pid>
-<parish_name>Our Lady of Good Hope</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>16:30</time>
-</RECORD>
-<RECORD>
-<pid>32</pid>
-<parish_name>Our Lady of Good Hope</parish_name>
-<language>English</language>
-<days>Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>33</pid>
-<parish_name>Our Lady of Hungary</parish_name>
-<language>Hungarian</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>33</pid>
-<parish_name>Our Lady of Hungary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>33</pid>
-<parish_name>Our Lady of Hungary</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>34</pid>
-<parish_name>Our Lady of Lourdes</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>34</pid>
-<parish_name>Our Lady of Lourdes</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>34</pid>
-<parish_name>Our Lady of Lourdes</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>34</pid>
-<parish_name>Our Lady of Lourdes</parish_name>
-<language>French</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>28</pid>
-<parish_name>Our Lady of Lourdes Church</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>28</pid>
-<parish_name>Our Lady of Lourdes Church</parish_name>
-<language>English</language>
-<days>Monday</days>
-<time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>35</pid>
-<parish_name>Our Lady of Mercy</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>35</pid>
-<parish_name>Our Lady of Mercy</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>35</pid>
-<parish_name>Our Lady of Mercy</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>35</pid>
-<parish_name>Our Lady of Mercy</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>35</pid>
-<parish_name>Our Lady of Mercy</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday</days>
-<time>8:15</time>
-</RECORD>
-<RECORD>
-<pid>35</pid>
-<parish_name>Our Lady of Mercy</parish_name>
-<language>English</language>
-<days>Friday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>35</pid>
-<parish_name>Our Lady of Mercy</parish_name>
-<language>English</language>
-<days>Friday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>36</pid>
-<parish_name>Our Lady of Perpetual Help</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>36</pid>
-<parish_name>Our Lady of Perpetual Help</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>36</pid>
-<parish_name>Our Lady of Perpetual Help</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>36</pid>
-<parish_name>Our Lady of Perpetual Help</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>36</pid>
-<parish_name>Our Lady of Perpetual Help</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday</days>
 <time>8:0</time>
 </RECORD>
 <RECORD>
-<pid>36</pid>
-<parish_name>Our Lady of Perpetual Help</parish_name>
-<language>English</language>
-<days>Friday, Saturday &amp; Holidays</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>36</pid>
-<parish_name>Our Lady of Perpetual Help</parish_name>
-<language>English</language>
-<days>Thursday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>37</pid>
-<parish_name>Our Lady of Sorrows</parish_name>
-<language>Italian</language>
-<days>Sunday</days>
-<time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>37</pid>
-<parish_name>Our Lady of Sorrows</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>37</pid>
-<parish_name>Our Lady of Sorrows</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>37</pid>
-<parish_name>Our Lady of Sorrows</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:30</time>
-</RECORD>
-<RECORD>
-<pid>37</pid>
-<parish_name>Our Lady of Sorrows</parish_name>
-<language>Spanish</language>
-<days>Sunday</days>
-<time>13:0</time>
-</RECORD>
-<RECORD>
-<pid>37</pid>
-<parish_name>Our Lady of Sorrows</parish_name>
-<language>Spanish</language>
-<days>Sunday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>37</pid>
-<parish_name>Our Lady of Sorrows</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>37</pid>
-<parish_name>Our Lady of Sorrows</parish_name>
-<language>Italian</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>37</pid>
-<parish_name>Our Lady of Sorrows</parish_name>
-<language>English</language>
-<days>Monday, Wednesday, Thursday</days>
-<time>18:30</time>
-</RECORD>
-<RECORD>
-<pid>37</pid>
-<parish_name>Our Lady of Sorrows</parish_name>
-<language>Spanish</language>
-<days>Tuesday, Friday</days>
-<time>18:30</time>
-</RECORD>
-<RECORD>
-<pid>37</pid>
-<parish_name>Our Lady of Sorrows</parish_name>
-<language>English</language>
-<days>Saturday &amp; Public Holidays</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>38</pid>
-<parish_name>Our Lady of the Assumption</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>38</pid>
-<parish_name>Our Lady of the Assumption</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>38</pid>
-<parish_name>Our Lady of the Assumption</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>38</pid>
-<parish_name>Our Lady of the Assumption</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>16:0</time>
-</RECORD>
-<RECORD>
-<pid>38</pid>
-<parish_name>Our Lady of the Assumption</parish_name>
-<language>English</language>
-<days>Monday, Wednesday, Thursday, Friday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>38</pid>
-<parish_name>Our Lady of the Assumption</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>38</pid>
-<parish_name>Our Lady of the Assumption</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>38</pid>
-<parish_name>Our Lady of the Assumption</parish_name>
-<language>English</language>
-<days>Tuesday, Thursday</days>
-<time>7:0</time>
-</RECORD>
-<RECORD>
-<pid>38</pid>
-<parish_name>Our Lady of the Assumption</parish_name>
-<language>English</language>
-<days>1st Friday &amp; Solemnities</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>39</pid>
-<parish_name>Precious Blood</parish_name>
-<language>English</language>
-<days>1st Friday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>39</pid>
-<parish_name>Precious Blood</parish_name>
-<language>English</language>
-<days>1st Friday</days>
-<time>18:30</time>
-</RECORD>
-<RECORD>
-<pid>39</pid>
-<parish_name>Precious Blood</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>39</pid>
-<parish_name>Precious Blood</parish_name>
-<language>Spanish</language>
-<days>3rd Sunday</days>
-<time>16:0</time>
-</RECORD>
-<RECORD>
-<pid>39</pid>
-<parish_name>Precious Blood</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>16:30</time>
-</RECORD>
-<RECORD>
-<pid>39</pid>
-<parish_name>Precious Blood</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>39</pid>
-<parish_name>Precious Blood</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>39</pid>
-<parish_name>Precious Blood</parish_name>
-<language>English</language>
-<days>Monday, Wednesday, Thursday, Friday, Saturday &amp; Public Holidays</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>39</pid>
-<parish_name>Precious Blood</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>18:30</time>
-</RECORD>
-<RECORD>
-<pid>41</pid>
-<parish_name>Sacred Heart</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>41</pid>
-<parish_name>Sacred Heart</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>41</pid>
-<parish_name>Sacred Heart</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>41</pid>
-<parish_name>Sacred Heart</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>41</pid>
-<parish_name>Sacred Heart</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>40</pid>
-<parish_name>Sacred Heart</parish_name>
-<language>English</language>
+<pid>55</pid>
+<parish_name>St. Francis Xavier</parish_name>
+<language>Chinese – Cantonese</language>
 <days>Sunday</days>
 <time>9:30</time>
 </RECORD>
 <RECORD>
-<pid>40</pid>
-<parish_name>Sacred Heart</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>40</pid>
-<parish_name>Sacred Heart</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>40</pid>
-<parish_name>Sacred Heart</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:30</time>
-</RECORD>
-<RECORD>
-<pid>43</pid>
-<parish_name>St. Andrew</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>43</pid>
-<parish_name>St. Andrew</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>43</pid>
-<parish_name>St. Andrew</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>43</pid>
-<parish_name>St. Andrew</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>12:0</time>
-</RECORD>
-<RECORD>
-<pid>43</pid>
-<parish_name>St. Andrew</parish_name>
-<language>English</language>
-<days>Monday, Wednesday, Thursday, Friday</days>
-<time>8:15</time>
-</RECORD>
-<RECORD>
-<pid>43</pid>
-<parish_name>St. Andrew</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>43</pid>
-<parish_name>St. Andrew</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>43</pid>
-<parish_name>St. Andrew</parish_name>
-<language>English</language>
-<days>1st Friday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>43</pid>
-<parish_name>St. Andrew</parish_name>
-<language>English</language>
-<days>1st Friday (Sep - Jun)</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>42</pid>
-<parish_name>St. Andrew Kim</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>12:30</time>
-</RECORD>
-<RECORD>
-<pid>42</pid>
-<parish_name>St. Andrew Kim</parish_name>
-<language>Korean</language>
-<days>Saturday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>42</pid>
-<parish_name>St. Andrew Kim</parish_name>
-<language>Korean</language>
-<days>Sunday</days>
+<pid>55</pid>
+<parish_name>St. Francis Xavier</parish_name>
+<language>Chinese – Cantonese</language>
+<days>Monday, Tuesday, Wednesday, Thursday</days>
 <time>8:0</time>
 </RECORD>
 <RECORD>
-<pid>42</pid>
-<parish_name>St. Andrew Kim</parish_name>
-<language>Korean</language>
-<days>Sunday</days>
-<time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>42</pid>
-<parish_name>St. Andrew Kim</parish_name>
-<language>Korean</language>
+<pid>55</pid>
+<parish_name>St. Francis Xavier</parish_name>
+<language>Chinese – Cantonese</language>
 <days>Tuesday, Wednesday, Thursday</days>
 <time>19:30</time>
 </RECORD>
 <RECORD>
-<pid>42</pid>
-<parish_name>St. Andrew Kim</parish_name>
-<language>Korean</language>
-<days>Monday, Wednesday, Friday, Saturday</days>
-<time>10:0</time>
+<pid>55</pid>
+<parish_name>St. Francis Xavier</parish_name>
+<language>Chinese – Cantonese</language>
+<days>Saturday</days>
+<time>8:45</time>
 </RECORD>
 <RECORD>
-<pid>44</pid>
-<parish_name>St. Ann</parish_name>
+<pid>54</pid>
+<parish_name>St. Francis of Assisi</parish_name>
 <language>English</language>
 <days>Saturday</days>
 <time>17:0</time>
 </RECORD>
 <RECORD>
-<pid>44</pid>
-<parish_name>St. Ann</parish_name>
+<pid>54</pid>
+<parish_name>St. Francis of Assisi</parish_name>
 <language>English</language>
 <days>Sunday</days>
-<time>8:0</time>
+<time>10:30</time>
 </RECORD>
 <RECORD>
-<pid>44</pid>
-<parish_name>St. Ann</parish_name>
+<pid>54</pid>
+<parish_name>St. Francis of Assisi</parish_name>
 <language>English</language>
 <days>Sunday</days>
-<time>10:0</time>
+<time>17:0</time>
 </RECORD>
 <RECORD>
-<pid>44</pid>
-<parish_name>St. Ann</parish_name>
-<language>English</language>
+<pid>54</pid>
+<parish_name>St. Francis of Assisi</parish_name>
+<language>Italian</language>
 <days>Sunday</days>
-<time>12:0</time>
+<time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>44</pid>
-<parish_name>St. Ann</parish_name>
-<language>Korean</language>
-<days>Saturday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>44</pid>
-<parish_name>St. Ann</parish_name>
+<pid>54</pid>
+<parish_name>St. Francis of Assisi</parish_name>
 <language>English</language>
 <days>Monday, Wednesday, Thursday, Friday</days>
 <time>8:0</time>
 </RECORD>
 <RECORD>
-<pid>44</pid>
-<parish_name>St. Ann</parish_name>
+<pid>54</pid>
+<parish_name>St. Francis of Assisi</parish_name>
 <language>English</language>
 <days>Tuesday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>44</pid>
-<parish_name>St. Ann</parish_name>
+<pid>54</pid>
+<parish_name>St. Francis of Assisi</parish_name>
 <language>English</language>
 <days>Saturday</days>
 <time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>44</pid>
-<parish_name>St. Ann</parish_name>
-<language>Spanish</language>
-<days>Saturday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>47</pid>
-<parish_name>St. Anthony</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>47</pid>
-<parish_name>St. Anthony</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>47</pid>
-<parish_name>St. Anthony</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>47</pid>
-<parish_name>St. Anthony</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>47</pid>
-<parish_name>St. Anthony</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>46</pid>
-<parish_name>St. Anthony of Padua</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>46</pid>
-<parish_name>St. Anthony of Padua</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>46</pid>
-<parish_name>St. Anthony of Padua</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>46</pid>
-<parish_name>St. Anthony of Padua</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:30</time>
-</RECORD>
-<RECORD>
-<pid>46</pid>
-<parish_name>St. Anthony of Padua</parish_name>
-<language>English</language>
-<days>Monday, Wednesday, Thursday, Friday</days>
-<time>8:15</time>
-</RECORD>
-<RECORD>
-<pid>46</pid>
-<parish_name>St. Anthony of Padua</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>46</pid>
-<parish_name>St. Anthony of Padua</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>45</pid>
-<parish_name>St. Anthony of Padua</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>45</pid>
-<parish_name>St. Anthony of Padua</parish_name>
-<language>English</language>
-<days>Monday, Wednesday, Thursday, Friday, Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>45</pid>
-<parish_name>St. Anthony of Padua</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>45</pid>
-<parish_name>St. Anthony of Padua</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>48</pid>
-<parish_name>St. Augustine</parish_name>
-<language>English</language>
-<days>Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>48</pid>
-<parish_name>St. Augustine</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>48</pid>
-<parish_name>St. Augustine</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>48</pid>
-<parish_name>St. Augustine</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>48</pid>
-<parish_name>St. Augustine</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>48</pid>
-<parish_name>St. Augustine</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>49</pid>
-<parish_name>St. Bernadette</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>49</pid>
-<parish_name>St. Bernadette</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>49</pid>
-<parish_name>St. Bernadette</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>49</pid>
-<parish_name>St. Bernadette</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:30</time>
-</RECORD>
-<RECORD>
-<pid>49</pid>
-<parish_name>St. Bernadette</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>50</pid>
-<parish_name>St. Casimir</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
 </RECORD>
 <RECORD>
 <pid>50</pid>
@@ -1877,60 +2836,11 @@
 <time>8:45</time>
 </RECORD>
 <RECORD>
-<pid>51</pid>
-<parish_name>St. Clare of Assisi</parish_name>
+<pid>48</pid>
+<parish_name>St. Augustine</parish_name>
 <language>English</language>
-<days>Sunday</days>
-<time>12:30</time>
-</RECORD>
-<RECORD>
-<pid>51</pid>
-<parish_name>St. Clare of Assisi</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>51</pid>
-<parish_name>St. Clare of Assisi</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>51</pid>
-<parish_name>St. Clare of Assisi</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>51</pid>
-<parish_name>St. Clare of Assisi</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>51</pid>
-<parish_name>St. Clare of Assisi</parish_name>
-<language>Spanish</language>
-<days>Sunday</days>
-<time>18:30</time>
-</RECORD>
-<RECORD>
-<pid>51</pid>
-<parish_name>St. Clare of Assisi</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>51</pid>
-<parish_name>St. Clare of Assisi</parish_name>
-<language>English</language>
-<days>Friday</days>
-<time>11:0</time>
+<days>Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>8:0</time>
 </RECORD>
 <RECORD>
 <pid>52</pid>
@@ -1966,181 +2876,6 @@
 <language>English</language>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
 <time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>53</pid>
-<parish_name>St. Francis de Sales</parish_name>
-<language>Sign Language</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>53</pid>
-<parish_name>St. Francis de Sales</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>53</pid>
-<parish_name>St. Francis de Sales</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>53</pid>
-<parish_name>St. Francis de Sales</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>53</pid>
-<parish_name>St. Francis de Sales</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>53</pid>
-<parish_name>St. Francis de Sales</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:15</time>
-</RECORD>
-<RECORD>
-<pid>53</pid>
-<parish_name>St. Francis de Sales</parish_name>
-<language>English</language>
-<days>Friday</days>
-<time>9:15</time>
-</RECORD>
-<RECORD>
-<pid>53</pid>
-<parish_name>St. Francis de Sales</parish_name>
-<language>English</language>
-<days>Saturday and public holidays</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>54</pid>
-<parish_name>St. Francis of Assisi</parish_name>
-<language>Italian</language>
-<days>Thursday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>54</pid>
-<parish_name>St. Francis of Assisi</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>54</pid>
-<parish_name>St. Francis of Assisi</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>54</pid>
-<parish_name>St. Francis of Assisi</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>54</pid>
-<parish_name>St. Francis of Assisi</parish_name>
-<language>Italian</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>54</pid>
-<parish_name>St. Francis of Assisi</parish_name>
-<language>English</language>
-<days>Monday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>54</pid>
-<parish_name>St. Francis of Assisi</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>54</pid>
-<parish_name>St. Francis of Assisi</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>55</pid>
-<parish_name>St. Francis Xavier</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>55</pid>
-<parish_name>St. Francis Xavier</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:15</time>
-</RECORD>
-<RECORD>
-<pid>55</pid>
-<parish_name>St. Francis Xavier</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>55</pid>
-<parish_name>St. Francis Xavier</parish_name>
-<language>Chinese – Mandarin</language>
-<days>Saturday</days>
-<time>17:30</time>
-</RECORD>
-<RECORD>
-<pid>55</pid>
-<parish_name>St. Francis Xavier</parish_name>
-<language>Chinese – Cantonese</language>
-<days>Sunday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>55</pid>
-<parish_name>St. Francis Xavier</parish_name>
-<language>Chinese – Cantonese</language>
-<days>Sunday</days>
-<time>9:30</time>
-</RECORD>
-<RECORD>
-<pid>55</pid>
-<parish_name>St. Francis Xavier</parish_name>
-<language>Chinese – Cantonese</language>
-<days>Monday, Tuesday, Wednesday, Thursday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>55</pid>
-<parish_name>St. Francis Xavier</parish_name>
-<language>Chinese – Cantonese</language>
-<days>Tuesday, Wednesday, Thursday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>55</pid>
-<parish_name>St. Francis Xavier</parish_name>
-<language>Chinese – Cantonese</language>
-<days>Saturday</days>
-<time>8:45</time>
 </RECORD>
 <RECORD>
 <pid>91</pid>
@@ -2150,41 +2885,6 @@
 <time>13:0</time>
 </RECORD>
 <RECORD>
-<pid>90</pid>
-<parish_name>St. Gerard Mission</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>56</pid>
-<parish_name>St. Helen</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>16:0</time>
-</RECORD>
-<RECORD>
-<pid>56</pid>
-<parish_name>St. Helen</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>56</pid>
-<parish_name>St. Helen</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:30</time>
-</RECORD>
-<RECORD>
-<pid>56</pid>
-<parish_name>St. Helen</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
 <pid>56</pid>
 <parish_name>St. Helen</parish_name>
 <language>English</language>
@@ -2204,496 +2904,6 @@
 <language>Italian</language>
 <days>Sunday</days>
 <time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>58</pid>
-<parish_name>St. James</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>58</pid>
-<parish_name>St. James</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>58</pid>
-<parish_name>St. James</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>18:30</time>
-</RECORD>
-<RECORD>
-<pid>58</pid>
-<parish_name>St. James</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>58</pid>
-<parish_name>St. James</parish_name>
-<language>English</language>
-<days>Saturday and public holidays</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>59</pid>
-<parish_name>St. John the Apostle</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>59</pid>
-<parish_name>St. John the Apostle</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>59</pid>
-<parish_name>St. John the Apostle</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>59</pid>
-<parish_name>St. John the Apostle</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>18:0</time>
-</RECORD>
-<RECORD>
-<pid>59</pid>
-<parish_name>St. John the Apostle</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>64</pid>
-<parish_name>St. Joseph</parish_name>
-<language>Vietnamese</language>
-<days>Saturday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>64</pid>
-<parish_name>St. Joseph</parish_name>
-<language>Vietnamese</language>
-<days>Sunday</days>
-<time>9:30</time>
-</RECORD>
-<RECORD>
-<pid>64</pid>
-<parish_name>St. Joseph</parish_name>
-<language>Vietnamese</language>
-<days>Sunday</days>
-<time>14:0</time>
-</RECORD>
-<RECORD>
-<pid>64</pid>
-<parish_name>St. Joseph</parish_name>
-<language>Vietnamese</language>
-<days>Tuesday, Wednesday, Thursday</days>
-<time>11:30</time>
-</RECORD>
-<RECORD>
-<pid>64</pid>
-<parish_name>St. Joseph</parish_name>
-<language>Vietnamese</language>
-<days>Friday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>63</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>63</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Monday, Wednesday, Thursday, Friday, Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>63</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>63</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>63</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>62</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:30</time>
-</RECORD>
-<RECORD>
-<pid>62</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>62</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>62</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>12:0</time>
-</RECORD>
-<RECORD>
-<pid>62</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Monday, Friday, Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>62</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>62</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Wednesday, Thursday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>61</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:30</time>
-</RECORD>
-<RECORD>
-<pid>61</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>61</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>61</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Thursday, Friday, Saturday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>61</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Wednesday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>65</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>65</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>65</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>65</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>20:0</time>
-</RECORD>
-<RECORD>
-<pid>65</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Monday to Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>89</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time></time>
-</RECORD>
-<RECORD>
-<pid>64</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>64</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:30</time>
-</RECORD>
-<RECORD>
-<pid>64</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>64</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>64</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>64</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>18:0</time>
-</RECORD>
-<RECORD>
-<pid>63</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>1st Friday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>65</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Friday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>65</pid>
-<parish_name>St. Joseph</parish_name>
-<language>English</language>
-<days>Saturday &amp; Public Holidays</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>60</pid>
-<parish_name>St. Joseph the Worker</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>18:30</time>
-</RECORD>
-<RECORD>
-<pid>60</pid>
-<parish_name>St. Joseph the Worker</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>60</pid>
-<parish_name>St. Joseph the Worker</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:30</time>
-</RECORD>
-<RECORD>
-<pid>60</pid>
-<parish_name>St. Joseph the Worker</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:15</time>
-</RECORD>
-<RECORD>
-<pid>60</pid>
-<parish_name>St. Joseph the Worker</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>13:0</time>
-</RECORD>
-<RECORD>
-<pid>60</pid>
-<parish_name>St. Joseph the Worker</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>66</pid>
-<parish_name>St. Jude</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>66</pid>
-<parish_name>St. Jude</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>66</pid>
-<parish_name>St. Jude</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>66</pid>
-<parish_name>St. Jude</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>66</pid>
-<parish_name>St. Jude</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>66</pid>
-<parish_name>St. Jude</parish_name>
-<language>English</language>
-<days>Wednesday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>66</pid>
-<parish_name>St. Jude</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>66</pid>
-<parish_name>St. Jude</parish_name>
-<language>Latin</language>
-<days>Sunday</days>
-<time>7:45</time>
-</RECORD>
-<RECORD>
-<pid>67</pid>
-<parish_name>St. Luke</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>16:30</time>
-</RECORD>
-<RECORD>
-<pid>67</pid>
-<parish_name>St. Luke</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>67</pid>
-<parish_name>St. Luke</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>67</pid>
-<parish_name>St. Luke</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>67</pid>
-<parish_name>St. Luke</parish_name>
-<language>Polish</language>
-<days>3rd Sunday (call to confirm)</days>
-<time>13:0</time>
-</RECORD>
-<RECORD>
-<pid>67</pid>
-<parish_name>St. Luke</parish_name>
-<language>English</language>
-<days>Monday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>67</pid>
-<parish_name>St. Luke</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>67</pid>
-<parish_name>St. Luke</parish_name>
-<language>English</language>
-<days>Friday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>67</pid>
-<parish_name>St. Luke</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
 </RECORD>
 <RECORD>
 <pid>57</pid>
@@ -2759,790 +2969,6 @@
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>69</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>15:0</time>
-</RECORD>
-<RECORD>
-<pid>69</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>69</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>68</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>68</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>68</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:30</time>
-</RECORD>
-<RECORD>
-<pid>68</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:30</time>
-</RECORD>
-<RECORD>
-<pid>68</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>18:30</time>
-</RECORD>
-<RECORD>
-<pid>68</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>68</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>69</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:30</time>
-</RECORD>
-<RECORD>
-<pid>69</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>94</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:30</time>
-</RECORD>
-<RECORD>
-<pid>94</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>16:0</time>
-</RECORD>
-<RECORD>
-<pid>94</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Wednesday</days>
-<time>12:0</time>
-</RECORD>
-<RECORD>
-<pid>94</pid>
-<parish_name>St. Mary</parish_name>
-<language>English</language>
-<days>Friday</days>
-<time>12:0</time>
-</RECORD>
-<RECORD>
-<pid>70</pid>
-<parish_name>St. Matthew</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:30</time>
-</RECORD>
-<RECORD>
-<pid>70</pid>
-<parish_name>St. Matthew</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>70</pid>
-<parish_name>St. Matthew</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>70</pid>
-<parish_name>St. Matthew</parish_name>
-<language>Vietnamese</language>
-<days>Sunday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>70</pid>
-<parish_name>St. Matthew</parish_name>
-<language>English</language>
-<days>Monday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>70</pid>
-<parish_name>St. Matthew</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>70</pid>
-<parish_name>St. Matthew</parish_name>
-<language>Vietnamese</language>
-<days>Friday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>70</pid>
-<parish_name>St. Matthew</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>70</pid>
-<parish_name>St. Matthew</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>71</pid>
-<parish_name>St. Michael</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>71</pid>
-<parish_name>St. Michael</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>71</pid>
-<parish_name>St. Michael</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:0</time>
-</RECORD>
-<RECORD>
-<pid>71</pid>
-<parish_name>St. Michael</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>12:0</time>
-</RECORD>
-<RECORD>
-<pid>71</pid>
-<parish_name>St. Michael</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>71</pid>
-<parish_name>St. Michael</parish_name>
-<language>English</language>
-<days>Monday, Wednesday, Thursday, Friday</days>
-<time>7:15</time>
-</RECORD>
-<RECORD>
-<pid>71</pid>
-<parish_name>St. Michael</parish_name>
-<language>English</language>
-<days>Tuesday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>71</pid>
-<parish_name>St. Michael</parish_name>
-<language>English</language>
-<days>Saturday and public holidays</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>72</pid>
-<parish_name>St. Monica</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>72</pid>
-<parish_name>St. Monica</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>72</pid>
-<parish_name>St. Monica</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>72</pid>
-<parish_name>St. Monica</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>72</pid>
-<parish_name>St. Monica</parish_name>
-<language>English</language>
-<days>Wednesday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>72</pid>
-<parish_name>St. Monica</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:30</time>
-</RECORD>
-<RECORD>
-<pid>73</pid>
-<parish_name>St. Nicholas</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>73</pid>
-<parish_name>St. Nicholas</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>73</pid>
-<parish_name>St. Nicholas</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>73</pid>
-<parish_name>St. Nicholas</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>73</pid>
-<parish_name>St. Nicholas</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Thursday, Friday</days>
-<time>8:15</time>
-</RECORD>
-<RECORD>
-<pid>73</pid>
-<parish_name>St. Nicholas</parish_name>
-<language>English</language>
-<days>Wednesday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>73</pid>
-<parish_name>St. Nicholas</parish_name>
-<language>English</language>
-<days>Saturday </days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>75</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>16:30</time>
-</RECORD>
-<RECORD>
-<pid>75</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:15</time>
-</RECORD>
-<RECORD>
-<pid>75</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>74</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:30</time>
-</RECORD>
-<RECORD>
-<pid>74</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>74</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>74</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>16:30</time>
-</RECORD>
-<RECORD>
-<pid>74</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Monday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>74</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>74</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Wednesday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>74</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>75</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>7:0</time>
-</RECORD>
-<RECORD>
-<pid>75</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>7:0</time>
-</RECORD>
-<RECORD>
-<pid>75</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>75</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>75</pid>
-<parish_name>St. Patrick</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>77</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>77</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Tuesday, Wednesday, Thursday, Friday</days>
-<time>11:30</time>
-</RECORD>
-<RECORD>
-<pid>78</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>78</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Tuesday, Thursday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>76</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>76</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>7:30</time>
-</RECORD>
-<RECORD>
-<pid>76</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>76</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>76</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>12:0</time>
-</RECORD>
-<RECORD>
-<pid>76</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>18:30</time>
-</RECORD>
-<RECORD>
-<pid>76</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>76</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Friday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>76</pid>
-<parish_name>St. Paul</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>79</pid>
-<parish_name>St. Peter</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>79</pid>
-<parish_name>St. Peter</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>79</pid>
-<parish_name>St. Peter</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>79</pid>
-<parish_name>St. Peter</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>79</pid>
-<parish_name>St. Peter</parish_name>
-<language>English</language>
-<days>Tuesday, Wednesday, Thursday, Friday</days>
-<time>12:0</time>
-</RECORD>
-<RECORD>
-<pid>79</pid>
-<parish_name>St. Peter</parish_name>
-<language>English</language>
-<days>Monday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>80</pid>
-<parish_name>St. Pius X</parish_name>
-<language>English</language>
-<days>1st Friday</days>
-<time>9:15</time>
-</RECORD>
-<RECORD>
-<pid>80</pid>
-<parish_name>St. Pius X</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>80</pid>
-<parish_name>St. Pius X</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>80</pid>
-<parish_name>St. Pius X</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>80</pid>
-<parish_name>St. Pius X</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>80</pid>
-<parish_name>St. Pius X</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>80</pid>
-<parish_name>St. Pius X</parish_name>
-<language>Korean</language>
-<days>Sunday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>80</pid>
-<parish_name>St. Pius X</parish_name>
-<language>Korean</language>
-<days>Wednesday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>81</pid>
-<parish_name>St. Stephen</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>16:30</time>
-</RECORD>
-<RECORD>
-<pid>81</pid>
-<parish_name>St. Stephen</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>81</pid>
-<parish_name>St. Stephen</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>81</pid>
-<parish_name>St. Stephen</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>18:30</time>
-</RECORD>
-<RECORD>
-<pid>81</pid>
-<parish_name>St. Stephen</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>81</pid>
-<parish_name>St. Stephen</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>81</pid>
-<parish_name>St. Stephen</parish_name>
-<language>English</language>
-<days>1st Friday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>82</pid>
-<parish_name>St. Theresa</parish_name>
-<language>English</language>
-<days>Wednesday</days>
-<time>19:15</time>
-</RECORD>
-<RECORD>
-<pid>82</pid>
-<parish_name>St. Theresa</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>16:0</time>
-</RECORD>
-<RECORD>
-<pid>82</pid>
-<parish_name>St. Theresa</parish_name>
-<language>Chinese – Mandarin</language>
-<days>Sunday</days>
-<time>12:0</time>
-</RECORD>
-<RECORD>
-<pid>82</pid>
-<parish_name>St. Theresa</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>19:0</time>
-</RECORD>
-<RECORD>
-<pid>82</pid>
-<parish_name>St. Theresa</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>82</pid>
-<parish_name>St. Theresa</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>82</pid>
-<parish_name>St. Theresa</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>8:30</time>
-</RECORD>
-<RECORD>
-<pid>86</pid>
-<parish_name>Star of the Sea</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>16:0</time>
-</RECORD>
-<RECORD>
-<pid>86</pid>
-<parish_name>Star of the Sea</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>10:30</time>
-</RECORD>
-<RECORD>
-<pid>86</pid>
-<parish_name>Star of the Sea</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>83</pid>
-<parish_name>Sts. Cyril &amp; Methodius</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>83</pid>
-<parish_name>Sts. Cyril &amp; Methodius</parish_name>
-<language>Slovakian</language>
-<days>1st Friday</days>
-<time>19:30</time>
-</RECORD>
-<RECORD>
-<pid>83</pid>
-<parish_name>Sts. Cyril &amp; Methodius</parish_name>
-<language>Slovakian</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>83</pid>
-<parish_name>Sts. Cyril &amp; Methodius</parish_name>
-<language>English</language>
-<days>Tuesday, Wednesday, Thursday, Friday</days>
-<time>8:0</time>
-</RECORD>
-<RECORD>
-<pid>83</pid>
-<parish_name>Sts. Cyril &amp; Methodius</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>84</pid>
-<parish_name>Sts. Joachim &amp; Ann</parish_name>
-<language>Latin</language>
-<days>Sunday</days>
-<time>13:0</time>
-</RECORD>
-<RECORD>
 <pid>84</pid>
 <parish_name>Sts. Joachim &amp; Ann</parish_name>
 <language>English</language>
@@ -3578,48 +3004,6 @@
 <time>11:0</time>
 </RECORD>
 <RECORD>
-<pid>85</pid>
-<parish_name>Sts. Peter &amp; Paul</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>17:0</time>
-</RECORD>
-<RECORD>
-<pid>85</pid>
-<parish_name>Sts. Peter &amp; Paul</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
-<pid>85</pid>
-<parish_name>Sts. Peter &amp; Paul</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>11:0</time>
-</RECORD>
-<RECORD>
-<pid>85</pid>
-<parish_name>Sts. Peter &amp; Paul</parish_name>
-<language>English</language>
-<days>Sunday</days>
-<time>16:30</time>
-</RECORD>
-<RECORD>
-<pid>85</pid>
-<parish_name>Sts. Peter &amp; Paul</parish_name>
-<language>English</language>
-<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
-<time>7:0</time>
-</RECORD>
-<RECORD>
-<pid>85</pid>
-<parish_name>Sts. Peter &amp; Paul</parish_name>
-<language>English</language>
-<days>Saturday</days>
-<time>9:0</time>
-</RECORD>
-<RECORD>
 <pid>87</pid>
 <parish_name>Visitation of the Blessed Virgin Mary</parish_name>
 <language>English</language>
@@ -3632,5 +3016,642 @@
 <language>English</language>
 <days>Sunday</days>
 <time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>12</pid>
+<parish_name>Canadian Martyrs</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:45</time>
+</RECORD>
+<RECORD>
+<pid>12</pid>
+<parish_name>Canadian Martyrs</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>12</pid>
+<parish_name>Canadian Martyrs</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:30</time>
+</RECORD>
+<RECORD>
+<pid>20</pid>
+<parish_name>Holy Family</parish_name>
+<language>Latin</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>7:0</time>
+</RECORD>
+<RECORD>
+<pid>88</pid>
+<parish_name>Holy Name of Mary</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:30</time>
+</RECORD>
+<RECORD>
+<pid>88</pid>
+<parish_name>Holy Name of Mary</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>22</pid>
+<parish_name>Holy Rosary Cathedral</parish_name>
+<language>Spanish</language>
+<days>Sunday</days>
+<time>18:30</time>
+</RECORD>
+<RECORD>
+<pid>31</pid>
+<parish_name>Our Lady of Good Counsel</parish_name>
+<language>Laotian</language>
+<days>Saturday</days>
+<time>16:0</time>
+</RECORD>
+<RECORD>
+<pid>31</pid>
+<parish_name>Our Lady of Good Counsel</parish_name>
+<language>Indo-Canadian</language>
+<days>Saturday</days>
+<time>17:30</time>
+</RECORD>
+<RECORD>
+<pid>32</pid>
+<parish_name>Our Lady of Good Hope</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>37</pid>
+<parish_name>Our Lady of Sorrows</parish_name>
+<language>Italian</language>
+<days>Sunday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>45</pid>
+<parish_name>St. Anthony of Padua</parish_name>
+<language>English</language>
+<days>Monday, Wednesday, Thursday, Friday, Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>45</pid>
+<parish_name>St. Anthony of Padua</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>45</pid>
+<parish_name>St. Anthony of Padua</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>50</pid>
+<parish_name>St. Casimir</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:30</time>
+</RECORD>
+<RECORD>
+<pid>55</pid>
+<parish_name>St. Francis Xavier</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>55</pid>
+<parish_name>St. Francis Xavier</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:15</time>
+</RECORD>
+<RECORD>
+<pid>55</pid>
+<parish_name>St. Francis Xavier</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>89</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time></time>
+</RECORD>
+<RECORD>
+<pid>64</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>64</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:30</time>
+</RECORD>
+<RECORD>
+<pid>64</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>64</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>64</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>70</pid>
+<parish_name>St. Matthew</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>77</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>77</pid>
+<parish_name>St. Paul</parish_name>
+<language>English</language>
+<days>Tuesday, Wednesday, Thursday, Friday</days>
+<time>11:30</time>
+</RECORD>
+<RECORD>
+<pid>86</pid>
+<parish_name>Star of the Sea</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>16:0</time>
+</RECORD>
+<RECORD>
+<pid>86</pid>
+<parish_name>Star of the Sea</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:30</time>
+</RECORD>
+<RECORD>
+<pid>86</pid>
+<parish_name>Star of the Sea</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>83</pid>
+<parish_name>Sts. Cyril &amp; Methodius</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>17</pid>
+<parish_name>Guardian Angels</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>19</pid>
+<parish_name>Holy Family</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>19</pid>
+<parish_name>Holy Family</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>16:0</time>
+</RECORD>
+<RECORD>
+<pid>22</pid>
+<parish_name>Holy Rosary Cathedral</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:10</time>
+</RECORD>
+<RECORD>
+<pid>25</pid>
+<parish_name>Immaculate Conception</parish_name>
+<language>English</language>
+<days>Tuesday, Wednesday, Thursday, Friday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>30</pid>
+<parish_name>Our Lady of Fatima</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>35</pid>
+<parish_name>Our Lady of Mercy</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>24</pid>
+<parish_name>Holy Trinity</parish_name>
+<language>Tagalog</language>
+<days>Sunday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>27</pid>
+<parish_name>Immaculate Heart of Mary</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>69</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>53</pid>
+<parish_name>St. Francis de Sales</parish_name>
+<language>Sign Language</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>20</pid>
+<parish_name>Holy Family</parish_name>
+<language>Latin</language>
+<days>Monday, Wednesday, Friday, Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>33</pid>
+<parish_name>Our Lady of Hungary</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>33</pid>
+<parish_name>Our Lady of Hungary</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>82</pid>
+<parish_name>St. Theresa</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>16:0</time>
+</RECORD>
+<RECORD>
+<pid>54</pid>
+<parish_name>St. Francis of Assisi</parish_name>
+<language>Italian</language>
+<days>Thursday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>17</pid>
+<parish_name>Guardian Angels</parish_name>
+<language>English</language>
+<days>Monday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>23</pid>
+<parish_name>Holy Spirit</parish_name>
+<language>English</language>
+<days>Monday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>18</pid>
+<parish_name>Holy Cross</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>18</pid>
+<parish_name>Holy Cross</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>10:0</time>
+</RECORD>
+<RECORD>
+<pid>18</pid>
+<parish_name>Holy Cross</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>12:0</time>
+</RECORD>
+<RECORD>
+<pid>18</pid>
+<parish_name>Holy Cross</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>18</pid>
+<parish_name>Holy Cross</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>18</pid>
+<parish_name>Holy Cross</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>20</pid>
+<parish_name>Holy Family</parish_name>
+<language>Latin</language>
+<days>First Friday, Feast Days (with Compline on feast days)</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>64</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>18:0</time>
+</RECORD>
+<RECORD>
+<pid>63</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>1st Friday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>80</pid>
+<parish_name>St. Pius X</parish_name>
+<language>English</language>
+<days>1st Friday</days>
+<time>9:15</time>
+</RECORD>
+<RECORD>
+<pid>66</pid>
+<parish_name>St. Jude</parish_name>
+<language>Latin</language>
+<days>Sunday</days>
+<time>7:45</time>
+</RECORD>
+<RECORD>
+<pid>81</pid>
+<parish_name>St. Stephen</parish_name>
+<language>English</language>
+<days>1st Friday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>79</pid>
+<parish_name>St. Peter</parish_name>
+<language>English</language>
+<days>Monday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>38</pid>
+<parish_name>Our Lady of the Assumption</parish_name>
+<language>English</language>
+<days>1st Friday &amp; Solemnities</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>39</pid>
+<parish_name>Precious Blood</parish_name>
+<language>English</language>
+<days>1st Friday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>39</pid>
+<parish_name>Precious Blood</parish_name>
+<language>English</language>
+<days>1st Friday</days>
+<time>18:30</time>
+</RECORD>
+<RECORD>
+<pid>43</pid>
+<parish_name>St. Andrew</parish_name>
+<language>English</language>
+<days>1st Friday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>43</pid>
+<parish_name>St. Andrew</parish_name>
+<language>English</language>
+<days>1st Friday (Sep - Jun)</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>82</pid>
+<parish_name>St. Theresa</parish_name>
+<language>English</language>
+<days>Wednesday</days>
+<time>19:15</time>
+</RECORD>
+<RECORD>
+<pid>83</pid>
+<parish_name>Sts. Cyril &amp; Methodius</parish_name>
+<language>Slovakian</language>
+<days>1st Friday</days>
+<time>19:30</time>
+</RECORD>
+<RECORD>
+<pid>65</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Friday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>65</pid>
+<parish_name>St. Joseph</parish_name>
+<language>English</language>
+<days>Saturday &amp; Public Holidays</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>26</pid>
+<parish_name>Immaculate Conception</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>75</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>7:0</time>
+</RECORD>
+<RECORD>
+<pid>75</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>9:0</time>
+</RECORD>
+<RECORD>
+<pid>75</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>11:0</time>
+</RECORD>
+<RECORD>
+<pid>75</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>17:0</time>
+</RECORD>
+<RECORD>
+<pid>84</pid>
+<parish_name>Sts. Joachim &amp; Ann</parish_name>
+<language>Latin</language>
+<days>Sunday</days>
+<time>13:0</time>
+</RECORD>
+<RECORD>
+<pid>75</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
+<time>7:0</time>
+</RECORD>
+<RECORD>
+<pid>39</pid>
+<parish_name>Precious Blood</parish_name>
+<language>Spanish</language>
+<days>3rd Sunday</days>
+<time>16:0</time>
+</RECORD>
+<RECORD>
+<pid>29</pid>
+<parish_name>Our Lady of Fatima</parish_name>
+<language>Chinese – Cantonese</language>
+<days>Sunday</days>
+<time>14:30</time>
+</RECORD>
+<RECORD>
+<pid>38</pid>
+<parish_name>Our Lady of the Assumption</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>39</pid>
+<parish_name>Precious Blood</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>8:0</time>
+</RECORD>
+<RECORD>
+<pid>51</pid>
+<parish_name>St. Clare of Assisi</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>12:30</time>
+</RECORD>
+<RECORD>
+<pid>69</pid>
+<parish_name>St. Mary</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>15:0</time>
+</RECORD>
+<RECORD>
+<pid>45</pid>
+<parish_name>St. Anthony of Padua</parish_name>
+<language>English</language>
+<days>Tuesday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>42</pid>
+<parish_name>St. Andrew Kim</parish_name>
+<language>Korean</language>
+<days>Sunday</days>
+<time>12:30</time>
+</RECORD>
+<RECORD>
+<pid>31</pid>
+<parish_name>Our Lady of Good Counsel</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>7:30</time>
+</RECORD>
+<RECORD>
+<pid>57</pid>
+<parish_name>St. Mark</parish_name>
+<language>English</language>
+<days>Sunday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>38</pid>
+<parish_name>Our Lady of the Assumption</parish_name>
+<language>English</language>
+<days>Tuesday, Thursday</days>
+<time>7:0</time>
+</RECORD>
+<RECORD>
+<pid>75</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Friday</days>
+<time>19:0</time>
+</RECORD>
+<RECORD>
+<pid>75</pid>
+<parish_name>St. Patrick</parish_name>
+<language>English</language>
+<days>Saturday</days>
+<time>9:0</time>
 </RECORD>
 </RECORDS>

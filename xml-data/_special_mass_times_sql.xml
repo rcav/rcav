@@ -1,0 +1,80 @@
+<?xml version="1.0" standalone="yes"?>
+<RECORDS>
+<RECORD>
+<pid>94</pid>
+<parish_name>St. Mary</parish_name>
+<special>First Friday</special>
+<days>Friday</days>
+<Expr1>9:0</Expr1>
+</RECORD>
+<RECORD>
+<pid>67</pid>
+<parish_name>St. Luke</parish_name>
+<special>Public Holidays</special>
+<days>Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<Expr1>9:0</Expr1>
+</RECORD>
+<RECORD>
+<pid>85</pid>
+<parish_name>Sts. Peter &amp; Paul</parish_name>
+<special>Public Holidays</special>
+<days>Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<Expr1>9:0</Expr1>
+</RECORD>
+<RECORD>
+<pid>85</pid>
+<parish_name>Sts. Peter &amp; Paul</parish_name>
+<special>First Friday</special>
+<days>Friday</days>
+<Expr1>19:30</Expr1>
+</RECORD>
+<RECORD>
+<pid>15</pid>
+<parish_name>Corpus Christi</parish_name>
+<special>Public Holidays</special>
+<days>Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<Expr1>9:0</Expr1>
+</RECORD>
+<RECORD>
+<pid>17</pid>
+<parish_name>Guardian Angels</parish_name>
+<special>First Friday</special>
+<days>Friday</days>
+<Expr1>19:0</Expr1>
+</RECORD>
+<RECORD>
+<pid>17</pid>
+<parish_name>Guardian Angels</parish_name>
+<special>Last Monday of the Month</special>
+<days>Monday</days>
+<Expr1>19:0</Expr1>
+</RECORD>
+<RECORD>
+<pid>37</pid>
+<parish_name>Our Lady of Sorrows</parish_name>
+<special>Public Holidays</special>
+<days>Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
+<Expr1>8:30</Expr1>
+</RECORD>
+<RECORD>
+<pid>65</pid>
+<parish_name>St. Joseph</parish_name>
+<special>Spanish Mass</special>
+<days>Sunday</days>
+<Expr1>18:0</Expr1>
+</RECORD>
+<RECORD>
+<pid>24</pid>
+<parish_name>Holy Trinity</parish_name>
+<special>First Friday</special>
+<days>Friday</days>
+<Expr1>19:30</Expr1>
+</RECORD>
+<RECORD>
+<pid>34</pid>
+<parish_name>Our Lady of Lourdes</parish_name>
+<special>First Friday</special>
+<days>Friday</days>
+<Expr1>19:0</Expr1>
+</RECORD>
+</RECORDS>

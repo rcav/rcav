@@ -17,7 +17,7 @@
 <RECORD>
 <rid>36</rid>
 <pid>77</pid>
-<reverand_name>Rev. Ken Forster, OMI (Pastor)</reverand_name>
+<reverand_name>Rev. Garry Laboucane, OMI (Pastor)</reverand_name>
 <is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -38,7 +38,7 @@
 <RECORD>
 <rid>44</rid>
 <pid>63</pid>
-<reverand_name>Rev. Alessandro Lovato (Pastor)</reverand_name>
+<reverand_name>Rev. Joseph Hieu Nguyen (Pastor)</reverand_name>
 <is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -60,13 +60,6 @@
 <rid>50</rid>
 <pid>22</pid>
 <reverand_name>Rector: Very Rev. Glenn Dion</reverand_name>
-<is_primary>0</is_primary>
-<display_order>99</display_order>
-</RECORD>
-<RECORD>
-<rid>53</rid>
-<pid>22</pid>
-<reverand_name>Rev. Ryszgard Zgorzelak, SDS</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -101,7 +94,7 @@
 <RECORD>
 <rid>58</rid>
 <pid>15</pid>
-<reverand_name>Rev. Henry Yeung</reverand_name>
+<reverand_name>Rev. Anthonappa Prashanthakumara, SAC</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -197,13 +190,6 @@
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
-<rid>83</rid>
-<pid>21</pid>
-<reverand_name>Rev. Msgr. S. Jensen, PH</reverand_name>
-<is_primary>0</is_primary>
-<display_order>99</display_order>
-</RECORD>
-<RECORD>
 <rid>84</rid>
 <pid>25</pid>
 <reverand_name>Rev. Paul Smith, OFM (Pastor)</reverand_name>
@@ -220,7 +206,7 @@
 <RECORD>
 <rid>88</rid>
 <pid>27</pid>
-<reverand_name>Rev. Drago Gveric, OFM</reverand_name>
+<reverand_name>Rev. Slaven Milanovic-Litre, OFM</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -253,16 +239,9 @@
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
-<rid>93</rid>
-<pid>37</pid>
-<reverand_name>Rev. Peter Sordi, CS</reverand_name>
-<is_primary>0</is_primary>
-<display_order>99</display_order>
-</RECORD>
-<RECORD>
 <rid>99</rid>
 <pid>32</pid>
-<reverand_name>Rev. Peter Altamirano, OMI (Pastor)</reverand_name>
+<reverand_name>Rev. Gordon Cook, OMI (Pastor)</reverand_name>
 <is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -312,13 +291,6 @@
 <rid>106</rid>
 <pid>31</pid>
 <reverand_name>Rev. John Basso, SDB</reverand_name>
-<is_primary>0</is_primary>
-<display_order>99</display_order>
-</RECORD>
-<RECORD>
-<rid>107</rid>
-<pid>31</pid>
-<reverand_name>Rev. David Sajdak, SDB</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -393,17 +365,10 @@
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
-<rid>118</rid>
-<pid>20</pid>
-<reverand_name>Rev. Erik Deprey, FSSP (Pastor)</reverand_name>
-<is_primary>1</is_primary>
-<display_order>99</display_order>
-</RECORD>
-<RECORD>
 <rid>119</rid>
 <pid>20</pid>
 <reverand_name>Rev. Daniel Geddes, FSSP</reverand_name>
-<is_primary>0</is_primary>
+<is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
@@ -423,7 +388,7 @@
 <RECORD>
 <rid>122</rid>
 <pid>40</pid>
-<reverand_name>Rev. Ken Forster, OMI (Pastor)</reverand_name>
+<reverand_name>Rev. Garry Laboucane, OMI (Pastor)</reverand_name>
 <is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -458,7 +423,7 @@
 <RECORD>
 <rid>127</rid>
 <pid>43</pid>
-<reverand_name>Rev. Joseph Bongmah Tangka</reverand_name>
+<reverand_name>Rev. Henry Yeung</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -470,23 +435,16 @@
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
-<rid>129</rid>
-<pid>42</pid>
-<reverand_name>Rev. Luke Myoung-Mo Yang</reverand_name>
-<is_primary>0</is_primary>
-<display_order>99</display_order>
-</RECORD>
-<RECORD>
 <rid>131</rid>
 <pid>44</pid>
-<reverand_name>Rev. James Hughes (Pastor)</reverand_name>
+<reverand_name>Rev. Hien Nguyen (Pastor)</reverand_name>
 <is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
 <rid>132</rid>
 <pid>44</pid>
-<reverand_name>Rev. Salvador Reyes</reverand_name>
+<reverand_name>Father David Farfan Guerrero, MCCJ</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -535,7 +493,7 @@
 <RECORD>
 <rid>142</rid>
 <pid>62</pid>
-<reverand_name>Rev. Joseph Hieu Nguyen (Pastor)</reverand_name>
+<reverand_name>Rev. Richard Au (Pastor)</reverand_name>
 <is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -584,7 +542,7 @@
 <RECORD>
 <rid>152</rid>
 <pid>70</pid>
-<reverand_name>Rev. De Paul Doan, CSJB</reverand_name>
+<reverand_name>Rev. Vincent Nguyen, CSJB</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -612,21 +570,21 @@
 <RECORD>
 <rid>157</rid>
 <pid>75</pid>
-<reverand_name>Rev. Vincent J. Hawkswell (Pastor)</reverand_name>
+<reverand_name>Rev. James Hughes (Pastor)</reverand_name>
 <is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
 <rid>158</rid>
 <pid>75</pid>
-<reverand_name>Rev. Cyrille Ogbabo, C S Sp</reverand_name>
+<reverand_name>Rev. James Kairu</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
 <rid>159</rid>
 <pid>74</pid>
-<reverand_name>Rev. Richard Au (Pastor)</reverand_name>
+<reverand_name>Rev. Matthew To (Pastor)</reverand_name>
 <is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -654,7 +612,7 @@
 <RECORD>
 <rid>164</rid>
 <pid>80</pid>
-<reverand_name>Rev. Msgr. Pedro Lopez-Gallo, PA, JUD (Pastor)</reverand_name>
+<reverand_name>Rev. John Horgan (Pastor)</reverand_name>
 <is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -682,7 +640,7 @@
 <RECORD>
 <rid>171</rid>
 <pid>91</pid>
-<reverand_name>Rev. Maximos Basha, OSBC (Pastor)</reverand_name>
+<reverand_name>Rev. Edward Simon Ibrahim (Pastor)</reverand_name>
 <is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -724,14 +682,14 @@
 <RECORD>
 <rid>180</rid>
 <pid>85</pid>
-<reverand_name>Rev. John G. Horgan (Pastor)</reverand_name>
+<reverand_name>Rev. Vincent Hawkswell (Pastor)</reverand_name>
 <is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
 <rid>183</rid>
 <pid>28</pid>
-<reverand_name>Rev. David Farfán Guerrero, MCCJ</reverand_name>
+<reverand_name>Rev. Kiran Thumma, SAC</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -782,13 +740,6 @@
 <pid>86</pid>
 <reverand_name>Rev. Stanley Galvon (Pastor)</reverand_name>
 <is_primary>1</is_primary>
-<display_order>99</display_order>
-</RECORD>
-<RECORD>
-<rid>192</rid>
-<pid>86</pid>
-<reverand_name>Rev. John Tritschler</reverand_name>
-<is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
@@ -850,14 +801,14 @@
 <RECORD>
 <rid>208</rid>
 <pid>76</pid>
-<reverand_name>Rev. Rodney Nootebos</reverand_name>
+<reverand_name>Rev. Edwin Kulling</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
 <rid>212</rid>
 <pid>36</pid>
-<reverand_name>Rev. David Louch, CSsR</reverand_name>
+<reverand_name>Rev. Richard Luberti, CSsR</reverand_name>
 <is_primary>1</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -906,14 +857,14 @@
 <RECORD>
 <rid>224</rid>
 <pid>19</pid>
-<reverand_name>Rev. David Farfán Guerrero, MCCJ</reverand_name>
+<reverand_name>Rev. Kiran Thumma, SAC</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
 <rid>225</rid>
 <pid>94</pid>
-<reverand_name>Rev. David Farfán Guerrero, MCCJ</reverand_name>
+<reverand_name>Rev. Kiran Thumma, SAC</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -983,14 +934,14 @@
 <RECORD>
 <rid>237</rid>
 <pid>68</pid>
-<reverand_name>Rev. Bryan Duggan</reverand_name>
+<reverand_name>Rev. Hector Del Rosario</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
 <RECORD>
 <rid>239</rid>
 <pid>10</pid>
-<reverand_name>Rev. Hector del Rosario</reverand_name>
+<reverand_name>Rev. Thomas Arackal, IMS</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -1053,7 +1004,7 @@
 <RECORD>
 <rid>250</rid>
 <pid>71</pid>
-<reverand_name>Rev. Edwin Kulling</reverand_name>
+<reverand_name>Rev. Nixon D’Silva</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -1095,7 +1046,7 @@
 <RECORD>
 <rid>256</rid>
 <pid>52</pid>
-<reverand_name>Rev. Alfredo Socorro Pereira</reverand_name>
+<reverand_name>Rev. Godwin Pinto, OCD</reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
@@ -1117,6 +1068,62 @@
 <rid>259</rid>
 <pid>41</pid>
 <reverand_name>Rev. Ronnie Custorio, OSA</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>260</rid>
+<pid>27</pid>
+<reverand_name>Rev. Ante Juric, OFM (In residence)</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>261</rid>
+<pid>20</pid>
+<reverand_name>Rev. Anthony Uy, FSSP</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>262</rid>
+<pid>86</pid>
+<reverand_name>Rev. DePaul Doan, CSJB</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>264</rid>
+<pid>86</pid>
+<reverand_name>Rev. Mark Gazin, CSB</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>265</rid>
+<pid>26</pid>
+<reverand_name>Rev. Salvador Reyes</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>266</rid>
+<pid>22</pid>
+<reverand_name>Rev. Mark Schwab</reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>267</rid>
+<pid>31</pid>
+<reverand_name>Rev. Gerard Ravasco, SDB </reverand_name>
+<is_primary>0</is_primary>
+<display_order>99</display_order>
+</RECORD>
+<RECORD>
+<rid>268</rid>
+<pid>31</pid>
+<reverand_name>Rev. George Atok, SDB </reverand_name>
 <is_primary>0</is_primary>
 <display_order>99</display_order>
 </RECORD>
