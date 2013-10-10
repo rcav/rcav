@@ -47,8 +47,6 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 														}
 													}
 												endforeach; ?>	
-
-
 										   
 										    <?php if(get_field('city')) {
 										    	echo get_field('city'); 
@@ -108,9 +106,6 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 														echo $child->reverand_name;
 													}
 												endforeach; ?>	
-
-
-
 
 									 	<?php if(get_field('yearest')) 
 

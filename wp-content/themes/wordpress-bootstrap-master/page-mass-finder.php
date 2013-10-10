@@ -4,7 +4,9 @@ Template Name: Mass Finder
 */
 ?>
 
-<?php get_header(); ?>
+<?php get_header();
+$root_path = $_SERVER['DOCUMENT_ROOT'];
+?>
 
 			<div id="content" class="clearfix row-fluid">
 					<div id="main" class="span9 clearfix" role="main">
@@ -72,6 +74,7 @@ Template Name: Mass Finder
 									if($submitted_check)  {
 										// set $city variable
 										$city =$_POST['city']; 
+										//$language = $_POST['primarylanguage'];
 
 										// build our query $args array
 										$args = array
@@ -83,7 +86,19 @@ Template Name: Mass Finder
 										'order' => 'ASC',
 										'posts_per_page' => -1
 										);	
-
+					/*
+					//add language query support
+					'meta_query' => array(
+						array(
+							'key' => 'city',
+							'value' => 'bilaspur'
+						),
+							array(
+								'key' => 'type',
+								'value' => 'plots'
+						),
+					);
+					*/
 									  $parish_posts = new WP_Query($args);
 									  $parish_count = $parish_posts->post_count;
 									  
@@ -104,10 +119,23 @@ Template Name: Mass Finder
 										 	<h4><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>">
 										    <?php the_title(); ?></a></h4>
 
-										    <?php if(get_field('address1')) {
-										    	echo get_field('address1'); 
-										    }
-										   	?>
+
+
+											<?php 
+												$current_pid = get_field('parish_id');
+												$path = $root_path . '/xml-data/parish_addresses_sql.xml';
+												$s = simplexml_load_file($path);
+												
+												foreach($s->children() as $child):
+													if($child->pid == $current_pid ) {  
+														echo $child->address1;
+														if($child->address2) {
+															echo '<br />';
+															echo $child->address2;
+
+														} 
+													}
+												endforeach; ?>	
 										   
 										    <?php if(get_field('city')) {
 										    	echo get_field('city'); 
@@ -123,34 +151,46 @@ Template Name: Mass Finder
 										    	echo get_field('postal'); 
 										    }
 										   	?>
+						   					
+						   					<br />
 
 											<?php 
-											/*
-											// Lost current_pid data during post conversion
-												$root_path = $_SERVER['DOCUMENT_ROOT'];
-												$path = $root_path . '/xml-data/contacts_phone_sql.xml';
+												$path = $root_path . '/xml-data/contacts_sql.xml';
 												$s = simplexml_load_file($path);
-													foreach($s->children() as $child):
-														if($child->pid == $current_pid ) {  
-															echo '<br />';
-															echo $child->contact_type . ': ';
-															echo $child->contact_value . '<br />';
+												foreach($s->children() as $child):
+													if($child->pid == $current_pid ) {  
+														$contact = $child->contact_type;
+
+														switch($contact) {
+
+															case "Email":
+															echo 'Email: ' . ' <a href="mailto:' . $child->contact_value . '">' . $child->contact_value.'</a><br />';
+															break;
+
+															case "Phone":
+															echo 'Phone: ' . $child->contact_value . '<br />';
+															break;															
+
+
 														}
-													endforeach; 
-												*/
-												?>								   	
+													}
+												endforeach; ?>
+
 
 										 	<?php if(get_field('primarylanguage')) 
 										 		{ 
 										 			echo '<div> Language:' . get_field('primarylanguage') . '</div>';
 										 		}
 										 	?>
-			
-										 	<?php if(get_field('reverands')) 
-										 		{ 
-										 			echo '<div>' . get_field('reverands') . '</div>';
-										 		}
-										 	?>
+
+										<?php 
+												$path = $root_path . '/xml-data/reverands_sql.xml';
+												$s = simplexml_load_file($path);
+												foreach($s->children() as $child):
+													if($child->rid == $current_pid ) {  
+														echo $child->reverand_name;
+													}
+												endforeach; ?>	
 
 										 	<?php if(get_field('gmap_link')) 
 												echo '<i class="icon-map-marker"></i> <a href="' . get_field('gmap_link') . '" target="_blank">View Map</a> |';
