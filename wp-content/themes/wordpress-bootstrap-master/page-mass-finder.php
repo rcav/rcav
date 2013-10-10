@@ -80,16 +80,19 @@ Template Name: Mass Finder
 										'meta_key' => 'city',
 										'meta_value' => $city,
 										'orderby' => 'title',
-										'order' => 'ASC'
+										'order' => 'ASC',
+										'posts_per_page' => -1
 										);	
 
 									  $parish_posts = new WP_Query($args);
+									  $parish_count = $parish_posts->post_count;
+									  
 									  //print_r($parish_posts);
 
 									}
 
 									if(isset($city)) {
-										echo '<h4>Parishes in <strong>' . $_POST['city'] .'</strong></h4>';
+										echo '<h4>Parishes in <strong>' . $_POST['city'] .' (' . $parish_count  .  ')</strong></h4>';
 									};
 
 

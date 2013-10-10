@@ -34,10 +34,21 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 									 	<div class="span5">
 									    <h4>Location &amp; Contact</h4>
 									    	<div>
-										    <?php if(get_field('address1')) {
-										    	echo get_field('address1'); 
-										    }
-										   	?>
+											<?php 
+												$path = $root_path . '/xml-data/parish_addresses_sql.xml';
+												$s = simplexml_load_file($path);
+												foreach($s->children() as $child):
+													if($child->pid == $current_pid ) {  
+														echo $child->address1;
+														if($child->address2) {
+															echo '<br />';
+															echo $child->address2;
+
+														}
+													}
+												endforeach; ?>	
+
+
 										   
 										    <?php if(get_field('city')) {
 										    	echo get_field('city'); 
@@ -55,47 +66,56 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 										   	?>
 										   </div>
 
+										   	<br />
 
 											<?php 
-												$path = $root_path . '/xml-data/contacts_phone_sql.xml';
+												$path = $root_path . '/xml-data/contacts_sql.xml';
 												$s = simplexml_load_file($path);
 												foreach($s->children() as $child):
 													if($child->pid == $current_pid ) {  
-														echo $child->contact_type . ': ';
-														echo $child->contact_value . '<br />';
+														$contact = $child->contact_type;
+
+														switch($contact) {
+
+															case "Email":
+															echo 'Email: ' . ' <a href="mailto:' . $child->contact_value . '">' . $child->contact_value.'</a><br />';
+															break;
+
+															case "Phone":
+															echo 'Phone: ' . $child->contact_value . '<br />';
+															break;															
+
+															case "Fax":
+															echo 'Fax: ' . $child->contact_value . '<br />';
+															break;
+
+															case "Website":
+															echo 'Website: ' . ' <a href="http://' . $child->contact_value . '">' . rtrim($child->contact_value).'</a><br />';
+															break;
+
+														}
 													}
 												endforeach; ?>
 
-											<?php 
-												$path = $root_path . '/xml-data/contacts_fax_sql.xml';
+
+
+										<br /><strong>Priests:</strong>
+										<?php 
+												$path = $root_path . '/xml-data/reverands_sql.xml';
 												$s = simplexml_load_file($path);
 												foreach($s->children() as $child):
-													if($child->pid == $current_pid ) {  
-														echo $child->contact_type . ': ';
-														echo $child->contact_value . '<br />';
+													if($child->rid == $current_pid ) {  
+														echo $child->reverand_name;
 													}
-												endforeach; ?>
-
-											<?php 
-												$path = $root_path . '/xml-data/contacts_email_sql.xml';
-												$s = simplexml_load_file($path);
-												foreach($s->children() as $child):
-													if($child->pid == $current_pid ) {  
-														echo $child->contact_type . ': ';
-														echo '<a href="mailto:' . $child->contact_value . '">' .$child->contact_value .  '</a><br />';
-													}
-												endforeach; ?>			
+												endforeach; ?>	
 
 
 
-									 	<?php if(get_field('reverands')) 
-									 		{ 
-									 			echo '<br /><p><strong>Priests:</strong><br />' . get_field('reverands') . '</p>';
-									 		}
-									 	?>
 
 									 	<?php if(get_field('yearest')) 
+
 									 		{ 
+									 			echo '<br /><br /><strong>More Information:</strong>';
 									 			echo '<p>Established:' . get_field('yearest') . '</p>';
 									 		}
 									 	?>
