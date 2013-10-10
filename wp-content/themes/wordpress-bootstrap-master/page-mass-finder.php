@@ -187,8 +187,13 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 												$path = $root_path . '/xml-data/reverands_sql.xml';
 												$s = simplexml_load_file($path);
 												foreach($s->children() as $child):
-													if($child->rid == $current_pid ) {  
-														echo $child->reverand_name;
+													if($child->pid == $current_pid ) {  
+														if($child->is_primary == 1) {
+															echo '<strong>' . $child->reverand_name . '</strong>';
+														} else if ($child->is_primary == 0) {
+															echo '<br />' . $child->reverand_name;
+														}
+														
 													}
 												endforeach; ?>	
 

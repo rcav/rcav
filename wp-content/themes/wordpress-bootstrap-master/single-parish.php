@@ -97,13 +97,18 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 
 
 
-										<br /><strong>Priests:</strong>
+										<br />
 										<?php 
 												$path = $root_path . '/xml-data/reverands_sql.xml';
 												$s = simplexml_load_file($path);
 												foreach($s->children() as $child):
-													if($child->rid == $current_pid ) {  
-														echo $child->reverand_name;
+													if($child->pid == $current_pid ) {  
+														if($child->is_primary == 1) {
+															echo '<strong>' . $child->reverand_name . '</strong>';
+														} else if ($child->is_primary == 0) {
+															echo '<br />' . $child->reverand_name;
+														}
+														
 													}
 												endforeach; ?>	
 
@@ -153,11 +158,17 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 											<?php 
 												$path = $root_path . '/xml-data/mass_times_sql.xml';
 												$s = simplexml_load_file($path);
+												$i = 0;
 												foreach($s->children() as $child):
-													if($child->pid == $current_pid ) { // replace this meta_value 
-														echo '<div class="event-date">' . $child->days .'</div>';
-														echo '<div class="start-endtimes">' . date("g:i A", strtotime($child->time)) . ' to ' . date("g:i A", strtotime($child->endtime)) .'</div>';
+													if($child->pid == $current_pid ) { // replace this meta_value
+														 if($child->language != 'English') {
+															echo $child->language;
+														}
+														echo '<div class="event-date">' . $child->days .  '</div>';
+														echo '<div class="start-endtimes">' . date("g:i A", strtotime($child->time))  .'</div>';
 														echo '<br />';
+														$i++;
+
 													}
 												endforeach; ?>
 									    </div>
@@ -168,7 +179,8 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 												foreach($s->children() as $child):
 													if($child->pid == $current_pid ) { // replace this meta_value 
 														echo '<div class="event-date">' . $child->days .'</div>';
-														echo '<div class="start-endtimes">' . date("g:i A", strtotime($child->time)) . ' to ' . date("g:i A", strtotime($child->endtime)) .'</div>';
+														echo '<div class="event-type">' . $child->special .'</div>';
+														echo '<div class="start-endtimes">' . date("g:i A", strtotime($child->Expr1)) .'</div>';
 														echo '<br />';
 													}
 												endforeach; ?>
@@ -191,9 +203,10 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 												$path = $root_path . '/xml-data/devotion_times_sql.xml';
 												$c = simplexml_load_file($path);
 												foreach($c->children() as $child):
-													if($child->pid == $current_pid ) { // replace this meta_value 
+													if($child->pid == $current_pid ) { 
 														echo '<div class="event-date">' . $child->days .'</div>';
-														echo '<div class="start-endtimes">' . date("g:i A", strtotime($child->time)) . ' to ' . date("g:i A", strtotime($child->endtime)) .'</div>';
+														echo '<div class="event-type>' . $child->dtype . '</div>';
+														echo '<div class="start-endtimes">' . date("g:i A", strtotime($child->time)) .'</div>';
 														echo '<br />';
 													}
 												endforeach; ?>
