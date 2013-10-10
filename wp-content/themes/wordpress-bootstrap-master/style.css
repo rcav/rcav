@@ -1402,8 +1402,8 @@ body {
 	}
 
 	/* OYYAM header background */
-	.term-news-oyyam-blog #main-header { 
-		background:url('images/assets/backgrounds/parishes.png') no-repeat;
+	.term-oyyam-blog #main-header { 
+		background:url('images/assets/backgrounds/diocesan-offices.png') no-repeat;
 		background-position: top right;
 	}
 
