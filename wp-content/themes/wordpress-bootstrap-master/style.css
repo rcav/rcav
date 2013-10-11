@@ -716,7 +716,6 @@ body {
 		-moz-border-radius: 5px;
 		border-radius: 5px;
 		font-size:0.9em;
-		margin-bottom:30px;
 
 	}
 
@@ -892,13 +891,12 @@ body {
 @media (max-width: 480px) {
 	#editorial-blocks .span4 { width:100% !important;}
 
-	.home .homepage-main-cta div {
-		float:left;
-		width:234px;
-	}
-
 	.home .homepage-main-cta .block-cta {
 		background:none;
+	}
+
+	.home .block-cta-mass-finder a {
+		background-position: 0 -41px;	
 	}
 
 	.home h4.primary-cta-title { 
@@ -989,7 +987,7 @@ body {
 	.home .homepage-main-cta .block-cta-mass-finder a {
 		display: block;
 		background: url('images/assets/sprites.png') no-repeat;
-		width: 190px;
+		width: 210px;
 		height: 41px;
 		float: left;
 	}
@@ -1049,6 +1047,17 @@ body {
 	#editorial-blocks .widget {
 		height:300px;
 	}
+
+	.home .homepage-main-cta .block-cta-mass-finder a {
+		background: url('images/assets/sprites.png') no-repeat;
+		display: block;
+		width: 211px;
+		height: 41px;
+		position:relative;
+		margin-top:-6px;
+		background-position: 0 -41px;
+	}
+
 }
 
 @media (min-width: 768px) and (max-width: 2500px) {
@@ -1091,7 +1100,7 @@ body {
 
 	.home .homepage-main-cta .block-cta{
 		background-position:top right;
-		width: 245px;
+		width: 235px;
 		height: 146px;	
 		position:relative;
 		left:40px;
@@ -1159,6 +1168,19 @@ body {
 		margin-left:-30px;
 	}
 
+	.home .homepage-main-cta .block-cta-mass-finder a {
+		background: url('images/assets/sprites.png') no-repeat;
+		display: block;
+		width: 211px;
+		height: 41px;
+		position:relative;
+	}
+
+	.home #content .widget {
+		font-size:0.9em;
+		margin-bottom:30px;
+	}
+
 
 }
 
@@ -1175,6 +1197,7 @@ body {
 		display:block;
 	}
 
+/*
 	.home .homepage-main-cta .block-cta-mass-finder a {
 		background: url('images/assets/sprites.png') no-repeat;
 		display: block;
@@ -1182,6 +1205,7 @@ body {
 		height: 41px;
 		position:relative;
 	}
+*/
 
 	.home .homepage-main-cta .block-cta-mass-finder a:hover {
 		opacity:0.8;
@@ -1408,9 +1432,6 @@ body {
 	}
 
 
-
-
-
 /*  ===== MAIN CONTAINER LAYOUT =====  */
 
 	#content { 
@@ -1497,7 +1518,6 @@ body {
 
 	.home #content .widget {
 		font-size:0.9em;
-		margin-bottom:30px;
 	}
 
 	.home #archbishop-banner {
@@ -1988,6 +2008,9 @@ width: 230px;
 
 }
 
+/* tweaks */
+
+.nav-collapse { height: auto !important;}
 
 .breadcrumbs {
   font-size: 12px;

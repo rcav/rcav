@@ -35,8 +35,8 @@ Template Name: Homepage
 									<h4 class="primary-cta-title"><?php echo the_field('primary_cta_title'); ?></h4>
 									<span class="primary-cta-body"><?php echo the_field('homepage_main_cta'); ?></span>
 								</div>
-								<div class="block-cta-mass-finder ">
-									<a href="<?php echo home_url() .'/mass-finder'?>" class="hidden-phone"></a>
+								<div class="block-cta-mass-finder">
+									<a href="<?php echo home_url() .'/mass-finder'?>"></a>
 								</div>
 							</div>
 													
