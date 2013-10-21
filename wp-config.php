@@ -17,11 +17,11 @@
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 
-define('DB_NAME', 'rcav_admin_prod2');
-
+define('DB_NAME', 'rcav.org');
+//rcav_admin_prod2
 /** MySQL database username */
-define('DB_USER', 'rcav_admin2');
-
+define('DB_USER', 'rcav_org');
+//rcav_admin2
 /** MySQL database password */
 define('DB_PASSWORD', 'K8/"{;5q>^2)&2A');
 

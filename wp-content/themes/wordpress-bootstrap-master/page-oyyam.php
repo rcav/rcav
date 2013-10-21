@@ -30,7 +30,7 @@ Template Name: OYYAM
 						
 							</div>
 
-							<div class="oyyam-main-cta">
+							<div class="oyyam-main-cta span3">
 								<span>
 								<?php echo get_field('oyyam_whats_new'); ?>
 								</span>

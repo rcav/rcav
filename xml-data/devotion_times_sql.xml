@@ -1,896 +1,896 @@
 <?xml version="1.0" standalone="yes"?>
 <RECORDS>
 <RECORD>
-<pid>11</pid>
+<username>bsp</username>
 <parish_name>Blessed Sacrament</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Sunday, Wednesday</days>
 <time>13:0</time>
 </RECORD>
 <RECORD>
-<pid>11</pid>
+<username>bsp</username>
 <parish_name>Blessed Sacrament</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Friday</days>
 <time>9:30</time>
 </RECORD>
 <RECORD>
-<pid>12</pid>
+<username>cmp</username>
 <parish_name>Canadian Martyrs</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>1st Friday</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>13</pid>
+<username>crp</username>
 <parish_name>Christ the Redeemer</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>1st Friday</days>
 <time>9:30</time>
 </RECORD>
 <RECORD>
-<pid>13</pid>
+<username>crp</username>
 <parish_name>Christ the Redeemer</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>First Friday of the month</days>
 <time>10:0</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
+<username>ccp</username>
 <parish_name>Corpus Christi</parish_name>
 <dtype>Lauds</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
 <time>7:40</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
+<username>ccp</username>
 <parish_name>Corpus Christi</parish_name>
 <dtype>Lauds</dtype>
 <days>Saturday</days>
 <time>8:40</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
+<username>ccp</username>
 <parish_name>Corpus Christi</parish_name>
 <dtype>Lauds</dtype>
 <days>Sunday</days>
 <time>14:30</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
+<username>ccp</username>
 <parish_name>Corpus Christi</parish_name>
 <dtype>Perpetual Adoration (24 hrs)</dtype>
 <days>Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
+<username>ccp</username>
 <parish_name>Corpus Christi</parish_name>
 <dtype>Vespers &amp; Benediction</dtype>
 <days>Sunday</days>
 <time>14:0</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
+<username>ccp</username>
 <parish_name>Corpus Christi</parish_name>
 <dtype>Office of Readings</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
 <time>7:0</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
+<username>ccp</username>
 <parish_name>Corpus Christi</parish_name>
 <dtype>Office of Readings</dtype>
 <days>Saturday</days>
 <time>8:0</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
+<username>ccp</username>
 <parish_name>Corpus Christi</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>Friday</days>
 <time>18:35</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
+<username>ccp</username>
 <parish_name>Corpus Christi</parish_name>
 <dtype>Our Lady of Perpetual Help Devotion</dtype>
 <days>Saturday</days>
 <time>9:30</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
+<username>ccp</username>
 <parish_name>Corpus Christi</parish_name>
 <dtype>Rosary</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>15</pid>
+<username>ccp</username>
 <parish_name>Corpus Christi</parish_name>
 <dtype>Rosary</dtype>
 <days>Saturday</days>
 <time>9:30</time>
 </RECORD>
 <RECORD>
-<pid>17</pid>
+<username>gap</username>
 <parish_name>Guardian Angels</parish_name>
 <dtype>Morning Prayer</dtype>
 <days>Tuesday, Wednesday, Thursday, Friday</days>
 <time>7:40</time>
 </RECORD>
 <RECORD>
-<pid>17</pid>
+<username>gap</username>
 <parish_name>Guardian Angels</parish_name>
 <dtype>Morning Prayer</dtype>
 <days>Saturday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>17</pid>
+<username>gap</username>
 <parish_name>Guardian Angels</parish_name>
 <dtype>Morning Prayer</dtype>
 <days>Sunday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>17</pid>
+<username>gap</username>
 <parish_name>Guardian Angels</parish_name>
 <dtype>Holy Hour w/Benediction &amp; Divine Mercy Chaplet</dtype>
 <days>Friday</days>
 <time>18:0</time>
 </RECORD>
 <RECORD>
-<pid>17</pid>
+<username>gap</username>
 <parish_name>Guardian Angels</parish_name>
 <dtype>Novenas</dtype>
 <days>Monday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>17</pid>
+<username>gap</username>
 <parish_name>Guardian Angels</parish_name>
 <dtype>Novenas</dtype>
 <days>Wednesday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>17</pid>
+<username>gap</username>
 <parish_name>Guardian Angels</parish_name>
 <dtype>Confraternity Prayers of the Holy Rosary</dtype>
 <days>Saturday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>17</pid>
+<username>gap</username>
 <parish_name>Guardian Angels</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>Friday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>17</pid>
+<username>gap</username>
 <parish_name>Guardian Angels</parish_name>
 <dtype>Infant Jesus of Prague</dtype>
 <days>Monday</days>
 <time>18:30</time>
 </RECORD>
 <RECORD>
-<pid>18</pid>
+<username>hcp</username>
 <parish_name>Holy Cross</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>Friday</days>
 <time>19:30</time>
 </RECORD>
 <RECORD>
-<pid>20</pid>
+<username>hfp1</username>
 <parish_name>Holy Family</parish_name>
 <dtype>Adoration &amp; Benediction</dtype>
 <days>Sunday</days>
 <time>12:30</time>
 </RECORD>
 <RECORD>
-<pid>20</pid>
+<username>hfp1</username>
 <parish_name>Holy Family</parish_name>
 <dtype>Adoration &amp; Benediction</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
 <time>7:45</time>
 </RECORD>
 <RECORD>
-<pid>20</pid>
+<username>hfp1</username>
 <parish_name>Holy Family</parish_name>
 <dtype>Adoration &amp; Benediction</dtype>
 <days>1st Friday</days>
 <time>20:30</time>
 </RECORD>
 <RECORD>
-<pid>20</pid>
+<username>hfp1</username>
 <parish_name>Holy Family</parish_name>
 <dtype>Sacred Heart Devotions</dtype>
 <days>1st Friday</days>
 <time></time>
 </RECORD>
 <RECORD>
-<pid>20</pid>
+<username>hfp1</username>
 <parish_name>Holy Family</parish_name>
 <dtype>Marian Devotions</dtype>
 <days>1st Saturday</days>
 <time></time>
 </RECORD>
 <RECORD>
-<pid>20</pid>
+<username>hfp1</username>
 <parish_name>Holy Family</parish_name>
 <dtype>Divine Mercy Chaplet</dtype>
 <days>Sunday</days>
 <time>15:0</time>
 </RECORD>
 <RECORD>
-<pid>21</pid>
+<username>hnp</username>
 <parish_name>Holy Name of Jesus</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Saturday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>22</pid>
+<username>hrc</username>
 <parish_name>Holy Rosary Cathedral</parish_name>
 <dtype>Vespers</dtype>
 <days>Sunday</days>
 <time>16:0</time>
 </RECORD>
 <RECORD>
-<pid>22</pid>
+<username>hrc</username>
 <parish_name>Holy Rosary Cathedral</parish_name>
 <dtype>Morning Prayer</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>22</pid>
+<username>hrc</username>
 <parish_name>Holy Rosary Cathedral</parish_name>
 <dtype>Rosary</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
 <time>11:40</time>
 </RECORD>
 <RECORD>
-<pid>22</pid>
+<username>hrc</username>
 <parish_name>Holy Rosary Cathedral</parish_name>
 <dtype>Rosary</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
 <time>16:40</time>
 </RECORD>
 <RECORD>
-<pid>22</pid>
+<username>hrc</username>
 <parish_name>Holy Rosary Cathedral</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>Friday</days>
 <time>15:0</time>
 </RECORD>
 <RECORD>
-<pid>22</pid>
+<username>hrc</username>
 <parish_name>Holy Rosary Cathedral</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Friday</days>
 <time>12:40</time>
 </RECORD>
 <RECORD>
-<pid>22</pid>
+<username>hrc</username>
 <parish_name>Holy Rosary Cathedral</parish_name>
 <dtype>First Saturday Devotion</dtype>
 <days>Saturday</days>
 <time>10:0</time>
 </RECORD>
 <RECORD>
-<pid>23</pid>
+<username>hsp</username>
 <parish_name>Holy Spirit</parish_name>
 <dtype>Rosary</dtype>
 <days>Sunday</days>
 <time>8:40</time>
 </RECORD>
 <RECORD>
-<pid>23</pid>
+<username>hsp</username>
 <parish_name>Holy Spirit</parish_name>
 <dtype>Novenas</dtype>
 <days>First Friday of the month</days>
 <time>15:0</time>
 </RECORD>
 <RECORD>
-<pid>23</pid>
+<username>hsp</username>
 <parish_name>Holy Spirit</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Friday</days>
 <time>19:30</time>
 </RECORD>
 <RECORD>
-<pid>24</pid>
+<username>htp</username>
 <parish_name>Holy Trinity</parish_name>
 <dtype>Perpetual Adoration (24 hrs)</dtype>
 <days></days>
 <time>0:0</time>
 </RECORD>
 <RECORD>
-<pid>30</pid>
+<username>olfp1</username>
 <parish_name>Our Lady of Fatima</parish_name>
 <dtype>Novenas</dtype>
 <days>Wednesday</days>
 <time>18:30</time>
 </RECORD>
 <RECORD>
-<pid>30</pid>
+<username>olfp1</username>
 <parish_name>Our Lady of Fatima</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Friday</days>
 <time>17:0</time>
 </RECORD>
 <RECORD>
-<pid>31</pid>
+<username>olgc</username>
 <parish_name>Our Lady of Good Counsel</parish_name>
 <dtype>Perpetual Adoration (24 hrs)</dtype>
 <days></days>
 <time>0:0</time>
 </RECORD>
 <RECORD>
-<pid>32</pid>
+<username>olgh</username>
 <parish_name>Our Lady of Good Hope</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>1st Friday</days>
 <time>9:30</time>
 </RECORD>
 <RECORD>
-<pid>32</pid>
+<username>olgh</username>
 <parish_name>Our Lady of Good Hope</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Other Fridays</days>
 <time>9:40</time>
 </RECORD>
 <RECORD>
-<pid>32</pid>
+<username>olgh</username>
 <parish_name>Our Lady of Good Hope</parish_name>
 <dtype>Novenas</dtype>
 <days>Tuesday, Thursday</days>
 <time>9:30</time>
 </RECORD>
 <RECORD>
-<pid>33</pid>
+<username>olhp</username>
 <parish_name>Our Lady of Hungary</parish_name>
 <dtype>Rosary</dtype>
 <days>Saturday</days>
 <time>9:30</time>
 </RECORD>
 <RECORD>
-<pid>33</pid>
+<username>olhp</username>
 <parish_name>Our Lady of Hungary</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Saturday</days>
 <time>9:30</time>
 </RECORD>
 <RECORD>
-<pid>34</pid>
+<username>ollp</username>
 <parish_name>Our Lady of Lourdes</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Friday</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>34</pid>
+<username>ollp</username>
 <parish_name>Our Lady of Lourdes</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Friday</days>
 <time>17:45</time>
 </RECORD>
 <RECORD>
-<pid>36</pid>
+<username>olphp</username>
 <parish_name>Our Lady of Perpetual Help</parish_name>
 <dtype>Our Lady of Perpetual Help Devotions &amp; Mass</dtype>
 <days>Thursday</days>
 <time>8:0</time>
 </RECORD>
 <RECORD>
-<pid>36</pid>
+<username>olphp</username>
 <parish_name>Our Lady of Perpetual Help</parish_name>
 <dtype>Our Lady of Perpetual Help Devotions &amp; Mass</dtype>
 <days>Thursday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>36</pid>
+<username>olphp</username>
 <parish_name>Our Lady of Perpetual Help</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Sunday</days>
 <time>14:0</time>
 </RECORD>
 <RECORD>
-<pid>37</pid>
+<username>olsp</username>
 <parish_name>Our Lady of Sorrows</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Friday</days>
 <time>15:0</time>
 </RECORD>
 <RECORD>
-<pid>38</pid>
+<username>olap</username>
 <parish_name>Our Lady of the Assumption</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>39</pid>
+<username>pbp</username>
 <parish_name>Precious Blood</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>1st Friday</days>
 <time>10:0</time>
 </RECORD>
 <RECORD>
-<pid>40</pid>
+<username>shp2</username>
 <parish_name>Sacred Heart</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Wednesday</days>
 <time>17:30</time>
 </RECORD>
 <RECORD>
-<pid>40</pid>
+<username>shp2</username>
 <parish_name>Sacred Heart</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Friday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>43</pid>
+<username>sap1</username>
 <parish_name>St. Andrew</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>1st Friday</days>
 <time>10:0</time>
 </RECORD>
 <RECORD>
-<pid>43</pid>
+<username>sap1</username>
 <parish_name>St. Andrew</parish_name>
 <dtype>Novenas</dtype>
 <days>1st Friday</days>
 <time>18:0</time>
 </RECORD>
 <RECORD>
-<pid>43</pid>
+<username>sap1</username>
 <parish_name>St. Andrew</parish_name>
 <dtype>Novenas</dtype>
 <days>Tuesday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>44</pid>
+<username>sap2</username>
 <parish_name>St. Ann</parish_name>
 <dtype>Rosary</dtype>
 <days>1st Sat</days>
 <time>9:30</time>
 </RECORD>
 <RECORD>
-<pid>44</pid>
+<username>sap2</username>
 <parish_name>St. Ann</parish_name>
 <dtype>Novenas</dtype>
 <days>Tuesday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>44</pid>
+<username>sap2</username>
 <parish_name>St. Ann</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Friday</days>
 <time>18:45</time>
 </RECORD>
 <RECORD>
-<pid>44</pid>
+<username>sap2</username>
 <parish_name>St. Ann</parish_name>
 <dtype>Rosary</dtype>
 <days>13th of each month</days>
 <time>18:0</time>
 </RECORD>
 <RECORD>
-<pid>45</pid>
+<username>sapp1</username>
 <parish_name>St. Anthony of Padua</parish_name>
 <dtype>Rosary</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>46</pid>
+<username>sapp2</username>
 <parish_name>St. Anthony of Padua</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Tuesday, Wednesday, Thursday, Friday</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>48</pid>
+<username>sap4</username>
 <parish_name>St. Augustine</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>Wednesday</days>
 <time>18:45</time>
 </RECORD>
 <RECORD>
-<pid>48</pid>
+<username>sap4</username>
 <parish_name>St. Augustine</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>1st Friday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>52</pid>
+<username>sep</username>
 <parish_name>St. Edmund</parish_name>
 <dtype>Morning Prayer</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
 <time>8:40</time>
 </RECORD>
 <RECORD>
-<pid>52</pid>
+<username>sep</username>
 <parish_name>St. Edmund</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>First Friday of the month</days>
 <time>9:30</time>
 </RECORD>
 <RECORD>
-<pid>56</pid>
+<username>shp</username>
 <parish_name>St. Helen</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
 <time>7:0</time>
 </RECORD>
 <RECORD>
-<pid>57</pid>
+<username>siap</username>
 <parish_name>St. Mark</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>Friday</days>
 <time>15:15</time>
 </RECORD>
 <RECORD>
-<pid>57</pid>
+<username>siap</username>
 <parish_name>St. Mark</parish_name>
 <dtype>Rosary</dtype>
 <days>Daily</days>
 <time>11:5</time>
 </RECORD>
 <RECORD>
-<pid>58</pid>
+<username>sjp</username>
 <parish_name>St. James</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>1st Fri</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>58</pid>
+<username>sjp</username>
 <parish_name>St. James</parish_name>
 <dtype>Novenas</dtype>
 <days>Wednesday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>59</pid>
+<username>sjap</username>
 <parish_name>St. John the Apostle</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>1st Friday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>60</pid>
+<username>sjwp</username>
 <parish_name>St. Joseph the Worker</parish_name>
 <dtype>Rosary</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>64</pid>
+<username>sjp3</username>
 <parish_name>St. Joseph</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Friday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>64</pid>
+<username>sjp3</username>
 <parish_name>St. Joseph</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>1st Friday</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>64</pid>
+<username>sjp3</username>
 <parish_name>St. Joseph</parish_name>
 <dtype>Novenas</dtype>
 <days>Wednesday</days>
 <time>19:0</time>
 </RECORD>
 <RECORD>
-<pid>66</pid>
+<username>sjp6</username>
 <parish_name>St. Jude</parish_name>
 <dtype>Perpetual Novenas in honour of St. Jude</dtype>
 <days>Wednesday</days>
 <time></time>
 </RECORD>
 <RECORD>
-<pid>66</pid>
+<username>sjp6</username>
 <parish_name>St. Jude</parish_name>
 <dtype>Chaplet of Divine Mercy, Holy Rosary &amp; Liturgy of the Hours</dtype>
 <days>`Monday, Tuesday, Thursday, Friday</days>
 <time>7:20</time>
 </RECORD>
 <RECORD>
-<pid>66</pid>
+<username>sjp6</username>
 <parish_name>St. Jude</parish_name>
 <dtype>Chaplet of Divine Mercy, Holy Rosary &amp; Liturgy of the Hours</dtype>
 <days>Saturday</days>
 <time>8:20</time>
 </RECORD>
 <RECORD>
-<pid>66</pid>
+<username>sjp6</username>
 <parish_name>St. Jude</parish_name>
 <dtype>Chaplet of Divine Mercy</dtype>
 <days>Monday to Saturday</days>
 <time>15:0</time>
 </RECORD>
 <RECORD>
-<pid>66</pid>
+<username>sjp6</username>
 <parish_name>St. Jude</parish_name>
 <dtype>Chaplet of Divine Mercy &amp; Holy Rosary</dtype>
 <days>`Sunday</days>
 <time>8:25</time>
 </RECORD>
 <RECORD>
-<pid>66</pid>
+<username>sjp6</username>
 <parish_name>St. Jude</parish_name>
 <dtype>Chaplet of Divine Mercy &amp; Holy Rosary</dtype>
 <days>Sunday</days>
 <time>10:25</time>
 </RECORD>
 <RECORD>
-<pid>67</pid>
+<username>slp</username>
 <parish_name>St. Luke</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>1st Friday - Saturday</days>
 <time>20:0</time>
 </RECORD>
 <RECORD>
-<pid>67</pid>
+<username>slp</username>
 <parish_name>St. Luke</parish_name>
 <dtype>Rosary</dtype>
 <days>After weekday Masses</days>
 <time>0:0</time>
 </RECORD>
 <RECORD>
-<pid>67</pid>
+<username>slp</username>
 <parish_name>St. Luke</parish_name>
 <dtype>Novenas</dtype>
 <days>After Monday Mass</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>67</pid>
+<username>slp</username>
 <parish_name>St. Luke</parish_name>
 <dtype>Novenas</dtype>
 <days>After Tuesday Mass</days>
 <time>19:30</time>
 </RECORD>
 <RECORD>
-<pid>67</pid>
+<username>slp</username>
 <parish_name>St. Luke</parish_name>
 <dtype>Novenas</dtype>
 <days>After Wednesday Mass</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>67</pid>
+<username>slp</username>
 <parish_name>St. Luke</parish_name>
 <dtype>Novenas</dtype>
 <days>After Thursday Mass</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>67</pid>
+<username>slp</username>
 <parish_name>St. Luke</parish_name>
 <dtype>Novenas</dtype>
 <days>After Friday Masses</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>67</pid>
+<username>slp</username>
 <parish_name>St. Luke</parish_name>
 <dtype>Novenas</dtype>
 <days>After Friday Masses</days>
 <time>20:0</time>
 </RECORD>
 <RECORD>
-<pid>67</pid>
+<username>slp</username>
 <parish_name>St. Luke</parish_name>
 <dtype>Perpetual Adoration (24 hrs)</dtype>
 <days>Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
 <time>0:0</time>
 </RECORD>
 <RECORD>
-<pid>69</pid>
+<username>smp2</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Rosary</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
 <time>7:0</time>
 </RECORD>
 <RECORD>
-<pid>69</pid>
+<username>smp2</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Rosary</dtype>
 <days>Saturday</days>
 <time>7:30</time>
 </RECORD>
 <RECORD>
-<pid>69</pid>
+<username>smp2</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Morning Lauds/liturgy of the Hours</dtype>
 <days>Monday, Tuesday, Wednesday, Thursday, Friday</days>
 <time>7:30</time>
 </RECORD>
 <RECORD>
-<pid>69</pid>
+<username>smp2</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Morning Lauds/Liturgy of the Hours</dtype>
 <days>Saturday</days>
 <time>8:0</time>
 </RECORD>
 <RECORD>
-<pid>69</pid>
+<username>smp2</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Novena to Our Lady of the Miraculous Medal</dtype>
 <days>Thursday</days>
 <time>8:0</time>
 </RECORD>
 <RECORD>
-<pid>69</pid>
+<username>smp2</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Novena to Our Lady of the Miraculous Medal</dtype>
 <days>Saturday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>69</pid>
+<username>smp2</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Novena to Our Lady of Perpetual Help</dtype>
 <days>Wednesday</days>
 <time>18:0</time>
 </RECORD>
 <RECORD>
-<pid>69</pid>
+<username>smp2</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>Friday</days>
 <time>15:0</time>
 </RECORD>
 <RECORD>
-<pid>69</pid>
+<username>smp2</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>Friday</days>
 <time>18:15</time>
 </RECORD>
 <RECORD>
-<pid>69</pid>
+<username>smp2</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Adoration of the Blessed Sacrament</dtype>
 <days>Wednesday, Thursday, Friday</days>
 <time>19:45</time>
 </RECORD>
 <RECORD>
-<pid>69</pid>
+<username>smp2</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Adoration of the Blessed Sacrament</dtype>
 <days>First Friday - All day</days>
 <time>8:45</time>
 </RECORD>
 <RECORD>
-<pid>71</pid>
+<username>smp5</username>
 <parish_name>St. Michael</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>First Friday of the month</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>71</pid>
+<username>smp5</username>
 <parish_name>St. Michael</parish_name>
 <dtype>Lauds</dtype>
 <days>Monday, Wednesday, Thursday, Friday</days>
 <time>7:0</time>
 </RECORD>
 <RECORD>
-<pid>74</pid>
+<username>spp1</username>
 <parish_name>St. Patrick</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Wednesday</days>
 <time>18:30</time>
 </RECORD>
 <RECORD>
-<pid>74</pid>
+<username>spp1</username>
 <parish_name>St. Patrick</parish_name>
 <dtype>Novenas</dtype>
 <days>Wednesday</days>
 <time>8:30</time>
 </RECORD>
 <RECORD>
-<pid>74</pid>
+<username>spp1</username>
 <parish_name>St. Patrick</parish_name>
 <dtype>Novenas</dtype>
 <days>Wednesday</days>
 <time>20:0</time>
 </RECORD>
 <RECORD>
-<pid>74</pid>
+<username>spp1</username>
 <parish_name>St. Patrick</parish_name>
 <dtype>Prayer Cenacle</dtype>
 <days>Tuesday</days>
 <time>18:45</time>
 </RECORD>
 <RECORD>
-<pid>74</pid>
+<username>spp1</username>
 <parish_name>St. Patrick</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Monday</days>
 <time>18:30</time>
 </RECORD>
 <RECORD>
-<pid>75</pid>
+<username>spp2</username>
 <parish_name>St. Patrick</parish_name>
 <dtype>First Friday Adoration</dtype>
 <days></days>
 <time></time>
 </RECORD>
 <RECORD>
-<pid>77</pid>
+<username>spp6</username>
 <parish_name>St. Paul</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>1st Friday</days>
 <time>12:0</time>
 </RECORD>
 <RECORD>
-<pid>80</pid>
+<username>spxp</username>
 <parish_name>St. Pius X</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>Friday</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>81</pid>
+<username>ssp</username>
 <parish_name>St. Stephen</parish_name>
 <dtype>Adoration of the Eucharist</dtype>
 <days>1st Friday</days>
 <time>9:0</time>
 </RECORD>
 <RECORD>
-<pid>81</pid>
+<username>ssp</username>
 <parish_name>St. Stephen</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday</days>
 <time>15:0</time>
 </RECORD>
 <RECORD>
-<pid>81</pid>
+<username>ssp</username>
 <parish_name>St. Stephen</parish_name>
 <dtype>Holy Hour</dtype>
 <days>Thursday</days>
 <time>18:0</time>
 </RECORD>
 <RECORD>
-<pid>83</pid>
+<username>scmp</username>
 <parish_name>Sts. Cyril &amp; Methodius</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>Tuesday, Wednesday, Thursday, Friday</days>
 <time>7:45</time>
 </RECORD>
 <RECORD>
-<pid>83</pid>
+<username>scmp</username>
 <parish_name>Sts. Cyril &amp; Methodius</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>Saturday</days>
 <time>8:45</time>
 </RECORD>
 <RECORD>
-<pid>94</pid>
+<username>smp7</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Rosary</dtype>
 <days>Wednesday</days>
 <time>14:30</time>
 </RECORD>
 <RECORD>
-<pid>94</pid>
+<username>smp7</username>
 <parish_name>St. Mary</parish_name>
 <dtype>Divine Mercy</dtype>
 <days>Wednesday</days>
