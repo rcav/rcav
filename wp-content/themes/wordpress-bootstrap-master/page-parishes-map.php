@@ -21,10 +21,12 @@ Template Name: Parishes Map
         });
 
         // A function to create the marker and set up the event window function 
-        function createMarker(point, name, html, category, image) {
+        function createMarker(point, label, html, category, image) {
             var contentString = html;
+            var title = '<h4>' + label + '</h4>';
             var image = ("<?php echo get_stylesheet_directory_uri(); ?>/images/assets/markers/marker_" + category + ".png").toLowerCase();
            // console.log(image);
+           console.log(label);
             var marker = new google.maps.Marker({
                 position: point,
                 map: map,
@@ -34,10 +36,10 @@ Template Name: Parishes Map
                 });
 
               marker.mycategory = category;
-              marker.myname = name;
+              marker.myname = label;
 
             google.maps.event.addListener(marker, 'click', function() {
-                infowindow.setContent(contentString); 
+                infowindow.setContent(title+contentString); 
                 infowindow.open(map,marker);
                 });
             gmarkers.push(marker);
