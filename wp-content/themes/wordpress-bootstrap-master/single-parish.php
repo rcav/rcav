@@ -88,7 +88,19 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 															break;
 
 															case "Website":
-															echo 'Website: ' . ' <a href="' . $child->contact_value . '">' . rtrim($child->contact_value).'</a><br />';
+															//echo $child->contact_value;
+															$website_url = $child->contact_value;
+															$website_url_prefix = substr($website_url,0,4);
+															
+															if($website_url_prefix == 'http') {
+																echo 'Website: ' . ' <a target="_blank" href="' . $website_url . '">' . rtrim($website_url).'</a><br />';
+															} else {
+																echo 'Website: ' . ' <a target="_blank" href="http://' . $website_url . '">' . rtrim($website_url).'</a><br />';
+															}
+		
+ 															
+															
+															
 															break;
 
 														}
