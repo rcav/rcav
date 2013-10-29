@@ -2010,6 +2010,8 @@ width: 230px;
 
 /* tweaks */
 
+.nav-collapse .in { height: auto}
+
 .breadcrumbs {
   font-size: 12px;
   margin: -15px 0 15px 0;
