@@ -39,29 +39,27 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 												$s = simplexml_load_file($path);
 												foreach($s->children() as $child):
 													if($child->pid == $current_pid ) {  
-														echo $child->address1;
-														if($child->address2) {
-															echo '<br />';
-															echo $child->address2;
+														if($child->address1) {
+															echo $child->address1;
+															if(get_field('city')) {
+										    					echo '<br />' . get_field('city');	
+										    				}
+										    				if(get_field('province')) {
+										    					echo ', ' . get_field('province');	
+										    				}
+										    				if(get_field('postal')) {
+										    					echo ', ' .  get_field('postal');	
+										    				}
 
+														}
+														if(!empty($child->address2)) {
+															echo '<br /><br />';
+															echo 'Mailing Address:<br />';
+															echo $child->address2;
 														}
 													}
 												endforeach; ?>	
-										   
-										    <?php if(get_field('city')) {
-										    	echo get_field('city'); 
-										    }
-										   	?>
 
-										    <?php if(get_field('province')) {
-										    	echo get_field('province'); 
-										    }
-										   	?>
-
-										    <?php if(get_field('postal')) {
-										    	echo get_field('postal'); 
-										    }
-										   	?>
 										   </div>
 
 										   	<br />
