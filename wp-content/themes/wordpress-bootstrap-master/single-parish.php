@@ -88,7 +88,7 @@ $root_path = $_SERVER['DOCUMENT_ROOT'];
 															break;
 
 															case "Website":
-															echo 'Website: ' . ' <a href="http://' . $child->contact_value . '">' . rtrim($child->contact_value).'</a><br />';
+															echo 'Website: ' . ' <a href="' . $child->contact_value . '">' . rtrim($child->contact_value).'</a><br />';
 															break;
 
 														}
